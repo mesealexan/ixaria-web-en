@@ -13,25 +13,25 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ixaria.ro/" />
+  <meta property="og:url" content="https://ixaria.eu/" />
   <meta property="og:title" content="Ixaria — Furniture Product Pages Shaped by Real Customer Behavior" />
   <meta property="og:description" content="One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop and continuously improved by real customer behavior." />
-  <meta property="og:image" content="https://ixaria.ro/005.png" />
+  <meta property="og:image" content="https://ixaria.eu/005.webp" />
   <meta property="og:site_name" content="Ixaria" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Canonical & Robots -->
   <link rel="preload" as="image" href="005.webp" type="image/webp" />
-  <link rel="canonical" href="https://ixaria.ro/" />
+  <link rel="canonical" href="https://ixaria.eu/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <link rel="alternate" hreflang="en" href="https://ixaria.ro/" />
-  <link rel="alternate" hreflang="x-default" href="https://ixaria.ro/" />
+  <link rel="alternate" hreflang="en" href="https://ixaria.eu/" />
+  <link rel="alternate" hreflang="x-default" href="https://ixaria.eu/" />
 
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ixaria — Furniture Product Pages Shaped by Real Customer Behavior" />
   <meta name="twitter:description" content="One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop." />
-  <meta name="twitter:image" content="https://ixaria.ro/005.png" />
+  <meta name="twitter:image" content="https://ixaria.eu/005.webp" />
   <style>
     @font-face {
       font-family: 'Gilroy';
@@ -1650,13 +1650,11 @@
     const sendBtn = document.getElementById('chat-send');
     const text = input.value.trim();
     if (!text) return;
-
     input.value = '';
     input.style.height = 'auto';
     sendBtn.disabled = true;
     appendMessage(text, 'user');
-
-    const typing = showTyping();
+    showTyping();
     try {
       const reply = await getAIReply(text);
       removeTyping();
@@ -1669,14 +1667,13 @@
     input.focus();
   }
 
-  // Auto-grow textarea
   document.getElementById('chat-input').addEventListener('input', function() {
     this.style.height = 'auto';
     this.style.height = Math.min(this.scrollHeight, 100) + 'px';
   });
 
-  // Close on Escape
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && chatOpen) closeChat(); });
+
 </script>
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 
@@ -1687,13 +1684,13 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://ixaria.ro/#organization",
+      "@id": "https://ixaria.eu/#organization",
       "name": "Ixaria",
       "legalName": "VIRTUALCONFIG S.R.L.",
-      "url": "https://ixaria.ro",
+      "url": "https://ixaria.eu",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ixaria.ro/logo-light.svg"
+        "url": "https://ixaria.eu/logo-light.svg"
       },
       "description": "Ixaria helps small and medium furniture manufacturers sell more online through product page optimization, 3D configuration, AI-assisted product explanations, and behavior-driven continuous improvement.",
       "foundingDate": "2021",
@@ -1740,27 +1737,27 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://ixaria.ro/#website",
-      "url": "https://ixaria.ro",
+      "@id": "https://ixaria.eu/#website",
+      "url": "https://ixaria.eu",
       "name": "Ixaria",
       "description": "The conversion engine for furniture manufacturers",
-      "publisher": { "@id": "https://ixaria.ro/#organization" }
+      "publisher": { "@id": "https://ixaria.eu/#organization" }
     },
     {
       "@type": "WebPage",
-      "@id": "https://ixaria.ro/#webpage",
-      "url": "https://ixaria.ro",
+      "@id": "https://ixaria.eu/#webpage",
+      "url": "https://ixaria.eu",
       "name": "Ixaria — Furniture Product Pages Shaped by Real Customer Behavior",
       "description": "Ixaria helps small and medium furniture manufacturers sell more online with one system for product pages, 3D configuration, images, reviews, and analytics.",
-      "isPartOf": { "@id": "https://ixaria.ro/#website" },
-      "about": { "@id": "https://ixaria.ro/#organization" },
+      "isPartOf": { "@id": "https://ixaria.eu/#website" },
+      "about": { "@id": "https://ixaria.eu/#organization" },
       "dateModified": "2026-05-27"
     },
     {
       "@type": "Service",
-      "@id": "https://ixaria.ro/#service",
+      "@id": "https://ixaria.eu/#service",
       "name": "Furniture Product Page Optimization",
-      "provider": { "@id": "https://ixaria.ro/#organization" },
+      "provider": { "@id": "https://ixaria.eu/#organization" },
       "serviceType": "Ecommerce product page optimization for furniture manufacturers",
       "description": "Ixaria replaces fragmented ecommerce plugins with one system that centralizes images, videos, product information, 3D configuration, reviews, and analytics. It works on top of your existing webshop and continuously improves from real customer behavior.",
       "audience": {
