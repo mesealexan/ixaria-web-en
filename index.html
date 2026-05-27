@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="IXARIA-logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <title>Ixaria — Furniture Product Pages Shaped by Real Customer Behavior</title>
   <meta name="description" content="Ixaria helps small and medium furniture manufacturers sell more online. One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop and continuously improved by real customer behavior." />
   <meta name="keywords" content="furniture product pages, furniture ecommerce, 3D configurator furniture, product page optimization, furniture manufacturer webshop, furniture online sales" />
@@ -65,7 +65,8 @@
     /* ─── RESET ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--black); background: var(--white); line-height: 1.6; overflow-x: clip; max-width: 100%; }
+    body { font-family: var(--font-body); color: var(--black); background: var(--white); line-height: 1.6; }
+    html { overflow-x: hidden; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
 
@@ -102,8 +103,6 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--white); border-bottom: 1px solid var(--gray-mid);
       box-shadow: 0 2px 12px rgba(9,9,89,0.06);
-      -webkit-transform: translateZ(0); transform: translateZ(0);
-      will-change: transform;
     }
     main { padding-top: 72px; }
     .navbar__inner {
@@ -368,7 +367,7 @@
     .cta-strip__btn-wrap { padding: 28px 32px 28px 0; flex-shrink: 0; }
 
     /* ─── HOW IT WORKS ────────────────────────────────────── */
-    .how { padding: 100px 0; background: var(--gray-light); }
+    .how { padding: 100px 0; background: var(--gray-light); overflow-x: hidden; }
     .how__header { text-align: center; margin-bottom: 24px; }
     .how__sub {
       text-align: center; font-size: 16px; color: var(--gray-text);
@@ -517,7 +516,7 @@
     .email-msg--success { background: #edfaf1; color: #1a7f45; border: 1px solid #b2e5c4; }
 
     /* ─── ABOUT ───────────────────────────────────────────── */
-    .about { padding: 100px 0 50px; background: var(--white); }
+    .about { padding: 100px 0 50px; background: var(--white); overflow-x: hidden; }
     .about__inner {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: start;
@@ -786,7 +785,6 @@
       padding: 14px 22px; border-radius: 100px;
       box-shadow: 0 4px 24px rgba(9,9,89,0.3);
       cursor: pointer;
-      -webkit-transform: translateZ(0); will-change: transform;
       transition: transform .2s, box-shadow .2s, background .2s;
     }
     .talk-btn:hover {
@@ -843,7 +841,7 @@
 <nav class="navbar" aria-label="Main navigation">
   <div class="navbar__inner">
     <a href="index.html" class="navbar__logo">
-      <img src="logo-light.svg" alt="Ixaria" />
+      <img src="logo-light.svg" alt="Ixaria" width="120" height="40" />
     </a>
     <div class="navbar__nav">
       <a href="#how-it-works">How it works</a>
@@ -944,7 +942,7 @@
       </div>
     </div>
     <div class="logos-strip">
-      <img src="logo_agache.svg"       alt="Agache — Ixaria client"       class="logo-agache" loading="lazy" />
+      <img src="logo_agache.svg" alt="Agache — Ixaria client" class="logo-agache" loading="lazy" width="1081" height="292" />
       <img src="logo_divanissimi.webp" alt="Divanissimi — Ixaria client" loading="lazy" width="238" height="70" />
       <img src="logo_expomob.svg"      alt="Expomob — Ixaria client"      class="logo-expomob" loading="lazy" />
       <img src="logo_eurosun.webp" alt="Eurosun — Ixaria client" loading="lazy" width="158" height="57" />
@@ -1344,7 +1342,7 @@
     <div class="footer__grid">
       <div>
         <div class="footer__logo">
-          <img src="logo-dark.svg" alt="Ixaria" />
+          <img src="logo-dark.svg" alt="Ixaria" width="120" height="40" />
         </div>
         <p class="footer__tagline">The conversion engine for the furniture industry.</p>
         <div class="footer__company">
