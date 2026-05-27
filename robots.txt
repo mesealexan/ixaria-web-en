@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ixaria.ro/sitemap.xml
+Sitemap: https://ixaria.ro/sitemap.xml
