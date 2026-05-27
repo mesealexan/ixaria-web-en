@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="IXARIA-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <title>Ixaria — Furniture Product Pages Shaped by Real Customer Behavior</title>
   <meta name="description" content="Ixaria helps small and medium furniture manufacturers sell more online. One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop and continuously improved by real customer behavior." />
   <meta name="keywords" content="furniture product pages, furniture ecommerce, 3D configurator furniture, product page optimization, furniture manufacturer webshop, furniture online sales" />
@@ -18,6 +21,7 @@
   <meta property="og:locale" content="en_US" />
 
   <!-- Canonical & Robots -->
+  <link rel="preload" as="image" href="005.webp" type="image/webp" />
   <link rel="canonical" href="https://ixaria.ro/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="alternate" hreflang="en" href="https://ixaria.ro/" />
@@ -28,10 +32,15 @@
   <meta name="twitter:title" content="Ixaria — Furniture Product Pages Shaped by Real Customer Behavior" />
   <meta name="twitter:description" content="One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop." />
   <meta name="twitter:image" content="https://ixaria.ro/005.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('Gilroy-Black.woff2') format('woff2'),
+           url('Gilroy-Black.ttf') format('truetype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
     /* ─── TOKENS ─────────────────────────────────────────── */
     :root {
       --navy:   #090959;
@@ -45,7 +54,8 @@
       --gray-mid:   #E8E9F0;
       --gray-text:  #555570;
 
-      --font-head: 'Montserrat', sans-serif;
+      --font-display: 'Gilroy', sans-serif;
+      --font-head: 'Inter', sans-serif;
       --font-body: 'Inter', sans-serif;
 
       --radius: 12px;
@@ -54,7 +64,7 @@
 
     /* ─── RESET ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--black); background: var(--white); line-height: 1.6; overflow-x: hidden; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
@@ -79,7 +89,7 @@
       color: var(--elec); margin-bottom: 16px;
     }
     .section-title {
-      font-family: var(--font-head); font-weight: 900;
+      font-family: var(--font-display); font-weight: 900;
       font-size: clamp(28px, 4vw, 42px); line-height: 1.15;
       color: var(--navy); margin-bottom: 20px;
     }
@@ -89,10 +99,11 @@
 
     /* ─── NAVBAR ──────────────────────────────────────────── */
     .navbar {
-      position: sticky; top: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--white); border-bottom: 1px solid var(--gray-mid);
       box-shadow: 0 2px 12px rgba(9,9,89,0.06);
     }
+    main { padding-top: 72px; }
     .navbar__inner {
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 32px; height: 72px; max-width: 1160px; margin: 0 auto;
@@ -130,7 +141,7 @@
 
     /* ─── HERO ────────────────────────────────────────────── */
     .hero {
-      padding: 100px 0 80px;
+      padding: 100px 0 40px;
       background: var(--white);
     }
     .hero__inner {
@@ -146,7 +157,7 @@
       padding: 6px 14px; border-radius: 100px; margin-bottom: 24px;
     }
     .hero__title {
-      font-family: var(--font-head); font-weight: 900;
+      font-family: 'Gilroy', sans-serif; font-weight: 900;
       font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1;
       color: var(--navy); margin-bottom: 24px;
     }
@@ -256,7 +267,7 @@
     .mockup__detail span:last-child { font-weight: 600; color: var(--black); }
 
     /* ─── SOCIAL PROOF ────────────────────────────────────── */
-    .social-proof { padding: 80px 0; background: var(--white); }
+    .social-proof { padding: 40px 0; background: var(--white); }
     .social-proof__top {
       display: grid;
       grid-template-columns: 1.7fr 1fr 1fr 1fr;
@@ -347,7 +358,7 @@
       padding: 28px 36px;
     }
     .cta-strip__title {
-      font-family: var(--font-head); font-weight: 900;
+      font-family: var(--font-display); font-weight: 900;
       font-size: clamp(16px, 2vw, 22px); color: var(--white);
       margin-bottom: 8px; line-height: 1.25;
     }
@@ -380,14 +391,14 @@
     .step.step--visible { opacity: 1; transform: translateX(0); }
     .step.step--visible:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(9,9,89,0.12); }
     .step__top {
-      padding: 20px 20px 0;
+      display: flex; align-items: center; gap: 12px;
+      padding: 20px 20px 16px;
     }
     .step__num {
-      width: 36px; height: 36px; border-radius: 50%;
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
       background: var(--elec); color: var(--white);
       font-family: var(--font-head); font-weight: 900; font-size: 15px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 16px;
     }
     .step:nth-child(2) .step__num { background: var(--arctic); }
     .step:nth-child(3) .step__num { background: var(--orange); }
@@ -418,7 +429,7 @@
     }
     .step__title {
       font-family: var(--font-head); font-weight: 800; font-size: 15px;
-      color: var(--navy); margin-bottom: 10px; line-height: 1.3;
+      color: var(--navy); margin: 0; line-height: 1.3;
     }
     .step__body { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
 
@@ -496,6 +507,7 @@
     .email-reassurance {
       display: flex; align-items: flex-start; gap: 8px;
       font-size: 13px; color: var(--gray-text); line-height: 1.5;
+      margin-top: 6px;
     }
     .email-reassurance svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; color: var(--gray-text); }
     .email-msg { display: none; font-size: 13px; font-family: var(--font-body); margin-top: 10px; padding: 10px 14px; border-radius: 8px; }
@@ -511,7 +523,7 @@
     }
     .about__left { }
     .about__title {
-      font-family: var(--font-head); font-weight: 900;
+      font-family: var(--font-display); font-weight: 900;
       font-size: clamp(32px, 4vw, 48px); line-height: 1.1;
       color: var(--navy); margin-bottom: 24px;
     }
@@ -677,12 +689,11 @@
     @media (max-width: 768px) {
       .navbar__nav, .lang-switcher, .navbar__mobile-toggle { display: none; }
       .hero__inner { grid-template-columns: 1fr; gap: 48px; }
-      .social-proof__top { grid-template-columns: 1fr 1fr; }
-      .social-proof__claim { grid-column: span 2; border-right: none; border-bottom: 1px solid var(--gray-mid); padding: 24px 0; }
-      .stat-item:nth-child(2) { border-right: 1px solid var(--gray-mid); }
-      .stat-item:nth-child(3) { border-right: none; }
-      .stat-item:nth-child(4) { border-top: 1px solid var(--gray-mid); border-right: none; }
-      .stat-item:nth-child(3) { border-top: 0; }
+      .social-proof__top { grid-template-columns: 1fr; }
+      .social-proof__claim { grid-column: span 1; border-right: none; border-bottom: 1px solid var(--gray-mid); padding: 24px 0; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--gray-mid); }
+      .stat-item:last-child { border-bottom: none; }
+      .logos-strip { flex-direction: column; align-items: center; gap: 20px; }
       .cta-strip__inner { grid-template-columns: 1fr; }
       .cta-strip__image { display: none; }
       .cta-strip__text { padding: 24px 24px 16px; }
@@ -694,7 +705,6 @@
       .email-capture__img { display: none; }
       .about__inner { grid-template-columns: 1fr; gap: 48px; }
       .footer__grid { grid-template-columns: 1fr 1fr; }
-      .logos-strip { justify-content: center; }
       .talk-btn span { display: none; }
       .talk-btn { padding: 14px; }
     }
@@ -732,7 +742,7 @@
           <a href="#" onclick="setLang('DE','Deutsch');return false;">🇩🇪 Deutsch</a>
         </div>
       </div>
-      <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:10px 22px;font-size:13px;color:#ffffff;">Book a discovery call</a>
+      <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:10px 22px;font-size:13px;color:#ffffff;">Book a call</a>
     </div>
     <button class="navbar__mobile-toggle" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -775,7 +785,7 @@
 
     <!-- Hero image -->
     <div class="hero__mockup">
-      <img src="005.png" alt="Example of an Ixaria-optimized furniture product page" width="640" height="480" />
+      <img src="005.webp" alt="Example of an Ixaria-optimized furniture product page" width="1242" height="1242" fetchpriority="high" />
     </div>
   </div>
 </section>
@@ -800,7 +810,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M3 21a9 9 0 0 1 18 0"/></svg>
         </div>
         <div class="stat-text">
-          <strong>14+ years in furniture e-commerce</strong>
+          <strong>14+ years in e-commerce</strong>
         </div>
       </div>
       <div class="stat-item">
@@ -814,9 +824,9 @@
     </div>
     <div class="logos-strip">
       <img src="logo_agache.svg"       alt="Agache — Ixaria client"       class="logo-agache" loading="lazy" />
-      <img src="logo_divanissimi.png"  alt="Divanissimi — Ixaria client" loading="lazy" />
+      <img src="logo_divanissimi.webp" alt="Divanissimi — Ixaria client" loading="lazy" width="238" height="70" />
       <img src="logo_expomob.svg"      alt="Expomob — Ixaria client"      class="logo-expomob" loading="lazy" />
-      <img src="logo_eurosun.png"      alt="Eurosun — Ixaria client" loading="lazy" />
+      <img src="logo_eurosun.webp" alt="Eurosun — Ixaria client" loading="lazy" width="158" height="57" />
     </div>
   </div>
 </section>
@@ -826,7 +836,7 @@
   <div class="cta-strip__inner">
     <!-- Left image area -->
     <div class="cta-strip__image">
-      <img src="Picture1.png" alt="Furniture product page consultation" loading="lazy" />
+      <img src="Picture1.webp" width="800" height="800" alt="Furniture product page consultation" loading="lazy" />
     </div>
     <!-- Text -->
     <div class="cta-strip__text">
@@ -857,48 +867,48 @@
       <div class="step">
         <div class="step__top">
           <div class="step__num">1</div>
+          <h3 class="step__title">Gather your product data</h3>
         </div>
         <div class="step__img">
-          <img src="work-001.png" alt="Gathering furniture product data — step 1 of Ixaria setup" loading="lazy" />
+          <img src="work-001.webp" width="600" height="600" alt="Gathering furniture product data — step 1 of Ixaria setup" loading="lazy" />
         </div>
         <div class="step__body-wrap">
-          <h3 class="step__title">Gather your product data</h3>
           <p class="step__body">Gather and organize everything behind each product: parts, assemblies, fabrics, materials, dimensions, configurations, pricing logic, care, delivery, and other buying-critical details.</p>
         </div>
       </div>
       <div class="step">
         <div class="step__top">
           <div class="step__num">2</div>
+          <h3 class="step__title">Connect Ixaria to your webshop</h3>
         </div>
         <div class="step__img">
-          <img src="work-002.png" alt="Connecting Ixaria to your furniture webshop — step 2" loading="lazy" />
+          <img src="work-002.webp" width="600" height="600" alt="Connecting Ixaria to your furniture webshop — step 2" loading="lazy" />
         </div>
         <div class="step__body-wrap">
-          <h3 class="step__title">Connect Ixaria to your webshop</h3>
           <p class="step__body">Our team handles the setup, so you do not need to rebuild your entire webshop or add another complicated tool for your team to manage.</p>
         </div>
       </div>
       <div class="step">
         <div class="step__top">
           <div class="step__num">3</div>
+          <h3 class="step__title">Review and launch the product pages</h3>
         </div>
         <div class="step__img">
-          <img src="work-003.png" alt="Reviewing and launching furniture product pages — step 3" loading="lazy" />
+          <img src="work-003.webp" width="600" height="600" alt="Reviewing and launching furniture product pages — step 3" loading="lazy" />
         </div>
         <div class="step__body-wrap">
-          <h3 class="step__title">Review and launch the product pages</h3>
           <p class="step__body">You review the product pages, request changes, and approve the final version. Once everything looks right, we set the pages live.</p>
         </div>
       </div>
       <div class="step">
         <div class="step__top">
           <div class="step__num">4</div>
+          <h3 class="step__title">Let the system continuously improve</h3>
         </div>
         <div class="step__img">
-          <img src="work-004.png" alt="Ixaria system continuously improving product pages based on customer behavior — step 4" loading="lazy" />
+          <img src="work-004.webp" width="600" height="600" alt="Ixaria system continuously improving product pages based on customer behavior — step 4" loading="lazy" />
         </div>
         <div class="step__body-wrap">
-          <h3 class="step__title">Let the system continuously improve</h3>
           <p class="step__body">After launch, our system kicks in and monitors how customers browse, compare, hesitate, and buy and adapt pages based on this data.</p>
         </div>
       </div>
@@ -914,32 +924,32 @@
     </div>
     <div class="features__grid">
       <div class="feature-card">
-        <img src="feature-001.png" class="feature-icon" alt="Unified furniture product page system" loading="lazy" />
+        <img src="feature-001.webp" width="700" height="393" class="feature-icon" alt="Unified furniture product page system" loading="lazy" />
         <h3 class="feature-title">Replace fragmented plugins with one furniture-specific system</h3>
         <p class="feature-body">Most furniture webshops rely on separate tools for 3D, product data, images, reviews, pricing, and analytics. Ixaria brings the product-page experience into one structured system, so your team does not have to manage a patchwork of disconnected tools.</p>
       </div>
       <div class="feature-card">
-        <img src="feature-002.png" class="feature-icon" alt="Product pages that continuously improve after launch" loading="lazy" />
+        <img src="feature-002.webp" width="700" height="393" class="feature-icon" alt="Product pages that continuously improve after launch" loading="lazy" />
         <h3 class="feature-title">Product pages that improve after they go live</h3>
         <p class="feature-body">A product page should not be treated as finished on launch day. Ixaria uses intelligent customer behavior to understand how people browse, compare, hesitate, and buy, then improves the page over time.</p>
       </div>
       <div class="feature-card">
-        <img src="feature-003.png" class="feature-icon" alt="Ixaria works on top of your existing webshop" loading="lazy" />
+        <img src="feature-003.webp" width="700" height="393" class="feature-icon" alt="Ixaria works on top of your existing webshop" loading="lazy" />
         <h3 class="feature-title">Works on top of your current webshop</h3>
         <p class="feature-body">You don't need to re-design your whole webshop or switch to a different one. Ixaria uses your existing webshop and focuses on the product page as the most important part of the buying journey.</p>
       </div>
       <div class="feature-card">
-        <img src="feature-004.png" class="feature-icon" alt="Product pages specific to your products and customers" loading="lazy" />
+        <img src="feature-004.webp" width="700" height="393" class="feature-icon" alt="Product pages specific to your products and customers" loading="lazy" />
         <h3 class="feature-title">Specific to your products, customers, and buying journey</h3>
         <p class="feature-body">Ixaria is not a generic template your competitors can simply copy. The system becomes stronger through your product data, your customer behavior, and the way your buyers make decisions.</p>
       </div>
       <div class="feature-card">
-        <img src="feature-005.png" class="feature-icon" alt="Helping customers understand why your furniture product is worth buying" loading="lazy" />
+        <img src="feature-005.webp" width="700" height="393" class="feature-icon" alt="Helping customers understand why your furniture product is worth buying" loading="lazy" />
         <h3 class="feature-title">Helps customers understand why your product is worth buying</h3>
         <p class="feature-body">A beautiful image is not enough when the product is expensive, configurable, or hard to compare. Ixaria helps explain value through better structure, clearer information, stronger visuals, and trust-building content.</p>
       </div>
       <div class="feature-card">
-        <img src="feature-006.png" class="feature-icon" alt="AI explaining hidden product details to furniture buyers" loading="lazy" />
+        <img src="feature-006.webp" width="700" height="393" class="feature-icon" alt="AI explaining hidden product details to furniture buyers" loading="lazy" />
         <h3 class="feature-title">Let AI explain the hidden details of your products</h3>
         <p class="feature-body"><strong>Let AI do the talking.</strong> We already have all the information for your product. Now the AI knows more about each product than any sales person in your company. It can reply to any question, address any concern and advise in terms of fabrics, availability, care, warranty and style.</p>
       </div>
@@ -951,7 +961,7 @@
 <section class="email-capture" id="newsletter">
   <div class="email-capture__inner">
     <div class="email-capture__img">
-      <img src="sofa.png" alt="Furniture manufacturer newsletter — stay updated on ecommerce best practices" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+      <img src="sofa.webp" width="1000" height="750" alt="Furniture manufacturer newsletter — stay updated on ecommerce best practices" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
     </div>
     <div class="email-capture__form-area">
       <h2 class="section-title" style="max-width:440px;">Not ready to change your product pages yet?</h2>
@@ -986,7 +996,7 @@
       <div class="founders">
         <div class="founder">
           <div class="founder__avatar">
-            <img src="image_jvvk-gwA_1753779138285_raw.jpg" alt="Alexandru Mesesan — Co-founder of Ixaria" loading="lazy" />
+            <img src="image_jvvk-gwA_1753779138285_raw.webp" width="600" height="600" alt="Alexandru Mesesan — Co-founder of Ixaria" loading="lazy" />
           </div>
           <div class="founder__name">Alex</div>
           <div class="founder__role">Co-founder</div>
@@ -997,7 +1007,7 @@
         </div>
         <div class="founder">
           <div class="founder__avatar">
-            <img src="SPO7558_Original.jpg" alt="Victor Iancu — Co-founder of Ixaria" loading="lazy" />
+            <img src="SPO7558_Original.webp" width="600" height="613" alt="Victor Iancu — Co-founder of Ixaria" loading="lazy" />
           </div>
           <div class="founder__name">Victor</div>
           <div class="founder__role">Co-founder</div>
@@ -1047,14 +1057,6 @@
           <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
         <div class="faq__answer">It depends on the number of products, how many variations they have, and how complex the setup is. But in most cases, we can have the Ixaria solution live in about one month.</div>
-      </div>
-
-      <div class="faq__item">
-        <button class="faq__question" onclick="toggleFaq(this)">
-          How much does Ixaria implementation cost?
-          <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq__answer">The implementation cost is not a fixed price. It depends mainly on the number of products, the complexity of those products, and how much work is needed to prepare the full product page experience.<br><br>Our pricing has two parts: an initial setup fee and an ongoing performance-based monthly fee. The setup fee covers the work needed to prepare and launch the solution, while the monthly fee is connected to the value generated after launch.<br><br>This means our model is aligned with your success. We are not simply charging for software access — we are paid to help your product pages perform better and generate better results.</div>
       </div>
 
       <div class="faq__item">
@@ -1553,11 +1555,6 @@
           "@type": "Question",
           "name": "How long does it take to have the Ixaria solution live?",
           "acceptedAnswer": { "@type": "Answer", "text": "It depends on the number of products, how many variations they have, and how complex the setup is. But in most cases, we can have the Ixaria solution live in about one month." }
-        },
-        {
-          "@type": "Question",
-          "name": "How much does Ixaria implementation cost?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The implementation cost is not a fixed price. It depends mainly on the number of products, the complexity of those products, and how much work is needed to prepare the full product page experience. Our pricing has two parts: an initial setup fee and an ongoing performance-based monthly fee. The setup fee covers the work needed to prepare and launch the solution, while the monthly fee is connected to the value generated after launch." }
         },
         {
           "@type": "Question",
