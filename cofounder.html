@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="IXARIA-logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <title>CTO Co-founder Position @ Ixaria — Build a Product Intelligence Platform</title>
+  <meta name="description" content="Ixaria is hiring a CTO with a co-founder track. Own the technical direction of a product intelligence platform for furniture e-commerce. Full-stack, AI/LLM, and entrepreneurial spirit required." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ixaria.eu/cofounder.html" />
+  <meta property="og:title" content="CTO Co-founder Position @ Ixaria" />
+  <meta property="og:description" content="Own the technical direction of a product intelligence platform for furniture e-commerce. CTO role with a co-founder track and vested equity." />
+  <meta property="og:image" content="https://ixaria.eu/005.webp" />
+  <meta property="og:site_name" content="Ixaria" />
+  <meta property="og:locale" content="en_US" />
+
+  <style>
+    @font-face {
+      font-family: 'Gilroy';
+      src: url('Gilroy-Black.woff2') format('woff2'),
+           url('Gilroy-Black.ttf') format('truetype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --navy:   #090959;
+      --elec:   #0000FF;
+      --arctic: #00CCFF;
+      --orange: #FF5F0A;
+      --yellow: #FFDA00;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --gray-light: #F5F6FA;
+      --gray-mid:   #E8E9F0;
+      --gray-text:  #555570;
+
+      --font-display: 'Gilroy', sans-serif;
+      --font-head: 'Inter', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(9,9,89,0.08);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: var(--font-body); color: var(--black); background: var(--white); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── UTILITY ─────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px; font-family: var(--font-head);
+      font-weight: 700; font-size: 15px; cursor: pointer; border: none;
+      transition: transform .18s, box-shadow .18s, opacity .18s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
+    .btn-primary   { background: var(--elec); color: var(--white); }
+    .btn-secondary { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+    .btn-white     { background: var(--white); color: var(--navy); }
+
+    /* ─── NAVBAR ──────────────────────────────────────────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--gray-mid);
+      box-shadow: 0 2px 12px rgba(9,9,89,0.06);
+    }
+    main { padding-top: 72px; }
+    .navbar__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 72px; max-width: 1160px; margin: 0 auto;
+    }
+    .navbar__logo img { height: 54px; width: auto; }
+    .navbar__nav { display: flex; align-items: center; gap: 36px; }
+    .navbar__nav a {
+      font-family: var(--font-head); font-weight: 600; font-size: 14px;
+      color: var(--black); transition: color .15s;
+    }
+    .navbar__nav a:hover { color: var(--elec); }
+    .navbar__right { display: flex; align-items: center; gap: 16px; }
+    .navbar__mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
+
+    /* ─── JOB HERO ────────────────────────────────────────── */
+    .job-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d0d7a 100%);
+      color: var(--white);
+      padding: 80px 0 72px;
+    }
+    .job-hero__inner { max-width: 900px; margin: 0 auto; padding: 0 32px; text-align: center; }
+    .job-hero__tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); color: var(--arctic);
+      font-family: var(--font-head); font-weight: 700; font-size: 12px;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .job-hero__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(32px, 5vw, 56px); line-height: 1.08;
+      margin-bottom: 20px;
+    }
+    .job-hero__title span { color: var(--arctic); }
+    .job-hero__sub {
+      font-size: 18px; color: rgba(255,255,255,0.8); line-height: 1.7;
+      max-width: 680px; margin: 0 auto 32px;
+    }
+    .job-hero__meta {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 36px;
+    }
+    .job-meta-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16);
+      font-family: var(--font-head); font-weight: 600; font-size: 13px;
+      color: var(--white); padding: 9px 16px; border-radius: 100px;
+    }
+    .job-meta-pill svg { width: 15px; height: 15px; color: var(--arctic); }
+    .job-hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+    /* ─── JOB LAYOUT ──────────────────────────────────────── */
+    .job-body { padding: 72px 0 40px; background: var(--white); }
+    .job-layout {
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 56px; align-items: start;
+      max-width: 1160px; margin: 0 auto; padding: 0 32px;
+    }
+
+    /* Sticky in-page nav */
+    .job-toc { position: sticky; top: 96px; }
+    .job-toc__title {
+      font-family: var(--font-head); font-weight: 700; font-size: 12px;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--gray-text);
+      margin-bottom: 16px;
+    }
+    .job-toc__list { display: flex; flex-direction: column; gap: 2px; }
+    .job-toc__list a {
+      font-family: var(--font-head); font-weight: 600; font-size: 14px;
+      color: var(--gray-text); padding: 8px 14px; border-radius: 8px;
+      border-left: 2px solid transparent; transition: color .15s, background .15s, border-color .15s;
+    }
+    .job-toc__list a:hover { color: var(--elec); background: var(--gray-light); }
+
+    /* Content */
+    .job-content { min-width: 0; }
+    .job-section { margin-bottom: 56px; scroll-margin-top: 96px; }
+    .job-section:last-child { margin-bottom: 0; }
+    .job-section__label {
+      display: inline-block; font-family: var(--font-head); font-weight: 700;
+      font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--elec); margin-bottom: 12px;
+    }
+    .job-section__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(24px, 3vw, 34px); line-height: 1.15;
+      color: var(--navy); margin-bottom: 20px;
+    }
+    .job-section__title span { color: var(--orange); }
+    .job-section p { font-size: 16px; color: var(--gray-text); line-height: 1.8; margin-bottom: 18px; }
+    .job-section p:last-child { margin-bottom: 0; }
+    .job-section p strong { color: var(--navy); }
+    .job-section h3 {
+      font-family: var(--font-head); font-weight: 800; font-size: 18px;
+      color: var(--navy); margin: 32px 0 16px;
+    }
+
+    /* Highlight callout for the role framing */
+    .job-callout {
+      background: var(--gray-light); border-left: 3px solid var(--elec);
+      border-radius: var(--radius); padding: 28px 30px; margin: 8px 0 0;
+    }
+    .job-callout ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .job-callout li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 16px; color: var(--gray-text); line-height: 1.7;
+    }
+    .job-callout li strong { color: var(--navy); }
+    .job-split {
+      display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .job-split__chip {
+      flex: 1; min-width: 200px; text-align: center;
+      background: var(--gray-light); border-radius: var(--radius); padding: 22px;
+    }
+    .job-split__chip:nth-child(1) { border-top: 3px solid var(--elec); }
+    .job-split__chip:nth-child(2) { border-top: 3px solid var(--yellow); }
+    .job-split__pct {
+      font-family: var(--font-display); font-weight: 900; font-size: 38px;
+      color: var(--navy); line-height: 1;
+    }
+    .job-split__chip:nth-child(2) .job-split__pct { color: var(--orange); }
+    .job-split__lbl {
+      font-family: var(--font-head); font-weight: 700; font-size: 13px;
+      text-transform: uppercase; letter-spacing: .08em; color: var(--gray-text);
+      margin-top: 10px;
+    }
+
+    /* Bullet lists with check/dot markers */
+    .job-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 4px 0 0; }
+    .job-list li {
+      position: relative; padding-left: 30px;
+      font-size: 16px; color: var(--gray-text); line-height: 1.7;
+    }
+    .job-list li::before {
+      content: ''; position: absolute; left: 0; top: 9px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: rgba(0,0,255,0.08);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%230000FF' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+    .job-list--ai li::before {
+      background: rgba(0,204,255,0.14);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%2300CCFF' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+    .job-list--fit li::before {
+      background: rgba(255,95,10,0.12);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23FF5F0A' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+
+    /* Skill tag groups */
+    .skill-group { margin-bottom: 28px; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-group__title {
+      font-family: var(--font-head); font-weight: 800; font-size: 15px;
+      color: var(--navy); margin-bottom: 14px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-tag {
+      font-family: var(--font-head); font-weight: 600; font-size: 13px;
+      color: var(--navy); background: var(--white);
+      border: 1px solid var(--gray-mid); border-radius: 100px;
+      padding: 8px 16px; transition: border-color .15s, color .15s, background .15s;
+    }
+    .skill-tag:hover { border-color: var(--elec); color: var(--elec); background: rgba(0,0,255,0.04); }
+    .skill-tag--ai:hover { border-color: var(--arctic); color: #0093b8; background: rgba(0,204,255,0.06); }
+
+    .job-note {
+      font-size: 15px; color: var(--gray-text); font-style: italic;
+      border-top: 1px solid var(--gray-mid); padding-top: 18px; margin-top: 24px;
+    }
+
+    /* Reflective questions */
+    .job-questions { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 0; }
+    .job-question {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: var(--gray-light); border-radius: var(--radius); padding: 16px 20px;
+      font-size: 16px; color: var(--navy); font-weight: 600; line-height: 1.6;
+    }
+    .job-question svg { width: 18px; height: 18px; color: var(--elec); flex-shrink: 0; margin-top: 3px; }
+
+    /* Perks cards */
+    .perks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 4px; }
+    .perk-card {
+      border: 1px solid var(--gray-mid); border-radius: var(--radius);
+      padding: 26px 24px; transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .perk-card:hover { border-color: var(--elec); box-shadow: 0 8px 32px rgba(0,0,255,0.08); transform: translateY(-3px); }
+    .perk-card__icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(0,0,255,0.07); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .perk-card__icon svg { width: 22px; height: 22px; color: var(--elec); }
+    .perk-card__title { font-family: var(--font-head); font-weight: 800; font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+    .perk-card__body { font-size: 14px; color: var(--gray-text); line-height: 1.7; }
+
+    /* Process steps */
+    .process-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 4px; }
+    .process-step {
+      display: flex; align-items: flex-start; gap: 18px;
+      background: var(--gray-light); border-radius: var(--radius); padding: 24px 26px;
+    }
+    .process-step__num {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: var(--elec); color: var(--white);
+      font-family: var(--font-head); font-weight: 900; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .process-step:nth-child(2) .process-step__num { background: var(--orange); }
+    .process-step__title { font-family: var(--font-head); font-weight: 800; font-size: 16px; color: var(--navy); margin-bottom: 6px; }
+    .process-step__body { font-size: 15px; color: var(--gray-text); line-height: 1.7; }
+
+    /* Team */
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 4px; }
+    .team-card {
+      text-align: center; border: 1px solid var(--gray-mid); border-radius: var(--radius);
+      padding: 28px 22px; transition: border-color .2s, box-shadow .2s;
+    }
+    .team-card:hover { border-color: var(--elec); box-shadow: var(--shadow); }
+    .team-card__avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      border: 3px solid var(--elec); overflow: hidden; margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--gray-light);
+    }
+    .team-card__avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .team-card__initials {
+      font-family: var(--font-display); font-weight: 900; font-size: 30px; color: var(--elec);
+    }
+    .team-card__name { font-family: var(--font-head); font-weight: 800; font-size: 16px; color: var(--navy); margin-bottom: 4px; }
+    .team-card__role { font-size: 13px; color: var(--elec); font-weight: 600; font-family: var(--font-head); margin-bottom: 14px; }
+    .team-card__bio { font-size: 13px; color: var(--gray-text); line-height: 1.7; }
+    .team-card__linkedin {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-head); font-weight: 600; font-size: 12px;
+      color: var(--elec); border: 1px solid var(--elec);
+      padding: 6px 14px; border-radius: 100px;
+      transition: background .15s, color .15s;
+    }
+    .team-card__linkedin:hover { background: var(--elec); color: var(--white); }
+    .team-card__linkedin svg { width: 12px; height: 12px; }
+    .team-subtitle {
+      font-family: var(--font-head); font-weight: 800; font-size: 18px;
+      color: var(--navy); margin: 40px 0 16px;
+    }
+
+    /* Final CTA */
+    .job-final {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d0d7a 100%);
+      border-radius: 20px; padding: 56px 40px; text-align: center; color: var(--white);
+      margin-top: 8px;
+    }
+    .job-final__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(24px, 3.5vw, 36px); line-height: 1.15; margin-bottom: 16px;
+    }
+    .job-final__body { font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.7; max-width: 560px; margin: 0 auto 28px; }
+    .job-final__ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .job-final__email {
+      font-family: var(--font-head); font-weight: 700;
+      font-size: clamp(18px, 2.4vw, 24px); color: var(--white);
+    }
+    .job-final__email a { color: var(--arctic); text-decoration: underline; text-underline-offset: 4px; transition: color .15s; }
+    .job-final__email a:hover { color: var(--white); }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    .footer { background: var(--navy); padding: 80px 0 40px; }
+    .footer__grid {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 48px; margin-bottom: 60px;
+    }
+    .footer__logo { margin-bottom: 16px; }
+    .footer__logo img { height: 32px; }
+    .footer__tagline { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 16px; }
+    .footer__company { margin-bottom: 24px; }
+    .footer__company p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.7; }
+    .footer__social { display: flex; gap: 14px; }
+    .footer__social a {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: rgba(255,255,255,0.1); display: flex;
+      align-items: center; justify-content: center;
+      color: var(--white); transition: background .15s;
+    }
+    .footer__social a:hover { background: var(--elec); }
+    .footer__social svg { width: 16px; height: 16px; }
+    .footer__col-title {
+      font-family: var(--font-head); font-weight: 700; font-size: 13px;
+      color: var(--white); text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: 20px;
+    }
+    .footer__links { display: flex; flex-direction: column; gap: 12px; }
+    .footer__links a {
+      font-size: 14px; color: rgba(255,255,255,0.6); transition: color .15s;
+    }
+    .footer__links a:hover { color: var(--white); }
+    .footer__bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer__copy { font-size: 13px; color: rgba(255,255,255,0.4); }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .job-layout { grid-template-columns: 1fr; gap: 32px; }
+      .job-toc { display: none; }
+      .perks-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .navbar__nav, .navbar__mobile-toggle { display: none; }
+      .navbar__inner { padding: 0 16px; }
+      .navbar__logo img { height: 40px; }
+      .navbar__right .btn { padding: 9px 14px; font-size: 12px; }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .footer__grid { grid-template-columns: 1fr; }
+      .job-hero__ctas, .job-final__ctas { flex-direction: column; }
+      .job-final { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<header>
+<nav class="navbar" aria-label="Main navigation">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">
+      <img src="logo-light.svg" alt="Ixaria" width="120" height="40" />
+    </a>
+    <div class="navbar__nav">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#about">About us</a>
+    </div>
+    <div class="navbar__right">
+      <!-- <a href="mailto:alex@ixaria.ro?subject=CTO%20Co-founder%20Application" class="btn btn-primary" style="padding:10px 22px;font-size:13px;color:#ffffff;">Apply now</a> -->
+    </div>
+    <button class="navbar__mobile-toggle" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+</header>
+
+<main id="main-content">
+
+<!-- ══════════ JOB HERO ══════════ -->
+<section class="job-hero">
+  <div class="job-hero__inner">
+    <!-- <span class="job-hero__tag">We're hiring</span> -->
+    <h1 class="job-hero__title">CTO <span>Co-founder</span> Position @ Ixaria</h1>
+    <p class="job-hero__sub">
+      Own the technical direction of our platform as we build a product intelligence layer for furniture e-commerce.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ JOB BODY ══════════ -->
+<section class="job-body">
+  <div class="job-layout">
+
+    <!-- Sticky table of contents -->
+    <aside class="job-toc">
+      <div class="job-toc__title">On this page</div>
+      <nav class="job-toc__list">
+        <a href="#role">The role</a>
+        <a href="#about-ixaria">About Ixaria</a>
+        <a href="#what-you-do">What you will do</a>
+        <a href="#ai">AI &amp; LLM responsibility</a>
+        <a href="#looking-for">What we look for</a>
+        <a href="#quality">The most important quality</a>
+        <a href="#good-fit">You are a good fit if</a>
+        <a href="#whats-in-it">What's in it for you</a>
+        <a href="#how-we-start">How do we start</a>
+        <a href="#team">Meet the team</a>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <div class="job-content">
+
+      <!-- The role -->
+      <div class="job-section" id="role">
+        <span class="job-section__label">The role</span>
+        <h2 class="job-section__title">A builder's role, not a spectator's</h2>
+        <p>
+          Ixaria is looking for a CTO (with the potential to become a co-founder) to own the technical
+          direction of our platform as we build a product intelligence layer for furniture e-commerce.
+        </p>
+        <div class="job-split">
+          <div class="job-split__chip">
+            <div class="job-split__pct">99%</div>
+            <div class="job-split__lbl">Execution &amp; Testing</div>
+          </div>
+          <div class="job-split__chip">
+            <div class="job-split__pct">1%</div>
+            <div class="job-split__lbl">Strategy</div>
+          </div>
+        </div>
+        <div class="job-callout">
+          <ul>
+            <li>
+              <span>This role is for someone who is <strong>super passionate about building tech products</strong> and obsessed with creating ones that are used and really add value to their customers.</span>
+            </li>
+            <li>
+              <span>This role is for someone who has always wanted to <strong>own their own business &amp; build a tech startup</strong> with a global &amp; scalable product used by millions of people.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- About Ixaria -->
+      <div class="job-section" id="about-ixaria">
+        <span class="job-section__label">About us</span>
+        <h2 class="job-section__title">About <span>Ixaria</span></h2>
+        <p>Ixaria is building a product intelligence system for furniture manufacturers.</p>
+        <p>
+          Ixaria helps furniture manufacturers centralize product and component data, understand how customers
+          interact with their websites, and render better product pages based on customer behavior, needs,
+          buying stage, and context.
+        </p>
+        <p>
+          We are not building a standard webshop, a simple product configurator, or a collection of
+          client-specific projects. We are building a scalable platform that integrates with existing
+          e-commerce systems and combines structured product data, behavioral intelligence, and AI-assisted capabilities.
+        </p>
+        <p>
+          We are a small core team, so this role has a major impact. The person joining Ixaria will help define
+          how the platform is built, how AI becomes part of the product, how the technical team grows, and
+          ultimately what the company becomes.
+        </p>
+      </div>
+
+      <!-- What you will do -->
+      <div class="job-section" id="what-you-do">
+        <span class="job-section__label">Responsibilities</span>
+        <h2 class="job-section__title">What you will do</h2>
+        <p>
+          You will be responsible for the architecture, development, and technical evolution of the Ixaria
+          platform. This includes:
+        </p>
+        <ul class="job-list">
+          <li>Owning the overall technical architecture and development strategy</li>
+          <li>Building and improving integrations with Shopify, WooCommerce, and other e-commerce platforms</li>
+          <li>Developing plugins, applications, APIs, and integration layers for existing webshops</li>
+          <li>Working across backend systems, frontend applications, databases, infrastructure, and third-party services</li>
+          <li>Designing the systems used to collect, validate, store, and retrieve structured product and component data</li>
+          <li>Building the technical foundation for adaptive product page experiences</li>
+          <li>Developing the event and data infrastructure required to understand customer journeys and website behavior</li>
+          <li>Ensuring that client implementations become reusable platform capabilities rather than one-off custom solutions</li>
+          <li>Establishing standards for scalability, performance, security, testing, and maintainable development</li>
+          <li>Working closely with product, design, analytics, and commercial leadership</li>
+          <li>Helping define the technical team and development processes as Ixaria grows</li>
+        </ul>
+      </div>
+
+      <!-- AI and LLM responsibility -->
+      <div class="job-section" id="ai">
+        <span class="job-section__label">AI &amp; LLM</span>
+        <h2 class="job-section__title">AI and LLM responsibility</h2>
+        <p>AI and LLM-based capabilities will be an important part of Ixaria's technical direction.</p>
+        <p>
+          You will be responsible for defining how these technologies are integrated into the platform in a
+          reliable, controlled, and commercially useful way. This may include:
+        </p>
+        <ul class="job-list job-list--ai">
+          <li>Building AI-assisted workflows for structuring, classifying, enriching, and validating product data</li>
+          <li>Using LLMs to identify missing product information and generate suggested customer-facing explanations</li>
+          <li>Developing retrieval systems that allow AI models to answer questions using approved product and component data</li>
+          <li>Contributing to the development of an AI product assistant for complex furniture products</li>
+          <li>Using behavioral and product data to support customer segmentation and product page adaptation</li>
+          <li>Evaluating when to use third-party models, hosted services, retrieval-augmented generation, or internally controlled systems</li>
+          <li>Designing validation, approval, monitoring, and fallback mechanisms for AI-generated outputs</li>
+          <li>Preventing hallucinations and ensuring that sensitive claims remain grounded in manufacturer-approved information</li>
+          <li>Managing model costs, latency, reliability, data privacy, and observability</li>
+          <li>Turning AI prototypes into dependable product capabilities</li>
+        </ul>
+        <p class="job-note">
+          We are not looking for someone who simply adds a chatbot to the platform. We need someone who
+          understands how AI systems should interact with structured data, business rules, user behavior,
+          and human approval processes.
+        </p>
+      </div>
+
+      <!-- What we are looking for -->
+      <div class="job-section" id="looking-for">
+        <span class="job-section__label">Requirements</span>
+        <h2 class="job-section__title">What we are looking for</h2>
+        <p>
+          We are looking for someone with strong technical judgment, broad full-stack experience, and the
+          ability to think like a product builder.
+        </p>
+
+        <div class="skill-group">
+          <div class="skill-group__title">You should have strong experience with:</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Java &amp; backend development</span>
+            <span class="skill-tag">JavaScript &amp; TypeScript</span>
+            <span class="skill-tag">Angular</span>
+            <span class="skill-tag">React or comparable frameworks</span>
+            <span class="skill-tag">API architecture &amp; integrations</span>
+            <span class="skill-tag">Databases &amp; data modeling</span>
+            <span class="skill-tag">Data-intensive applications</span>
+            <span class="skill-tag">Cloud infrastructure &amp; deployment</span>
+            <span class="skill-tag">E-commerce systems &amp; integration patterns</span>
+            <span class="skill-tag">Shopify / WooCommerce</span>
+            <span class="skill-tag">Plugin / app development for third-party ecosystems</span>
+            <span class="skill-tag">Performance, scalability &amp; security</span>
+            <span class="skill-tag">Maintainable software architecture</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group__title">Practical knowledge of modern AI application development, including some of:</div>
+          <div class="skill-tags">
+            <span class="skill-tag skill-tag--ai">LLM APIs &amp; model integration</span>
+            <span class="skill-tag skill-tag--ai">Retrieval-augmented generation</span>
+            <span class="skill-tag skill-tag--ai">Embeddings &amp; vector search</span>
+            <span class="skill-tag skill-tag--ai">Prompt &amp; context management</span>
+            <span class="skill-tag skill-tag--ai">Structured outputs &amp; tool calling</span>
+            <span class="skill-tag skill-tag--ai">Evaluation &amp; monitoring of AI outputs</span>
+            <span class="skill-tag skill-tag--ai">AI workflow orchestration</span>
+            <span class="skill-tag skill-tag--ai">Data privacy &amp; security in AI apps</span>
+          </div>
+        </div>
+
+        <p class="job-note">
+          Experience with WebGL, Three.js, 3D product visualization, or product configurators is valuable,
+          but not mandatory. We do not require someone who trains foundation models from scratch. We need
+          someone who knows how to design, evaluate, and operate dependable AI-enabled product features.
+        </p>
+      </div>
+
+      <!-- The most important quality -->
+      <div class="job-section" id="quality">
+        <span class="job-section__label">Mindset</span>
+        <h2 class="job-section__title">The most important quality</h2>
+        <p>The most important quality we are looking for is <strong>entrepreneurial spirit</strong>.</p>
+        <p>
+          We need someone who does not wait for a complete specification before taking responsibility.
+          Someone who can understand the business problem, challenge assumptions, propose solutions, and
+          help decide what the product should become.
+        </p>
+        <p>You should be able to look at a client request and ask:</p>
+        <div class="job-questions">
+          <div class="job-question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Does this solve a wider problem?
+          </div>
+          <div class="job-question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Should this become part of the platform?
+          </div>
+          <div class="job-question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Can this be built as a reusable capability?
+          </div>
+          <div class="job-question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Does AI add real value here, or would a deterministic system work better?
+          </div>
+          <div class="job-question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            How do we deliver something useful now without damaging the long-term architecture?
+          </div>
+          <div class="job-question">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            What are the technical and commercial trade-offs?
+          </div>
+        </div>
+        <p style="margin-top:22px;">
+          This is a leadership role with direct influence over both the technology and the company's direction.
+        </p>
+      </div>
+
+      <!-- You are a good fit if -->
+      <div class="job-section" id="good-fit">
+        <span class="job-section__label">Fit</span>
+        <h2 class="job-section__title">You are a good fit if</h2>
+        <ul class="job-list job-list--fit">
+          <li>You want to build and shape a product, not only complete development tasks</li>
+          <li>You can move comfortably between architecture, implementation, and business discussions</li>
+          <li>You understand the difference between an AI demonstration and a reliable AI product</li>
+          <li>You care about clean architecture without being blocked by perfection</li>
+          <li>You know how to balance speed, technical debt, and long-term scalability</li>
+          <li>You can communicate technical decisions clearly to non-technical colleagues</li>
+          <li>You are comfortable working with ambiguity and incomplete information</li>
+          <li>You want substantial ownership in an early-stage company</li>
+          <li>You are interested in e-commerce, product intelligence, behavioral data, and AI</li>
+        </ul>
+      </div>
+
+      <!-- What's in it for you -->
+      <div class="job-section" id="whats-in-it">
+        <span class="job-section__label">Why join</span>
+        <h2 class="job-section__title">What's in it for you</h2>
+        <div class="perks-grid">
+          <div class="perk-card">
+            <div class="perk-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="perk-card__title">Learn the business of a startup</div>
+            <div class="perk-card__body">You'll learn the business behind building a tech startup, first-hand.</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div class="perk-card__title">Grow 10x faster</div>
+            <div class="perk-card__body">Your limits will be tested constantly, and you'll grow in 1 year as much as you would in 10 years in a safe &amp; secure 9-5 job. We can guarantee that!</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <div class="perk-card__title">A personal development marathon</div>
+            <div class="perk-card__body">You'll have one of the best personal development marathons ever.</div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="perk-card__title">Become a significant shareholder</div>
+            <div class="perk-card__body">You have the opportunity to become a significant shareholder in Ixaria and earn co-founder status if you're truly dedicated, have a founder mindset, and are proactive in what you do.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How do we start -->
+      <div class="job-section" id="how-we-start">
+        <span class="job-section__label">Process</span>
+        <h2 class="job-section__title">How do we start?</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step__num">1</div>
+            <div>
+              <div class="process-step__title">Test our chemistry</div>
+              <div class="process-step__body">We will test our chemistry in 1-2 months, with 100-200 hours of work.</div>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-step__num">2</div>
+            <div>
+              <div class="process-step__title">Agree on the details</div>
+              <div class="process-step__body">If it's a go on both sides, we will decide on the details about your involvement, and propose an equity plan vested over a period of 5 years, with a 1-year cliff.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meet the team -->
+      <div class="job-section" id="team">
+        <span class="job-section__label">The team</span>
+        <h2 class="job-section__title">Meet the team you'll work with</h2>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-card__avatar">
+              <img src="image_jvvk-gwA_1753779138285_raw.webp" width="200" height="200" alt="Alexandru Meseșan — Co-founder &amp; CEO of Ixaria" loading="lazy" />
+            </div>
+            <div class="team-card__name">Alexandru Meseșan</div>
+            <div class="team-card__role">Co-founder &amp; CEO</div>
+            <a href="https://www.linkedin.com/in/alexandru-mesesan/" target="_blank" rel="noopener noreferrer" class="team-card__linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+          <div class="team-card">
+            <div class="team-card__avatar">
+              <img src="SPO7558_Original.webp" width="200" height="200" alt="Victor Iancu — Co-founder &amp; Tech at Ixaria" loading="lazy" />
+            </div>
+            <div class="team-card__name">Victor Iancu</div>
+            <div class="team-card__role">Co-founder &amp; Tech</div>
+            <a href="https://www.linkedin.com/in/victoriancu/" target="_blank" rel="noopener noreferrer" class="team-card__linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+          <div class="team-card">
+            <div class="team-card__avatar">
+              <img src="Eduard Profile picture 4x4.png" width="200" height="200" alt="Eduard Badea — Co-founder &amp; Product at Ixaria" loading="lazy" />
+            </div>
+            <div class="team-card__name">Eduard Badea</div>
+            <div class="team-card__role">Co-founder &amp; Product</div>
+            <a href="https://www.linkedin.com/in/eduard-badea/" target="_blank" rel="noopener noreferrer" class="team-card__linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <h3 class="team-subtitle">Advisors</h3>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-card__avatar">
+              <img src="Adi2.jfif" width="200" height="200" alt="Adrian Gheorghe — Advisor at Ixaria" loading="lazy" />
+            </div>
+            <div class="team-card__name">Adrian Gheorghe</div>
+            <div class="team-card__role">Advisor</div>
+            <a href="https://www.linkedin.com/in/adrian-gheorghe/" target="_blank" rel="noopener noreferrer" class="team-card__linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="job-final">
+        <h2 class="job-final__title">Ready to build something that lasts?</h2>
+        <p class="job-final__body">
+          If you have the founder mindset, the technical range, and the drive to own the product,
+          we'd love to hear from you.
+        </p>
+        <p class="job-final__email">
+          Send us an email at
+          <a href="mailto:alex@ixaria.ro?subject=CTO%20Co-founder%20Application">alex@ixaria.ro</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <img src="logo-dark.svg" alt="Ixaria" width="120" height="40" />
+        </div>
+        <p class="footer__tagline">The conversion engine for the furniture industry.</p>
+        <div class="footer__company">
+          <p>VIRTUALCONFIG S.R.L.</p>
+          <p>CIF: 43799883</p>
+          <p>Reg. com.: J2021000791354</p>
+          <p>Str. Surorile Martir Caceu, Nr. 9,<br>Timisoara, Timis, Romania</p>
+        </div>
+        <div class="footer__social">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/company/ixaria/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@alex.mesesan" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#090959"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/ixaria.ro/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/ixaria.ro" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Website</div>
+        <div class="footer__links">
+          <a href="index.html#social-proof">Why Ixaria</a>
+          <a href="index.html#how-it-works">How it works</a>
+          <a href="index.html#features">Features</a>
+          <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer">Book a call</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Legal</div>
+        <div class="footer__links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookie-policy.html">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2026 Ixaria. All rights reserved.</p>
+      <p class="footer__copy">Made with ❤️ in Timișoara, Romania</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll for in-page anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Navbar scroll shadow
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 10
+      ? '0 4px 20px rgba(9,9,89,0.12)'
+      : '0 2px 12px rgba(9,9,89,0.06)';
+  });
+</script>
+
+</body>
+</html>
