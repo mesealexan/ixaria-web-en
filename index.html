@@ -1965,7 +1965,69 @@
     }
   </style>
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-70N9EB47DK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
 
+  gtag('config', 'G-70N9EB47DK');
+
+  // Click / form event tracking
+  function trackEvent(name, params) {
+    if (typeof gtag === 'function') gtag('event', name, params || {});
+  }
+
+  function socialNetworkFromUrl(url) {
+    if (/linkedin\.com/i.test(url)) return 'linkedin';
+    if (/youtube\.com|youtu\.be/i.test(url)) return 'youtube';
+    if (/instagram\.com/i.test(url)) return 'instagram';
+    if (/facebook\.com/i.test(url)) return 'facebook';
+    return null;
+  }
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('a');
+    if (!el || !el.href) return;
+
+    var href = el.getAttribute('href') || '';
+    var label = (el.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+
+    // Book a discovery call / Book a call (Calendly)
+    if (/calendly\.com/i.test(el.href)) {
+      if (label.indexOf('discovery') !== -1) {
+        trackEvent('book_discovery_call', { link_text: label, link_url: el.href });
+      } else {
+        trackEvent('book_call', { link_text: label || 'book a call', link_url: el.href });
+      }
+      return;
+    }
+
+    // See how it works
+    if (href === '#how-it-works' && el.classList.contains('btn-secondary')) {
+      trackEvent('see_how_it_works');
+      return;
+    }
+
+    // Social links (footer + founder LinkedIn, etc.)
+    var network = socialNetworkFromUrl(el.href);
+    if (network) {
+      trackEvent('social_click', {
+        social_network: network,
+        link_url: el.href,
+        link_text: label || (el.getAttribute('aria-label') || network)
+      });
+    }
+  });
+
+  document.addEventListener('submit', function (e) {
+    if (e.target && e.target.id === 'sib-form') {
+      trackEvent('newsletter_submit');
+    }
+  });
+</script>
+<script type="text/javascript" src="https://app.secureprivacy.ai/script/undefined.js"></script>
 <body>
 
   <!-- ══════════ NAVBAR ══════════ -->
