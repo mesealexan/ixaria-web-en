@@ -382,10 +382,18 @@
       border: 1px solid var(--gray-mid);
     }
 
-    .hero__mockup img {
+    .hero__mockup img,
+    .hero__mockup video {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    /* Avoid flash of control hero while A/B variant is applied */
+    .hero[data-ab-pending] .hero__title,
+    .hero[data-ab-pending] .hero__body,
+    .hero[data-ab-pending] .hero__mockup {
+      visibility: hidden;
     }
 
     .mockup__bar {
@@ -1975,10 +1983,59 @@
 
   gtag('config', 'G-70N9EB47DK');
 
+  // ─── Hero A/B assignment (sticky) ─────────────────────────
+  // QA: ?ab_hero=control | ?ab_hero=variant
+  window.AB_HERO = {
+    key: 'ixaria_ab_hero_v1',
+    control: {
+      titleHtml: 'Furniture Product Pages shaped by <span>Real Customer Behavior</span>',
+      body: 'Ixaria replaces fragmented ecommerce plugins with one system that centralizes images, videos, product information, 3D configuration, reviews, and analytics — built to work on top of your current webshop and automatically improve from how your own customers browse, compare, hesitate, and buy.',
+      mediaType: 'image',
+      src: 'cover.png',
+      alt: 'Example of an Ixaria-optimized furniture product page'
+    },
+    variant: {
+      titleHtml: 'Do you <span>explain</span> the same sofa to <span>every buyer</span> in the same way?',
+      body: 'So why show everyone the same product page?<br>Ixaria adapts the content, visuals and information to what each buyer needs to make a decision.',
+      mediaType: 'video',
+      src: 'animation.mp4',
+      alt: 'Ixaria product page experience animation'
+    }
+  };
+
+  function getAbHeroVariant() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var override = params.get('ab_hero');
+      if (override === 'control' || override === 'variant') {
+        localStorage.setItem(window.AB_HERO.key, override);
+        return override;
+      }
+      var stored = localStorage.getItem(window.AB_HERO.key);
+      if (stored === 'control' || stored === 'variant') return stored;
+      var assigned = Math.random() < 0.5 ? 'control' : 'variant';
+      localStorage.setItem(window.AB_HERO.key, assigned);
+      return assigned;
+    } catch (e) {
+      return 'control';
+    }
+  }
+
+  window.__abHeroVariant = getAbHeroVariant();
+  document.documentElement.dataset.abHero = window.__abHeroVariant;
+
+  if (typeof gtag === 'function') {
+    gtag('set', 'user_properties', { ab_hero: window.__abHeroVariant });
+  }
+
   // Click / form event tracking
   function trackEvent(name, params) {
-    if (typeof gtag === 'function') gtag('event', name, params || {});
+    var payload = params || {};
+    if (!payload.ab_hero) payload.ab_hero = window.__abHeroVariant || 'control';
+    if (typeof gtag === 'function') gtag('event', name, payload);
   }
+
+  trackEvent('ab_hero_assigned', { ab_hero: window.__abHeroVariant });
 
   function socialNetworkFromUrl(url) {
     if (/linkedin\.com/i.test(url)) return 'linkedin';
@@ -2077,7 +2134,7 @@
   <main id="main-content">
 
     <!-- ══════════ HERO ══════════ -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" data-ab-pending>
       <div class="hero__inner">
         <div class="hero__content">
           <h1 class="hero__title">
@@ -2088,7 +2145,7 @@
             information, 3D configuration, reviews, and analytics — built to work on top of your current webshop and
             automatically improve from how your own customers browse, compare, hesitate, and buy.
           </p>
-          <div class="hero__badges">
+          <!-- <div class="hero__badges">
             <div class="hero__badge">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0000FF" stroke-width="2.5">
                 <path d="M20 6L9 17l-5-5" />
@@ -2107,7 +2164,7 @@
               </svg>
               Money Back Guarantee
             </div>
-          </div>
+          </div> -->
           <div class="hero__ctas">
             <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer"
               class="btn btn-primary">Book a discovery call</a>
@@ -2115,16 +2172,89 @@
           </div>
         </div>
 
-        <!-- Hero image -->
+        <!-- Hero media (image = control, video = variant) -->
         <div class="hero__mockup">
           <img src="cover.png" alt="Example of an Ixaria-optimized furniture product page" width="1242" height="1242"
             fetchpriority="high" />
         </div>
       </div>
     </section>
+    <script>
+      (function applyAbHero() {
+        var variant = window.__abHeroVariant || 'control';
+        var config = (window.AB_HERO && window.AB_HERO[variant]) || window.AB_HERO.control;
+        var hero = document.getElementById('hero');
+        if (!hero || !config) return;
+
+        var titleEl = hero.querySelector('.hero__title');
+        var bodyEl = hero.querySelector('.hero__body');
+        var mockup = hero.querySelector('.hero__mockup');
+
+        if (titleEl) titleEl.innerHTML = config.titleHtml;
+        if (bodyEl) bodyEl.innerHTML = config.body;
+
+        if (mockup && config.mediaType === 'video') {
+          mockup.innerHTML = '';
+          var video = document.createElement('video');
+          video.src = config.src;
+          video.setAttribute('autoplay', '');
+          video.setAttribute('muted', '');
+          video.setAttribute('loop', '');
+          video.setAttribute('playsinline', '');
+          video.setAttribute('aria-label', config.alt || '');
+          video.muted = true;
+          video.playsInline = true;
+          video.autoplay = true;
+          video.loop = true;
+          mockup.appendChild(video);
+          var playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(function () { /* autoplay may be blocked */ });
+          }
+        }
+
+        hero.removeAttribute('data-ab-pending');
+        hero.dataset.abHero = variant;
+
+        // Primary metric: scrolled past hero (once per session)
+        function setupScrollPastHero() {
+          var socialProof = document.getElementById('social-proof');
+          if (!socialProof || typeof IntersectionObserver !== 'function') return;
+
+          var scrollKey = 'ixaria_ab_hero_scroll_v1';
+          try {
+            if (sessionStorage.getItem(scrollKey)) return;
+          } catch (e) { /* ignore */ }
+
+          var observer = new IntersectionObserver(function (entries) {
+            if (!entries[0] || !entries[0].isIntersecting) return;
+            try {
+              if (sessionStorage.getItem(scrollKey)) {
+                observer.disconnect();
+                return;
+              }
+              sessionStorage.setItem(scrollKey, '1');
+            } catch (e) { /* ignore */ }
+            if (typeof trackEvent === 'function') {
+              trackEvent('scroll_past_hero', { ab_hero: variant });
+            }
+            observer.disconnect();
+          }, { threshold: 0.15 });
+          observer.observe(socialProof);
+        }
+
+        if (document.getElementById('social-proof')) {
+          setupScrollPastHero();
+        } else if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', setupScrollPastHero);
+        } else {
+          setupScrollPastHero();
+        }
+      })();
+    </script>
 
     <!-- ══════════ SOCIAL PROOF ══════════ -->
-    <section class="social-proof" id="social-proof">
+    <!-- <section class="social-proof" id="social-proof">
       <div class="container">
         <div class="social-proof__top">
           <div class="social-proof__claim">
@@ -2164,38 +2294,8 @@
             </div>
           </div>
         </div>
-        <!-- <div class="logos-strip">
-      <img src="logo_agache.svg" alt="Agache — Ixaria client" class="logo-agache" loading="lazy" width="1081" height="292" />
-      <img src="logo_divanissimi.webp" alt="Divanissimi — Ixaria client" loading="lazy" width="238" height="70" />
-      <img src="logo_expomob.svg"      alt="Expomob — Ixaria client"      class="logo-expomob" loading="lazy" />
-      <img src="logo_eurosun.webp" alt="Eurosun — Ixaria client" loading="lazy" width="158" height="57" />
-    </div> -->
       </div>
-    </section>
-
-    <!-- ══════════ CTA STRIP ══════════ -->
-    <section class="cta-strip" id="book">
-      <div class="cta-strip__inner">
-        <!-- Left image area -->
-        <div class="cta-strip__image">
-          <img src="Picture1.webp" width="800" height="800" alt="Furniture product page consultation" loading="lazy" />
-        </div>
-        <!-- Text -->
-        <div class="cta-strip__text">
-          <h2 class="cta-strip__title">Want to see what your current product page is missing?</h2>
-          <p class="cta-strip__body">Book a short call and we'll look at where your customers may be hesitating before
-            they buy.</p>
-        </div>
-        <!-- CTA -->
-        <div class="cta-strip__btn-wrap">
-          <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer"
-            class="btn"
-            style="white-space:nowrap;font-size:13px;padding:12px 22px;background:var(--yellow);color:var(--navy);">Book
-            a discovery call</a>
-        </div>
-      </div>
-    </section>
-
+    </section> -->
     <!-- ══════════ HOW IT WORKS ══════════ -->
     <section class="how" id="how-it-works">
       <div class="container">
@@ -2275,6 +2375,31 @@
         </div>
       </div>
     </section>
+
+    <!-- ══════════ CTA STRIP ══════════ -->
+    <section class="cta-strip" id="book">
+      <div class="cta-strip__inner">
+        <!-- Left image area -->
+        <div class="cta-strip__image">
+          <img src="Picture1.webp" width="800" height="800" alt="Furniture product page consultation" loading="lazy" />
+        </div>
+        <!-- Text -->
+        <div class="cta-strip__text">
+          <h2 class="cta-strip__title">Want to see what your current product page is missing?</h2>
+          <p class="cta-strip__body">Book a short call and we'll look at where your customers may be hesitating before
+            they buy.</p>
+        </div>
+        <!-- CTA -->
+        <div class="cta-strip__btn-wrap">
+          <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer"
+            class="btn"
+            style="white-space:nowrap;font-size:13px;padding:12px 22px;background:var(--yellow);color:var(--navy);">Book
+            a discovery call</a>
+        </div>
+      </div>
+    </section>
+
+
 
     <!-- ══════════ FEATURES ══════════ -->
     <section class="features" id="features">
