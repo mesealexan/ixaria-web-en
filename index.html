@@ -300,6 +300,12 @@
       background: var(--white);
     }
 
+    @media (min-width: 769px) {
+      .hero {
+        padding: 109px 0 78px;
+      }
+    }
+
     .hero__inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -333,6 +339,7 @@
       line-height: 1.1;
       color: var(--navy);
       margin-bottom: 24px;
+      white-space: pre-line;
     }
 
     .hero__title span {
@@ -394,6 +401,183 @@
     .hero[data-ab-pending] .hero__body,
     .hero[data-ab-pending] .hero__mockup {
       visibility: hidden;
+    }
+
+    /* ─── BEFORE / AFTER ─────────────────────────────────── */
+    .before-after {
+      padding: 80px 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0, 0, 255, 0.18) 0%, transparent 60%),
+        var(--navy);
+    }
+
+    .before-after__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .ba-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 40px 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .ba-card__title {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(28px, 3.2vw, 40px);
+      line-height: 1.15;
+      color: var(--black);
+    }
+
+    .ba-card__title .accent-old {
+      color: var(--orange);
+    }
+
+    .ba-card__title .accent-new {
+      color: var(--elec);
+    }
+
+    .ba-card__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1;
+    }
+
+    .ba-card__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--gray-text);
+    }
+
+    .ba-card__item strong {
+      color: var(--black);
+      font-weight: 700;
+    }
+
+    .ba-card__icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .ba-card__icon--old {
+      background: rgba(255, 95, 10, 0.12);
+      color: var(--orange);
+    }
+
+    .ba-card__icon--new {
+      background: rgba(0, 0, 255, 0.08);
+      color: var(--elec);
+    }
+
+    .ba-card__media {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .ba-card__media--old {
+      border: 3px solid var(--orange);
+    }
+
+    .ba-card__media--new {
+      border: 3px solid var(--elec);
+    }
+
+    .ba-card__media img {
+      width: 100%;
+      height: auto;
+      border-radius: 13px;
+      display: block;
+    }
+
+    .ba-card__caption {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      transform: none;
+      z-index: 2;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: var(--white);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .ba-card__media--old .ba-card__caption {
+      background: var(--orange);
+    }
+
+    .ba-card__media--new .ba-card__caption {
+      background: var(--elec);
+    }
+
+    .ba-slideshow {
+      position: relative;
+    }
+
+    .ba-slideshow img {
+      width: 100%;
+      height: auto;
+      border-radius: 13px;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .ba-slideshow img:first-child {
+      position: relative;
+    }
+
+    .ba-slideshow img:not(:first-child) {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .ba-slideshow img.is-active {
+      opacity: 1;
+    }
+
+    .ba-slideshow .ba-card__caption {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .ba-slideshow .ba-card__caption.is-active {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ba-slideshow img,
+      .ba-slideshow .ba-card__caption {
+        transition: none;
+      }
     }
 
     .mockup__bar {
@@ -950,8 +1134,8 @@
       border: 1px solid var(--gray-mid);
       border-radius: var(--radius);
       opacity: 0;
-      transform: translateY(60px);
-      transition: opacity .5s ease, transform .5s ease, border-color .2s, box-shadow .2s;
+      transform: translateY(40px);
+      transition: opacity .35s ease, transform .35s ease, border-color .2s, box-shadow .2s;
     }
 
     .feature-card.feature-card--visible {
@@ -1878,6 +2062,30 @@
         gap: 48px;
       }
 
+      .before-after {
+        padding: 56px 0;
+      }
+
+      .before-after__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 16px;
+      }
+
+      .ba-card {
+        padding: 28px 24px 24px;
+        gap: 22px;
+        border-radius: 20px;
+      }
+
+      .ba-card__title {
+        font-size: 28px;
+      }
+
+      .ba-card__item {
+        font-size: 15px;
+      }
+
       .social-proof__top {
         grid-template-columns: 1fr;
       }
@@ -1995,8 +2203,8 @@
       alt: 'Example of an Ixaria-optimized furniture product page'
     },
     variant: {
-      titleHtml: 'Do you <span>explain</span> the same sofa to <span>every buyer</span> in the same way?',
-      body: 'So why show everyone the same product page?<br>Ixaria adapts the content, visuals and information to what each buyer needs to make a decision.',
+      titleHtml: 'Do you explain <br> the same sofa <br>to every buyer in <br><span>the same way?</span>',
+      body: 'So why show everyone <strong>the same product page?</strong><br>Ixaria adapts the content, visuals and information <br>of your product pages so each buyer feels <br><strong>confident to make a decision.</strong>',
       mediaType: 'video',
       src: 'animation.mp4',
       alt: 'Ixaria product page experience animation'
@@ -2253,6 +2461,129 @@
       })();
     </script>
 
+    <!-- ══════════ BEFORE / AFTER ══════════ -->
+    <section class="before-after" id="before-after" aria-label="Before and after comparison">
+      <div class="before-after__grid">
+
+        <article class="ba-card">
+          <h2 class="ba-card__title">The <span class="accent-old">Old</span> way</h2>
+          <ul class="ba-card__list">
+            <li class="ba-card__item">
+              <span class="ba-card__icon ba-card__icon--old" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </span>
+              <span>Show the <strong>same product page</strong> to every customer, regardless of their needs or buying
+                stage.</span>
+            </li>
+            <li class="ba-card__item">
+              <span class="ba-card__icon ba-card__icon--old" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </span>
+              <span>Guess what information customers need and arrange the page based mainly on
+                <strong>internal assumptions</strong>.</span>
+            </li>
+            <li class="ba-card__item">
+              <span class="ba-card__icon ba-card__icon--old" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </span>
+              <span>Launch one product-page layout and <strong>leave it unchanged</strong> until the next website
+                redesign.</span>
+            </li>
+          </ul>
+          <div class="ba-card__media ba-card__media--old">
+            <img src="before.png" alt="The old way: static product pages that don’t adapt to customers"
+              width="640" height="400" loading="lazy" />
+            <span class="ba-card__caption">Static Page</span>
+          </div>
+        </article>
+
+        <article class="ba-card">
+          <h2 class="ba-card__title">The <span class="accent-new">Ixaria</span> way</h2>
+          <ul class="ba-card__list">
+            <li class="ba-card__item">
+              <span class="ba-card__icon ba-card__icon--new" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </span>
+              <span><strong>Adapt the product page</strong> to each customer’s needs, behaviour and stage of the buying
+                journey.</span>
+            </li>
+            <li class="ba-card__item">
+              <span class="ba-card__icon ba-card__icon--new" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </span>
+              <span>Learn what helps customers decide and show the <strong>most relevant information</strong> at the
+                right moment.</span>
+            </li>
+            <li class="ba-card__item">
+              <span class="ba-card__icon ba-card__icon--new" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </span>
+              <span><strong>Continuously test and improve</strong> the product page based on real customer behaviour
+                and results.</span>
+            </li>
+          </ul>
+          <div class="ba-card__media ba-card__media--new">
+            <div class="ba-slideshow" id="ixaria-way-slideshow" aria-live="polite">
+              <img class="is-active" src="after1.png"
+                alt="The Ixaria way: Design Centric product page" width="640" height="400"
+                loading="lazy" />
+              <img src="after2.png" alt="" width="640" height="400" loading="lazy" aria-hidden="true" />
+              <img src="after3.png" alt="" width="640" height="400" loading="lazy" aria-hidden="true" />
+              <span class="ba-card__caption is-active">Design Centric</span>
+              <span class="ba-card__caption" aria-hidden="true">Options Centric</span>
+              <span class="ba-card__caption" aria-hidden="true">Features Centric</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+    <script>
+      (function () {
+        var slideshow = document.getElementById('ixaria-way-slideshow');
+        if (!slideshow) return;
+        var slides = slideshow.querySelectorAll('img');
+        var captions = slideshow.querySelectorAll('.ba-card__caption');
+        if (slides.length < 2) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var index = 0;
+        setInterval(function () {
+          slides[index].classList.remove('is-active');
+          slides[index].setAttribute('aria-hidden', 'true');
+          if (captions[index]) {
+            captions[index].classList.remove('is-active');
+            captions[index].setAttribute('aria-hidden', 'true');
+          }
+          index = (index + 1) % slides.length;
+          slides[index].classList.add('is-active');
+          slides[index].removeAttribute('aria-hidden');
+          if (captions[index]) {
+            captions[index].classList.add('is-active');
+            captions[index].removeAttribute('aria-hidden');
+          }
+        }, 2000);
+      })();
+    </script>
+
     <!-- ══════════ SOCIAL PROOF ══════════ -->
     <!-- <section class="social-proof" id="social-proof">
       <div class="container">
@@ -2317,59 +2648,53 @@
           <div class="step">
             <div class="step__top">
               <div class="step__num">1</div>
-              <h3 class="step__title">Gather your product data</h3>
+              <h3 class="step__title">Structure Product Data</h3>
             </div>
             <div class="step__img">
               <img src="work-001.webp" width="600" height="600"
-                alt="Gathering furniture product data — step 1 of Ixaria setup" loading="lazy" />
+                alt="Structuring furniture product data — step 1 of Ixaria setup" loading="lazy" />
             </div>
             <div class="step__body-wrap">
-              <p class="step__body">Gather and organize everything behind each product: parts, assemblies, fabrics,
-                materials, dimensions, configurations, pricing logic, care, delivery, and other buying-critical details.
-              </p>
+              <p class="step__body">We help you gather and structure your images, dimensions, materials and options.</p>
             </div>
           </div>
           <div class="step">
             <div class="step__top">
               <div class="step__num">2</div>
-              <h3 class="step__title">Connect Ixaria to your webshop</h3>
+              <h3 class="step__title">Connect Your Webshop</h3>
             </div>
             <div class="step__img">
               <img src="work-002.webp" width="600" height="600"
                 alt="Connecting Ixaria to your furniture webshop — step 2" loading="lazy" />
             </div>
             <div class="step__body-wrap">
-              <p class="step__body">Our team handles the setup, so you do not need to rebuild your entire webshop or add
-                another complicated tool for your team to manage.</p>
+              <p class="step__body">We connect Ixaria to your existing webshop as a plugin. No rebuild is required.</p>
             </div>
           </div>
           <div class="step">
             <div class="step__top">
               <div class="step__num">3</div>
-              <h3 class="step__title">Review and launch the product pages</h3>
+              <h3 class="step__title">Choose Your Template</h3>
             </div>
             <div class="step__img">
               <img src="work-003.webp" width="600" height="600"
-                alt="Reviewing and launching furniture product pages — step 3" loading="lazy" />
+                alt="Choosing a product page template — step 3" loading="lazy" />
             </div>
             <div class="step__body-wrap">
-              <p class="step__body">You review the product pages, request changes, and approve the final version. Once
-                everything looks right, we set the pages live.</p>
+              <p class="step__body">Choose one of our product page templates or keep using your existing design.</p>
             </div>
           </div>
           <div class="step">
             <div class="step__top">
               <div class="step__num">4</div>
-              <h3 class="step__title">Let the system continuously improve</h3>
+              <h3 class="step__title">Improve Automatically</h3>
             </div>
             <div class="step__img">
               <img src="work-004.webp" width="600" height="600"
-                alt="Ixaria system continuously improving product pages based on customer behavior — step 4"
-                loading="lazy" />
+                alt="Ixaria improving product pages automatically — step 4" loading="lazy" />
             </div>
             <div class="step__body-wrap">
-              <p class="step__body">After launch, our system kicks in and monitors how customers browse, compare,
-                hesitate, and buy and adapt pages based on this data.</p>
+              <p class="step__body">Ixaria learns what helps customers buy and improves your pages automatically.</p>
             </div>
           </div>
         </div>
@@ -2410,52 +2735,40 @@
         <div class="features__grid">
           <div class="feature-card">
             <img src="feature-001.webp" width="700" height="393" class="feature-icon"
-              alt="Unified furniture product page system" loading="lazy" />
-            <h3 class="feature-title">Replace fragmented plugins with one furniture-specific system</h3>
-            <p class="feature-body">Most furniture webshops rely on separate tools for 3D, product data, images,
-              reviews, pricing, and analytics. Ixaria brings the product-page experience into one structured system, so
-              your team does not have to manage a patchwork of disconnected tools.</p>
+              alt="Replace disconnected tools with one system" loading="lazy" />
+            <h3 class="feature-title">Replace Disconnected Tools</h3>
+            <p class="feature-body">Manage product data, visuals, 3D configuration, reviews and analytics in one place.
+            </p>
           </div>
           <div class="feature-card">
             <img src="feature-002.webp" width="700" height="393" class="feature-icon"
-              alt="Product pages that continuously improve after launch" loading="lazy" />
-            <h3 class="feature-title">Product pages that improve after they go live</h3>
-            <p class="feature-body">A product page should not be treated as finished on launch day. Ixaria uses
-              intelligent customer behavior to understand how people browse, compare, hesitate, and buy, then improves
-              the page over time.</p>
+              alt="Product pages that improve over time" loading="lazy" />
+            <h3 class="feature-title">Pages That Improve</h3>
+            <p class="feature-body">Ixaria learns from customer behaviour and improves your pages over time.</p>
           </div>
           <div class="feature-card">
             <img src="feature-003.webp" width="700" height="393" class="feature-icon"
-              alt="Ixaria works on top of your existing webshop" loading="lazy" />
-            <h3 class="feature-title">Works on top of your current webshop</h3>
-            <p class="feature-body">You don't need to re-design your whole webshop or switch to a different one. Ixaria
-              uses your existing webshop and focuses on the product page as the most important part of the buying
-              journey.</p>
+              alt="Keep your current webshop" loading="lazy" />
+            <h3 class="feature-title">Keep Your Webshop</h3>
+            <p class="feature-body">Add Ixaria to your current webshop without rebuilding or replacing it.</p>
           </div>
           <div class="feature-card">
             <img src="feature-004.webp" width="700" height="393" class="feature-icon"
-              alt="Product pages specific to your products and customers" loading="lazy" />
-            <h3 class="feature-title">Specific to your products, customers, and buying journey</h3>
-            <p class="feature-body">Ixaria is not a generic template your competitors can simply copy. The system
-              becomes stronger through your product data, your customer behavior, and the way your buyers make
-              decisions.</p>
+              alt="Built around your buyers" loading="lazy" />
+            <h3 class="feature-title">Built Around Your Buyers</h3>
+            <p class="feature-body">Each page adapts to your products, customers and their buying journey.</p>
           </div>
           <div class="feature-card">
             <img src="feature-005.webp" width="700" height="393" class="feature-icon"
-              alt="Helping customers understand why your furniture product is worth buying" loading="lazy" />
-            <h3 class="feature-title">Helps customers understand why your product is worth buying</h3>
-            <p class="feature-body">A beautiful image is not enough when the product is expensive, configurable, or hard
-              to compare. Ixaria helps explain value through better structure, clearer information, stronger visuals,
-              and trust-building content.</p>
+              alt="Make product value clear" loading="lazy" />
+            <h3 class="feature-title">Make Value Clear</h3>
+            <p class="feature-body">Explain why your products are worth buying with clear, useful information.</p>
           </div>
           <div class="feature-card">
             <img src="feature-006.webp" width="700" height="393" class="feature-icon"
-              alt="AI explaining hidden product details to furniture buyers" loading="lazy" />
-            <h3 class="feature-title">Let AI explain the hidden details of your products</h3>
-            <p class="feature-body"><strong>Let AI do the talking.</strong> We already have all the information for your
-              product. Now the AI knows more about each product than any sales person in your company. It can reply to
-              any question, address any concern and advise in terms of fabrics, availability, care, warranty and style.
-            </p>
+              alt="AI product assistant" loading="lazy" />
+            <h3 class="feature-title">AI Product Assistant</h3>
+            <p class="feature-body">AI answers customer questions using the product information inside Ixaria.</p>
           </div>
         </div>
       </div>
@@ -3035,17 +3348,19 @@
     }, { threshold: 0.15 });
     valuesObserver.observe(document.querySelector('.values'));
 
-    // Features — staggered card entrance from bottom
+    // Features — each card animates when it scrolls into view (row by row)
     const featureCards = document.querySelectorAll('.feature-card');
     const featuresObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        featureCards.forEach((card, i) => {
-          setTimeout(() => card.classList.add('feature-card--visible'), i * 300);
-        });
-        featuresObserver.disconnect();
-      }
-    }, { threshold: 0.1 });
-    featuresObserver.observe(document.querySelector('.features__grid'));
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const card = entry.target;
+        const index = Array.prototype.indexOf.call(featureCards, card);
+        const col = index % 3;
+        setTimeout(() => card.classList.add('feature-card--visible'), col * 100);
+        featuresObserver.unobserve(card);
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+    featureCards.forEach((card) => featuresObserver.observe(card));
 
     // How it works — staggered card entrance from right
     const steps = document.querySelectorAll('.step');
