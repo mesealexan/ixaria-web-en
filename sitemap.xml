@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ixaria.eu/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ixaria.eu/before.png</image:loc>
+      <image:title>Static furniture product page — the old way</image:title>
+      <image:caption>Example of a static Valencia sofa product page with a single studio photo and accordion product details</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ixaria.eu/after1.png</image:loc>
+      <image:title>Ixaria design-centric furniture product page</image:title>
+      <image:caption>Design-centric Valencia sofa product page with lifestyle imagery and configuration options</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ixaria.eu/after2.png</image:loc>
+      <image:title>Ixaria options-centric furniture product page</image:title>
+      <image:caption>Options-centric Valencia sofa product page highlighting model, upholstery, base choices and trust signals</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://ixaria.eu/after3.png</image:loc>
+      <image:title>Ixaria features-centric furniture product page</image:title>
+      <image:caption>Features-centric Valencia sofa product page with key features, dimensions, materials and care details</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://ixaria.eu/privacy-policy.html</loc>

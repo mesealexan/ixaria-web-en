@@ -2500,8 +2500,10 @@
             </li>
           </ul>
           <div class="ba-card__media ba-card__media--old">
-            <img src="before.png" alt="The old way: static product pages that don’t adapt to customers"
-              width="640" height="400" loading="lazy" />
+            <img src="before.png"
+              alt="Static furniture product page for a Valencia sofa showing a single studio photo, colour and size options, and accordion sections for description, dimensions, materials and delivery"
+              title="The Old Way — Static furniture product page"
+              width="1672" height="941" loading="lazy" decoding="async" />
             <span class="ba-card__caption">Static Page</span>
           </div>
         </article>
@@ -2543,10 +2545,17 @@
           <div class="ba-card__media ba-card__media--new">
             <div class="ba-slideshow" id="ixaria-way-slideshow" aria-live="polite">
               <img class="is-active" src="after1.png"
-                alt="The Ixaria way: Design Centric product page" width="640" height="400"
-                loading="lazy" />
-              <img src="after2.png" alt="" width="640" height="400" loading="lazy" aria-hidden="true" />
-              <img src="after3.png" alt="" width="640" height="400" loading="lazy" aria-hidden="true" />
+                alt="Ixaria design-centric furniture product page for the Valencia sofa with lifestyle imagery, colour size and configuration options, delivery estimate and add to cart"
+                title="The Ixaria Way — Design Centric product page"
+                width="1672" height="941" loading="lazy" decoding="async" />
+              <img src="after2.png"
+                alt="Ixaria options-centric furniture product page for the Valencia sofa highlighting model, upholstery and base choices with reviews, delivery timeline and trust badges"
+                title="The Ixaria Way — Options Centric product page"
+                width="1672" height="941" loading="lazy" decoding="async" aria-hidden="true" />
+              <img src="after3.png"
+                alt="Ixaria features-centric furniture product page for the Valencia sofa showing key features, dimensions, materials, care information and product details"
+                title="The Ixaria Way — Features Centric product page"
+                width="1672" height="941" loading="lazy" decoding="async" aria-hidden="true" />
               <span class="ba-card__caption is-active">Design Centric</span>
               <span class="ba-card__caption" aria-hidden="true">Options Centric</span>
               <span class="ba-card__caption" aria-hidden="true">Features Centric</span>
@@ -2580,7 +2589,7 @@
             captions[index].classList.add('is-active');
             captions[index].removeAttribute('aria-hidden');
           }
-        }, 2000);
+        }, 3000);
       })();
     </script>
 
@@ -3622,7 +3631,69 @@
       "description": "Ixaria helps small and medium furniture manufacturers sell more online with one system for product pages, 3D configuration, images, reviews, and analytics.",
       "isPartOf": { "@id": "https://ixaria.eu/#website" },
       "about": { "@id": "https://ixaria.eu/#organization" },
-      "dateModified": "2026-05-27"
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ixaria.eu/cover.png"
+      },
+      "image": [
+        { "@id": "https://ixaria.eu/#image-old-way-static-page" },
+        { "@id": "https://ixaria.eu/#image-ixaria-design-centric" },
+        { "@id": "https://ixaria.eu/#image-ixaria-options-centric" },
+        { "@id": "https://ixaria.eu/#image-ixaria-features-centric" }
+      ],
+      "dateModified": "2026-07-24"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-old-way-static-page",
+      "url": "https://ixaria.eu/before.png",
+      "contentUrl": "https://ixaria.eu/before.png",
+      "name": "Static furniture product page — the old way",
+      "caption": "Static Page",
+      "description": "Example of a static furniture product page for a Valencia sofa with a single studio photo, colour and size options, and accordion sections for description, dimensions, materials and delivery — showing the old one-layout-for-everyone approach.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/png",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-design-centric",
+      "url": "https://ixaria.eu/after1.png",
+      "contentUrl": "https://ixaria.eu/after1.png",
+      "name": "Ixaria design-centric furniture product page",
+      "caption": "Design Centric",
+      "description": "Ixaria design-centric product page for the Valencia sofa featuring lifestyle imagery, colour size and configuration options, delivery estimate and add to cart — adapted to customers focused on design and visuals.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/png",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-options-centric",
+      "url": "https://ixaria.eu/after2.png",
+      "contentUrl": "https://ixaria.eu/after2.png",
+      "name": "Ixaria options-centric furniture product page",
+      "caption": "Options Centric",
+      "description": "Ixaria options-centric product page for the Valencia sofa highlighting model, upholstery and base choices with customer reviews, delivery timeline and trust badges — adapted to customers comparing configurations.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/png",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-features-centric",
+      "url": "https://ixaria.eu/after3.png",
+      "contentUrl": "https://ixaria.eu/after3.png",
+      "name": "Ixaria features-centric furniture product page",
+      "caption": "Features Centric",
+      "description": "Ixaria features-centric product page for the Valencia sofa showing key product features, dimensions, materials, care information and detailed specifications — adapted to customers researching product details.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/png",
+      "representativeOfPage": false
     },
     {
       "@type": "Service",
@@ -3658,26 +3729,26 @@
         {
           "@type": "HowToStep",
           "position": 1,
-          "name": "Gather your product data",
-          "text": "Gather and organize everything behind each product: parts, assemblies, fabrics, materials, dimensions, configurations, pricing logic, care, delivery, and other buying-critical details."
+          "name": "Structure Product Data",
+          "text": "We help you gather and structure your images, dimensions, materials and options."
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "Connect Ixaria to your webshop",
-          "text": "Our team handles the setup, so you do not need to rebuild your entire webshop or add another complicated tool for your team to manage."
+          "name": "Connect Your Webshop",
+          "text": "We connect Ixaria to your existing webshop as a plugin. No rebuild is required."
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "Review and launch the product pages",
-          "text": "You review the product pages, request changes, and approve the final version. Once everything looks right, we set the pages live."
+          "name": "Choose Your Template",
+          "text": "Choose one of our product page templates or keep using your existing design."
         },
         {
           "@type": "HowToStep",
           "position": 4,
-          "name": "Let the system continuously improve",
-          "text": "After launch, our system monitors how customers browse, compare, hesitate, and buy — then adapts pages based on this data."
+          "name": "Improve Automatically",
+          "text": "Ixaria learns what helps customers buy and improves your pages automatically."
         }
       ]
     },
