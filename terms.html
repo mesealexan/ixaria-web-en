@@ -101,26 +101,15 @@
 
 <nav class="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo"><img src="logo-light.svg" alt="Ixaria" /></a>
+    <a href="/" class="navbar__logo"><img src="logo-light.svg" alt="Ixaria" /></a>
     <div class="navbar__nav">
-      <a href="index.html#how-it-works">How it works</a>
-      <a href="index.html#features">Features</a>
-      <a href="index.html#about">About us</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="/#about">About us</a>
     </div>
     <div class="navbar__right">
-      <div class="lang-switcher" tabindex="0">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        <span id="lang-label">EN</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        <div class="lang-dropdown">
-          <a href="#" class="active" onclick="setLang('EN');return false;">🇬🇧 English</a>
-          <a href="#" onclick="setLang('RO');return false;">🇷🇴 Română</a>
-          <a href="#" onclick="setLang('PT');return false;">🇵🇹 Português</a>
-          <a href="#" onclick="setLang('ES');return false;">🇪🇸 Español</a>
-          <a href="#" onclick="setLang('DE');return false;">🇩🇪 Deutsch</a>
-        </div>
       </div>
-      <a href="index.html#book" class="btn btn-primary" style="padding:10px 22px;font-size:13px;color:#ffffff;">Book a discovery call</a>
+      <a href="/#book" class="btn btn-primary" style="padding:10px 22px;font-size:13px;color:#ffffff;">Book a discovery call</a>
     </div>
   </div>
 </nav>
@@ -192,9 +181,10 @@
       <div>
         <div class="footer__col-title">Website</div>
         <div class="footer__links">
-          <a href="index.html#social-proof">Why Ixaria</a>
-          <a href="index.html#how-it-works">How it works</a>
-          <a href="index.html#features">Features</a>
+          <a href="/#before-after">Why Ixaria</a>
+          <a href="/#how-it-works">How it works</a>
+          <a href="/#features">Features</a>
+          <a href="cofounder.html">Careers</a>
           <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank">Book a call</a>
         </div>
       </div>
@@ -220,11 +210,6 @@
 </button>
 
 <script>
-  function setLang(code) {
-    document.getElementById('lang-label').textContent = code;
-    document.querySelectorAll('.lang-dropdown a').forEach(a => a.classList.remove('active'));
-    event.target.classList.add('active');
-  }
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', () => {
     navbar.style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(9,9,89,0.12)' : '0 2px 12px rgba(9,9,89,0.06)';

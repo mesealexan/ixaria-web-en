@@ -8,24 +8,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <title>Ixaria — Furniture Product Pages Shaped by Real Customer Behavior</title>
+  <title>Ixaria - Furniture Product Pages Shaped by Real Customer Behavior</title>
   <meta name="description"
-    content="Ixaria helps small and medium furniture manufacturers sell more online. One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop and continuously improved by real customer behavior." />
-  <meta name="keywords"
-    content="furniture product pages, furniture ecommerce, 3D configurator furniture, product page optimization, furniture manufacturer webshop, furniture online sales" />
+    content="Ixaria helps furniture manufacturers sell more online with adaptive product pages, 3D configuration, images, reviews, and behavior-driven optimization." />
+  <meta name="theme-color" content="#090959" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ixaria.eu/" />
   <meta property="og:title" content="Ixaria — Furniture Product Pages Shaped by Real Customer Behavior" />
   <meta property="og:description"
-    content="One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop and continuously improved by real customer behavior." />
-  <meta property="og:image" content="https://ixaria.eu/cover.png" />
+    content="Adaptive furniture product pages, 3D configuration, images, reviews, and analytics — built on your existing webshop." />
+  <meta property="og:image" content="https://ixaria.eu/preview.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ixaria — furniture product pages shaped by real customer behavior" />
   <meta property="og:site_name" content="Ixaria" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Canonical & Robots -->
-  <link rel="preload" as="image" href="cover.png" type="image/png" />
+  <link rel="preload" as="font" href="Gilroy-Black.woff2" type="font/woff2" crossorigin />
   <link rel="canonical" href="https://ixaria.eu/" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <link rel="alternate" hreflang="en" href="https://ixaria.eu/" />
@@ -35,8 +37,9 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ixaria — Furniture Product Pages Shaped by Real Customer Behavior" />
   <meta name="twitter:description"
-    content="One system for product pages, 3D configuration, images, reviews, and analytics — built on top of your existing webshop." />
-  <meta name="twitter:image" content="https://ixaria.eu/cover.png" />
+    content="Adaptive furniture product pages, 3D configuration, images, reviews, and analytics — on your existing webshop." />
+  <meta name="twitter:image" content="https://ixaria.eu/preview.webp" />
+  <meta name="twitter:image:alt" content="Ixaria — furniture product pages shaped by real customer behavior" />
   <style>
     @font-face {
       font-family: 'Gilroy';
@@ -86,6 +89,24 @@
       color: var(--black);
       background: var(--white);
       line-height: 1.6;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -100px;
+      z-index: 1000;
+      padding: 10px 16px;
+      background: var(--elec);
+      color: var(--white);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 8px;
+    }
+
+    .skip-link:focus {
+      top: 16px;
     }
 
     html {
@@ -302,15 +323,15 @@
 
     @media (min-width: 769px) {
       .hero {
-        padding: 109px 0 78px;
+        padding: 52px 0 60px;
       }
     }
 
     .hero__inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      gap: 48px;
+      align-items: start;
       max-width: 1160px;
       margin: 0 auto;
       padding: 0 32px;
@@ -335,7 +356,7 @@
     .hero__title {
       font-family: 'Gilroy', sans-serif;
       font-weight: 900;
-      font-size: clamp(32px, 4.5vw, 52px);
+      font-size: 49px;
       line-height: 1.1;
       color: var(--navy);
       margin-bottom: 24px;
@@ -394,13 +415,6 @@
       display: block;
       width: 100%;
       height: auto;
-    }
-
-    /* Avoid flash of control hero while A/B variant is applied */
-    .hero[data-ab-pending] .hero__title,
-    .hero[data-ab-pending] .hero__body,
-    .hero[data-ab-pending] .hero__mockup {
-      visibility: hidden;
     }
 
     /* ─── BEFORE / AFTER ─────────────────────────────────── */
@@ -574,6 +588,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       .ba-slideshow img,
       .ba-slideshow .ba-card__caption {
         transition: none;
@@ -2054,12 +2069,50 @@
       }
 
       .hero {
-        padding-top: 70px;
+        padding: 20px 0 32px;
       }
 
       .hero__inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 20px;
+      }
+
+      .hero__content {
+        display: contents;
+      }
+
+      .hero__title {
+        order: 1;
+        font-size: 32px;
+        line-height: 1.15;
+        margin-bottom: 0;
+      }
+
+      .hero__body {
+        order: 2;
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      .hero__mockup {
+        order: 4;
+      }
+
+      .hero__ctas {
+        order: 3;
+        gap: 10px;
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .hero__ctas .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+        width: 100%;
+        justify-content: center;
       }
 
       .before-after {
@@ -2171,8 +2224,33 @@
         grid-template-columns: 1fr;
       }
 
+      .hero {
+        padding: 12px 0 24px;
+      }
+
+      .hero__inner {
+        gap: 20px;
+        padding: 0 16px;
+      }
+
+      .hero__title {
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
+
+      .hero__body {
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
       .hero__ctas {
         flex-direction: column;
+        width: 100%;
+      }
+
+      .hero__ctas .btn {
+        width: 100%;
+        justify-content: center;
       }
 
       .email-form {
@@ -2191,59 +2269,10 @@
 
   gtag('config', 'G-70N9EB47DK');
 
-  // ─── Hero A/B assignment (sticky) ─────────────────────────
-  // QA: ?ab_hero=control | ?ab_hero=variant
-  window.AB_HERO = {
-    key: 'ixaria_ab_hero_v1',
-    control: {
-      titleHtml: 'Furniture Product Pages shaped by <span>Real Customer Behavior</span>',
-      body: 'Ixaria replaces fragmented ecommerce plugins with one system that centralizes images, videos, product information, 3D configuration, reviews, and analytics — built to work on top of your current webshop and automatically improve from how your own customers browse, compare, hesitate, and buy.',
-      mediaType: 'image',
-      src: 'cover.png',
-      alt: 'Example of an Ixaria-optimized furniture product page'
-    },
-    variant: {
-      titleHtml: 'Do you explain <br> the same sofa <br>to every buyer in <br><span>the same way?</span>',
-      body: 'So why show everyone <strong>the same product page?</strong><br>Ixaria adapts the content, visuals and information <br>of your product pages so each buyer feels <br><strong>confident to make a decision.</strong>',
-      mediaType: 'video',
-      src: 'animation.mp4',
-      alt: 'Ixaria product page experience animation'
-    }
-  };
-
-  function getAbHeroVariant() {
-    try {
-      var params = new URLSearchParams(window.location.search);
-      var override = params.get('ab_hero');
-      if (override === 'control' || override === 'variant') {
-        localStorage.setItem(window.AB_HERO.key, override);
-        return override;
-      }
-      var stored = localStorage.getItem(window.AB_HERO.key);
-      if (stored === 'control' || stored === 'variant') return stored;
-      var assigned = Math.random() < 0.5 ? 'control' : 'variant';
-      localStorage.setItem(window.AB_HERO.key, assigned);
-      return assigned;
-    } catch (e) {
-      return 'control';
-    }
-  }
-
-  window.__abHeroVariant = getAbHeroVariant();
-  document.documentElement.dataset.abHero = window.__abHeroVariant;
-
-  if (typeof gtag === 'function') {
-    gtag('set', 'user_properties', { ab_hero: window.__abHeroVariant });
-  }
-
   // Click / form event tracking
   function trackEvent(name, params) {
-    var payload = params || {};
-    if (!payload.ab_hero) payload.ab_hero = window.__abHeroVariant || 'control';
-    if (typeof gtag === 'function') gtag('event', name, payload);
+    if (typeof gtag === 'function') gtag('event', name, params || {});
   }
-
-  trackEvent('ab_hero_assigned', { ab_hero: window.__abHeroVariant });
 
   function socialNetworkFromUrl(url) {
     if (/linkedin\.com/i.test(url)) return 'linkedin';
@@ -2295,12 +2324,13 @@
 </script>
 
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <!-- ══════════ NAVBAR ══════════ -->
   <header>
     <nav class="navbar" aria-label="Main navigation">
       <div class="navbar__inner">
-        <a href="index.html" class="navbar__logo">
+        <a href="/" class="navbar__logo">
           <img src="logo-light.svg" alt="Ixaria" width="120" height="40" />
         </a>
         <div class="navbar__nav">
@@ -2309,28 +2339,10 @@
           <a href="#about">About us</a>
         </div>
         <div class="navbar__right">
-          <div class="lang-switcher" tabindex="0">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <path
-                d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-            </svg>
-            <span id="lang-label">EN</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-            <div class="lang-dropdown">
-              <a href="#" class="active" onclick="setLang('EN','English');return false;">🇬🇧 English</a>
-              <a href="#" onclick="setLang('RO','Română');return false;">🇷🇴 Română</a>
-              <a href="#" onclick="setLang('PT','Português');return false;">🇵🇹 Português</a>
-              <a href="#" onclick="setLang('ES','Español');return false;">🇪🇸 Español</a>
-              <a href="#" onclick="setLang('DE','Deutsch');return false;">🇩🇪 Deutsch</a>
-            </div>
-          </div>
           <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer"
             class="btn btn-primary" style="padding:10px 22px;font-size:13px;color:#ffffff;">Book a call</a>
         </div>
-        <button class="navbar__mobile-toggle" aria-label="Menu">
+        <button class="navbar__mobile-toggle" aria-label="Menu" aria-expanded="false">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5">
             <path d="M3 12h18M3 6h18M3 18h18" />
           </svg>
@@ -2342,16 +2354,15 @@
   <main id="main-content">
 
     <!-- ══════════ HERO ══════════ -->
-    <section class="hero" id="hero" data-ab-pending>
+    <section class="hero" id="hero">
       <div class="hero__inner">
         <div class="hero__content">
           <h1 class="hero__title">
-            Furniture Product Pages shaped by <span>Real Customer Behavior</span>
+            Why show every buyer <br>the same <span>furniture product page?</span>
           </h1>
           <p class="hero__body">
-            Ixaria replaces fragmented ecommerce plugins with one system that centralizes images, videos, product
-            information, 3D configuration, reviews, and analytics — built to work on top of your current webshop and
-            automatically improve from how your own customers browse, compare, hesitate, and buy.
+            Ixaria adapts the content, visuals and information of your product
+            pages so each buyer feels <strong>confident to make a decision.</strong>
           </p>
           <!-- <div class="hero__badges">
             <div class="hero__badge">
@@ -2380,86 +2391,13 @@
           </div>
         </div>
 
-        <!-- Hero media (image = control, video = variant) -->
         <div class="hero__mockup">
-          <img src="cover.png" alt="Example of an Ixaria-optimized furniture product page" width="1242" height="1242"
-            fetchpriority="high" />
+          <video src="animation.mp4" autoplay muted loop playsinline preload="metadata"
+            width="1280" height="1280"
+            aria-label="Ixaria product page experience animation"></video>
         </div>
       </div>
     </section>
-    <script>
-      (function applyAbHero() {
-        var variant = window.__abHeroVariant || 'control';
-        var config = (window.AB_HERO && window.AB_HERO[variant]) || window.AB_HERO.control;
-        var hero = document.getElementById('hero');
-        if (!hero || !config) return;
-
-        var titleEl = hero.querySelector('.hero__title');
-        var bodyEl = hero.querySelector('.hero__body');
-        var mockup = hero.querySelector('.hero__mockup');
-
-        if (titleEl) titleEl.innerHTML = config.titleHtml;
-        if (bodyEl) bodyEl.innerHTML = config.body;
-
-        if (mockup && config.mediaType === 'video') {
-          mockup.innerHTML = '';
-          var video = document.createElement('video');
-          video.src = config.src;
-          video.setAttribute('autoplay', '');
-          video.setAttribute('muted', '');
-          video.setAttribute('loop', '');
-          video.setAttribute('playsinline', '');
-          video.setAttribute('aria-label', config.alt || '');
-          video.muted = true;
-          video.playsInline = true;
-          video.autoplay = true;
-          video.loop = true;
-          mockup.appendChild(video);
-          var playPromise = video.play();
-          if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(function () { /* autoplay may be blocked */ });
-          }
-        }
-
-        hero.removeAttribute('data-ab-pending');
-        hero.dataset.abHero = variant;
-
-        // Primary metric: scrolled past hero (once per session)
-        function setupScrollPastHero() {
-          var socialProof = document.getElementById('social-proof');
-          if (!socialProof || typeof IntersectionObserver !== 'function') return;
-
-          var scrollKey = 'ixaria_ab_hero_scroll_v1';
-          try {
-            if (sessionStorage.getItem(scrollKey)) return;
-          } catch (e) { /* ignore */ }
-
-          var observer = new IntersectionObserver(function (entries) {
-            if (!entries[0] || !entries[0].isIntersecting) return;
-            try {
-              if (sessionStorage.getItem(scrollKey)) {
-                observer.disconnect();
-                return;
-              }
-              sessionStorage.setItem(scrollKey, '1');
-            } catch (e) { /* ignore */ }
-            if (typeof trackEvent === 'function') {
-              trackEvent('scroll_past_hero', { ab_hero: variant });
-            }
-            observer.disconnect();
-          }, { threshold: 0.15 });
-          observer.observe(socialProof);
-        }
-
-        if (document.getElementById('social-proof')) {
-          setupScrollPastHero();
-        } else if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', setupScrollPastHero);
-        } else {
-          setupScrollPastHero();
-        }
-      })();
-    </script>
 
     <!-- ══════════ BEFORE / AFTER ══════════ -->
     <section class="before-after" id="before-after" aria-label="Before and after comparison">
@@ -2500,10 +2438,12 @@
             </li>
           </ul>
           <div class="ba-card__media ba-card__media--old">
-            <img src="before.png"
+            <img src="before.webp"
+              srcset="before-836.webp 836w, before.webp 1672w"
+              sizes="(max-width: 768px) 100vw, 50vw"
               alt="Static furniture product page for a Valencia sofa showing a single studio photo, colour and size options, and accordion sections for description, dimensions, materials and delivery"
-              title="The Old Way — Static furniture product page"
-              width="1672" height="941" loading="lazy" decoding="async" />
+              title="The Old Way — Static furniture product page" width="1672" height="941" loading="lazy"
+              decoding="async" />
             <span class="ba-card__caption">Static Page</span>
           </div>
         </article>
@@ -2544,18 +2484,24 @@
           </ul>
           <div class="ba-card__media ba-card__media--new">
             <div class="ba-slideshow" id="ixaria-way-slideshow" aria-live="polite">
-              <img class="is-active" src="after1.png"
+              <img class="is-active" src="after1.webp"
+                srcset="after1-836.webp 836w, after1.webp 1672w"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 alt="Ixaria design-centric furniture product page for the Valencia sofa with lifestyle imagery, colour size and configuration options, delivery estimate and add to cart"
-                title="The Ixaria Way — Design Centric product page"
-                width="1672" height="941" loading="lazy" decoding="async" />
-              <img src="after2.png"
+                title="The Ixaria Way — Design Centric product page" width="1672" height="941" loading="lazy"
+                decoding="async" />
+              <img src="after2.webp"
+                srcset="after2-836.webp 836w, after2.webp 1672w"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 alt="Ixaria options-centric furniture product page for the Valencia sofa highlighting model, upholstery and base choices with reviews, delivery timeline and trust badges"
-                title="The Ixaria Way — Options Centric product page"
-                width="1672" height="941" loading="lazy" decoding="async" aria-hidden="true" />
-              <img src="after3.png"
+                title="The Ixaria Way — Options Centric product page" width="1672" height="941" loading="lazy"
+                decoding="async" aria-hidden="true" />
+              <img src="after3.webp"
+                srcset="after3-836.webp 836w, after3.webp 1672w"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 alt="Ixaria features-centric furniture product page for the Valencia sofa showing key features, dimensions, materials, care information and product details"
-                title="The Ixaria Way — Features Centric product page"
-                width="1672" height="941" loading="lazy" decoding="async" aria-hidden="true" />
+                title="The Ixaria Way — Features Centric product page" width="1672" height="941" loading="lazy"
+                decoding="async" aria-hidden="true" />
               <span class="ba-card__caption is-active">Design Centric</span>
               <span class="ba-card__caption" aria-hidden="true">Options Centric</span>
               <span class="ba-card__caption" aria-hidden="true">Features Centric</span>
@@ -2589,7 +2535,7 @@
             captions[index].classList.add('is-active');
             captions[index].removeAttribute('aria-hidden');
           }
-        }, 3000);
+        }, 2000);
       })();
     </script>
 
@@ -2686,8 +2632,8 @@
               <h3 class="step__title">Choose Your Template</h3>
             </div>
             <div class="step__img">
-              <img src="work-003.webp" width="600" height="600"
-                alt="Choosing a product page template — step 3" loading="lazy" />
+              <img src="work-003.webp" width="600" height="600" alt="Choosing a product page template — step 3"
+                loading="lazy" />
             </div>
             <div class="step__body-wrap">
               <p class="step__body">Choose one of our product page templates or keep using your existing design.</p>
@@ -2756,26 +2702,26 @@
             <p class="feature-body">Ixaria learns from customer behaviour and improves your pages over time.</p>
           </div>
           <div class="feature-card">
-            <img src="feature-003.webp" width="700" height="393" class="feature-icon"
-              alt="Keep your current webshop" loading="lazy" />
+            <img src="feature-003.webp" width="700" height="393" class="feature-icon" alt="Keep your current webshop"
+              loading="lazy" />
             <h3 class="feature-title">Keep Your Webshop</h3>
             <p class="feature-body">Add Ixaria to your current webshop without rebuilding or replacing it.</p>
           </div>
           <div class="feature-card">
-            <img src="feature-004.webp" width="700" height="393" class="feature-icon"
-              alt="Built around your buyers" loading="lazy" />
+            <img src="feature-004.webp" width="700" height="393" class="feature-icon" alt="Built around your buyers"
+              loading="lazy" />
             <h3 class="feature-title">Built Around Your Buyers</h3>
             <p class="feature-body">Each page adapts to your products, customers and their buying journey.</p>
           </div>
           <div class="feature-card">
-            <img src="feature-005.webp" width="700" height="393" class="feature-icon"
-              alt="Make product value clear" loading="lazy" />
+            <img src="feature-005.webp" width="700" height="393" class="feature-icon" alt="Make product value clear"
+              loading="lazy" />
             <h3 class="feature-title">Make Value Clear</h3>
             <p class="feature-body">Explain why your products are worth buying with clear, useful information.</p>
           </div>
           <div class="feature-card">
-            <img src="feature-006.webp" width="700" height="393" class="feature-icon"
-              alt="AI product assistant" loading="lazy" />
+            <img src="feature-006.webp" width="700" height="393" class="feature-icon" alt="AI product assistant"
+              loading="lazy" />
             <h3 class="feature-title">AI Product Assistant</h3>
             <p class="feature-body">AI answers customer questions using the product information inside Ixaria.</p>
           </div>
@@ -2863,7 +2809,7 @@
             </div>
             <div class="founder">
               <div class="founder__avatar">
-                <img src="Eduard Profile picture 4x4.png" width="600" height="600"
+                <img src="eduard-badea.webp" width="480" height="480"
                   alt="Eduard Badea — Co-founder of Ixaria" loading="lazy" />
               </div>
               <div class="founder__name">Eduard</div>
@@ -2917,18 +2863,183 @@
         </div>
         <div class="faq__list">
 
+
           <div class="faq__item">
-            <button class="faq__question" onclick="toggleFaq(this)">
+            <button class="faq__question" id="faq-1" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-1">
+              How the solution works / what it does?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-1">
+              Ixaria improves the product pages on your existing online store. It brings images, videos, product
+              options, dimensions, delivery details and other useful information into one clear page. It then learns
+              from visitor behaviour and shows each customer the information most helpful to their buying decision.
+            </div>
+          </div>
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-2" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-2">
+              How is it implemented in our webshop?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-2">
+              Ixaria connects to your existing webshop, so there is no need to rebuild it. You can use one of our
+              product-page templates or keep your own. We add your product data to the chosen template, while your
+              checkout, payments and orders continue to work as before.
+            </div>
+          </div>
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-3" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-3">
+              How do you know what stage of the customer journey the customer is in?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-3">
+              We estimate the customer’s buying stage from several signals. We look at where they came from, whether
+              they visited before, how long they stay and which parts of the website they focus on. We also learn from
+              the questions they ask through the built-in chat. Together, these signals show whether the customer is
+              exploring, comparing options or getting ready to buy.
+            </div>
+          </div>
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-4" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-4">
+              Can we try a pilot?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-4">
+              Yes. We recommend starting with a small number of products so you can see how Ixaria works and measure the
+              results. If the pilot performs well, you can then expand it to your full product catalogue.
+            </div>
+          </div>
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-5" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-5">
+              Will your tool update the design of my website? How do we handle brand control?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-5">
+              Ixaria does not redesign your whole website. You can use one of our fully customizable product-page
+              templates or keep your existing template. Your colours, fonts, layout and visual style remain under your
+              control, so every page stays consistent with your brand.
+            </div>
+          </div>
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-6" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-6">
+
+              Would it also affect landing pages, category pages, product listing pages, or search?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-6">
+              Ixaria only changes your product pages. A small plugin is added across the website to understand how
+              visitors move between landing pages, categories, search and products, but it does not change those pages.
+              If you choose, the question bar can also be added to product listing pages.
+            </div>
+          </div>
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-7" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-7">
+              Is replacing the PIM and other intelligence layers an absolute hard requirement? Can you connect to
+              existing PIM/DAM?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-7">
+              No. During the pilot, Ixaria can retrieve product data and assets from your existing PIM, DAM or other
+              tools. If the pilot is successful, we recommend moving the relevant product data and workflows fully to
+              Ixaria, so you do not have to maintain and pay for two systems doing the same job.
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-8" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-8">
+              Can the solution generate images in a live environment?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-8">
+              Yes. Ixaria includes tools that automatically generate and edit product images. It can create floating
+              product images, place products in different rooms and lighting conditions, and generate images that
+              clearly show dimensions. These visuals can then be used directly on live product pages.
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-9" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-9">
+              Can pages adapt by country or market area?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-9">
+              Yes. This is one of Ixaria’s core features. Customers in different markets often care about different
+              things, so Ixaria can adapt the message, product information and visuals for each country or region. We
+              use our knowledge of each market to recommend what should be shown and emphasized.
+            </div>
+          </div>
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-10" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-10">
               How long does it take to have the Ixaria solution live?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M12 5v14M5 12h14" />
                 </svg></span>
             </button>
-            <div class="faq__answer">It depends on the number of products, how many variations they have, and how
-              complex the setup is. But in most cases, we can have the Ixaria solution live in about one month.</div>
+            <div class="faq__answer" id="faq-answer-10">Ixaria usually takes between one and three months to go live. The exact time
+              depends on the number of products, how much product data is missing, and whether you already have good
+              images and 3D models available.</div>
           </div>
 
           <div class="faq__item">
+            <button class="faq__question" id="faq-11" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-11">
+              How soon can I see the first results?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-11">It depends mainly on how many visitors your website receives. More visitors allow
+              Ixaria to learn and measure results faster. With around 30,000 visitors per month, you can usually see
+              meaningful results within about two months. Websites with less traffic may need more time.</div>
+          </div>
+
+
+
+          <div class="faq__item">
+            <button class="faq__question" id="faq-12" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-12">
+              Does it work for both movable and fixed furniture?
+              <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" />
+                </svg></span>
+            </button>
+            <div class="faq__answer" id="faq-answer-12">Ixaria is built for movable furniture, such as sofas, chairs, tables and some
+              freestanding cabinets. It can support products with customizable options, but it is not designed for fixed
+              furniture or fully bespoke, made-to-order projects.</div>
+          </div>
+
+
+
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               Do you have any minimum requirements before you start?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -2963,9 +3074,9 @@
             <div class="faq__answer">We usually need product information, images or references, dimensions, material
               options, pricing rules, available variations, reviews if available, and access to relevant website
               analytics.<br><br>The exact list depends on the products and the level of complexity.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               How much involvement is needed from my team?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -2976,23 +3087,23 @@
               materials, pricing, and current customer behavior. After the initial setup, your involvement can become
               much lighter.<br><br>We can agree on how often you want to review changes, results, and new iterations.
             </div>
-          </div>
+          </div> -->
 
           <div class="faq__item">
-            <button class="faq__question" onclick="toggleFaq(this)">
+            <button class="faq__question" id="faq-13" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-13">
               What kind of work do you provide?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M12 5v14M5 12h14" />
                 </svg></span>
             </button>
-            <div class="faq__answer">Ixaria can cover the full product page experience for furniture manufacturers.
+            <div class="faq__answer" id="faq-answer-13">Ixaria can cover the full product page experience for furniture manufacturers.
               Depending on what you already have and what is missing, we can provide 3D modeling, product image
               generation, dimensioned images, centralized product reviews, 3D configuration, and product page layout
               design.<br><br>The 3D configuration can range from a simple setup with a few options to a highly complex
               configurator with many variations, dimensions, materials, and product rules.</div>
           </div>
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               Do I need to already have 3D models?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3001,9 +3112,9 @@
             </button>
             <div class="faq__answer">No. If you already have 3D models, we can work with them. If you do not, we can
               help create them as part of the implementation process.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               Can Ixaria generate product images for all my variations?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3013,9 +3124,9 @@
             <div class="faq__answer">Yes. One of the main benefits of Ixaria is that we can generate consistent product
               images for multiple products, materials, colors, and configurations.<br><br>This helps customers better
               understand what they are buying without needing a full traditional photoshoot for every variation.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               What kind of furniture products are best suited for Ixaria?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3025,23 +3136,23 @@
             <div class="faq__answer">Ixaria is especially useful for furniture products that are complex, customizable,
               or difficult to explain online.<br><br>This includes sofas, beds, tables, modular furniture, configurable
               products, and products with multiple materials, sizes, colors, or price variations.</div>
-          </div>
+          </div> -->
 
           <div class="faq__item">
-            <button class="faq__question" onclick="toggleFaq(this)">
+            <button class="faq__question" id="faq-14" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-14">
               Can Ixaria help if we already have a 3D configurator?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M12 5v14M5 12h14" />
                 </svg></span>
             </button>
-            <div class="faq__answer">Ixaria does not usually work with existing 3D configurators. Most configurators
+            <div class="faq__answer" id="faq-answer-14">Ixaria does not usually work with existing 3D configurators. Most configurators
               come with their own limitations, rules, and technical restrictions, which makes it difficult for our
               system to adapt and improve them based on real customer behavior.<br><br>Instead, we prefer to build the
               3D configuration experience inside the Ixaria system, so it can be connected with the product data, page
               layout, analytics, and ongoing optimization process.</div>
           </div>
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               Can Ixaria work with my existing webshop?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3051,21 +3162,21 @@
             <div class="faq__answer">Yes. Ixaria is designed to work on top of your current webshop. You do not need to
               rebuild everything from scratch.<br><br>We focus on improving the product page experience and connecting
               the necessary product data, visuals, configuration logic, reviews, and analytics around it.</div>
-          </div>
+          </div> -->
 
           <div class="faq__item">
-            <button class="faq__question" onclick="toggleFaq(this)">
+            <button class="faq__question" id="faq-15" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-15">
               Do I need to replace my current ecommerce platform?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <path d="M12 5v14M5 12h14" />
                 </svg></span>
             </button>
-            <div class="faq__answer">No. In most cases, Ixaria does not replace your existing ecommerce platform. It
+            <div class="faq__answer" id="faq-answer-15">No. Ixaria does not replace your existing ecommerce platform. It
               improves the product page layer and helps centralize the elements that are usually scattered across
               different plugins and tools.</div>
           </div>
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               Will Ixaria slow down my website?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3103,9 +3214,9 @@
               grow.<br><br>In our experience, revenue increases can range from around 30% to 300%, depending on the
               manufacturer's current online performance, brand positioning, production capacity, and how much confidence
               customers already have in the brand.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               What happens if my conversion rate does not go up immediately after implementation?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3119,9 +3230,9 @@
               page at launch, but to keep improving it over time. As more data is collected and more changes are
               applied, the product pages become better aligned with your customers, which should lead to a stronger
               conversion rate.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               How do you measure success?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3131,9 +3242,9 @@
             <div class="faq__answer">Success is measured through business and product page performance indicators such
               as conversion rate, revenue generated, engagement with key sections, use of configuration options,
               add-to-cart behavior, and the quality of customer interactions on the page.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               How do you decide what changes to make on the product page?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3143,9 +3254,9 @@
             <div class="faq__answer">We look at how customers interact with the product page: where they hesitate, what
               they click, what information they look for, and where they drop off.<br><br>Based on this behavior, we
               improve the layout, content, visuals, product information, and configuration flow.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               Will I be informed every time your system makes changes to the product page?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3157,9 +3268,9 @@
               customer understanding can help guide the process.<br><br>Over time, once the system has enough data and
               the direction is clear, you do not need to be involved in every small change. We can agree on the level of
               visibility and approval that works best for your team.</div>
-          </div>
+          </div> -->
 
-          <div class="faq__item">
+          <!-- <div class="faq__item">
             <button class="faq__question" onclick="toggleFaq(this)">
               Is Ixaria only for large furniture manufacturers?
               <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -3170,7 +3281,7 @@
               help these manufacturers succeed online by giving them the product page system, 3D configuration, visuals,
               product data, and ongoing optimization they need to sell better without building a large internal
               ecommerce team.</div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -3233,9 +3344,10 @@
         <div>
           <div class="footer__col-title">Website</div>
           <div class="footer__links">
-            <a href="#social-proof">Why Ixaria</a>
+            <a href="#before-after">Why Ixaria</a>
             <a href="#how-it-works">How it works</a>
             <a href="#features">Features</a>
+            <a href="cofounder.html">Careers</a>
             <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank"
               rel="noopener noreferrer">Book a call</a>
           </div>
@@ -3301,12 +3413,6 @@
   </button> -->
 
   <script>
-    // Language switcher
-    function setLang(code, label) {
-      document.getElementById('lang-label').textContent = code;
-      document.querySelectorAll('.lang-dropdown a').forEach(a => a.classList.remove('active'));
-      event.target.classList.add('active');
-    }
 
     // Email form
     function handleEmailSubmit(e) {
@@ -3332,14 +3438,14 @@
     function toggleFaq(btn) {
       const answer = btn.nextElementSibling;
       const isOpen = btn.classList.contains('open');
-      // Close all
       document.querySelectorAll('.faq__question.open').forEach(q => {
         q.classList.remove('open');
+        q.setAttribute('aria-expanded', 'false');
         q.nextElementSibling.classList.remove('open');
       });
-      // Open clicked if it was closed
       if (!isOpen) {
         btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
         answer.classList.add('open');
       }
     }
@@ -3633,7 +3739,7 @@
       "about": { "@id": "https://ixaria.eu/#organization" },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://ixaria.eu/cover.png"
+        "url": "https://ixaria.eu/preview.webp"
       },
       "image": [
         { "@id": "https://ixaria.eu/#image-old-way-static-page" },
@@ -3641,58 +3747,58 @@
         { "@id": "https://ixaria.eu/#image-ixaria-options-centric" },
         { "@id": "https://ixaria.eu/#image-ixaria-features-centric" }
       ],
-      "dateModified": "2026-07-24"
+      "dateModified": "2026-08-07"
     },
     {
       "@type": "ImageObject",
       "@id": "https://ixaria.eu/#image-old-way-static-page",
-      "url": "https://ixaria.eu/before.png",
-      "contentUrl": "https://ixaria.eu/before.png",
+      "url": "https://ixaria.eu/before.webp",
+      "contentUrl": "https://ixaria.eu/before.webp",
       "name": "Static furniture product page — the old way",
       "caption": "Static Page",
       "description": "Example of a static furniture product page for a Valencia sofa with a single studio photo, colour and size options, and accordion sections for description, dimensions, materials and delivery — showing the old one-layout-for-everyone approach.",
       "width": 1672,
       "height": 941,
-      "encodingFormat": "image/png",
+      "encodingFormat": "image/webp",
       "representativeOfPage": false
     },
     {
       "@type": "ImageObject",
       "@id": "https://ixaria.eu/#image-ixaria-design-centric",
-      "url": "https://ixaria.eu/after1.png",
-      "contentUrl": "https://ixaria.eu/after1.png",
+      "url": "https://ixaria.eu/after1.webp",
+      "contentUrl": "https://ixaria.eu/after1.webp",
       "name": "Ixaria design-centric furniture product page",
       "caption": "Design Centric",
       "description": "Ixaria design-centric product page for the Valencia sofa featuring lifestyle imagery, colour size and configuration options, delivery estimate and add to cart — adapted to customers focused on design and visuals.",
       "width": 1672,
       "height": 941,
-      "encodingFormat": "image/png",
+      "encodingFormat": "image/webp",
       "representativeOfPage": false
     },
     {
       "@type": "ImageObject",
       "@id": "https://ixaria.eu/#image-ixaria-options-centric",
-      "url": "https://ixaria.eu/after2.png",
-      "contentUrl": "https://ixaria.eu/after2.png",
+      "url": "https://ixaria.eu/after2.webp",
+      "contentUrl": "https://ixaria.eu/after2.webp",
       "name": "Ixaria options-centric furniture product page",
       "caption": "Options Centric",
       "description": "Ixaria options-centric product page for the Valencia sofa highlighting model, upholstery and base choices with customer reviews, delivery timeline and trust badges — adapted to customers comparing configurations.",
       "width": 1672,
       "height": 941,
-      "encodingFormat": "image/png",
+      "encodingFormat": "image/webp",
       "representativeOfPage": false
     },
     {
       "@type": "ImageObject",
       "@id": "https://ixaria.eu/#image-ixaria-features-centric",
-      "url": "https://ixaria.eu/after3.png",
-      "contentUrl": "https://ixaria.eu/after3.png",
+      "url": "https://ixaria.eu/after3.webp",
+      "contentUrl": "https://ixaria.eu/after3.webp",
       "name": "Ixaria features-centric furniture product page",
       "caption": "Features Centric",
       "description": "Ixaria features-centric product page for the Valencia sofa showing key product features, dimensions, materials, care information and detailed specifications — adapted to customers researching product details.",
       "width": 1672,
       "height": 941,
-      "encodingFormat": "image/png",
+      "encodingFormat": "image/webp",
       "representativeOfPage": false
     },
     {
@@ -3753,62 +3859,137 @@
       ]
     },
     {
+      "@type": "VideoObject",
+      "@id": "https://ixaria.eu/#hero-video",
+      "name": "Ixaria product page experience",
+      "description": "Animation showing how Ixaria adapts furniture product pages to each buyer.",
+      "thumbnailUrl": "https://ixaria.eu/preview.webp",
+      "contentUrl": "https://ixaria.eu/animation.mp4",
+      "uploadDate": "2026-08-07",
+      "encodingFormat": "video/mp4"
+    },
+    {
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
+          "name": "How the solution works / what it does?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria improves the product pages on your existing online store. It brings images, videos, product options, dimensions, delivery details and other useful information into one clear page. It then learns from visitor behaviour and shows each customer the information most helpful to their buying decision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is it implemented in our webshop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria connects to your existing webshop, so there is no need to rebuild it. You can use one of our product-page templates or keep your own. We add your product data to the chosen template, while your checkout, payments and orders continue to work as before."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you know what stage of the customer journey the customer is in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We estimate the customer’s buying stage from several signals. We look at where they came from, whether they visited before, how long they stay and which parts of the website they focus on. We also learn from the questions they ask through the built-in chat. Together, these signals show whether the customer is exploring, comparing options or getting ready to buy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we try a pilot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We recommend starting with a small number of products so you can see how Ixaria works and measure the results. If the pilot performs well, you can then expand it to your full product catalogue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will your tool update the design of my website? How do we handle brand control?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria does not redesign your whole website. You can use one of our fully customizable product-page templates or keep your existing template. Your colours, fonts, layout and visual style remain under your control, so every page stays consistent with your brand."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Would it also affect landing pages, category pages, product listing pages, or search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria only changes your product pages. A small plugin is added across the website to understand how visitors move between landing pages, categories, search and products, but it does not change those pages. If you choose, the question bar can also be added to product listing pages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is replacing the PIM and other intelligence layers an absolute hard requirement? Can you connect to existing PIM/DAM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. During the pilot, Ixaria can retrieve product data and assets from your existing PIM, DAM or other tools. If the pilot is successful, we recommend moving the relevant product data and workflows fully to Ixaria, so you do not have to maintain and pay for two systems doing the same job."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the solution generate images in a live environment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Ixaria includes tools that automatically generate and edit product images. It can create floating product images, place products in different rooms and lighting conditions, and generate images that clearly show dimensions. These visuals can then be used directly on live product pages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can pages adapt by country or market area?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. This is one of Ixaria’s core features. Customers in different markets often care about different things, so Ixaria can adapt the message, product information and visuals for each country or region. We use our knowledge of each market to recommend what should be shown and emphasized."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "How long does it take to have the Ixaria solution live?",
-          "acceptedAnswer": { "@type": "Answer", "text": "It depends on the number of products, how many variations they have, and how complex the setup is. But in most cases, we can have the Ixaria solution live in about one month." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria usually takes between one and three months to go live. The exact time depends on the number of products, how much product data is missing, and whether you already have good images and 3D models available."
+          }
         },
         {
           "@type": "Question",
-          "name": "Do you have any minimum requirements before you start?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Because Ixaria improves product pages based on real customer behavior, we need a minimum number of monthly visits for the system to collect enough useful data. The exact number depends on each manufacturer's situation, especially their production capacity, current sales volume, and how much more they can realistically sell." }
+          "name": "How soon can I see the first results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends mainly on how many visitors your website receives. More visitors allow Ixaria to learn and measure results faster. With around 30,000 visitors per month, you can usually see meaningful results within about two months. Websites with less traffic may need more time."
+          }
         },
         {
           "@type": "Question",
-          "name": "Can we start with only a few products?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. In many cases, it makes sense to start with a smaller number of important products, learn from the results, and then expand the system to more of the catalog." }
+          "name": "Does it work for both movable and fixed furniture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria is built for movable furniture, such as sofas, chairs, tables and some freestanding cabinets. It can support products with customizable options, but it is not designed for fixed furniture or fully bespoke, made-to-order projects."
+          }
         },
         {
           "@type": "Question",
-          "name": "What data do you need from us to start?",
-          "acceptedAnswer": { "@type": "Answer", "text": "We usually need product information, images or references, dimensions, material options, pricing rules, available variations, reviews if available, and access to relevant website analytics. The exact list depends on the products and the level of complexity." }
+          "name": "What kind of work do you provide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria can cover the full product page experience for furniture manufacturers. Depending on what you already have and what is missing, we can provide 3D modeling, product image generation, dimensioned images, centralized product reviews, 3D configuration, and product page layout design. The 3D configuration can range from a simple setup with a few options to a highly complex configurator with many variations, dimensions, materials, and product rules."
+          }
         },
         {
           "@type": "Question",
-          "name": "Can Ixaria work with my existing webshop?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ixaria is designed to work on top of your current webshop. You do not need to rebuild everything from scratch. We focus on improving the product page experience and connecting the necessary product data, visuals, configuration logic, reviews, and analytics around it." }
+          "name": "Can Ixaria help if we already have a 3D configurator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria does not usually work with existing 3D configurators. Most configurators come with their own limitations, rules, and technical restrictions, which makes it difficult for our system to adapt and improve them based on real customer behavior. Instead, we prefer to build the 3D configuration experience inside the Ixaria system, so it can be connected with the product data, page layout, analytics, and ongoing optimization process."
+          }
         },
         {
           "@type": "Question",
           "name": "Do I need to replace my current ecommerce platform?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. In most cases, Ixaria does not replace your existing ecommerce platform. It improves the product page layer and helps centralize the elements that are usually scattered across different plugins and tools." }
-        },
-        {
-          "@type": "Question",
-          "name": "What kind of furniture products are best suited for Ixaria?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Ixaria is especially useful for furniture products that are complex, customizable, or difficult to explain online. This includes sofas, beds, tables, modular furniture, configurable products, and products with multiple materials, sizes, colors, or price variations." }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the typical revenue increase for existing clients?",
-          "acceptedAnswer": { "@type": "Answer", "text": "In our experience, revenue increases can range from around 30% to 300%, depending on the manufacturer's current online performance, brand positioning, production capacity, and how much confidence customers already have in the brand." }
-        },
-        {
-          "@type": "Question",
-          "name": "Is Ixaria only for large furniture manufacturers?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. Ixaria works only with small and medium furniture manufacturers. Our goal is to help these manufacturers succeed online by giving them the product page system, 3D configuration, visuals, product data, and ongoing optimization they need to sell better without building a large internal ecommerce team." }
-        },
-        {
-          "@type": "Question",
-          "name": "What makes Ixaria different from using several plugins?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Most plugins solve one specific problem: images, reviews, 3D configuration, product data, or analytics. Ixaria brings these parts together into one product page system designed specifically for furniture. This makes the experience easier to manage, easier to improve, and more consistent for the customer." }
-        },
-        {
-          "@type": "Question",
-          "name": "Do I need to already have 3D models?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. If you already have 3D models, we can work with them. If you do not, we can help create them as part of the implementation process." }
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Ixaria does not replace your existing ecommerce platform. It improves the product page layer and helps centralize the elements that are usually scattered across different plugins and tools."
+          }
         }
       ]
     }
