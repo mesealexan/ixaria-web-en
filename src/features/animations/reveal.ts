@@ -2,7 +2,7 @@ const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const groups = [
   { selector: '.value-item', className: 'value-item--visible', delay: 200 },
   { selector: '.feature-card', className: 'feature-card--visible', delay: 100 },
-  { selector: '.step', className: 'step--visible', delay: 250 },
+  { selector: '.process-card', className: 'process-card--visible', delay: 150 },
   { selector: '.cta-strip', className: 'cta-strip--visible', delay: 0 },
 ];
 

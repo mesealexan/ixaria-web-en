@@ -1,16 +1,10 @@
 ---
 import type { ContentCard } from '../../data/types';
-interface Props { kind: 'steps' | 'features'; items: ContentCard[] }
-const { kind, items } = Astro.props;
+interface Props { items: ContentCard[] }
+const { items } = Astro.props;
 ---
-<div class={kind === 'steps' ? 'how__steps' : 'features__grid'}>
-  {items.map((item, index) => kind === 'steps' ? (
-    <div class="step">
-      <div class="step__top"><div class="step__num">{index + 1}</div><h3 class="step__title">{item.title}</h3></div>
-      <div class="step__img"><img {...item.image} loading="lazy" /></div>
-      <div class="step__body-wrap"><p class="step__body">{item.body}</p></div>
-    </div>
-  ) : (
+<div class="features__grid">
+  {items.map(item => (
     <div class="feature-card"><img {...item.image} class="feature-icon" loading="lazy" /><h3 class="feature-title">{item.title}</h3><p class="feature-body">{item.body}</p></div>
   ))}
 </div>

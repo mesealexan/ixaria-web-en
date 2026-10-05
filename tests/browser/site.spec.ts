@@ -21,6 +21,9 @@ for (const route of [
   '/privacy-policy.html',
   '/terms.html',
   '/cookie-policy.html',
+  '/audit.html',
+  '/pilot.html',
+  '/full-implementation.html',
 ]) {
   test(`${route} renders with working assets and no application errors`, async ({ page }) => {
     const errors: string[] = [];
@@ -58,6 +61,153 @@ for (const route of [
     ).toEqual([]);
     expect(failed).toEqual([]);
     expect(errors).toEqual([]);
+  });
+}
+
+for (const width of [1280, 390]) {
+  test(`three implementation stages open their detail pages at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    for (const [title, path] of [
+      ['Audit', '/audit.html'],
+      ['Pilot', '/pilot.html'],
+      ['Full Implementation', '/full-implementation.html'],
+    ]) {
+      await page.goto('/#how-it-works');
+      await expect(page.locator('#how-it-works h3')).toHaveText([
+        'Audit',
+        'Pilot',
+        'Full Implementation',
+      ]);
+      await page.getByRole('link', { name: `Read more about ${title}`, exact: true }).click();
+      await expect(page).toHaveURL(new RegExp(`${path.replace('.', '\\.')}$`));
+      await expect(page.locator('h1')).toHaveText(
+        title === 'Audit' ? 'What keeps your visitors from becoming customers?' : title,
+      );
+      await expect(page.getByRole('navigation', { name: 'Implementation stages' })).toHaveCount(0);
+      await expect(page.getByRole('navigation', { name: 'On this audit page' })).toHaveCount(0);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true,
+      );
+      if (title === 'Audit') {
+        if (width <= 768) await page.getByRole('button', { name: 'Menu', exact: true }).click();
+        await page
+          .locator('header')
+          .getByRole('link', { name: 'How it works', exact: true })
+          .click();
+      } else await page.getByRole('link', { name: 'Back to how it works', exact: false }).click();
+      await expect(page).toHaveURL(/\/#how-it-works$/);
+    }
+  });
+}
+
+for (const width of [1440, 390]) {
+  test(`audit offer, keyboard FAQ and homepage navigation work at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/audit.html');
+    await expect(page.locator('h1')).toHaveText(
+      'What keeps your visitors from becoming customers?',
+    );
+    expect(
+      await page
+        .locator('[data-audit-section]')
+        .evaluateAll((sections) =>
+          sections.map((section) => section.getAttribute('data-audit-section')),
+        ),
+    ).toEqual([
+      'promise',
+      'experience',
+      'qualification',
+      'shoppers',
+      'investigation',
+      'report',
+      'process',
+      'offer',
+      'questions',
+    ]);
+    await expect(page.locator('.audit-hero__price strong')).toHaveText('€1,500');
+    await expect(page.locator('.audit-offer__price h3')).toHaveText('€1,500');
+    await expect(page.locator('.audit-process')).toContainText(
+      'seven calendar days after all specialist calls are complete and all requested data has been received',
+    );
+    await expect(page.locator('.audit-offer__guarantee')).toContainText(
+      'within 14 days of the presentation',
+    );
+    const booking = page
+      .locator('main')
+      .getByRole('link', { name: 'Book a discovery call', exact: true });
+    await expect(booking).toHaveCount(3);
+    for (const link of await booking.all()) {
+      await expect(link).toHaveAttribute(
+        'href',
+        'https://calendly.com/alex-ixaria/ixaria-strategy-session',
+      );
+      await expect(link).toHaveAttribute('target', '_blank');
+    }
+    const download = page.locator('.audit-example a[download]');
+    if (await download.count()) {
+      const pdf = await page.request.get((await download.getAttribute('href'))!);
+      expect(pdf.ok()).toBe(true);
+      expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+    } else {
+      await expect(page.locator('.audit-example__pending')).toHaveText('Example audit coming soon');
+      await expect(page.locator('.audit-report__preview')).toHaveCount(0);
+    }
+    await expect(page.locator('.faq__question')).toHaveCount(6);
+    const first = page.locator('#faq-audit-1');
+    const second = page.locator('#faq-audit-2');
+    await first.focus();
+    await expect(first).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(first).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#faq-answer-audit-1')).toBeVisible();
+    await page.keyboard.press('Tab');
+    await expect(second).toBeFocused();
+    await page.keyboard.press('Space');
+    await expect(first).toHaveAttribute('aria-expanded', 'false');
+    await expect(second).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#faq-answer-audit-2')).toBeVisible();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#faq-answer-audit-2')).toBeHidden();
+    await expect(page.locator('header .navbar')).toBeVisible();
+    await expect(page.locator('footer')).toBeAttached();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    // Check actual content bounds too: a global overflow rule must not mask clipped copy.
+    expect(
+      await page
+        .locator('main h1, main h2, main h3, main p, main a, main img, main li')
+        .evaluateAll((elements) =>
+          elements
+            .filter((element) => {
+              const box = element.getBoundingClientRect();
+              return box.width > 0 && (box.left < -1 || box.right > innerWidth + 1);
+            })
+            .map((element) => element.textContent?.trim() || element.getAttribute('src')),
+        ),
+    ).toEqual([]);
+    if (width < 768) {
+      const hero = await page.locator('.audit-hero__copy').boundingBox();
+      const art = await page.locator('.audit-hero .audit-art').boundingBox();
+      expect(art!.y).toBeGreaterThanOrEqual(hero!.y + hero!.height);
+    }
+    await expect(
+      page.locator('header').getByRole('link', { name: 'Book a call', exact: true }),
+    ).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
+    for (const [label, hash] of [
+      ['How it works', 'how-it-works'],
+      ['Features', 'features'],
+      ['About us', 'about'],
+    ]) {
+      await page.goto('/audit.html');
+      if (width < 768) await page.getByRole('button', { name: 'Menu', exact: true }).click();
+      await page.locator('header').getByRole('link', { name: label, exact: true }).click();
+      await expect(page).toHaveURL(new RegExp(`/#${hash}$`));
+      await expect(page.locator(`#${hash}`)).toBeVisible();
+    }
+    await page.goto('/audit.html');
+    await page.locator('footer').getByRole('link', { name: 'Why Ixaria', exact: true }).click();
+    await expect(page).toHaveURL(/\/#before-after$/);
   });
 }
 
@@ -162,7 +312,7 @@ test('slideshow advances and reduced motion keeps content visible', async ({ pag
   expect(await page.locator('#ixaria-way-slideshow img.is-active').getAttribute('src')).toBe(
     reducedActive,
   );
-  for (const selector of ['.feature-card', '.step', '.value-item', '.cta-strip__inner'])
+  for (const selector of ['.feature-card', '.process-card', '.value-item', '.cta-strip__inner'])
     expect(
       await page
         .locator(selector)
@@ -217,7 +367,7 @@ test('static content, navigation, and FAQs are available with JavaScript disable
   await page.goto('http://127.0.0.1:4321/');
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('#faq-answer-1')).toBeVisible();
-  for (const selector of ['.feature-card', '.step', '.value-item', '.cta-strip__inner'])
+  for (const selector of ['.feature-card', '.process-card', '.value-item', '.cta-strip__inner'])
     expect(
       await page
         .locator(selector)
@@ -227,5 +377,14 @@ test('static content, navigation, and FAQs are available with JavaScript disable
   await page.getByRole('link', { name: 'Careers', exact: true }).click();
   await expect(page).toHaveURL(/cofounder.html$/);
   await expect(page.locator('h1')).toContainText('CTO');
+  await page.goto('http://127.0.0.1:4321/#how-it-works');
+  await page.getByRole('link', { name: 'Read more about Pilot', exact: true }).click();
+  await expect(page.locator('h1')).toHaveText('Pilot');
+  await page.goto('http://127.0.0.1:4321/audit.html');
+  await expect(page.locator('h1')).toHaveText('What keeps your visitors from becoming customers?');
+  for (const answer of await page.locator('.faq__answer').all()) await expect(answer).toBeVisible();
+  await expect(
+    page.locator('main').getByRole('link', { name: 'Book a discovery call', exact: true }),
+  ).toHaveCount(3);
   await context.close();
 });

@@ -1,0 +1,40 @@
+---
+import { implementationStages, implementationPath } from '../../data/implementation';
+import type { ImplementationStage } from '../../data/implementation';
+import { site } from '../../data/site';
+import Button from '../ui/Button.astro';
+import '../../styles/implementation-page.css';
+interface Props { stage: ImplementationStage }
+const { stage } = Astro.props;
+const index = implementationStages.findIndex(item => item.slug === stage.slug);
+const nextStage = implementationStages[index + 1];
+---
+<section class:list={['implementation-hero', `implementation--${stage.slug}`]}>
+  <div class="container">
+    <a class="implementation-back" href="/#how-it-works">← Back to how it works</a>
+    <div class="implementation-hero__grid">
+      <div><span class="section-label">Stage 0{index + 1} · {stage.label}</span><h1>{stage.title}</h1><p>{stage.introduction}</p></div>
+      <div class="implementation-hero__number" aria-hidden="true">0{index + 1}</div>
+    </div>
+  </div>
+</section>
+<section class="implementation-focus">
+  <div class="container">
+    <span class="section-label">What this stage involves</span><h2 class="section-title">{stage.focusTitle}</h2>
+    <div class="implementation-focus__grid">{stage.focus.map(item => <article><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>
+  </div>
+</section>
+<section class="implementation-outcomes">
+  <div class="container implementation-outcomes__grid">
+    <div><span class="section-label">A practical outcome</span><h2 class="section-title">What you take forward</h2></div>
+    <ul>{stage.outcomes.map(outcome => <li><span aria-hidden="true">✓</span>{outcome}</li>)}</ul>
+  </div>
+</section>
+<section class="implementation-next">
+  <div class="container">
+    <div class="implementation-next__content">
+      <span class="section-label">What happens next</span><h2 class="section-title">{nextStage ? `Next: ${nextStage.title}` : 'Keep learning. Keep improving.'}</h2><p>{stage.next}</p>
+      <div class="implementation-next__actions"><Button href={site.bookingUrl} external>{stage.callToAction}</Button>{nextStage && <Button href={implementationPath(nextStage)} variant="secondary">Explore {nextStage.title}</Button>}</div>
+    </div>
+  </div>
+</section>

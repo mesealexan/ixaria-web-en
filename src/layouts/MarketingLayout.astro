@@ -1,10 +1,10 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import type { PageSEO, StructuredData } from '../seo/types';
-interface Props { seo: PageSEO; structuredData?: StructuredData }
-const { seo, structuredData } = Astro.props;
+interface Props { seo: PageSEO; structuredData?: StructuredData; integrations?: boolean }
+const { seo, structuredData, integrations } = Astro.props;
 ---
-<BaseLayout seo={seo} structuredData={structuredData}>
+<BaseLayout seo={seo} structuredData={structuredData} integrations={integrations}>
   <slot />
   <slot name="after-footer" slot="after-footer" />
 </BaseLayout>

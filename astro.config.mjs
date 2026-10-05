@@ -5,4 +5,10 @@ export default defineConfig({
   output: 'static',
   build: { format: 'file', inlineStylesheets: 'never' },
   trailingSlash: 'never',
+  // Keep the content loader's CommonJS matcher in Node, including on a cold build.
+  vite: {
+    environments: {
+      astro: { resolve: { external: ['picomatch'] } },
+    },
+  },
 });

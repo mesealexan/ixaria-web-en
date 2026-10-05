@@ -1,0 +1,130 @@
+---
+import { audit, auditFAQs } from '../../data/audit';
+import { auditAssets } from '../../data/audit-assets';
+import { site } from '../../data/site';
+import Button from '../ui/Button.astro';
+import FAQList from '../ui/FAQList.astro';
+import AuditIllustration from './AuditIllustration.astro';
+import AuditLogoStrip from './AuditLogoStrip.astro';
+import AuditExample from './AuditExample.astro';
+import '../../styles/audit.css';
+const preview = auditAssets.example.pdfUrl ? auditAssets.example.preview : null;
+---
+<div class="audit-page">
+  <section class="audit-hero" data-audit-section="promise" aria-labelledby="audit-title">
+    <div class="container audit-hero__grid">
+      <div class="audit-hero__copy">
+        <span class="section-label">{audit.hero.label}</span>
+        <h1 id="audit-title">{audit.hero.heading}</h1>
+        <p class="audit-lead">{audit.hero.description}</p>
+        <p class="audit-hero__price"><strong>{audit.price}</strong><span>{audit.heroPriceLabel}</span></p>
+        <Button href={site.bookingUrl} external>{audit.bookingLabel}</Button>
+        <p class="audit-reassurance">{audit.hero.reassurance}</p>
+      </div>
+      <div class="audit-art"><AuditIllustration /></div>
+    </div>
+  </section>
+
+  <AuditLogoStrip />
+
+  <section class="audit-section audit-section--soft" data-audit-section="qualification" aria-labelledby="audit-fit-title">
+    <div class="container">
+      <div class="audit-heading">
+        <h2 class="section-title" id="audit-fit-title">{audit.qualification.heading}</h2>
+        <p class="section-sub">{audit.qualification.description}</p>
+      </div>
+      <ul class="audit-criteria">{audit.qualification.criteria.map(criterion => (
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg><span>{criterion}</span></li>
+      ))}</ul>
+    </div>
+  </section>
+
+  <section class="audit-section" data-audit-section="shoppers" aria-labelledby="audit-shoppers-title">
+    <div class="container audit-shoppers__grid">
+      <div>
+        <h2 class="section-title" id="audit-shoppers-title">{audit.shoppers.heading}</h2>
+        {audit.shoppers.paragraphs.map(paragraph => <p class="audit-copy">{paragraph}</p>)}
+      </div>
+      <div class="audit-art audit-art--quiet"><AuditIllustration variant="shoppers" /></div>
+    </div>
+  </section>
+
+  <section class="audit-section audit-section--soft" data-audit-section="investigation" aria-labelledby="audit-investigation-title">
+    <div class="container">
+      <div class="audit-heading">
+        <h2 class="section-title" id="audit-investigation-title">{audit.investigation.heading}</h2>
+        <p class="section-sub">{audit.investigation.description}</p>
+      </div>
+      <div class="audit-investigation">{audit.investigation.areas.map((area, index) => {
+        const portrait = auditAssets.portraits[area.name];
+        return <article class:list={['audit-specialist-card', `audit-accent-${index + 1}`]}>
+          <h3>{area.heading}</h3>
+          <p>{area.description}</p>
+          <div class="audit-specialist">
+            {portrait ? <img src={portrait} alt={area.name} width="56" height="56" loading="lazy" decoding="async" /> : <span class="audit-initials" aria-hidden="true">{area.name[0]}</span>}
+            <div><p class="audit-specialist__name">{area.name}</p><p class="audit-specialist__experience">{area.experience}</p></div>
+          </div>
+        </article>;
+      })}</div>
+    </div>
+  </section>
+
+  <section class="audit-section" data-audit-section="report" aria-labelledby="audit-report-title">
+    <div class:list={['container audit-report', { 'audit-report--with-preview': Boolean(preview) }]}>
+      <div>
+        <h2 class="section-title" id="audit-report-title">{audit.report.heading}</h2>
+        <div class="audit-report__outline">{audit.report.items.map(item => (
+          <article><h3>{item.heading}</h3><p>{item.description}</p></article>
+        ))}</div>
+        <p class="audit-report__presentation">{audit.report.presentation}</p>
+        <AuditExample />
+      </div>
+      {preview && <figure class="audit-report__preview"><img {...preview} loading="lazy" decoding="async" /></figure>}
+    </div>
+  </section>
+
+  <section class="audit-section audit-section--soft" data-audit-section="process" aria-labelledby="audit-process-title">
+    <div class="container">
+      <h2 class="section-title" id="audit-process-title">{audit.process.heading}</h2>
+      <ol class="audit-process">{audit.process.steps.map((step, index) => (
+        <li class:list={['audit-process-card', `audit-accent-${index + 1}`]}>
+          <h3><span class="audit-process-card__number">{index + 1}.</span> {step.heading}</h3>
+          <p>{step.description}</p>
+        </li>
+      ))}</ol>
+      <p class="audit-process__reassurance">{audit.process.reassurance}</p>
+    </div>
+  </section>
+
+  <section class="audit-offer audit-section" data-audit-section="offer" aria-labelledby="audit-offer-title">
+    <div class="container">
+      <h2 class="section-title" id="audit-offer-title">{audit.offer.heading}</h2>
+      <div class="audit-offer__grid">
+        <div class="audit-offer__price">
+          <h3>{audit.price}</h3>
+          <p class="audit-offer__label">{audit.offer.priceLabel}</p>
+          <p class="audit-copy">{audit.offer.inclusions}</p>
+          <Button href={site.bookingUrl} external>{audit.bookingLabel}</Button>
+          <p class="audit-reassurance">{audit.offer.reassurance}</p>
+        </div>
+        <div class="audit-offer__guarantee">
+          <svg width="42" height="48" viewBox="0 0 42 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 3 37 9v15c0 10-10 18-16 21C15 42 5 34 5 24V9L21 3Z" /><path d="m13 23 6 6 11-13" /></svg>
+          <h3>{audit.offer.guaranteeHeading}</h3>
+          <p class="audit-copy">{audit.offer.guaranteeDescription}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="audit-section audit-questions" data-audit-section="questions" aria-labelledby="audit-faq-title">
+    <div class="container">
+      <h2 class="section-title" id="audit-faq-title">{audit.faqHeading}</h2>
+      <FAQList items={auditFAQs} />
+      <noscript><style is:inline>.audit-page .faq__answer{display:block!important}</style></noscript>
+      <div class="audit-final">
+        <div><h3>{audit.final.heading}</h3><p>{audit.final.description}</p></div>
+        <Button href={site.bookingUrl} external>{audit.bookingLabel}</Button>
+      </div>
+    </div>
+  </section>
+</div>

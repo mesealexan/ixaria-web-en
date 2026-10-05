@@ -1,6 +1,6 @@
 import entities from './home-entities.json';
 import { site } from '../data/site';
-import { steps } from '../data/home';
+import { implementationStages, implementationPath } from '../data/implementation';
 import { faqs } from '../data/faqs';
 import type { StructuredData } from './types';
 
@@ -13,11 +13,12 @@ export function homeStructuredData(): StructuredData {
         entity['@type'] === 'HowTo'
           ? {
               ...entity,
-              step: steps.map((step, index) => ({
+              step: implementationStages.map((step, index) => ({
                 '@type': 'HowToStep',
                 position: index + 1,
                 name: step.title,
-                text: step.body,
+                text: step.summary,
+                url: new URL(implementationPath(step), site.url).href,
               })),
             }
           : entity,

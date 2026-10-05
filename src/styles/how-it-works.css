@@ -1,0 +1,150 @@
+.how {
+  padding: 96px 0;
+  background: var(--gray-light);
+}
+.how__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 44px;
+}
+.how__header .section-title {
+  margin-bottom: 0;
+}
+.how__intro {
+  max-width: 420px;
+  color: var(--gray-text);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.how__journey {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  list-style: none;
+}
+.process-card {
+  --stage-color: var(--elec);
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: var(--white);
+  border: 1px solid var(--gray-mid);
+  border-top: 4px solid var(--stage-color);
+  border-radius: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    box-shadow 0.2s;
+}
+.process-card--pilot {
+  --stage-color: var(--orange);
+}
+.process-card--full-implementation {
+  --stage-color: var(--navy);
+}
+.process-card--visible {
+  opacity: 1;
+  transform: none;
+}
+.process-card:hover {
+  box-shadow: 0 12px 32px rgba(9, 9, 89, 0.08);
+}
+.process-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.process-card__number {
+  color: var(--stage-color);
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1;
+}
+.process-card__label {
+  color: var(--stage-color);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.process-card h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.15;
+  color: var(--navy);
+  margin-bottom: 18px;
+}
+.process-card p {
+  color: var(--gray-text);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+.process-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px 16px;
+  margin-top: auto;
+  min-height: 48px;
+  border: 1px solid var(--gray-mid);
+  border-radius: 8px;
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.process-card__link:hover {
+  color: var(--white);
+  background: var(--stage-color);
+  border-color: var(--stage-color);
+}
+@media (max-width: 960px) {
+  .how__header {
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .how__journey {
+    gap: 16px;
+  }
+  .process-card {
+    padding: 24px;
+  }
+  .process-card h3 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 680px) {
+  .how {
+    padding: 64px 0;
+  }
+  .how .container {
+    padding: 0 20px;
+  }
+  .how__journey {
+    grid-template-columns: 1fr;
+  }
+  .how__header {
+    margin-bottom: 32px;
+  }
+  .process-card {
+    padding: 28px;
+  }
+  .process-card__top {
+    margin-bottom: 24px;
+  }
+  .process-card p {
+    margin-bottom: 24px;
+  }
+}

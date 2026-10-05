@@ -41,7 +41,7 @@
           "@id": "https://ixaria.eu/#image-ixaria-features-centric"
         }
       ],
-      "dateModified": "2026-08-07"
+      "dateModified": "2026-10-05"
     },
     {
       "@type": "ImageObject",
@@ -161,8 +161,7 @@
     {
       "@type": "HowTo",
       "name": "How Ixaria Works",
-      "description": "How Ixaria sets up and continuously improves furniture product pages for manufacturers",
-      "totalTime": "P1M",
+      "description": "Audit your product pages, validate improvements with a pilot and roll out the full solution.",
       "step": []
     },
     {

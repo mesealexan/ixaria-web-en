@@ -1,6 +1,12 @@
 import type { PageSEO } from './types';
+import { implementationStages } from '../data/implementation';
+import { implementationSEO } from './implementation';
+import { auditSEO } from './audit';
 
 export const pageSEO = {
+  audit: auditSEO,
+  pilot: implementationSEO(implementationStages[1]!),
+  'full-implementation': implementationSEO(implementationStages[2]!),
   home: {
     path: '/',
     title: 'Ixaria - Furniture Product Pages Shaped by Real Customer Behavior',
@@ -36,7 +42,7 @@ export const pageSEO = {
         href: 'https://ixaria.eu/',
       },
     ],
-    lastModified: '2026-08-07',
+    lastModified: '2026-10-05',
   },
   cofounder: {
     path: '/cofounder.html',

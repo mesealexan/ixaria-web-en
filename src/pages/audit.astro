@@ -1,0 +1,9 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import AuditPage from '../components/audit/AuditPage.astro';
+import { pageSEO } from '../seo/pages';
+import { auditStructuredData } from '../seo/audit';
+---
+<MarketingLayout seo={pageSEO.audit} structuredData={auditStructuredData()}>
+  <AuditPage />
+</MarketingLayout>

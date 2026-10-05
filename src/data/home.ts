@@ -1,48 +1,5 @@
 import type { ContentCard, Founder } from './types';
 
-export const steps: ContentCard[] = [
-  {
-    title: 'Structure Product Data',
-    body: 'We help you gather and structure your images, dimensions, materials and options.',
-    image: {
-      src: '/work-001.webp',
-      alt: 'Structuring furniture product data — step 1 of Ixaria setup',
-      width: 600,
-      height: 600,
-    },
-  },
-  {
-    title: 'Connect Your Webshop',
-    body: 'We connect Ixaria to your existing webshop as a plugin. No rebuild is required.',
-    image: {
-      src: '/work-002.webp',
-      alt: 'Connecting Ixaria to your furniture webshop — step 2',
-      width: 600,
-      height: 600,
-    },
-  },
-  {
-    title: 'Choose Your Template',
-    body: 'Choose one of our product page templates or keep using your existing design.',
-    image: {
-      src: '/work-003.webp',
-      alt: 'Choosing a product page template — step 3',
-      width: 600,
-      height: 600,
-    },
-  },
-  {
-    title: 'Improve Automatically',
-    body: 'Ixaria learns what helps customers buy and improves your pages automatically.',
-    image: {
-      src: '/work-004.webp',
-      alt: 'Ixaria improving product pages automatically — step 4',
-      width: 600,
-      height: 600,
-    },
-  },
-];
-
 export const features: ContentCard[] = [
   {
     title: 'Replace Disconnected Tools',

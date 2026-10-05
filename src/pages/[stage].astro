@@ -1,0 +1,17 @@
+---
+import { implementationStages } from '../data/implementation';
+import type { ImplementationStage } from '../data/implementation';
+import { pageSEO } from '../seo/pages';
+import { implementationStructuredData } from '../seo/implementation';
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import ImplementationPage from '../components/sections/ImplementationPage.astro';
+
+export function getStaticPaths() {
+  return implementationStages.filter(stage => stage.slug !== 'audit').map(stage => ({ params: { stage: stage.slug }, props: { stage } }));
+}
+interface Props { stage: ImplementationStage }
+const { stage } = Astro.props;
+---
+<MarketingLayout seo={pageSEO[stage.slug]} structuredData={implementationStructuredData(stage)}>
+  <ImplementationPage stage={stage} />
+</MarketingLayout>

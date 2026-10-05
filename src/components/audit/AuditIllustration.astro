@@ -1,0 +1,45 @@
+---
+interface Props { variant?: 'hero' | 'shoppers' }
+const { variant = 'hero' } = Astro.props;
+---
+<svg class="audit-illustration" viewBox="0 0 560 460" fill="none" aria-hidden="true" focusable="false">
+  <circle cx="296" cy="223" r="190" fill="#ededff" />
+  <circle cx="473" cy="80" r="12" fill="#ffda00" />
+  <circle cx="87" cy="354" r="8" fill="#ff5f0a" />
+  <g stroke="#0000ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    {variant === 'hero' ? (
+      <>
+        <rect x="161" y="69" width="295" height="294" rx="18" fill="white" />
+        <path d="M161 112h295M182 92h44M360 92h24m14 0h14m14 0h10" />
+        <rect x="185" y="135" width="247" height="117" rx="10" fill="#f5f6fa" stroke="#dadbfb" />
+        <path d="M222 224v-40a9 9 0 0 1 9-9h146a9 9 0 0 1 9 9v40M230 174v-16a7 7 0 0 1 7-7h131a7 7 0 0 1 7 7v16M237 223v9m134-9v9M243 201h126M242 176v25m125-25v25M233 222h146" />
+        <path d="M185 274h95m-95 15h159m-159 15h131" stroke="#090959" />
+        <rect x="185" y="320" width="118" height="21" rx="6" fill="#0000ff" />
+        <path d="M322 327h92m-92 10h55" stroke="#d6d7f5" />
+        <path d="m95 205 41-39 2 16m-2-16-16 1M107 311h31m0 0-9-9m9 9-9 9" />
+        <circle cx="88" cy="252" r="22" fill="white" />
+        <path d="M54 312v-15a34 34 0 0 1 68 0v15z" fill="white" />
+        <rect x="351" y="346" width="120" height="67" rx="15" fill="white" />
+        <path d="M369 366h74m-74 12h50m-50 12h62" />
+        <path d="m171 375 10 10 19-23" stroke="#00a8ce" />
+      </>
+    ) : (
+      <>
+        <rect x="314" y="112" width="178" height="232" rx="16" fill="white" />
+        <path d="M314 148h178M335 130h35m42 0h13m15 0h14" />
+        <rect x="337" y="174" width="132" height="71" rx="8" fill="#f5f6fa" stroke="#dadbfb" />
+        <path d="M357 228v-26a8 8 0 0 1 8-8h74a8 8 0 0 1 8 8v26M365 194v-10h74v10M370 227v7m64-7v7M373 212h59" />
+        <path d="M337 268h93m-93 16h119m-119 16h78m-78 16h108" />
+        <rect x="145" y="77" width="131" height="92" rx="16" fill="white" />
+        <path d="m186 169-17 18v-18M166 101h88m-88 16h72m-72 16h46" />
+        <circle cx="78" cy="241" r="21" fill="white" />
+        <path d="M46 298v-13a32 32 0 0 1 64 0v13z" fill="white" />
+        <circle cx="191" cy="303" r="19" fill="white" />
+        <path d="M162 356v-12a29 29 0 0 1 58 0v12z" fill="white" />
+        <path d="m113 219 27-34m78 98 13-60M277 130h18m0 0-8-8m8 8-8 8M247 305h48m0 0-8-8m8 8-8 8" />
+        <circle cx="465" cy="362" r="18" fill="#e3f9ff" stroke="#00a8ce" />
+        <path d="m458 362 5 5 9-11" stroke="#00a8ce" />
+      </>
+    )}
+  </g>
+</svg>

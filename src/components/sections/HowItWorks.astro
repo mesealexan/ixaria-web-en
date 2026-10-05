@@ -1,23 +1,25 @@
 ---
-import { steps } from '../../data/home';
-import CardGrid from '../ui/CardGrid.astro';
+import { implementationStages, implementationPath } from '../../data/implementation';
+import '../../styles/how-it-works.css';
 ---
-<section class="how" id="how-it-works">
-      <div class="container">
-        <div class="how__header">
-          <h2 class="section-title">How it works</h2>
-        </div>
-        <p class="how__sub">
-          We turn your product data into a product-page system, connect it to your webshop, and keep improving it based
-          on how your customers actually browse, compare, and buy.
-        </p>
-        <div class="how__timing">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M12 6v6l4 2"></path>
-          </svg>
-          All these in less than 1 month
-        </div>
-        <CardGrid kind="steps" items={steps} />
-      </div>
-    </section>
+<section class="how" id="how-it-works" aria-labelledby="how-title">
+  <div class="container">
+    <div class="how__header">
+      <div><span class="section-label">A clear path forward</span><h2 class="section-title" id="how-title">How it works</h2></div>
+      <p class="how__intro">Understand the opportunity. Prove the approach.<br />Then build on what works.</p>
+    </div>
+    <ol class="how__journey" aria-label="Implementation stages">
+      {implementationStages.map((stage, index) => (
+        <li class:list={['process-card', `process-card--${stage.slug}`]}>
+          <div class="process-card__top"><span class="process-card__number" aria-hidden="true">0{index + 1}</span><span class="process-card__label">{stage.label}</span></div>
+          <h3>{stage.title}</h3>
+          <p>{stage.summary}</p>
+          <a class="process-card__link" href={implementationPath(stage)} aria-label={`Read more about ${stage.title}`}>
+            Read more
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
