@@ -1,0 +1,113 @@
+.legal-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 80px 32px 120px;
+}
+.legal-page__tag {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--elec);
+  margin-bottom: 16px;
+}
+.legal-page h1 {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 40px);
+  color: var(--navy);
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.legal-page__meta {
+  font-size: 14px;
+  color: var(--gray-text);
+  margin-bottom: 56px;
+}
+.legal-page h2 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--navy);
+  margin: 48px 0 16px;
+}
+.legal-page p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.legal-page ul {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+.legal-page li {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+.legal-page a {
+  color: var(--elec);
+}
+.legal-page a:hover {
+  text-decoration: underline;
+}
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+.cookie-table th {
+  background: var(--gray-light);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--gray-mid);
+}
+.cookie-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--gray-mid);
+  color: #333;
+  vertical-align: top;
+}
+.cookie-table tr:last-child td {
+  border-bottom: none;
+}
+@font-face {
+  font-family: 'ProximaNova';
+  src: url('/proxima_nova_reg-webfont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.legal-layout {
+  --font-head: 'Gilroy', sans-serif;
+  --font-body: 'ProximaNova', 'Inter', sans-serif;
+}
+.legal-layout .legal-page__meta {
+  color: var(--gray-text);
+  margin-bottom: 56px;
+}
+@media (max-width: 480px) {
+  .legal-page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .cookie-table {
+    font-size: 13px;
+  }
+  .cookie-table th,
+  .cookie-table td {
+    padding: 10px 8px;
+    overflow-wrap: anywhere;
+  }
+}

@@ -1,0 +1,12 @@
+---
+import { features } from '../../data/home';
+import CardGrid from '../ui/CardGrid.astro';
+---
+<section class="features" id="features">
+      <div class="container">
+        <div class="features__header">
+          <h2 class="section-title">Features</h2>
+        </div>
+        <CardGrid kind="features" items={features} />
+      </div>
+    </section>

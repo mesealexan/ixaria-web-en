@@ -1,0 +1,12 @@
+---
+import { getEntry, render } from 'astro:content';
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import { pageSEO } from '../seo/pages';
+import '../styles/careers.css';
+const entry = await getEntry('careers', 'cofounder');
+if (!entry) throw new Error('Missing cofounder content');
+const { Content } = await render(entry);
+---
+<MarketingLayout seo={pageSEO.cofounder}>
+  <Content />
+</MarketingLayout>

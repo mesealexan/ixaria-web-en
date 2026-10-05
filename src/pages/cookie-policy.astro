@@ -1,0 +1,11 @@
+---
+import { getEntry, render } from 'astro:content';
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { pageSEO } from '../seo/pages';
+const entry = await getEntry('legal', 'cookie-policy');
+if (!entry) throw new Error('Missing legal content: cookie-policy');
+const { Content } = await render(entry);
+---
+<LegalLayout seo={pageSEO['cookie-policy']} content={entry.data}>
+  <Content />
+</LegalLayout>

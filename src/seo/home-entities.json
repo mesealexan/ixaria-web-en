@@ -1,0 +1,179 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ixaria.eu/#website",
+      "url": "https://ixaria.eu",
+      "name": "Ixaria",
+      "description": "The conversion engine for furniture manufacturers",
+      "publisher": {
+        "@id": "https://ixaria.eu/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ixaria.eu/#webpage",
+      "url": "https://ixaria.eu",
+      "name": "Ixaria — Furniture Product Pages Shaped by Real Customer Behavior",
+      "description": "Ixaria helps small and medium furniture manufacturers sell more online with one system for product pages, 3D configuration, images, reviews, and analytics.",
+      "isPartOf": {
+        "@id": "https://ixaria.eu/#website"
+      },
+      "about": {
+        "@id": "https://ixaria.eu/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ixaria.eu/preview.webp"
+      },
+      "image": [
+        {
+          "@id": "https://ixaria.eu/#image-old-way-static-page"
+        },
+        {
+          "@id": "https://ixaria.eu/#image-ixaria-design-centric"
+        },
+        {
+          "@id": "https://ixaria.eu/#image-ixaria-options-centric"
+        },
+        {
+          "@id": "https://ixaria.eu/#image-ixaria-features-centric"
+        }
+      ],
+      "dateModified": "2026-08-07"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-old-way-static-page",
+      "url": "https://ixaria.eu/before.webp",
+      "contentUrl": "https://ixaria.eu/before.webp",
+      "name": "Static furniture product page — the old way",
+      "caption": "Static Page",
+      "description": "Example of a static furniture product page for a Valencia sofa with a single studio photo, colour and size options, and accordion sections for description, dimensions, materials and delivery — showing the old one-layout-for-everyone approach.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-design-centric",
+      "url": "https://ixaria.eu/after1.webp",
+      "contentUrl": "https://ixaria.eu/after1.webp",
+      "name": "Ixaria design-centric furniture product page",
+      "caption": "Design Centric",
+      "description": "Ixaria design-centric product page for the Valencia sofa featuring lifestyle imagery, colour size and configuration options, delivery estimate and add to cart — adapted to customers focused on design and visuals.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-options-centric",
+      "url": "https://ixaria.eu/after2.webp",
+      "contentUrl": "https://ixaria.eu/after2.webp",
+      "name": "Ixaria options-centric furniture product page",
+      "caption": "Options Centric",
+      "description": "Ixaria options-centric product page for the Valencia sofa highlighting model, upholstery and base choices with customer reviews, delivery timeline and trust badges — adapted to customers comparing configurations.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-features-centric",
+      "url": "https://ixaria.eu/after3.webp",
+      "contentUrl": "https://ixaria.eu/after3.webp",
+      "name": "Ixaria features-centric furniture product page",
+      "caption": "Features Centric",
+      "description": "Ixaria features-centric product page for the Valencia sofa showing key product features, dimensions, materials, care information and detailed specifications — adapted to customers researching product details.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "Service",
+      "@id": "https://ixaria.eu/#service",
+      "name": "Furniture Product Page Optimization",
+      "provider": {
+        "@id": "https://ixaria.eu/#organization"
+      },
+      "serviceType": "Ecommerce product page optimization for furniture manufacturers",
+      "description": "Ixaria replaces fragmented ecommerce plugins with one system that centralizes images, videos, product information, 3D configuration, reviews, and analytics. It works on top of your existing webshop and continuously improves from real customer behavior.",
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Small and medium furniture manufacturers"
+      },
+      "areaServed": "Europe",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ixaria Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "3D Product Configuration"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Product Image Generation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Product Page Layout Design"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Customer Behavior Analytics"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Product Explanation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Centralized Product Reviews"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "HowTo",
+      "name": "How Ixaria Works",
+      "description": "How Ixaria sets up and continuously improves furniture product pages for manufacturers",
+      "totalTime": "P1M",
+      "step": []
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://ixaria.eu/#hero-video",
+      "name": "Ixaria product page experience",
+      "description": "Animation showing how Ixaria adapts furniture product pages to each buyer.",
+      "thumbnailUrl": "https://ixaria.eu/preview.webp",
+      "contentUrl": "https://ixaria.eu/animation.mp4",
+      "uploadDate": "2026-08-07",
+      "encodingFormat": "video/mp4"
+    }
+  ]
+}

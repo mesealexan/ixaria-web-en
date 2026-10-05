@@ -1,0 +1,19 @@
+---
+import { site } from '../../data/site';
+import Button from '../ui/Button.astro';
+---
+<header>
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="/" class="navbar__logo"><img src="/logo-light.svg" alt="Ixaria" width="120" height="40" /></a>
+      <div class="navbar__nav" id="primary-navigation">
+        {site.navigation.map(link => <a href={link.href}>{link.label}</a>)}
+      </div>
+      <div class="navbar__right"><Button href={site.bookingUrl} external class="navbar__booking">Book a call</Button></div>
+      <button class="navbar__mobile-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18" /></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<script>import '../../features/navigation/navigation';</script>

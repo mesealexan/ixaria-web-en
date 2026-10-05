@@ -1,0 +1,21 @@
+---
+import { founders, values } from '../../data/home';
+import Founders from '../ui/Founders.astro';
+import Values from '../ui/Values.astro';
+---
+<section class="about" id="about">
+      <div class="about__inner">
+        <div class="about__left">
+          <h2 class="about__title">Built by <span>Builders.</span></h2>
+          <p class="about__body">
+            Based in the industrial heart of Timisoara, Ixaria was founded by Alex, Victor &amp; Eduard with a single
+            mission: to protect the legacy of European manufacturing from digital obsolescence.
+          </p>
+          <Founders items={founders} />
+        </div>
+        <div class="about__right">
+          <h2 class="values__title">Our values</h2>
+          <Values items={values} />
+        </div>
+      </div>
+    </section>

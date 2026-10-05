@@ -1,0 +1,31 @@
+---
+import { integrations } from '../../data/integrations';
+---
+<section class="email-capture" id="newsletter">
+      <div class="email-capture__inner">
+        <div class="email-capture__img">
+          <img src="/sofa.webp" width="1000" height="750" alt="Furniture manufacturer newsletter — stay updated on ecommerce best practices" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="email-capture__form-area">
+          <h2 class="section-title" style="max-width:440px;">Not ready to change your product pages yet?</h2>
+          <p class="section-sub">Join our updates and follow how furniture manufacturers are turning complex products,
+            configurators, and product data into better online buying experiences.</p>
+          <form id="sib-form" class="email-form" method="POST" action={integrations.newsletterAction} data-type="subscription" style="background-color:transparent; margin:0; padding:0;">
+            <input id="EMAIL" name="EMAIL" autocomplete="email" data-required="true" required="" type="email" placeholder="Work email" aria-label="Work email">
+            <button type="submit" class="btn btn-primary">Stay in the loop</button>
+            <input type="text" name="email_address_check" value="" style="display:none;">
+            <input type="hidden" name="locale" value="en">
+          </form>
+          <div id="email-msg-error" class="email-msg email-msg--error" role="alert">Please enter a valid email address.</div>
+          <div id="email-msg-success" class="email-msg email-msg--success" role="status">You're in! We'll be in touch with practical
+            ideas for your product pages.</div>
+          <div class="email-reassurance">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Occasional updates. No spam. Only practical ideas about furniture ecommerce, product pages, and conversion.
+          </div>
+        </div>
+      </div>
+    </section>
+<script>import "../../features/newsletter/newsletter";</script>

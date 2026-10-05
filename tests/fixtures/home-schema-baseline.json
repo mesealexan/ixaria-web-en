@@ -1,0 +1,388 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ixaria.eu/#organization",
+      "name": "Ixaria",
+      "legalName": "VIRTUALCONFIG S.R.L.",
+      "url": "https://ixaria.eu",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ixaria.eu/logo-light.svg"
+      },
+      "description": "Ixaria helps small and medium furniture manufacturers sell more online through product page optimization, 3D configuration, AI-assisted product explanations, and behavior-driven continuous improvement.",
+      "foundingDate": "2021",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Str. Surorile Martir Caceu, Nr. 9",
+        "addressLocality": "Timisoara",
+        "addressRegion": "Timis",
+        "addressCountry": "RO"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "office@ixaria.ro",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/ixaria/",
+        "https://www.facebook.com/ixaria.ro",
+        "https://www.instagram.com/ixaria.ro/",
+        "https://www.youtube.com/@alex.mesesan"
+      ],
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Alexandru Mesesan",
+          "jobTitle": "Co-founder",
+          "sameAs": "https://www.linkedin.com/in/alexandru-mesesan/"
+        },
+        {
+          "@type": "Person",
+          "name": "Victor Iancu",
+          "jobTitle": "Co-founder",
+          "sameAs": "https://www.linkedin.com/in/victoriancu/"
+        },
+        {
+          "@type": "Person",
+          "name": "Eduard Badea",
+          "jobTitle": "Co-founder",
+          "sameAs": "https://www.linkedin.com/in/eduard-badea/"
+        }
+      ],
+      "knowsAbout": [
+        "furniture ecommerce",
+        "product page optimization",
+        "3D product configurators",
+        "furniture webshop conversion",
+        "customer behavior analytics",
+        "furniture manufacturer digital transformation"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ixaria.eu/#website",
+      "url": "https://ixaria.eu",
+      "name": "Ixaria",
+      "description": "The conversion engine for furniture manufacturers",
+      "publisher": {
+        "@id": "https://ixaria.eu/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ixaria.eu/#webpage",
+      "url": "https://ixaria.eu",
+      "name": "Ixaria — Furniture Product Pages Shaped by Real Customer Behavior",
+      "description": "Ixaria helps small and medium furniture manufacturers sell more online with one system for product pages, 3D configuration, images, reviews, and analytics.",
+      "isPartOf": {
+        "@id": "https://ixaria.eu/#website"
+      },
+      "about": {
+        "@id": "https://ixaria.eu/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://ixaria.eu/preview.webp"
+      },
+      "image": [
+        {
+          "@id": "https://ixaria.eu/#image-old-way-static-page"
+        },
+        {
+          "@id": "https://ixaria.eu/#image-ixaria-design-centric"
+        },
+        {
+          "@id": "https://ixaria.eu/#image-ixaria-options-centric"
+        },
+        {
+          "@id": "https://ixaria.eu/#image-ixaria-features-centric"
+        }
+      ],
+      "dateModified": "2026-08-07"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-old-way-static-page",
+      "url": "https://ixaria.eu/before.webp",
+      "contentUrl": "https://ixaria.eu/before.webp",
+      "name": "Static furniture product page — the old way",
+      "caption": "Static Page",
+      "description": "Example of a static furniture product page for a Valencia sofa with a single studio photo, colour and size options, and accordion sections for description, dimensions, materials and delivery — showing the old one-layout-for-everyone approach.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-design-centric",
+      "url": "https://ixaria.eu/after1.webp",
+      "contentUrl": "https://ixaria.eu/after1.webp",
+      "name": "Ixaria design-centric furniture product page",
+      "caption": "Design Centric",
+      "description": "Ixaria design-centric product page for the Valencia sofa featuring lifestyle imagery, colour size and configuration options, delivery estimate and add to cart — adapted to customers focused on design and visuals.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-options-centric",
+      "url": "https://ixaria.eu/after2.webp",
+      "contentUrl": "https://ixaria.eu/after2.webp",
+      "name": "Ixaria options-centric furniture product page",
+      "caption": "Options Centric",
+      "description": "Ixaria options-centric product page for the Valencia sofa highlighting model, upholstery and base choices with customer reviews, delivery timeline and trust badges — adapted to customers comparing configurations.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://ixaria.eu/#image-ixaria-features-centric",
+      "url": "https://ixaria.eu/after3.webp",
+      "contentUrl": "https://ixaria.eu/after3.webp",
+      "name": "Ixaria features-centric furniture product page",
+      "caption": "Features Centric",
+      "description": "Ixaria features-centric product page for the Valencia sofa showing key product features, dimensions, materials, care information and detailed specifications — adapted to customers researching product details.",
+      "width": 1672,
+      "height": 941,
+      "encodingFormat": "image/webp",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "Service",
+      "@id": "https://ixaria.eu/#service",
+      "name": "Furniture Product Page Optimization",
+      "provider": {
+        "@id": "https://ixaria.eu/#organization"
+      },
+      "serviceType": "Ecommerce product page optimization for furniture manufacturers",
+      "description": "Ixaria replaces fragmented ecommerce plugins with one system that centralizes images, videos, product information, 3D configuration, reviews, and analytics. It works on top of your existing webshop and continuously improves from real customer behavior.",
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "Small and medium furniture manufacturers"
+      },
+      "areaServed": "Europe",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ixaria Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "3D Product Configuration"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Product Image Generation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Product Page Layout Design"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Customer Behavior Analytics"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI Product Explanation"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Centralized Product Reviews"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "HowTo",
+      "name": "How Ixaria Works",
+      "description": "How Ixaria sets up and continuously improves furniture product pages for manufacturers",
+      "totalTime": "P1M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Structure Product Data",
+          "text": "We help you gather and structure your images, dimensions, materials and options."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Connect Your Webshop",
+          "text": "We connect Ixaria to your existing webshop as a plugin. No rebuild is required."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Choose Your Template",
+          "text": "Choose one of our product page templates or keep using your existing design."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Improve Automatically",
+          "text": "Ixaria learns what helps customers buy and improves your pages automatically."
+        }
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://ixaria.eu/#hero-video",
+      "name": "Ixaria product page experience",
+      "description": "Animation showing how Ixaria adapts furniture product pages to each buyer.",
+      "thumbnailUrl": "https://ixaria.eu/preview.webp",
+      "contentUrl": "https://ixaria.eu/animation.mp4",
+      "uploadDate": "2026-08-07",
+      "encodingFormat": "video/mp4"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How the solution works / what it does?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria improves the product pages on your existing online store. It brings images, videos, product options, dimensions, delivery details and other useful information into one clear page. It then learns from visitor behaviour and shows each customer the information most helpful to their buying decision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is it implemented in our webshop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria connects to your existing webshop, so there is no need to rebuild it. You can use one of our product-page templates or keep your own. We add your product data to the chosen template, while your checkout, payments and orders continue to work as before."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you know what stage of the customer journey the customer is in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We estimate the customer’s buying stage from several signals. We look at where they came from, whether they visited before, how long they stay and which parts of the website they focus on. We also learn from the questions they ask through the built-in chat. Together, these signals show whether the customer is exploring, comparing options or getting ready to buy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we try a pilot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We recommend starting with a small number of products so you can see how Ixaria works and measure the results. If the pilot performs well, you can then expand it to your full product catalogue."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will your tool update the design of my website? How do we handle brand control?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria does not redesign your whole website. You can use one of our fully customizable product-page templates or keep your existing template. Your colours, fonts, layout and visual style remain under your control, so every page stays consistent with your brand."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Would it also affect landing pages, category pages, product listing pages, or search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria only changes your product pages. A small plugin is added across the website to understand how visitors move between landing pages, categories, search and products, but it does not change those pages. If you choose, the question bar can also be added to product listing pages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is replacing the PIM and other intelligence layers an absolute hard requirement? Can you connect to existing PIM/DAM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. During the pilot, Ixaria can retrieve product data and assets from your existing PIM, DAM or other tools. If the pilot is successful, we recommend moving the relevant product data and workflows fully to Ixaria, so you do not have to maintain and pay for two systems doing the same job."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the solution generate images in a live environment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Ixaria includes tools that automatically generate and edit product images. It can create floating product images, place products in different rooms and lighting conditions, and generate images that clearly show dimensions. These visuals can then be used directly on live product pages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can pages adapt by country or market area?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. This is one of Ixaria’s core features. Customers in different markets often care about different things, so Ixaria can adapt the message, product information and visuals for each country or region. We use our knowledge of each market to recommend what should be shown and emphasized."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to have the Ixaria solution live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria usually takes between one and three months to go live. The exact time depends on the number of products, how much product data is missing, and whether you already have good images and 3D models available."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How soon can I see the first results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends mainly on how many visitors your website receives. More visitors allow Ixaria to learn and measure results faster. With around 30,000 visitors per month, you can usually see meaningful results within about two months. Websites with less traffic may need more time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work for both movable and fixed furniture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria is built for movable furniture, such as sofas, chairs, tables and some freestanding cabinets. It can support products with customizable options, but it is not designed for fixed furniture or fully bespoke, made-to-order projects."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What kind of work do you provide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria can cover the full product page experience for furniture manufacturers. Depending on what you already have and what is missing, we can provide 3D modeling, product image generation, dimensioned images, centralized product reviews, 3D configuration, and product page layout design. The 3D configuration can range from a simple setup with a few options to a highly complex configurator with many variations, dimensions, materials, and product rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Ixaria help if we already have a 3D configurator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ixaria does not usually work with existing 3D configurators. Most configurators come with their own limitations, rules, and technical restrictions, which makes it difficult for our system to adapt and improve them based on real customer behavior. Instead, we prefer to build the 3D configuration experience inside the Ixaria system, so it can be connected with the product data, page layout, analytics, and ongoing optimization process."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to replace my current ecommerce platform?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Ixaria does not replace your existing ecommerce platform. It improves the product page layer and helps centralize the elements that are usually scattered across different plugins and tools."
+          }
+        }
+      ]
+    }
+  ]
+}

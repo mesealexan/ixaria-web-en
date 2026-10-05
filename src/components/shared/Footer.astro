@@ -1,0 +1,34 @@
+---
+import { site } from '../../data/site';
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo"><img src="/logo-dark.svg" alt="Ixaria" width="120" height="40" /></div>
+        <p class="footer__tagline">{site.tagline}</p>
+        <div class="footer__company">
+          <p>{site.company.legalName}</p>
+          <p>CIF: {site.registration.taxId}</p>
+          <p>Reg. com.: {site.registration.companyNumber}</p>
+          <p>{site.company.address.streetAddress},<br />{site.company.address.addressLocality}, {site.company.address.addressRegion}, {site.registration.countryName}</p>
+        </div>
+        <div class="footer__social">
+          {site.social.map(link => <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}><Fragment set:html={link.icon} /></a>)}
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Website</div>
+        <div class="footer__links">{site.websiteLinks.map(link => <a href={link.href} target={'external' in link ? '_blank' : undefined} rel={'external' in link ? 'noopener noreferrer' : undefined}>{link.label}</a>)}</div>
+      </div>
+      <div>
+        <div class="footer__col-title">Legal</div>
+        <div class="footer__links">{site.legalLinks.map(link => <a href={link.href}>{link.label}</a>)}</div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© {new Date().getUTCFullYear()} Ixaria. All rights reserved.</p>
+      <p class="footer__copy">Made with ❤️ in Timișoara, Romania</p>
+    </div>
+  </div>
+</footer>

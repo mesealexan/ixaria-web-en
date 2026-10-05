@@ -1,0 +1,17 @@
+---
+import type { FAQ } from '../../data/types';
+interface Props { items: FAQ[] }
+const { items } = Astro.props;
+---
+<div class="faq__list">
+  {items.map(faq => <div class="faq__item">
+    <button class="faq__question" type="button" id={faq.id} aria-expanded="false" aria-controls={`faq-answer-${faq.id.slice(4)}`}>
+      {faq.question}
+      <span class="faq__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></span>
+    </button>
+    <div class="faq__answer" id={`faq-answer-${faq.id.slice(4)}`} role="region" aria-labelledby={faq.id}>
+      {faq.answer.map((paragraph, index) => <>{index > 0 && <><br /><br /></>}{paragraph}</>)}
+    </div>
+  </div>)}
+</div>
+<script>import '../../features/faq/accordion';</script>

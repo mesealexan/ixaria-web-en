@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { site } from '../data/site';
+import type { PageSEO } from '../seo/types';
+import '../styles/legal.css';
+interface Props { seo: PageSEO; content: { title: string; label: string; updatedLabel: string } }
+const { seo, content } = Astro.props;
+---
+<BaseLayout seo={seo} bodyClass="legal-layout">
+  <article class="legal-page">
+    <div class="legal-page__tag">{content.label}</div>
+    <h1>{content.title}</h1>
+    <p class="legal-page__meta">{content.updatedLabel}</p>
+    <slot />
+  </article>
+  <a slot="after-footer" class="talk-btn" href={`mailto:${site.company.contactPoint.email}`}><span class="talk-btn__dot"></span><span>Chat with us</span></a>
+</BaseLayout>

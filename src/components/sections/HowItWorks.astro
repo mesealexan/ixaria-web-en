@@ -1,0 +1,23 @@
+---
+import { steps } from '../../data/home';
+import CardGrid from '../ui/CardGrid.astro';
+---
+<section class="how" id="how-it-works">
+      <div class="container">
+        <div class="how__header">
+          <h2 class="section-title">How it works</h2>
+        </div>
+        <p class="how__sub">
+          We turn your product data into a product-page system, connect it to your webshop, and keep improving it based
+          on how your customers actually browse, compare, and buy.
+        </p>
+        <div class="how__timing">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 6v6l4 2"></path>
+          </svg>
+          All these in less than 1 month
+        </div>
+        <CardGrid kind="steps" items={steps} />
+      </div>
+    </section>

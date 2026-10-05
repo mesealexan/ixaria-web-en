@@ -1,0 +1,40 @@
+<div class="chat-overlay" id="chat-overlay" role="dialog" aria-modal="true" aria-label="Chat with Ixaria" hidden>
+    <div class="chat-modal">
+      <div class="chat-modal__header">
+        <div class="chat-modal__header-left">
+          <div class="chat-modal__avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C6.48 2 2 6.02 2 11c0 2.54 1.06 4.84 2.78 6.5L4 22l4.86-1.7A10.1 10.1 0 0012 21c5.52 0 10-4.02 10-9S17.52 2 12 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="chat-modal__name">Ixaria Assistant</div>
+            <div class="chat-modal__status">Online</div>
+          </div>
+        </div>
+        <button class="chat-modal__close" data-chat-close aria-label="Close chat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 6L6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="chat-modal__messages" id="chat-messages"></div>
+      <div class="chat-modal__footer">
+        <textarea class="chat-modal__input" id="chat-input" placeholder="Ask us anything about Ixaria…" rows="1"></textarea>
+        <button class="chat-modal__send" id="chat-send" aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+<script>
+  const overlay = document.getElementById('chat-overlay');
+  let openChat: (() => void) | undefined;
+  document.addEventListener('ixaria:open-chat', async () => {
+    if (!overlay) return;
+    openChat ??= (await import('./chat')).initializeChat(overlay);
+    openChat?.();
+  });
+</script>

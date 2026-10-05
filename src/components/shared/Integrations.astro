@@ -1,0 +1,16 @@
+---
+import { integrations } from '../../data/integrations';
+interface Props { analytics?: boolean }
+const { analytics = false } = Astro.props;
+---
+<script is:inline src={integrations.consentScript}></script>
+{analytics && <>
+  <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${integrations.analyticsId}`}></script>
+  <script is:inline define:vars={{ analyticsId: integrations.analyticsId }}>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', analyticsId);
+  </script>
+  <script>import '../../features/analytics/events';</script>
+</>}

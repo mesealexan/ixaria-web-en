@@ -1,0 +1,13 @@
+---
+import { faqs } from '../../data/faqs';
+import FAQList from '../ui/FAQList.astro';
+---
+<section class="faq" id="faq">
+      <div class="container">
+        <hr style="border:none;border-top:1px solid var(--gray-mid);margin:0 0 64px;">
+        <div class="faq__header">
+          <h2 class="section-title">Frequently asked questions</h2>
+        </div>
+        <FAQList items={faqs} />
+      </div>
+    </section>

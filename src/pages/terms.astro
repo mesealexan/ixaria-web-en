@@ -1,0 +1,11 @@
+---
+import { getEntry, render } from 'astro:content';
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { pageSEO } from '../seo/pages';
+const entry = await getEntry('legal', 'terms');
+if (!entry) throw new Error('Missing legal content: terms');
+const { Content } = await render(entry);
+---
+<LegalLayout seo={pageSEO['terms']} content={entry.data}>
+  <Content />
+</LegalLayout>

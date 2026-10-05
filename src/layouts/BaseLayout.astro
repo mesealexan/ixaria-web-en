@@ -1,0 +1,27 @@
+---
+import SEOHead from '../components/shared/SEOHead.astro';
+import Header from '../components/shared/Header.astro';
+import Footer from '../components/shared/Footer.astro';
+import Integrations from '../components/shared/Integrations.astro';
+import { site } from '../data/site';
+import type { PageSEO, StructuredData } from '../seo/types';
+import '../styles/global.css';
+interface Props { seo: PageSEO; structuredData?: StructuredData; bodyClass?: string }
+const { seo, structuredData, bodyClass } = Astro.props;
+---
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <SEOHead seo={seo} structuredData={structuredData} />
+    <slot name="head" />
+    <noscript><style is:inline>@media(max-width:768px){.navbar__mobile-toggle{display:none!important}.navbar__inner{height:auto;min-height:72px;flex-wrap:wrap}.navbar__nav{display:flex!important;order:3;width:100%;justify-content:center;gap:20px;padding:12px 0}.navbar{position:sticky}main{padding-top:0}}</style></noscript>
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content"><slot /></main>
+    <Footer />
+    <slot name="after-footer" />
+    <Integrations analytics={seo.path === '/'} />
+  </body>
+</html>
