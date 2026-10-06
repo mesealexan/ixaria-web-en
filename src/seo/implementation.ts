@@ -2,10 +2,12 @@ import { implementationPath } from '../data/implementation';
 import type { ImplementationStage } from '../data/implementation';
 import { site } from '../data/site';
 import type { PageSEO, StructuredData } from './types';
+import { implementationMetadata, pageDates } from './metadata';
 
 export function implementationSEO(stage: ImplementationStage): PageSEO {
-  const title = `${stage.title} — How Ixaria Works`;
-  const description = stage.summary;
+  const metadata = stage.slug === 'audit' ? null : implementationMetadata[stage.slug];
+  const title = metadata?.title ?? `${stage.title} — How Ixaria Works`;
+  const description = metadata?.description ?? stage.summary;
   return {
     path: implementationPath(stage),
     title,
@@ -19,7 +21,7 @@ export function implementationSEO(stage: ImplementationStage): PageSEO {
       imageAlt: 'Ixaria product page experience',
       locale: site.locale,
     },
-    lastModified: '2026-10-05',
+    lastModified: pageDates[stage.slug],
   };
 }
 
@@ -34,11 +36,19 @@ export function implementationStructuredData(stage: ImplementationStage): Struct
         '@type': 'WebPage',
         '@id': `${url}#webpage`,
         url,
-        name: stage.title,
+        name: seo.title,
         description: seo.description,
         isPartOf: { '@id': `${site.url}/#website` },
-        about: { '@id': site.company['@id'] },
-        dateModified: '2026-10-05',
+        about: { '@id': `${url}#service` },
+        dateModified: seo.lastModified,
+      },
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: stage.slug === 'pilot' ? 'Furniture product page optimisation pilot' : 'Furniture ecommerce product page implementation',
+        description: stage.introduction,
+        url,
+        provider: { '@id': site.company['@id'] },
       },
       {
         '@type': 'BreadcrumbList',

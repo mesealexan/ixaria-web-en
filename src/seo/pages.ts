@@ -2,6 +2,7 @@ import type { PageSEO } from './types';
 import { implementationStages } from '../data/implementation';
 import { implementationSEO } from './implementation';
 import { auditSEO } from './audit';
+import { homeMetadata, careerMetadata, pageDates } from './metadata';
 
 export const pageSEO = {
   audit: auditSEO,
@@ -9,15 +10,13 @@ export const pageSEO = {
   'full-implementation': implementationSEO(implementationStages[2]!),
   home: {
     path: '/',
-    title: 'Ixaria - Furniture Product Pages Shaped by Real Customer Behavior',
-    description:
-      'Ixaria helps furniture manufacturers sell more online with adaptive product pages, 3D configuration, images, reviews, and behavior-driven optimization.',
+    title: homeMetadata.title,
+    description: homeMetadata.description,
     robots: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
     openGraph: {
       type: 'website',
-      title: 'Ixaria — Furniture Product Pages Shaped by Real Customer Behavior',
-      description:
-        'Adaptive furniture product pages, 3D configuration, images, reviews, and analytics — built on your existing webshop.',
+      title: homeMetadata.title,
+      description: homeMetadata.description,
       image: 'https://ixaria.eu/preview.webp',
       imageAlt: 'Ixaria — furniture product pages shaped by real customer behavior',
       imageWidth: '1200',
@@ -26,9 +25,8 @@ export const pageSEO = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Ixaria — Furniture Product Pages Shaped by Real Customer Behavior',
-      description:
-        'Adaptive furniture product pages, 3D configuration, images, reviews, and analytics — on your existing webshop.',
+      title: homeMetadata.title,
+      description: homeMetadata.description,
       image: 'https://ixaria.eu/preview.webp',
       imageAlt: 'Ixaria — furniture product pages shaped by real customer behavior',
     },
@@ -42,19 +40,18 @@ export const pageSEO = {
         href: 'https://ixaria.eu/',
       },
     ],
-    lastModified: '2026-10-05',
+    lastModified: pageDates.home,
   },
   cofounder: {
+    lastModified: pageDates.cofounder,
     path: '/cofounder.html',
-    title: 'CTO Co-founder Position @ Ixaria — Build a Product Intelligence Platform',
-    description:
-      'Ixaria is hiring a CTO with a co-founder track. Own the technical direction of a product intelligence platform for furniture e-commerce. Full-stack, AI/LLM, and entrepreneurial spirit required.',
+    title: careerMetadata.title,
+    description: careerMetadata.description,
     robots: 'index, follow',
     openGraph: {
       type: 'website',
-      title: 'CTO Co-founder Position @ Ixaria',
-      description:
-        'Own the technical direction of a product intelligence platform for furniture e-commerce. CTO role with a co-founder track and vested equity.',
+      title: careerMetadata.title,
+      description: careerMetadata.description,
       image: 'https://ixaria.eu/005.webp',
       locale: 'en_US',
     },

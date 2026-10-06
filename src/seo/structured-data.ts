@@ -1,5 +1,6 @@
 import entities from './home-entities.json';
 import { site } from '../data/site';
+import { homeMetadata, pageDates } from './metadata';
 import { implementationStages, implementationPath } from '../data/implementation';
 import { faqs } from '../data/faqs';
 import type { StructuredData } from './types';
@@ -10,7 +11,9 @@ export function homeStructuredData(): StructuredData {
     '@graph': [
       site.company,
       ...entities['@graph'].map((entity) =>
-        entity['@type'] === 'HowTo'
+        entity['@type'] === 'WebPage'
+          ? { ...entity, name: homeMetadata.title, description: homeMetadata.description, dateModified: pageDates.home }
+          : entity['@type'] === 'HowTo'
           ? {
               ...entity,
               step: implementationStages.map((step, index) => ({

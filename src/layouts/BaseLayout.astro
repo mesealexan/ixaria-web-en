@@ -6,6 +6,7 @@ import Integrations from '../components/shared/Integrations.astro';
 import { site } from '../data/site';
 import type { PageSEO, StructuredData } from '../seo/types';
 import '../styles/global.css';
+import '../styles/inter.css';
 interface Props { seo: PageSEO; structuredData?: StructuredData; bodyClass?: string; integrations?: boolean }
 const { seo, structuredData, bodyClass, integrations = true } = Astro.props;
 ---
@@ -22,6 +23,6 @@ const { seo, structuredData, bodyClass, integrations = true } = Astro.props;
     <main id="main-content"><slot /></main>
     <Footer />
     <slot name="after-footer" />
-    {integrations && <Integrations analytics={seo.path === '/'} />}
+    {integrations && <Integrations analytics={!seo.robots.includes('noindex')} />}
   </body>
 </html>

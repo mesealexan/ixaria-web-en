@@ -13,7 +13,7 @@
 }
 .implementation-hero__grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
   gap: 48px;
   align-items: center;
 }
@@ -23,6 +23,7 @@
   line-height: 1.05;
   color: var(--navy);
   margin-bottom: 24px;
+  overflow-wrap: anywhere;
 }
 .implementation-hero p {
   max-width: 680px;
@@ -123,7 +124,7 @@
     margin-bottom: 36px;
   }
   .implementation-hero__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
   .implementation-hero__number {

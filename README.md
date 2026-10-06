@@ -29,7 +29,7 @@ $env:PLAYWRIGHT_CHANNEL = 'chrome'
 npm run test:browser
 ```
 
-`test:browser` uses an existing preview on port 4321 or starts one automatically. Run `npm run build` first after changing source files. External services are mocked in the browser suite; it does not submit real newsletter registrations.
+`test:browser` starts an isolated production preview on port 4330 to avoid the development toolbar. Run `npm run build` first after changing source files. External services are mocked in the browser suite; it does not submit real newsletter registrations.
 
 ## Where to edit
 
@@ -79,7 +79,7 @@ Existing URLs and public image/font/video paths are preserved. Changing an estab
 
 ## Integrations
 
-The original GA4 ID and click/form event names are retained, with GA4 enabled on the homepage as before. The existing Secure Privacy script remains on every page. Consent configuration is managed by that vendor account.
+The original GA4 ID and click/form event names are retained, with GA4 enabled on indexable marketing and careers pages only after analytics consent. The existing Secure Privacy script remains on every page. Consent configuration is managed by that vendor account. The analyticsConsentService in src/data/integrations.ts must match its Google Analytics service name. The site uses documented initialization, saved-choice and service-unblock events; booking events include the originating page. Inter is hosted locally with its license in public/fonts.
 
 The newsletter keeps the existing Brevo form action and fields. Its cross-origin opaque response confirms that the request was sent, so the UI asks visitors to check their inbox instead of claiming a verified subscription. Live vendor delivery must be checked separately with an authorized real subscription.
 
@@ -113,10 +113,10 @@ The homepage now presents Audit, Pilot and Full Implementation. Pilot and Full I
 
 The standalone Audit page is `/audit.html`, following the existing static route convention. Run `npm run dev`, or run `npm run build` followed by `npm run preview -- --port 4321`, then open `http://127.0.0.1:4321/audit.html`.
 
-Its route is `src/pages/audit.astro`; composition and illustrations live in `src/components/audit/`, copy in `src/data/audit.ts`, styles in `src/styles/audit.css`, and metadata/structured data in `src/seo/audit.ts`. It reuses the shared header, footer, buttons, FAQ behavior and consent conventions. All booking actions use `site.bookingUrl` in `src/data/site.ts`.
+Its route is `src/pages/audit.astro`; composition and illustrations live in `src/components/audit/`, copy in `src/data/audit.ts`, styles in `src/styles/audit.css`, and metadata/structured data in `src/seo/audit.ts`. Shared descriptive metadata and genuine modification dates are maintained in `src/seo/metadata.ts`; the homepage graph and sitemap follow that source. It reuses the shared header, footer, buttons, FAQ behavior and consent conventions. All booking actions use `site.bookingUrl` in `src/data/site.ts`.
 
-No approved example audit PDF or Ovidiu portrait was supplied. In `src/data/audit-assets.ts`, configure `auditAssets.example.pdfUrl` with a genuine PDF copied into `public/`, and `auditAssets.example.preview` with an actual page or cover from that PDF (including descriptive alt text and dimensions). The configured PDF uses the download filename `ixaria-example-audit.pdf` without a form. Until then, the page shows the non-clickable “Example audit coming soon” state and omits the preview. Set `auditAssets.portraits.Ovidiu` when his correct portrait is available; his circular initials treatment is used in the meantime.
+No approved example audit PDF is configured. The page uses labelled illustrative HTML report previews with an accessible enlargement dialog. Configure a genuine PDF in auditAssets.example.pdfUrl to enable the download action.
 
-The same asset configuration contains the confirmed Sofa Mix and Expo Mob logos. The supplied Agache WebP is fully transparent and is omitted until a usable genuine logo is supplied. The logo strip automatically hides when its list is empty. Individual specialists’ previous employers are not shown as Ixaria clients.
+The shared client strip uses all twelve supplied logos from public/logos, and the Audit profiles use the supplied portraits from public/people. Asset references and LinkedIn links remain in the content configuration.
 
 Audit checks cover section order, offer terms, genuine assets, booking links, FAQ/schema consistency, keyboard interaction, homepage navigation, no-JavaScript content, and desktop/mobile overflow. No deployment is performed by these local checks.

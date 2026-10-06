@@ -14,8 +14,8 @@ import '../../styles/how-it-works.css';
           <div class="process-card__top"><span class="process-card__number" aria-hidden="true">0{index + 1}</span><span class="process-card__label">{stage.label}</span></div>
           <h3>{stage.title}</h3>
           <p>{stage.summary}</p>
-          <a class="process-card__link" href={implementationPath(stage)} aria-label={`Read more about ${stage.title}`}>
-            Read more
+          <a class="process-card__link" href={implementationPath(stage)}>
+            Explore {stage.title === 'Full Implementation' ? stage.title : `the ${stage.title}`}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
           </a>
         </li>

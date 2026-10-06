@@ -1,6 +1,7 @@
 import { audit } from '../data/audit';
 import { site } from '../data/site';
 import type { PageSEO, StructuredData } from './types';
+import { pageDates } from './metadata';
 
 export const auditSEO: PageSEO = {
   path: '/audit.html',
@@ -15,7 +16,7 @@ export const auditSEO: PageSEO = {
     imageAlt: 'Ixaria',
     locale: site.locale,
   },
-  lastModified: '2026-10-05',
+  lastModified: pageDates.audit,
 };
 
 export function auditStructuredData(): StructuredData {

@@ -6,7 +6,13 @@ interface Props { seo: PageSEO; structuredData?: StructuredData }
 const { seo, structuredData } = Astro.props;
 const canonical = new URL(seo.path, site.url).href;
 const og = seo.openGraph;
-const twitter = seo.twitter;
+const twitter = seo.twitter ?? {
+  card: 'summary_large_image',
+  title: og?.title ?? seo.title,
+  description: og?.description ?? seo.description,
+  image: og?.image ?? `${site.url}/preview.webp`,
+  imageAlt: og?.imageAlt ?? site.name,
+};
 ---
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,8 +40,6 @@ const twitter = seo.twitter;
   <meta name="twitter:image" content={twitter.image} />
   {twitter.imageAlt && <meta name="twitter:image:alt" content={twitter.imageAlt} />}
 </>}
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="preload" as="font" href="/fonts/inter-1.woff2" type="font/woff2" crossorigin />
 <link rel="preload" as="font" href="/Gilroy-Black.woff2" type="font/woff2" crossorigin />
 {structuredData && <script type="application/ld+json" set:html={serializeStructuredData(structuredData)} />}

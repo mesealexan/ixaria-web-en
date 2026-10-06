@@ -5,14 +5,14 @@ declare global {
 }
 
 const track = (name: string, parameters: Record<string, string> = {}) =>
-  window.gtag?.('event', name, parameters);
+  window.gtag?.('event', name, { page_path: window.location.pathname, ...parameters });
 
 document.addEventListener('click', (event) => {
   const element = (event.target as Element).closest<HTMLAnchorElement>('a');
   if (!element) return;
   const href = element.getAttribute('href') ?? '';
   const label = (element.textContent ?? '').replace(/\s+/g, ' ').trim().toLowerCase();
-  if (/calendly\.com/i.test(element.href)) {
+  if (/calendly\.com|calendar\.app\.google/i.test(element.href)) {
     track(label.includes('discovery') ? 'book_discovery_call' : 'book_call', {
       link_text: label || 'book a call',
       link_url: element.href,

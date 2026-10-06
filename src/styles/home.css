@@ -223,6 +223,7 @@
 
 .ba-card__media--old .ba-card__caption {
   background: var(--orange);
+  color: var(--navy);
 }
 
 .ba-card__media--new .ba-card__caption {
@@ -827,7 +828,7 @@
 
 .about__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 80px;
   align-items: start;
   max-width: 1160px;
@@ -860,6 +861,7 @@
 
 .founders {
   display: flex;
+  flex-wrap: wrap;
   gap: 32px;
 }
 
@@ -1506,7 +1508,7 @@
   }
 
   .about__inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 48px;
   }
 }

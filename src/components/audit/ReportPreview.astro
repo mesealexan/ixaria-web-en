@@ -1,0 +1,12 @@
+﻿---
+import { audit } from '../../data/audit';
+interface Props { index?: number; cover?: boolean }
+const { index = 0, cover = false } = Astro.props;
+const page = audit.example.pages[index];
+---
+<article class:list={['report-sheet', { 'report-sheet--cover': cover }]}>
+  <div class="report-brand"><strong>IXARIA</strong><span>{audit.example.label}</span></div>
+  {cover ? <><p class="report-kicker">AUDIT</p><p class="report-cover-title">{audit.example.coverTitle}</p><p>{audit.example.coverSubtitle}</p><div class="report-cover-lines" aria-hidden="true"><i></i><i></i><i></i></div></> : <><p class="report-kicker">AUDIT / 0{index + 1}</p><p class="report-title">{page.title}</p><p class="report-subtitle">{page.subtitle}</p><div class="report-blocks">{page.blocks.map(block => <div><p class="report-block-title">{block.label}</p><p>{block.text}</p></div>)}</div></>}
+  <div class="report-foot">IXARIA AUDIT <span>{cover ? 'Illustrative cover' : '0' + (index + 1)}</span></div>
+</article>
+

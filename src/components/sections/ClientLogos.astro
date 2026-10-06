@@ -1,0 +1,24 @@
+---
+import { audit } from '../../data/audit';
+import { auditAssets } from '../../data/audit-assets';
+interface Props { auditPage?: boolean }
+const { auditPage = false } = Astro.props;
+---
+<section class="client-logos audit-companies" data-audit-section={auditPage ? 'companies' : undefined} aria-labelledby="companies-title">
+  <div class="container">
+    <h2 class="section-title" id="companies-title">{audit.companies.heading}</h2>
+    <p class="section-sub">{audit.companies.text}</p>
+    <ul>{auditAssets.clientLogos.map(logo => <li><img {...logo.image} loading="lazy" decoding="async" /></li>)}</ul>
+  </div>
+</section>
+<style>
+  .client-logos {border-top:1px solid var(--gray-mid);padding:48px 0}
+  .client-logos ul {display:flex;flex-wrap:wrap;gap:28px 40px;list-style:none;margin-top:28px;align-items:center}
+  .client-logos img {width:140px;height:42px;object-fit:contain}
+  @media(max-width:768px) {
+    .client-logos .container {padding:0 20px}
+    .client-logos ul {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 16px;justify-items:center}
+    .client-logos li {width:100%;min-width:0;display:flex;justify-content:center}
+    .client-logos img {width:100%;max-width:120px;height:auto;aspect-ratio:3 / 1}
+  }
+</style>

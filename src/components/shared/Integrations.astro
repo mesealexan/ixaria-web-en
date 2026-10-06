@@ -3,14 +3,56 @@ import { integrations } from '../../data/integrations';
 interface Props { analytics?: boolean }
 const { analytics = false } = Astro.props;
 ---
-<script is:inline src={integrations.consentScript}></script>
 {analytics && <>
-  <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${integrations.analyticsId}`}></script>
-  <script is:inline define:vars={{ analyticsId: integrations.analyticsId }}>
+  <script is:inline define:vars={{ analyticsId: integrations.analyticsId, consentService: integrations.analyticsConsentService }}>
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
+    let analyticsConsent = false;
+    let analyticsScheduled = false;
+    const disableKey = 'ga-disable-' + analyticsId;
+    window[disableKey] = true;
+    const loadAnalytics = () => {
+      if (!analyticsConsent || document.querySelector('[data-ixaria-analytics]')) return;
+      const script = document.createElement('script');
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(analyticsId);
+      script.async = true;
+      script.dataset.ixariaAnalytics = '';
+      document.head.appendChild(script);
+    };
+    const scheduleAnalytics = () => {
+      if (analyticsScheduled) return;
+      analyticsScheduled = true;
+      const run = () => { analyticsScheduled = false; loadAnalytics(); };
+      if ('requestIdleCallback' in window) window.requestIdleCallback(run, { timeout: 2000 });
+      else window.setTimeout(run, 0);
+    };
+    window.gtag = function () {
+      const args = arguments;
+      if (args[0] === 'consent' && args[1] === 'update' && args[2] && 'analytics_storage' in args[2]) {
+        analyticsConsent = args[2].analytics_storage === 'granted';
+        window[disableKey] = !analyticsConsent;
+        if (analyticsConsent) scheduleAnalytics();
+      }
+      if (args[0] === 'event' && !analyticsConsent) return;
+      window.dataLayer.push(args);
+    };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied', ad_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied',
+    });
     window.gtag('js', new Date());
     window.gtag('config', analyticsId);
+    const syncConsent = () => {
+      if (typeof window.sp?.checkConsent === 'function') {
+        window.gtag('consent', 'update', { analytics_storage: window.sp.checkConsent(consentService) ? 'granted' : 'denied' });
+      }
+    };
+    window.addEventListener('sp_init', syncConsent);
+    window.addEventListener('sp_cookie_banner_save', syncConsent);
+    window.addEventListener('sp_unblock_' + consentService.replace(/ /g, '_'), () => {
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+    syncConsent();
   </script>
   <script>import '../../features/analytics/events';</script>
 </>}
+<script is:inline defer src={integrations.consentScript}></script>

@@ -6,24 +6,26 @@ export interface AuditClientLogo {
 }
 
 export const auditAssets = {
-  // These relationships were confirmed in the supplied sales brief.
-  // Team members' employers are not Ixaria client logos.
-  // The supplied Agache WebP is fully transparent; omit it until a usable logo is supplied.
+  // Previous clients supplied and approved by the user in public/logos.
   clientLogos: [
-    {
-      name: 'Sofa Mix',
-      image: { src: '/logo_sofamix.avif', alt: 'Sofa Mix', width: 400, height: 133 },
-    },
-    {
-      name: 'Expo Mob',
-      image: { src: '/logo_expomob.webp', alt: 'Expo Mob', width: 240, height: 40 },
-    },
+    { name: 'Massif', image: { src: '/logos/Artboard%201.jpg', alt: 'Massif', width: 900, height: 300 } },
+    { name: 'Expo Mob', image: { src: '/logos/Artboard%202.jpg', alt: 'Expo Mob', width: 900, height: 300 } },
+    { name: 'Agache', image: { src: '/logos/Artboard%203.jpg', alt: 'Agache', width: 900, height: 300 } },
+    { name: 'Divanissimi', image: { src: '/logos/Artboard%204.jpg', alt: 'Divanissimi', width: 900, height: 300 } },
+    { name: 'ABC Mobila', image: { src: '/logos/Artboard%205.jpg', alt: 'ABC Mobila', width: 900, height: 300 } },
+    { name: 'Larix Mobila', image: { src: '/logos/Artboard%206.jpg', alt: 'Larix Mobila', width: 900, height: 300 } },
+    { name: 'Sofa Mix', image: { src: '/logos/Artboard%207.jpg', alt: 'Sofa Mix', width: 900, height: 300 } },
+    { name: 'Eurosun', image: { src: '/logos/Artboard%208.jpg', alt: 'Eurosun', width: 900, height: 300 } },
+    { name: 'Artisanova', image: { src: '/logos/Artboard%209.jpg', alt: 'Artisanova', width: 900, height: 300 } },
+    { name: 'Lockart Doors', image: { src: '/logos/Artboard%2010.jpg', alt: 'Lockart Doors', width: 900, height: 300 } },
+    { name: 'Sofaest Mob', image: { src: '/logos/Artboard%2011.jpg', alt: 'Sofaest Mob', width: 900, height: 300 } },
+    { name: 'Timflex', image: { src: '/logos/Artboard%2012.jpg', alt: 'Timflex', width: 900, height: 300 } },
   ] satisfies AuditClientLogo[],
   portraits: {
-    Alex: '/image_jvvk-gwA_1753779138285_raw.webp',
-    Eduard: '/eduard-badea.webp',
+    Alex: '/people/Alex.jpg',
+    Eduard: '/people/Eduard.jpg',
     Victor: '/SPO7558_Original.webp',
-    Ovidiu: null as string | null,
+    Ovidiu: '/people/Ovi.jpg',
   },
   example: {
     // Only configure a genuine, approved audit PDF and a page/cover from that PDF.

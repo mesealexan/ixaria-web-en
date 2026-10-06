@@ -78,10 +78,10 @@ for (const width of [1280, 390]) {
         'Pilot',
         'Full Implementation',
       ]);
-      await page.getByRole('link', { name: `Read more about ${title}`, exact: true }).click();
+      await page.locator('#how-it-works').getByRole('link', { name: title === 'Full Implementation' ? 'Explore Full Implementation' : `Explore the ${title}`, exact: true }).click();
       await expect(page).toHaveURL(new RegExp(`${path.replace('.', '\\.')}$`));
       await expect(page.locator('h1')).toHaveText(
-        title === 'Audit' ? 'What keeps your visitors from becoming customers?' : title,
+        title === 'Audit' ? 'Find out why interested visitors aren’t becoming customers.' : title,
       );
       await expect(page.getByRole('navigation', { name: 'Implementation stages' })).toHaveCount(0);
       await expect(page.getByRole('navigation', { name: 'On this audit page' })).toHaveCount(0);
@@ -100,114 +100,43 @@ for (const width of [1280, 390]) {
   });
 }
 
-for (const width of [1440, 390]) {
-  test(`audit offer, keyboard FAQ and homepage navigation work at ${width}px`, async ({ page }) => {
+for (const width of [1440, 820, 390]) {
+  test(`audit layout and interactions at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/audit.html');
-    await expect(page.locator('h1')).toHaveText(
-      'What keeps your visitors from becoming customers?',
-    );
-    expect(
-      await page
-        .locator('[data-audit-section]')
-        .evaluateAll((sections) =>
-          sections.map((section) => section.getAttribute('data-audit-section')),
-        ),
-    ).toEqual([
-      'promise',
-      'experience',
-      'qualification',
-      'shoppers',
-      'investigation',
-      'report',
-      'process',
-      'offer',
-      'questions',
-    ]);
-    await expect(page.locator('.audit-hero__price strong')).toHaveText('€1,500');
-    await expect(page.locator('.audit-offer__price h3')).toHaveText('€1,500');
-    await expect(page.locator('.audit-process')).toContainText(
-      'seven calendar days after all specialist calls are complete and all requested data has been received',
-    );
-    await expect(page.locator('.audit-offer__guarantee')).toContainText(
-      'within 14 days of the presentation',
-    );
-    const booking = page
-      .locator('main')
-      .getByRole('link', { name: 'Book a discovery call', exact: true });
-    await expect(booking).toHaveCount(3);
-    for (const link of await booking.all()) {
-      await expect(link).toHaveAttribute(
-        'href',
-        'https://calendly.com/alex-ixaria/ixaria-strategy-session',
-      );
-      await expect(link).toHaveAttribute('target', '_blank');
-    }
-    const download = page.locator('.audit-example a[download]');
-    if (await download.count()) {
-      const pdf = await page.request.get((await download.getAttribute('href'))!);
-      expect(pdf.ok()).toBe(true);
-      expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
-    } else {
-      await expect(page.locator('.audit-example__pending')).toHaveText('Example audit coming soon');
-      await expect(page.locator('.audit-report__preview')).toHaveCount(0);
-    }
-    await expect(page.locator('.faq__question')).toHaveCount(6);
-    const first = page.locator('#faq-audit-1');
-    const second = page.locator('#faq-audit-2');
+    await expect(page.locator('h1')).toHaveText('Find out why interested visitors aren’t becoming customers.');
+    const booking = page.locator('.audit-page').getByRole('link', { name: 'Book a discovery call', exact: true });
+    await expect(booking).toHaveCount(2);
+    for (const link of await booking.all()) await expect(link).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
+    await page.getByRole('link', { name: 'View an example audit' }).click();
+    await expect(page).toHaveURL(/#example-audit$/);
+    await expect.poll(async () => (await page.locator('#example-audit').boundingBox())!.y).toBeLessThan(160);
+    const opener = page.locator('[data-preview]').first();
+    await opener.click();
+    await expect(page.locator('dialog')).toBeVisible();
+    await expect(page.locator('[data-close]')).toBeFocused();
+    await page.keyboard.press('ArrowRight');
+    await expect(page.locator('[data-page-count]')).toHaveText('2 / 3');
+    await page.keyboard.press('ArrowLeft');
+    await expect(page.locator('[data-page-count]')).toHaveText('1 / 3');
+    await page.locator('[data-next]').click();
+    await expect(page.locator('[data-page-count]')).toHaveText('2 / 3');
+    await page.keyboard.press('Escape');
+    await expect(page.locator('dialog')).not.toBeVisible();
+    await expect(opener).toBeFocused();
+    const first = page.locator('.audit-faq summary').first();
     await first.focus();
-    await expect(first).toBeFocused();
     await page.keyboard.press('Enter');
-    await expect(first).toHaveAttribute('aria-expanded', 'true');
-    await expect(page.locator('#faq-answer-audit-1')).toBeVisible();
-    await page.keyboard.press('Tab');
-    await expect(second).toBeFocused();
+    await expect(page.locator('.audit-faq details').first()).toHaveAttribute('open', '');
+    await expect(page.locator('.audit-faq details p').first()).toBeVisible();
     await page.keyboard.press('Space');
-    await expect(first).toHaveAttribute('aria-expanded', 'false');
-    await expect(second).toHaveAttribute('aria-expanded', 'true');
-    await expect(page.locator('#faq-answer-audit-2')).toBeVisible();
-    await page.keyboard.press('Enter');
-    await expect(page.locator('#faq-answer-audit-2')).toBeHidden();
-    await expect(page.locator('header .navbar')).toBeVisible();
-    await expect(page.locator('footer')).toBeAttached();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
-      true,
-    );
-    // Check actual content bounds too: a global overflow rule must not mask clipped copy.
-    expect(
-      await page
-        .locator('main h1, main h2, main h3, main p, main a, main img, main li')
-        .evaluateAll((elements) =>
-          elements
-            .filter((element) => {
-              const box = element.getBoundingClientRect();
-              return box.width > 0 && (box.left < -1 || box.right > innerWidth + 1);
-            })
-            .map((element) => element.textContent?.trim() || element.getAttribute('src')),
-        ),
-    ).toEqual([]);
-    if (width < 768) {
-      const hero = await page.locator('.audit-hero__copy').boundingBox();
-      const art = await page.locator('.audit-hero .audit-art').boundingBox();
-      expect(art!.y).toBeGreaterThanOrEqual(hero!.y + hero!.height);
-    }
-    await expect(
-      page.locator('header').getByRole('link', { name: 'Book a call', exact: true }),
-    ).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
-    for (const [label, hash] of [
-      ['How it works', 'how-it-works'],
-      ['Features', 'features'],
-      ['About us', 'about'],
-    ]) {
-      await page.goto('/audit.html');
-      if (width < 768) await page.getByRole('button', { name: 'Menu', exact: true }).click();
-      await page.locator('header').getByRole('link', { name: label, exact: true }).click();
-      await expect(page).toHaveURL(new RegExp(`/#${hash}$`));
-      await expect(page.locator(`#${hash}`)).toBeVisible();
-    }
-    await page.goto('/audit.html');
-    await page.locator('footer').getByRole('link', { name: 'Why Ixaria', exact: true }).click();
-    await expect(page).toHaveURL(/\/#before-after$/);
+    await expect(page.locator('.audit-faq details p').first()).not.toBeVisible();
+    await expect(page.locator('.audit-guarantee')).toBeVisible();
+    expect(await page.locator('.audit-page h1, .audit-page h2, .audit-page h3, .audit-page p, .audit-page img, .audit-page li').evaluateAll(els => els.filter(el => {
+      const r=el.getBoundingClientRect();return r.width>0 && (r.left < -1 || r.right > innerWidth+1);
+    }).map(el => el.textContent))).toEqual([]);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
   });
 }
 
@@ -323,6 +252,10 @@ test('slideshow advances and reduced motion keeps content visible', async ({ pag
 
 test('existing analytics ID and event names are retained', async ({ page }) => {
   await page.goto('/');
+  await page.evaluate(() => {
+    Object.assign(window, { sp: { checkConsent: () => true } });
+    window.dispatchEvent(new Event('sp_init'));
+  });
   await page.locator('.hero__ctas .btn-secondary').click();
   const events = await page.evaluate(() =>
     Array.from((window as unknown as { dataLayer: IArguments[] }).dataLayer).map((entry) =>
@@ -333,6 +266,46 @@ test('existing analytics ID and event names are retained', async ({ page }) => {
   expect(events.some((event) => event[0] === 'event' && event[1] === 'see_how_it_works')).toBe(
     true,
   );
+});
+
+test('analytics waits for consent across marketing pages and honours revocation', async ({ page }) => {
+  for (const route of ['/', '/audit.html', '/pilot.html', '/full-implementation.html', '/cofounder.html']) {
+    await page.goto(route);
+    await expect(page.locator('[data-ixaria-analytics]')).toHaveCount(0);
+    expect(await page.evaluate(() => (window as unknown as Record<string, unknown>)['ga-disable-G-70N9EB47DK'])).toBe(true);
+    await page.evaluate(() => {
+      Object.assign(window, { sp: { checkConsent: () => true } });
+      window.dispatchEvent(new Event('sp_init'));
+    });
+    await expect(page.locator('[data-ixaria-analytics]')).toHaveCount(1);
+    await page.evaluate(() => {
+      const link = [...document.querySelectorAll('a')].find(el => el.href.includes('calendly.com'))!;
+      link.addEventListener('click', event => event.preventDefault());
+      link.click();
+    });
+    const events = await page.evaluate(() => Array.from((window as unknown as { dataLayer: IArguments[] }).dataLayer).map(entry => Array.from(entry)));
+    expect(events.some(event => event[0] === 'event' && ['book_call', 'book_discovery_call'].includes(String(event[1])) && (event[2] as Record<string,string>).page_path === route)).toBe(true);
+    await page.evaluate(() => {
+      Object.assign(window, { sp: { checkConsent: () => false } });
+      window.dispatchEvent(new Event('sp_cookie_banner_save'));
+    });
+    expect(await page.evaluate(() => (window as unknown as Record<string, unknown>)['ga-disable-G-70N9EB47DK'])).toBe(true);
+  }
+});
+
+test('narrow mobile pages keep visible content inside the viewport', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const route of ['/', '/audit.html', '/pilot.html', '/full-implementation.html']) {
+      await page.goto(route);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      expect(await page.locator('main h1, main h2, main h3, main p, main a, main img').evaluateAll(elements => elements.filter(el => {
+        const r = el.getBoundingClientRect();
+        return r.width > 0 && (r.left < -1 || r.right > innerWidth + 1);
+      }).map(el => el.textContent?.trim() || el.getAttribute('src')))).toEqual([]);
+    }
+  }
 });
 
 test('demo chat loads on request and safely renders user text', async ({ page }) => {
@@ -364,7 +337,7 @@ test('static content, navigation, and FAQs are available with JavaScript disable
       ? route.continue()
       : route.fulfill({ status: 200, body: '' }),
   );
-  await page.goto('http://127.0.0.1:4321/');
+  await page.goto('http://127.0.0.1:4330/');
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('#faq-answer-1')).toBeVisible();
   for (const selector of ['.feature-card', '.process-card', '.value-item', '.cta-strip__inner'])
@@ -377,14 +350,14 @@ test('static content, navigation, and FAQs are available with JavaScript disable
   await page.getByRole('link', { name: 'Careers', exact: true }).click();
   await expect(page).toHaveURL(/cofounder.html$/);
   await expect(page.locator('h1')).toContainText('CTO');
-  await page.goto('http://127.0.0.1:4321/#how-it-works');
-  await page.getByRole('link', { name: 'Read more about Pilot', exact: true }).click();
+  await page.goto('http://127.0.0.1:4330/#how-it-works');
+  await page.getByRole('link', { name: 'Explore the Pilot', exact: true }).click();
   await expect(page.locator('h1')).toHaveText('Pilot');
-  await page.goto('http://127.0.0.1:4321/audit.html');
-  await expect(page.locator('h1')).toHaveText('What keeps your visitors from becoming customers?');
-  for (const answer of await page.locator('.faq__answer').all()) await expect(answer).toBeVisible();
+  await page.goto('http://127.0.0.1:4330/audit.html');
+  await expect(page.locator('h1')).toHaveText('Find out why interested visitors aren’t becoming customers.');
+  for (const summary of await page.locator('.audit-faq summary').all()) { await summary.click(); }
   await expect(
     page.locator('main').getByRole('link', { name: 'Book a discovery call', exact: true }),
-  ).toHaveCount(3);
+  ).toHaveCount(2);
   await context.close();
 });

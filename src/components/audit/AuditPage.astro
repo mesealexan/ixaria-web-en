@@ -1,130 +1,70 @@
 ---
-import { audit, auditFAQs } from '../../data/audit';
+import { audit } from '../../data/audit';
 import { auditAssets } from '../../data/audit-assets';
-import { site } from '../../data/site';
 import Button from '../ui/Button.astro';
-import FAQList from '../ui/FAQList.astro';
-import AuditIllustration from './AuditIllustration.astro';
-import AuditLogoStrip from './AuditLogoStrip.astro';
-import AuditExample from './AuditExample.astro';
+import ReportPreview from './ReportPreview.astro';
+import ClientLogos from '../sections/ClientLogos.astro';
 import '../../styles/audit.css';
-const preview = auditAssets.example.pdfUrl ? auditAssets.example.preview : null;
+import '../../styles/implementation-page.css';
+const icons = ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18 M3 12h18 M12 3c-5 5-5 13 0 18 M12 3c5 5 5 13 0 18', 'M3 4h18v14H3z M8 21h8 M12 18v3 M3 8h18', 'M4 10v5h4l11 5V4L8 10H4 M8 15l2 6'];
 ---
 <div class="audit-page">
-  <section class="audit-hero" data-audit-section="promise" aria-labelledby="audit-title">
-    <div class="container audit-hero__grid">
-      <div class="audit-hero__copy">
-        <span class="section-label">{audit.hero.label}</span>
-        <h1 id="audit-title">{audit.hero.heading}</h1>
-        <p class="audit-lead">{audit.hero.description}</p>
-        <p class="audit-hero__price"><strong>{audit.price}</strong><span>{audit.heroPriceLabel}</span></p>
-        <Button href={site.bookingUrl} external>{audit.bookingLabel}</Button>
-        <p class="audit-reassurance">{audit.hero.reassurance}</p>
-      </div>
-      <div class="audit-art"><AuditIllustration /></div>
-    </div>
-  </section>
-
-  <AuditLogoStrip />
-
-  <section class="audit-section audit-section--soft" data-audit-section="qualification" aria-labelledby="audit-fit-title">
-    <div class="container">
-      <div class="audit-heading">
-        <h2 class="section-title" id="audit-fit-title">{audit.qualification.heading}</h2>
-        <p class="section-sub">{audit.qualification.description}</p>
-      </div>
-      <ul class="audit-criteria">{audit.qualification.criteria.map(criterion => (
-        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg><span>{criterion}</span></li>
-      ))}</ul>
-    </div>
-  </section>
-
-  <section class="audit-section" data-audit-section="shoppers" aria-labelledby="audit-shoppers-title">
-    <div class="container audit-shoppers__grid">
-      <div>
-        <h2 class="section-title" id="audit-shoppers-title">{audit.shoppers.heading}</h2>
-        {audit.shoppers.paragraphs.map(paragraph => <p class="audit-copy">{paragraph}</p>)}
-      </div>
-      <div class="audit-art audit-art--quiet"><AuditIllustration variant="shoppers" /></div>
-    </div>
-  </section>
-
-  <section class="audit-section audit-section--soft" data-audit-section="investigation" aria-labelledby="audit-investigation-title">
-    <div class="container">
-      <div class="audit-heading">
-        <h2 class="section-title" id="audit-investigation-title">{audit.investigation.heading}</h2>
-        <p class="section-sub">{audit.investigation.description}</p>
-      </div>
-      <div class="audit-investigation">{audit.investigation.areas.map((area, index) => {
-        const portrait = auditAssets.portraits[area.name];
-        return <article class:list={['audit-specialist-card', `audit-accent-${index + 1}`]}>
-          <h3>{area.heading}</h3>
-          <p>{area.description}</p>
-          <div class="audit-specialist">
-            {portrait ? <img src={portrait} alt={area.name} width="56" height="56" loading="lazy" decoding="async" /> : <span class="audit-initials" aria-hidden="true">{area.name[0]}</span>}
-            <div><p class="audit-specialist__name">{area.name}</p><p class="audit-specialist__experience">{area.experience}</p></div>
-          </div>
-        </article>;
-      })}</div>
-    </div>
-  </section>
-
-  <section class="audit-section" data-audit-section="report" aria-labelledby="audit-report-title">
-    <div class:list={['container audit-report', { 'audit-report--with-preview': Boolean(preview) }]}>
-      <div>
-        <h2 class="section-title" id="audit-report-title">{audit.report.heading}</h2>
-        <div class="audit-report__outline">{audit.report.items.map(item => (
-          <article><h3>{item.heading}</h3><p>{item.description}</p></article>
-        ))}</div>
-        <p class="audit-report__presentation">{audit.report.presentation}</p>
-        <AuditExample />
-      </div>
-      {preview && <figure class="audit-report__preview"><img {...preview} loading="lazy" decoding="async" /></figure>}
-    </div>
-  </section>
-
-  <section class="audit-section audit-section--soft" data-audit-section="process" aria-labelledby="audit-process-title">
-    <div class="container">
-      <h2 class="section-title" id="audit-process-title">{audit.process.heading}</h2>
-      <ol class="audit-process">{audit.process.steps.map((step, index) => (
-        <li class:list={['audit-process-card', `audit-accent-${index + 1}`]}>
-          <h3><span class="audit-process-card__number">{index + 1}.</span> {step.heading}</h3>
-          <p>{step.description}</p>
-        </li>
-      ))}</ol>
-      <p class="audit-process__reassurance">{audit.process.reassurance}</p>
-    </div>
-  </section>
-
-  <section class="audit-offer audit-section" data-audit-section="offer" aria-labelledby="audit-offer-title">
-    <div class="container">
-      <h2 class="section-title" id="audit-offer-title">{audit.offer.heading}</h2>
-      <div class="audit-offer__grid">
-        <div class="audit-offer__price">
-          <h3>{audit.price}</h3>
-          <p class="audit-offer__label">{audit.offer.priceLabel}</p>
-          <p class="audit-copy">{audit.offer.inclusions}</p>
-          <Button href={site.bookingUrl} external>{audit.bookingLabel}</Button>
-          <p class="audit-reassurance">{audit.offer.reassurance}</p>
-        </div>
-        <div class="audit-offer__guarantee">
-          <svg width="42" height="48" viewBox="0 0 42 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 3 37 9v15c0 10-10 18-16 21C15 42 5 34 5 24V9L21 3Z" /><path d="m13 23 6 6 11-13" /></svg>
-          <h3>{audit.offer.guaranteeHeading}</h3>
-          <p class="audit-copy">{audit.offer.guaranteeDescription}</p>
-        </div>
+<section class="audit-section audit-hero" data-audit-section="hero" aria-labelledby="audit-title"><div class="container audit-grid">
+  <div><span class="section-label">{audit.hero.label}</span><h1 id="audit-title">{audit.hero.heading}</h1><p class="audit-lead">{audit.hero.description}</p><p class="audit-audience">{audit.hero.audience}</p><div class="audit-actions"><Button href={audit.bookingUrl} external>{audit.bookingLabel}</Button><Button href="#example-audit" variant="secondary">{audit.hero.secondary}</Button></div><ul class="audit-scope">{audit.hero.scope.map(text => <li>{text}</li>)}</ul></div>
+  <div class="report-stack" aria-label="Illustrative audit cover and interior page"><div class="report-stack__back"><ReportPreview index={0}/></div><div class="report-stack__front"><ReportPreview cover/></div></div>
+</div></section>
+<section class="audit-section audit-soft" data-audit-section="problem" aria-labelledby="problem-title"><div class="container audit-grid">
+  <div><h2 class="section-title" id="problem-title">{audit.problem.heading}</h2>{audit.problem.paragraphs.map(text => <p class="audit-copy">{text}</p>)}</div>
+  <figure class="shopper-visual"><figcaption>Illustrative shopper questions</figcaption><div class="product-sketch" aria-hidden="true"><div class="sketch-toolbar"><i></i><i></i><i></i></div><svg viewBox="0 0 320 160" fill="none"><path d="M58 104V66Q58 52 76 52H244Q262 52 262 66V104M73 105V76H247V105M52 91Q37 91 37 107V129H283V107Q283 91 268 91M58 130V144M262 130V144M160 54V104" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg><div class="sketch-lines"><i></i><i></i><i></i></div></div><ul>{audit.problem.questions.map(text => <li>{text}</li>)}</ul></figure>
+</div></section>
+<section class="audit-section" data-audit-section="analysis" aria-labelledby="analysis-title"><div class="container"><h2 class="section-title audit-heading" id="analysis-title">{audit.analysis.heading}</h2><div class="audit-three audit-analysis">{audit.analysis.areas.map((area,index) => <article><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d={icons[index]}/></svg><h3>{area.heading}</h3><p>{area.text}</p></article>)}</div><p class="audit-connection">{audit.analysis.connection}</p></div></section>
+<section class="audit-section audit-soft" data-audit-section="deliverables" aria-labelledby="report-title"><div class="container audit-grid audit-deliverables"><div class="audit-report-copy"><h2 class="section-title" id="report-title">{audit.report.heading}</h2><p class="audit-copy">{audit.report.introduction}</p><ol class="audit-deliverable-list">{audit.report.items.map((item,index) => <li><span>0{index+1}</span><div><h3>{item.heading}</h3><p>{item.text}</p></div></li>)}</ol><p class="audit-copy">{audit.report.closing}</p></div><div class="report-spread"><ReportPreview index={0}/><ReportPreview index={2}/></div></div></section>
+<section class="audit-section" id="example-audit" data-audit-section="example" aria-labelledby="example-title"><div class="container"><h2 class="section-title" id="example-title">{audit.example.heading}</h2><p class="audit-copy audit-heading">{audit.example.description}</p><div class="audit-three audit-previews">{audit.example.pages.map((page,index) => <div><ReportPreview index={index}/><button type="button" class="preview-open" data-preview={index} aria-haspopup="dialog">{audit.example.enlargeLabel}: {page.title}<span aria-hidden="true"> ↗</span></button></div>)}</div>{auditAssets.example.pdfUrl && <a class="btn btn-primary" href={auditAssets.example.pdfUrl} download={auditAssets.example.downloadFilename}>{audit.example.downloadLabel}</a>}</div>
+<dialog class="audit-modal" aria-labelledby="preview-title"><div class="audit-modal__toolbar"><h2 id="preview-title">{audit.example.label}</h2><button type="button" data-close autofocus>{audit.example.closeLabel} ×</button></div><div class="audit-modal__pages">{audit.example.pages.map((_,index) => <div data-modal-page={index} hidden={index !== 0}><ReportPreview index={index}/></div>)}</div><div class="audit-modal__nav"><button type="button" data-prev>{audit.example.previousLabel}</button><span data-page-count aria-live="polite"></span><button type="button" data-next>{audit.example.nextLabel}</button></div></dialog>
+</section>
+<ClientLogos auditPage />
+<section class="audit-section audit-soft" data-audit-section="process" aria-labelledby="process-title"><div class="container"><h2 class="section-title audit-heading" id="process-title">{audit.process.heading}</h2><ol class="audit-three audit-process">{audit.process.steps.map((step,index) => <li><span class="audit-number">0{index+1}</span><h3>{step.heading}</h3><p>{step.text}</p></li>)}</ol><p class="audit-note">{audit.process.note}</p></div></section>
+<section class="audit-section" data-audit-section="team" aria-labelledby="team-title"><div class="container"><h2 class="section-title audit-heading" id="team-title">{audit.team.heading}</h2><div class="audit-three audit-team">{audit.team.people.map(person => { const portrait = auditAssets.portraits[person.assetKey as keyof typeof auditAssets.portraits]; return <article>{portrait ? <img src={portrait} alt={person.name} width="800" height="600" loading="lazy" decoding="async"/> : <div class="audit-monogram" aria-hidden="true">OS</div>}<h3>{person.name}</h3><p class="audit-role">{person.role}</p><p>{person.text}</p><a class="audit-team__linkedin" href={person.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={person.name + ' on LinkedIn (opens in a new tab)'}>LinkedIn <span aria-hidden="true">&#8599;</span></a></article>; })}</div></div></section>
+<section class="audit-section audit-soft" data-audit-section="faq" aria-labelledby="faq-title"><div class="container"><h2 class="section-title" id="faq-title">{audit.faqHeading}</h2><div class="audit-faq-grid"><div class="audit-faq">{audit.questions.map(item => <details><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div><aside class="audit-guarantee"><svg viewBox="0 0 40 48" width="40" height="48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 3 36 9v15c0 10-10 18-16 21C14 42 4 34 4 24V9Z M12 23l6 6 11-13"/></svg><h3>{audit.guarantee.heading}</h3><p>{audit.guarantee.text}</p></aside></div></div></section>
+<section class="audit-section audit-final" data-audit-section="final" aria-labelledby="final-title"><div class="container"><h2 class="section-title" id="final-title">{audit.final.heading}</h2><p>{audit.final.description}</p><Button href={audit.bookingUrl} external variant="white">{audit.bookingLabel}</Button></div></section>
+<section class="implementation-next" aria-labelledby="audit-next-title">
+  <div class="container">
+    <div class="implementation-next__content">
+      <span class="section-label">{audit.navigation.label}</span>
+      <h2 class="section-title" id="audit-next-title">{audit.navigation.heading}</h2>
+      <p>{audit.navigation.description}</p>
+      <div class="implementation-next__actions">
+        <Button href={audit.navigation.homeUrl}>{audit.navigation.homeLabel}</Button>
+        <Button href={audit.navigation.pilotUrl} variant="secondary">{audit.navigation.pilotLabel}</Button>
       </div>
     </div>
-  </section>
-
-  <section class="audit-section audit-questions" data-audit-section="questions" aria-labelledby="audit-faq-title">
-    <div class="container">
-      <h2 class="section-title" id="audit-faq-title">{audit.faqHeading}</h2>
-      <FAQList items={auditFAQs} />
-      <noscript><style is:inline>.audit-page .faq__answer{display:block!important}</style></noscript>
-      <div class="audit-final">
-        <div><h3>{audit.final.heading}</h3><p>{audit.final.description}</p></div>
-        <Button href={site.bookingUrl} external>{audit.bookingLabel}</Button>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 </div>
+<script>
+const dialog = document.querySelector<HTMLDialogElement>('.audit-modal');
+if (dialog) {
+  const pages = [...dialog.querySelectorAll<HTMLElement>('[data-modal-page]')];
+  let index = 0;
+  let trigger: HTMLElement | null = null;
+  const show = (next: number) => {
+    index = (next + pages.length) % pages.length;
+    pages.forEach((page, i) => { page.hidden = i !== index; });
+    const count = dialog.querySelector('[data-page-count]');
+    if (count) count.textContent = `${index + 1} / ${pages.length}`;
+  };
+  document.querySelectorAll<HTMLButtonElement>('[data-preview]').forEach(button => button.addEventListener('click', () => {
+    trigger = button; show(Number(button.dataset.preview)); dialog.showModal();
+    document.body.style.overflow = 'hidden';
+  }));
+  dialog.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
+  dialog.querySelector('[data-prev]')?.addEventListener('click', () => show(index - 1));
+  dialog.querySelector('[data-next]')?.addEventListener('click', () => show(index + 1));
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') { event.preventDefault(); show(index - 1); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); show(index + 1); }
+  });
+  dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
+  dialog.addEventListener('close', () => { document.body.style.overflow = ''; trigger?.focus(); });
+}
+</script>

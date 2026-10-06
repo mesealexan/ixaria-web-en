@@ -121,6 +121,18 @@ export const site = {
       href: '/#features',
     },
     {
+      label: 'Audit',
+      href: '/audit.html',
+    },
+    {
+      label: 'Pilot',
+      href: '/pilot.html',
+    },
+    {
+      label: 'Full Implementation',
+      href: '/full-implementation.html',
+    },
+    {
       label: 'Careers',
       href: '/cofounder.html',
     },

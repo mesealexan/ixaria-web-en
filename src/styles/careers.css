@@ -224,7 +224,7 @@
   line-height: 1;
 }
 .job-split__chip:nth-child(2) .job-split__pct {
-  color: var(--orange);
+  color: color-mix(in srgb, var(--orange) 90%, var(--navy));
 }
 .job-split__lbl {
   font-family: var(--font-head);
