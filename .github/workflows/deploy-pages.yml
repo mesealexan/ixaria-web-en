@@ -1,6 +1,8 @@
 name: Deploy Astro to GitHub Pages
 
 on:
+  push:
+    branches: [new-architecture]
   workflow_dispatch:
 
 permissions:

@@ -91,13 +91,13 @@ The original chat has demo responses and no visible launcher. Its dialog and sty
 
 The build includes `CNAME` for `ixaria.eu`, `.nojekyll`, `robots.txt`, `sitemap.xml`, the existing `.html` routes and all original public assets. A static host can use `npm ci && npm run build` with `dist` as its publish directory. Host the custom domain at `/`, with the configured canonical origin `https://ixaria.eu`.
 
-A manually triggered GitHub Pages workflow is provided in `.github/workflows/deploy-pages.yml`. If this repository is served by GitHub Pages:
+A GitHub Pages workflow is provided in `.github/workflows/deploy-pages.yml`. It runs on pushes to `new-architecture` and can also be triggered manually. If this repository is served by GitHub Pages:
 
 1. Set repository **Settings → Pages → Source** to **GitHub Actions**.
 2. Keep the existing custom domain configured as `ixaria.eu`.
 3. Run **Deploy Astro to GitHub Pages** from the Actions tab on the intended branch.
 
-The workflow runs the build and static migration tests before uploading the generated site. It does not publish automatically on push. This follows the [official Astro GitHub Pages deployment guide](https://docs.astro.build/en/guides/deploy/github/).
+The workflow runs the build and static migration tests before uploading the generated site. Keep the workflow on the default branch so GitHub exposes the manual run button. This follows the [official Astro GitHub Pages deployment guide](https://docs.astro.build/en/guides/deploy/github/).
 
 ## Migration checks
 
