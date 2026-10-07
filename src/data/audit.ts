@@ -36,9 +36,9 @@ export const audit = {
   },
   team: {
     heading: 'Meet the people reviewing your business.', people: [
-      { name: 'Alex Mesesan', assetKey: 'Alex', role: 'Commercial', text: '6 years focused on understanding how furniture is sold online.', linkedinUrl: 'https://www.linkedin.com/in/alexandru-mesesan/' },
-      { name: 'Eduard Badea', assetKey: 'Eduard', role: 'UX/UI', text: 'UX design experience with Porsche, BMW and Bayer.', linkedinUrl: 'https://www.linkedin.com/in/eduard-badea/' },
-      { name: 'Ovidiu Stegari', assetKey: 'Ovidiu', role: 'Marketing', text: '6+ years in marketing optimisation for furniture ecommerce.', linkedinUrl: 'https://www.linkedin.com/in/ovidiu-stegari-b16100100/' }
+      { name: 'Alex Mesesan', assetKey: 'Alex', role: 'Commercial', text: 'Furniture E-commerce & Product Experience | Product page analysis, shopper behaviour and cultural differences | 10+ years building product configurators | 6 years focused on online furniture sales', linkedinUrl: 'https://www.linkedin.com/in/alexandru-mesesan/' },
+      { name: 'Eduard Badea', assetKey: 'Eduard', role: 'UX/UI', text: 'UX audits, customer journeys, usability and interface design | UX designer for Mercedes and Bayer | 5+ years combining design and psychology to make digital products easier to understand and use', linkedinUrl: 'https://www.linkedin.com/in/eduard-badea/' },
+      { name: 'Ovidiu Stegari', assetKey: 'Ovidiu', role: 'Marketing', text: 'Growth Marketing for furniture e-commerce | Marketing audits, data analysis, conversion rate optimization | €769K extra revenue | 38% lower CAC | 6,444 customers converted | 65,000+ leads generated', linkedinUrl: 'https://www.linkedin.com/in/ovidiu-stegari-b16100100/' }
     ]
   },
   faqHeading: 'Before you get started.',
