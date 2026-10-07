@@ -247,7 +247,7 @@ test('How it works shows the three requested stages with matching schema and det
 test('audit follows the brief with genuine assets and consistent schema', () => {
   const $ = load(fs.readFileSync(path.join(dist, 'audit.html'), 'utf8'));
   assert.deepEqual($('[data-audit-section]').map((_, el) => $(el).attr('data-audit-section')).get(),
-    ['hero','problem','analysis','deliverables','example','companies','process','team','faq','final']);
+    ['hero','problem','analysis','deliverables','companies','process','team','faq','final']);
   assert.equal($('h1').length, 1);
   assert.equal($('header').html(), documents.index('header').html());
   assert.equal($('footer').html(), documents.index('footer').html());
@@ -256,20 +256,26 @@ test('audit follows the brief with genuine assets and consistent schema', () => 
   assert.equal($('.audit-monogram').length, 0);
   assert.deepEqual($('.audit-companies img').map((_, el) => $(el).attr('alt')).get(), ['Massif', 'Expo Mob', 'Agache', 'Divanissimi', 'ABC Mobila', 'Larix Mobila', 'Sofa Mix', 'Eurosun', 'Artisanova', 'Lockart Doors', 'Sofaest Mob', 'Timflex']);
   assert.equal($('a[download]').length, 0);
-  assert.equal($('[data-preview]').length, 3);
-  assert.equal($('dialog').length, 1);
-  assert.equal($('.audit-faq details').length, 5);
+  assert.equal($('[data-preview]').length, 0);
+  assert.equal($('dialog').length, 0);
+  assert.equal($('.audit-faq details').length, 6);
+  const confidentiality = $('.audit-faq details').filter((_, el) =>
+    $(el).find('summary').text().includes('Will our business information stay confidential?'));
+  assert.equal(confidentiality.length, 1);
+  assert.equal(confidentiality.find('p').length, 2);
+  assert.match(confidentiality.find('p').last().text(), /confidentiality agreement signed before you share any information/);
   assert.doesNotMatch($('main').text(), /€|4,500|1,500|14-day|guaranteed uplift/);
   assert.match($('.audit-guarantee').text(), /7-day money-back guarantee/);
   const booking = $('main a').filter((_, el) => $(el).text().trim() === 'Book a discovery call');
   assert.equal(booking.length, 2);
   booking.each((_, el) => assert.equal($(el).attr('href'), 'https://calendly.com/alex-ixaria/ixaria-strategy-session'));
-  assert.equal($('a[href="#example-audit"]').length, 1);
+  assert.equal($('a[href="#example-audit"]').length, 0);
   const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
   const faq = graph.find(el => el['@type'] === 'FAQPage');
+  assert.equal(faq.mainEntity.length, $('.audit-faq details').length);
   $('.audit-faq details').each((i, el) => {
     assert.equal(faq.mainEntity[i].name, $(el).find('summary').text().replace('+','').trim());
-    assert.equal(faq.mainEntity[i].acceptedAnswer.text, $(el).find('p').text());
+    assert.equal(faq.mainEntity[i].acceptedAnswer.text, $(el).find('p').map((_, p) => $(p).text()).get().join('\n\n'));
   });
   for (const el of $('[src],[href]').toArray()) {
     const href = $(el).attr('src') ?? $(el).attr('href');

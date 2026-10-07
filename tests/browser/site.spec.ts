@@ -108,22 +108,8 @@ for (const width of [1440, 820, 390]) {
     const booking = page.locator('.audit-page').getByRole('link', { name: 'Book a discovery call', exact: true });
     await expect(booking).toHaveCount(2);
     for (const link of await booking.all()) await expect(link).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
-    await page.getByRole('link', { name: 'View an example audit' }).click();
-    await expect(page).toHaveURL(/#example-audit$/);
-    await expect.poll(async () => (await page.locator('#example-audit').boundingBox())!.y).toBeLessThan(160);
-    const opener = page.locator('[data-preview]').first();
-    await opener.click();
-    await expect(page.locator('dialog')).toBeVisible();
-    await expect(page.locator('[data-close]')).toBeFocused();
-    await page.keyboard.press('ArrowRight');
-    await expect(page.locator('[data-page-count]')).toHaveText('2 / 3');
-    await page.keyboard.press('ArrowLeft');
-    await expect(page.locator('[data-page-count]')).toHaveText('1 / 3');
-    await page.locator('[data-next]').click();
-    await expect(page.locator('[data-page-count]')).toHaveText('2 / 3');
-    await page.keyboard.press('Escape');
-    await expect(page.locator('dialog')).not.toBeVisible();
-    await expect(opener).toBeFocused();
+    await expect(page.getByRole('link', { name: 'View an example audit' })).toHaveCount(0);
+    await expect(page.locator('[data-preview], .audit-modal')).toHaveCount(0);
     const first = page.locator('.audit-faq summary').first();
     await first.focus();
     await page.keyboard.press('Enter');
@@ -131,6 +117,16 @@ for (const width of [1440, 820, 390]) {
     await expect(page.locator('.audit-faq details p').first()).toBeVisible();
     await page.keyboard.press('Space');
     await expect(page.locator('.audit-faq details p').first()).not.toBeVisible();
+    const confidentiality = page.locator('.audit-faq details').filter({
+      has: page.locator('summary', { hasText: 'Will our business information stay confidential?' }),
+    });
+    await confidentiality.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await expect(confidentiality).toHaveAttribute('open', '');
+    await expect(confidentiality.locator('p')).toHaveCount(2);
+    await expect(confidentiality.locator('p').last()).toHaveText('These commitments are covered by a confidentiality agreement signed before you share any information.');
+    await page.keyboard.press('Space');
+    await expect(confidentiality.locator('p').last()).not.toBeVisible();
     await expect(page.locator('.audit-guarantee')).toBeVisible();
     expect(await page.locator('.audit-page h1, .audit-page h2, .audit-page h3, .audit-page p, .audit-page img, .audit-page li').evaluateAll(els => els.filter(el => {
       const r=el.getBoundingClientRect();return r.width>0 && (r.left < -1 || r.right > innerWidth+1);
