@@ -105,7 +105,7 @@ for (const width of [1440, 820, 390]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/audit.html');
     await expect(page.locator('h1')).toHaveText('Find out why interested visitors aren’t becoming customers.');
-    const booking = page.locator('.audit-page').getByRole('link', { name: 'Book a discovery call', exact: true });
+    const booking = page.locator('.audit-page').getByRole('link', { name: 'Book a free discovery call', exact: true });
     await expect(booking).toHaveCount(2);
     for (const link of await booking.all()) await expect(link).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
     await expect(page.getByRole('link', { name: 'View an example audit' })).toHaveCount(0);
@@ -128,6 +128,9 @@ for (const width of [1440, 820, 390]) {
     await page.keyboard.press('Space');
     await expect(confidentiality.locator('p').last()).not.toBeVisible();
     await expect(page.locator('.audit-guarantee')).toBeVisible();
+    await expect(page.locator('.audit-final .audit-price strong')).toHaveText('€1,500');
+    await expect(page.locator('.audit-final .audit-price span')).toHaveText('One-time payment');
+    await expect(page.locator('.audit-final .audit-price-guarantee')).toHaveText('7-day money-back guarantee');
     expect(await page.locator('.audit-page h1, .audit-page h2, .audit-page h3, .audit-page p, .audit-page img, .audit-page li').evaluateAll(els => els.filter(el => {
       const r=el.getBoundingClientRect();return r.width>0 && (r.left < -1 || r.right > innerWidth+1);
     }).map(el => el.textContent))).toEqual([]);
@@ -353,7 +356,7 @@ test('static content, navigation, and FAQs are available with JavaScript disable
   await expect(page.locator('h1')).toHaveText('Find out why interested visitors aren’t becoming customers.');
   for (const summary of await page.locator('.audit-faq summary').all()) { await summary.click(); }
   await expect(
-    page.locator('main').getByRole('link', { name: 'Book a discovery call', exact: true }),
+    page.locator('main').getByRole('link', { name: 'Book a free discovery call', exact: true }),
   ).toHaveCount(2);
   await context.close();
 });

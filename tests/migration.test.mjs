@@ -264,9 +264,13 @@ test('audit follows the brief with genuine assets and consistent schema', () => 
   assert.equal(confidentiality.length, 1);
   assert.equal(confidentiality.find('p').length, 2);
   assert.match(confidentiality.find('p').last().text(), /confidentiality agreement signed before you share any information/);
-  assert.doesNotMatch($('main').text(), /€|4,500|1,500|14-day|guaranteed uplift/);
+  assert.doesNotMatch($('main').text(), /4,500|14-day|guaranteed uplift/);
+  assert.equal($('.audit-final .audit-price strong').text(), '€1,500');
+  assert.equal($('.audit-final__price-label').text(), 'Audit fee');
+  assert.equal($('.audit-final .audit-price span').text(), 'One-time payment');
+  assert.equal($('.audit-final .audit-price-guarantee').text(), $('.audit-guarantee h3').text());
   assert.match($('.audit-guarantee').text(), /7-day money-back guarantee/);
-  const booking = $('main a').filter((_, el) => $(el).text().trim() === 'Book a discovery call');
+  const booking = $('main a').filter((_, el) => $(el).text().trim() === 'Book a free discovery call');
   assert.equal(booking.length, 2);
   booking.each((_, el) => assert.equal($(el).attr('href'), 'https://calendly.com/alex-ixaria/ixaria-strategy-session'));
   assert.equal($('a[href="#example-audit"]').length, 0);

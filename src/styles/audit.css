@@ -90,10 +90,18 @@
 .audit-faq details p {padding:0 24px 22px 0;color:var(--gray-text);font-size:15px;line-height:1.8}
 .audit-guarantee {background:white;padding:32px;border:1px solid var(--gray-mid);border-radius:12px}
 .audit-guarantee svg {color:var(--elec);margin-bottom:20px}
-.audit-final {background:var(--navy);text-align:center}
-.audit-final .btn {background:var(--yellow);color:var(--navy)}
-.audit-final .section-title {color:white;max-width:800px;margin:0 auto 24px}
-.audit-final p {color:white;max-width:650px;margin:0 auto 30px;font-size:17px;line-height:1.8}
+.audit-final {background:var(--navy);text-align:left;color:white}
+.audit-final__content {max-width:720px}
+.audit-final .section-title {color:white;margin:0 0 20px}
+.audit-final__description {max-width:580px;color:#d5d5e7;font-size:17px;line-height:1.8}
+.audit-final__offer {max-width:580px;margin-top:32px;padding-top:24px;border-top:1px solid #ffffff26}
+.audit-final__price-label {font-size:14px;font-weight:600;margin-bottom:8px}
+.audit-final .audit-price {display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:0 0 12px}
+.audit-price strong {font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.02em}
+.audit-price span {font-size:14px;color:#d5d5e7}
+.audit-final .btn {background:var(--yellow);color:var(--navy);min-height:52px}
+.audit-final .audit-price-guarantee {display:flex;align-items:center;gap:8px;color:#d5d5e7;font-size:14px;line-height:1.5;margin:0 0 24px}
+.audit-price-guarantee svg {flex-shrink:0}
 .audit-page :is(a,button,summary):focus-visible {outline:3px solid var(--orange);outline-offset:5px}
 .audit-modal {border:0;border-radius:12px;padding:24px;max-width:650px;width:calc(100% - 32px);max-height:90dvh;margin:auto;background:var(--gray-light);color:var(--navy)}
 .audit-modal::backdrop {background:#090959bb}
@@ -122,6 +130,7 @@
 .audit-grid,.audit-three,.audit-faq-grid {grid-template-columns:1fr}
 [data-audit-section="problem"] .audit-grid {grid-template-columns:1fr;gap:24px}
 .shopper-visual {padding:0}
+.audit-price strong {font-size:24px}
 .audit-hero {padding-top:36px}
 .audit-hero h1 {font-size:clamp(36px,8vw,48px)}
 .audit-actions .btn {width:100%;justify-content:center}

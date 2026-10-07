@@ -2,7 +2,7 @@
 export const audit = {
   seo: { title: 'Furniture Ecommerce Audit | IXARIA', description: 'Understand why interested visitors do not become customers. Findings, informed hypotheses and practical recommendations for your furniture webshop.' },
   bookingUrl: site.bookingUrl,
-  bookingLabel: 'Book a discovery call',
+  bookingLabel: 'Book a free discovery call',
   hero: { label: 'Furniture ecommerce audit', heading: 'Find out why interested visitors aren’t becoming customers.', description: 'The IXARIA Audit examines your furniture webshop, marketing and customer expectations across your main markets. You receive clear findings and practical recommendations to help more visitors feel confident buying.', audience: 'For furniture brands and retailers with an active webshop, paid campaigns and at least 30,000 monthly visitors.', secondary: 'View an example audit', scope: ['Up to 3 markets', 'Delivered in 7 days', '7-day money-back guarantee'] },
   problem: { heading: 'They’re interested. Something still stops them.', paragraphs: ['You already invest in bringing people to your webshop. Some arrive ready to consider your furniture, but leave before buying.', 'Their hesitation may come from unanswered questions, previous experiences or expectations shaped by how people shop in their market. Your analytics can show where they leave. Understanding why takes a closer look.'], questions: ['Will this work in my home?', 'Is it worth the price?', 'What happens if it isn’t right?', 'Will this sofa feel comfortable and supportive?', 'Will this fabric look and feel right?', 'Can the fabric handle spills?', 'Can I return it if it feels wrong?'] },
   analysis: {
@@ -52,6 +52,6 @@ export const audit = {
     { question: 'Will our business information stay confidential?', answer: 'Your marketing figures, budgets, technical setup and sales information are used exclusively to deliver your audit. Access is limited to the team working on it. We never publish your information, share it with other clients or reuse it for other purposes.\n\nThese commitments are covered by a confidentiality agreement signed before you share any information.' },
     { question: 'How much work is involved for our team?', answer: 'Plan for the discovery call, a 30–45 minute session with each relevant department and time to prepare the requested information.' }
   ],
-  final: { heading: 'Understand what stands between interest and purchase.', description: 'Book a discovery call to discuss your webshop and see whether the IXARIA Audit fits your business.' },
+  final: { heading: 'Understand what stands between interest and purchase.', description: 'Start with a free discovery call to confirm whether the audit fits your business and whether we can work together.', priceLabel: 'Audit fee', price: '€1,500', paymentLabel: 'One-time payment' },
   navigation: { label: 'What happens next', heading: 'Next: Pilot', description: 'Use the audit to select the products and improvements to test in a pilot.', homeLabel: 'Return home', homeUrl: '/', pilotLabel: 'Explore Pilot', pilotUrl: '/pilot.html' },
 };
