@@ -1,26 +1,7 @@
 import type { ContentCard, Founder } from './types';
+import { auditAssets } from './audit-assets';
 
 export const features: ContentCard[] = [
-  {
-    title: 'Replace Disconnected Tools',
-    body: 'Manage product data, visuals, 3D configuration, reviews and analytics in one place.',
-    image: {
-      src: '/feature-001.webp',
-      alt: 'Replace disconnected tools with one system',
-      width: 700,
-      height: 393,
-    },
-  },
-  {
-    title: 'Pages That Improve',
-    body: 'Ixaria learns from customer behaviour and improves your pages over time.',
-    image: {
-      src: '/feature-002.webp',
-      alt: 'Product pages that improve over time',
-      width: 700,
-      height: 393,
-    },
-  },
   {
     title: 'Keep Your Webshop',
     body: 'Add Ixaria to your current webshop without rebuilding or replacing it.',
@@ -52,11 +33,11 @@ export const features: ContentCard[] = [
     },
   },
   {
-    title: 'AI Product Assistant',
-    body: 'AI answers customer questions using the product information inside Ixaria.',
+    title: 'Pages That Improve',
+    body: 'Ixaria learns from customer behaviour and improves your pages over time.',
     image: {
-      src: '/feature-006.webp',
-      alt: 'AI product assistant',
+      src: '/feature-002.webp',
+      alt: 'Product pages that improve over time',
       width: 700,
       height: 393,
     },
@@ -69,9 +50,9 @@ export const founders: Founder[] = [
     role: 'Vision, Sales',
     linkedin: 'https://www.linkedin.com/in/alexandru-mesesan/',
     image: {
-      src: '/image_jvvk-gwA_1753779138285_raw.webp',
+      src: auditAssets.portraits.Alex,
       alt: 'Alexandru Mesesan — Co-founder of Ixaria',
-      width: 600,
+      width: 800,
       height: 600,
     },
   },
@@ -79,8 +60,9 @@ export const founders: Founder[] = [
     name: 'Victor',
     role: 'Technical Lead',
     linkedin: 'https://www.linkedin.com/in/victoriancu/',
+    imagePosition: 'center top',
     image: {
-      src: '/SPO7558_Original.webp',
+      src: auditAssets.portraits.Victor,
       alt: 'Victor Iancu — Co-founder of Ixaria',
       width: 600,
       height: 613,
@@ -91,10 +73,10 @@ export const founders: Founder[] = [
     role: 'Product',
     linkedin: 'https://www.linkedin.com/in/eduard-badea/',
     image: {
-      src: '/eduard-badea.webp',
+      src: auditAssets.portraits.Eduard,
       alt: 'Eduard Badea — Co-founder of Ixaria',
-      width: 480,
-      height: 480,
+      width: 800,
+      height: 600,
     },
   },
 ];

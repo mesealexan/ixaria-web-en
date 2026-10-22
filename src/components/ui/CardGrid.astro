@@ -1,10 +1,11 @@
 ---
 import type { ContentCard } from '../../data/types';
+import { responsiveImage } from '../../utils/images';
 interface Props { items: ContentCard[] }
 const { items } = Astro.props;
 ---
 <div class="features__grid">
   {items.map(item => (
-    <div class="feature-card"><img {...item.image} class="feature-icon" loading="lazy" /><h3 class="feature-title">{item.title}</h3><p class="feature-body">{item.body}</p></div>
+    <div class="feature-card"><img {...item.image} {...responsiveImage(item.image.src, '139px')} class="feature-icon" loading="lazy" decoding="async" /><h3 class="feature-title">{item.title}</h3><p class="feature-body">{item.body}</p></div>
   ))}
 </div>

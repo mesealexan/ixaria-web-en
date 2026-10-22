@@ -1,0 +1,8 @@
+---
+interface Props { description: string }
+const { description } = Astro.props;
+---
+<figure class="audit-placeholder">
+  <span class="audit-placeholder__label">Image placeholder</span>
+  <figcaption>{description}</figcaption>
+</figure>

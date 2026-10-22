@@ -1,7 +1,9 @@
 ---
+import { site } from '../../data/site';
 interface Props { href: string; variant?: 'primary' | 'secondary' | 'orange' | 'white'; external?: boolean; class?: string }
 const { href, variant = 'primary', external = false, class: className } = Astro.props;
+const buttonVariant = href === site.bookingUrl ? 'orange' : variant;
 ---
-<a href={href} class:list={['btn', `btn-${variant}`, className]} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+<a href={href} class:list={['btn', `btn-${buttonVariant}`, className]} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
   <slot />
 </a>

@@ -352,7 +352,7 @@ LinkedIn
 <div class="team-grid">
 <div class="team-card">
 <div class="team-card__avatar">
-<img src="/Adi2.jfif" width="200" height="200" alt="Adrian Gheorghe — Advisor at Ixaria" loading="lazy">
+<img src="/Adi2.jfif" srcset="/optimized/adi2-200.webp 200w, /optimized/adi2-400.webp 400w" sizes="200px" width="200" height="200" alt="Adrian Gheorghe — Advisor at Ixaria" loading="lazy" decoding="async">
 </div>
 <div class="team-card__name">Adrian Gheorghe</div>
 <div class="team-card__role">Advisor</div>

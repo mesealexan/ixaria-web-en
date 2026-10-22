@@ -15,7 +15,7 @@ const { seo, structuredData, bodyClass, integrations = true } = Astro.props;
   <head>
     <SEOHead seo={seo} structuredData={structuredData} />
     <slot name="head" />
-    <noscript><style is:inline>@media(max-width:768px){.navbar__mobile-toggle{display:none!important}.navbar__inner{height:auto;min-height:72px;flex-wrap:wrap}.navbar__nav{display:flex!important;order:3;width:100%;justify-content:center;gap:20px;padding:12px 0}.navbar{position:sticky}main{padding-top:0}}</style></noscript>
+    <noscript><style is:inline>@media(max-width:768px){.navbar__mobile-toggle{display:none!important}.navbar__inner{height:auto;min-height:72px;flex-wrap:wrap}.navbar__nav{display:flex!important;flex-wrap:wrap;order:3;width:100%;justify-content:center;gap:20px;padding:12px 0}.navbar{position:sticky}main{padding-top:0}}</style></noscript>
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main-content">Skip to content</a>

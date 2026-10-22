@@ -1,0 +1,162 @@
+{
+  "/hero-audit.webp": {
+    "width": 1254,
+    "height": 1254,
+    "srcset": "/optimized/hero-audit-360.webp 360w, /optimized/hero-audit-640.webp 640w, /optimized/hero-audit-960.webp 960w, /hero-audit.webp 1254w"
+  },
+  "/audit-results.webp": {
+    "width": 1448,
+    "height": 1086,
+    "srcset": "/optimized/audit-results-360.webp 360w, /optimized/audit-results-640.webp 640w, /optimized/audit-results-960.webp 960w, /optimized/audit-results-1280.webp 1280w, /audit-results.webp 1448w"
+  },
+  "/audit-right-info2.webp": {
+    "width": 2172,
+    "height": 724,
+    "srcset": "/optimized/audit-right-info2-360.webp 360w, /optimized/audit-right-info2-640.webp 640w, /optimized/audit-right-info2-960.webp 960w, /optimized/audit-right-info2-1280.webp 1280w, /optimized/audit-right-info2-1920.webp 1920w, /audit-right-info2.webp 2172w"
+  },
+  "/pilot-hero.webp": {
+    "width": 1254,
+    "height": 1254,
+    "srcset": "/optimized/pilot-hero-360.webp 360w, /optimized/pilot-hero-640.webp 640w, /optimized/pilot-hero-960.webp 960w, /pilot-hero.webp 1254w"
+  },
+  "/pilot-months.webp": {
+    "width": 1448,
+    "height": 1086,
+    "srcset": "/optimized/pilot-months-360.webp 360w, /optimized/pilot-months-640.webp 640w, /optimized/pilot-months-960.webp 960w, /optimized/pilot-months-1280.webp 1280w, /pilot-months.webp 1448w"
+  },
+  "/pilt-agree.webp": {
+    "width": 1448,
+    "height": 1086,
+    "srcset": "/optimized/pilt-agree-360.webp 360w, /optimized/pilt-agree-640.webp 640w, /optimized/pilt-agree-960.webp 960w, /optimized/pilt-agree-1280.webp 1280w, /pilt-agree.webp 1448w"
+  },
+  "/full-hero.webp": {
+    "width": 1254,
+    "height": 1254,
+    "srcset": "/optimized/full-hero-360.webp 360w, /optimized/full-hero-640.webp 640w, /optimized/full-hero-960.webp 960w, /full-hero.webp 1254w"
+  },
+  "/full-three.webp": {
+    "width": 1448,
+    "height": 1086,
+    "srcset": "/optimized/full-three-360.webp 360w, /optimized/full-three-640.webp 640w, /optimized/full-three-960.webp 960w, /optimized/full-three-1280.webp 1280w, /full-three.webp 1448w"
+  },
+  "/full-measure.webp": {
+    "width": 1448,
+    "height": 1086,
+    "srcset": "/optimized/full-measure-360.webp 360w, /optimized/full-measure-640.webp 640w, /optimized/full-measure-960.webp 960w, /optimized/full-measure-1280.webp 1280w, /full-measure.webp 1448w"
+  },
+  "/newsletter.webp": {
+    "width": 1672,
+    "height": 941,
+    "srcset": "/optimized/newsletter-360.webp 360w, /optimized/newsletter-640.webp 640w, /optimized/newsletter-960.webp 960w, /optimized/newsletter-1280.webp 1280w, /newsletter.webp 1672w"
+  },
+  "/Picture1.webp": {
+    "width": 800,
+    "height": 800,
+    "srcset": "/optimized/picture1-320.webp 320w, /optimized/picture1-560.webp 560w, /Picture1.webp 800w"
+  },
+  "/people/Alex.jpg": {
+    "width": 800,
+    "height": 600,
+    "srcset": "/optimized/people-alex-400.webp 400w, /optimized/people-alex-640.webp 640w, /optimized/people-alex-800.webp 800w"
+  },
+  "/people/Eduard.jpg": {
+    "width": 800,
+    "height": 600,
+    "srcset": "/optimized/people-eduard-400.webp 400w, /optimized/people-eduard-640.webp 640w, /optimized/people-eduard-800.webp 800w"
+  },
+  "/people/Ovi.jpg": {
+    "width": 800,
+    "height": 600,
+    "srcset": "/optimized/people-ovi-400.webp 400w, /optimized/people-ovi-640.webp 640w, /optimized/people-ovi-800.webp 800w"
+  },
+  "/SPO7558_Original.webp": {
+    "width": 600,
+    "height": 613,
+    "srcset": "/optimized/spo7558-original-400.webp 400w, /SPO7558_Original.webp 600w"
+  },
+  "/Adi2.jfif": {
+    "width": 400,
+    "height": 400,
+    "srcset": "/optimized/adi2-200.webp 200w, /optimized/adi2-400.webp 400w"
+  },
+  "/feature-002.webp": {
+    "width": 700,
+    "height": 393,
+    "srcset": "/optimized/feature-002-160.webp 160w, /optimized/feature-002-320.webp 320w, /feature-002.webp 700w"
+  },
+  "/feature-003.webp": {
+    "width": 700,
+    "height": 393,
+    "srcset": "/optimized/feature-003-160.webp 160w, /optimized/feature-003-320.webp 320w, /feature-003.webp 700w"
+  },
+  "/feature-004.webp": {
+    "width": 700,
+    "height": 393,
+    "srcset": "/optimized/feature-004-160.webp 160w, /optimized/feature-004-320.webp 320w, /feature-004.webp 700w"
+  },
+  "/feature-005.webp": {
+    "width": 700,
+    "height": 393,
+    "srcset": "/optimized/feature-005-160.webp 160w, /optimized/feature-005-320.webp 320w, /feature-005.webp 700w"
+  },
+  "/logos/Artboard 1.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-1-320.webp 320w, /optimized/logos-artboard-1-480.webp 480w"
+  },
+  "/logos/Artboard 2.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-2-320.webp 320w, /optimized/logos-artboard-2-480.webp 480w"
+  },
+  "/logos/Artboard 3.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-3-320.webp 320w, /optimized/logos-artboard-3-480.webp 480w"
+  },
+  "/logos/Artboard 4.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-4-320.webp 320w, /optimized/logos-artboard-4-480.webp 480w"
+  },
+  "/logos/Artboard 5.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-5-320.webp 320w, /optimized/logos-artboard-5-480.webp 480w"
+  },
+  "/logos/Artboard 6.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-6-320.webp 320w, /optimized/logos-artboard-6-480.webp 480w"
+  },
+  "/logos/Artboard 7.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-7-320.webp 320w, /optimized/logos-artboard-7-480.webp 480w"
+  },
+  "/logos/Artboard 8.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-8-320.webp 320w, /optimized/logos-artboard-8-480.webp 480w"
+  },
+  "/logos/Artboard 9.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-9-320.webp 320w, /optimized/logos-artboard-9-480.webp 480w"
+  },
+  "/logos/Artboard 10.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-10-320.webp 320w, /optimized/logos-artboard-10-480.webp 480w"
+  },
+  "/logos/Artboard 11.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-11-320.webp 320w, /optimized/logos-artboard-11-480.webp 480w"
+  },
+  "/logos/Artboard 12.jpg": {
+    "width": 900,
+    "height": 300,
+    "srcset": "/optimized/logos-artboard-12-320.webp 320w, /optimized/logos-artboard-12-480.webp 480w"
+  }
+}

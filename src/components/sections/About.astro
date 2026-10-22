@@ -1,7 +1,6 @@
 ---
-import { founders, values } from '../../data/home';
+import { founders } from '../../data/home';
 import Founders from '../ui/Founders.astro';
-import Values from '../ui/Values.astro';
 ---
 <section class="about" id="about">
       <div class="about__inner">
@@ -12,10 +11,6 @@ import Values from '../ui/Values.astro';
             mission: to protect the legacy of European manufacturing from digital obsolescence.
           </p>
           <Founders items={founders} />
-        </div>
-        <div class="about__right">
-          <h2 class="values__title">Our values</h2>
-          <Values items={values} />
         </div>
       </div>
     </section>

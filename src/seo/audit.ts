@@ -50,15 +50,6 @@ export function auditStructuredData(): StructuredData {
           { '@type': 'ListItem', position: 2, name: 'Audit', item: url },
         ],
       },
-      {
-        '@type': 'FAQPage',
-        '@id': `${url}#faq`,
-        mainEntity: audit.questions.map((item) => ({
-          '@type': 'Question',
-          name: item.question,
-          acceptedAnswer: { '@type': 'Answer', text: item.answer },
-        })),
-      },
     ],
   };
 }

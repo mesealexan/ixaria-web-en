@@ -1,0 +1,167 @@
+---
+import { solutionColors, solutionProduct, solutionScenarios, solutionThumbnails } from '../../data/solutionScenarios';
+import ShowroomBooking from './ShowroomBooking.astro';
+import '../../styles/solution.css';
+
+const steps = [
+  { title: 'Signals', text: 'Signals are small elements inserted into your home page, listing pages and product pages that help us understand your returning visitors’ needs, fears and cultural traits.', color: 'blue' },
+  { title: 'Correlations', text: 'Correlation is an AI-driven analytics tool that gathers all visitor data, correlates it with the signals and prepares a response.', color: 'orange' },
+  { title: 'Responses', text: 'Responses are the dynamic parts of your webshop that change based on what the Correlation engine suggests.', color: 'arctic' },
+];
+---
+<section class="solution" id="solution" aria-labelledby="solution-title">
+  <div class="container solution__heading">
+    <h2 class="solution__title" id="solution-title">Ixaria converts more of your qualified visitors into <span>actual buyers.</span></h2>
+    <p class="solution__subtitle">by understanding their needs, fears and cultural traits and showing them the right information at the right time.</p>
+  </div>
+
+  <div class="container solution__demo-container">
+    <div class="solution-demo" data-solution-demo role="region" aria-label="Five examples of how Ixaria adapts a product page" aria-roledescription="carousel">
+      <div class="solution-demo__toolbar">
+        <span class="solution-demo__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <button class="solution-demo__pause" type="button" data-solution-pause aria-label="Pause scenario animation" hidden>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3h3v10H4zm5 0h3v10H9z" /></svg>
+          <span>Pause</span>
+        </button>
+      </div>
+
+      <div class="solution-demo__controls" role="group" aria-label="Choose a product-page scenario" hidden>
+        {solutionScenarios.map((scenario, index) => <button type="button" class:list={['solution-demo__selector', { 'is-active': index === 0 }]} data-solution-select={index} aria-pressed={index === 0}><span>{String(index + 1).padStart(2, '0')}</span>{scenario.label}</button>)}
+      </div>
+
+      <div class="solution-demo__stage" aria-live="off">
+        {solutionScenarios.map((scenario, index) => (
+          <article class:list={['solution-demo__slide', { 'is-active': index === 0 }]} data-solution-slide data-scenario={scenario.id} role="group" aria-roledescription="slide" aria-label={`${index + 1} of 5: ${scenario.label}`} aria-hidden={index !== 0} inert={index !== 0}>
+            <p class="solution-demo__question">{scenario.question}</p>
+            <hr class="solution-demo__divider" />
+            <div class="solution-demo__page">
+              <div class="solution-demo__visual">
+                <div class="solution-demo__photo"><img {...solutionProduct.image} loading="lazy" decoding="async" /></div>
+                <div class="solution-demo__thumbnails" role="group" aria-label="Sofa detail previews">
+                  {solutionThumbnails.map(({ name, crop }) => (
+                    <button class="solution-demo__thumbnail" type="button" aria-label={`Preview ${name.toLowerCase()}`} aria-expanded="false" data-solution-thumbnail style={`--thumb-left: ${-crop.x / crop.width * 100}%; --thumb-top: ${-crop.y / crop.height * 100}%; --thumb-width: ${836 / crop.width * 100}%; --thumb-height: ${470 / crop.height * 100}%`}>
+                      <span class="solution-demo__thumbnail-crop"><img {...solutionProduct.image} alt="" loading="lazy" decoding="async" /></span>
+                      <span class="solution-demo__thumbnail-preview" aria-hidden="true">
+                        <span class="solution-demo__thumbnail-crop"><img {...solutionProduct.image} alt="" loading="lazy" decoding="async" /></span>
+                        <span class="solution-demo__thumbnail-caption">{name}</span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div class="solution-demo__content">
+                <h3>{solutionProduct.name}</h3>
+                <div class="solution-demo__pricing">
+                  <p class="solution-demo__price">{solutionProduct.price}</p>
+                  <p class="solution-demo__reviews">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z" /></svg>
+                    <span><strong>{solutionProduct.rating}</strong> out of {solutionProduct.reviewCount} reviews</span>
+                  </p>
+                </div>
+                <p class="solution-demo__description">{solutionProduct.description}</p>
+                <div class="solution-demo__colors">
+                  <p class="solution-demo__color-label" aria-live="polite">Color: <strong data-solution-color-name>Sand</strong></p>
+                  <div class="solution-demo__swatches" role="group" aria-label="Choose a sofa color">
+                    {solutionColors.map((color, colorIndex) => (
+                      <button type="button" class="solution-demo__swatch" style={`--swatch-color: ${color.hex}`} data-solution-color={color.name} data-color-image={color.image} aria-label={`Show ${color.name} sofa`} aria-pressed={colorIndex === 0} title={color.name}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                {scenario.id === 'color' && (
+                  <div class="solution-demo__color-help">
+                    <button class="solution-demo__samples" type="button">Unsure about the color? Order free samples.</button>
+                  </div>
+                )}
+                {scenario.id === 'returns' && (
+                  <aside class="solution-demo__returns" aria-label="Returns information">
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 3-5 5 5 5M3 8h11a6 6 0 0 1 0 12h-3" /></svg>
+                      <strong>Free 14 days returns, no questions asked</strong>
+                    </p>
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5v8l-9 5-9-5V8l9-5Zm0 10 9-5M12 13 3 8m9 5v8M7.5 5.5l9 5" /></svg>
+                      <span>Keep original packaging</span>
+                    </p>
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 3h13v13H1zM14 8h4l4 4v4h-8M3 16h2m4 0h7m4 0h2" /><circle cx="7" cy="17" r="2" /><circle cx="18" cy="17" r="2" /></svg>
+                      <span>One fixed cost of 230 Euro - we take it from your apartment</span>
+                    </p>
+                  </aside>
+                )}
+                {scenario.id === 'material' && (
+                  <aside class="solution-demo__materials" aria-label="Material properties">
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3ZM20 2v4m-2-2h4" /></svg>
+                      <span>Easy clean material</span>
+                    </p>
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s-7 8-7 12a7 7 0 0 0 14 0c0-4-7-12-7-12Z" /><path d="m9 15 2 2 4-4" /></svg>
+                      <span>Water resistant</span>
+                    </p>
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 5 3 14h14l3-14M4 9c2-3 4 3 8 0s6 3 8 0" /><text x="12" y="16" fill="currentColor" stroke="none" font-family="Arial, sans-serif" font-size="6" font-weight="700" text-anchor="middle">30°</text></svg>
+                      <span>Can be washed at 30 degrees</span>
+                    </p>
+                  </aside>
+                )}
+                {scenario.id === 'price' && (
+                  <aside class="solution-demo__price-benefits" aria-label="Quality and guarantee">
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" /><path d="m8 12 3 3 5-6" /></svg>
+                      <span>5 year guarantee</span>
+                    </p>
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4M3 17l9 4 9-4" /></svg>
+                      <span>High Quality HR Foam</span>
+                    </p>
+                    <p>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14M5 21h14M9 3v3l8 3-10 4 10 4-8 2v2" /></svg>
+                      <span>Heavy Duty Box Springs</span>
+                    </p>
+                  </aside>
+                )}
+                {scenario.id === 'showroom-visit' && <ShowroomBooking />}
+                <button class="solution-demo__action" type="button">Add to cart</button>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container solution__statement-container">
+    <p class="solution__subtitle solution__statement">Our unique method to understand your visitors and show them <br> the right information at the right time:</p>
+  </div>
+
+  <div class="container">
+    <div class="solution__steps" data-solution-steps>
+      {steps.map((step, index) => (
+        <article class={`solution-step solution-step--${step.color}`} data-solution-step data-step-name={step.title} aria-labelledby={`solution-step-${index}-title`}>
+          <div class="solution-step__inner">
+            <div class="solution-step__face solution-step__face--front" data-step-front>
+              <h3 id={`solution-step-${index}-title`}>{step.title}</h3>
+              <button class="solution-step__toggle solution-step__toggle--read-more" type="button" data-step-toggle aria-expanded="false" aria-controls={`solution-step-${index}-details`} aria-label={`Read more about ${step.title}`} hidden>
+                read more...
+              </button>
+            </div>
+            <div class="solution-step__face solution-step__face--back" id={`solution-step-${index}-details`} data-step-back>
+              <span class="solution-step__label" aria-hidden="true">{step.title}</span>
+              <p>{step.text}</p>
+              <button class="solution-step__toggle solution-step__toggle--close" type="button" data-step-close aria-label={`Close ${step.title} details`} hidden>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<script>
+  import '../../features/solution/scenarios';
+  import '../../features/solution/cards';
+</script>

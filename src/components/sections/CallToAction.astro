@@ -1,18 +1,22 @@
+---
+import '../../styles/call-to-action.css';
+import { responsiveImage } from '../../utils/images';
+---
 <section class="cta-strip" id="book">
       <div class="cta-strip__inner">
         
         <div class="cta-strip__image">
-          <img src="/Picture1.webp" width="800" height="800" alt="Furniture product page consultation" loading="lazy">
+          <img src="/Picture1.webp" {...responsiveImage('/Picture1.webp', '280px')} width="800" height="800" alt="Furniture product page consultation" loading="lazy" decoding="async">
         </div>
         
         <div class="cta-strip__text">
-          <h2 class="cta-strip__title">Want to see what your current product page is missing?</h2>
+          <h2 class="cta-strip__title">Find out what why your visitors don't buy?</h2>
           <p class="cta-strip__body">Book a short call and we'll look at where your customers may be hesitating before
             they buy.</p>
         </div>
         
         <div class="cta-strip__btn-wrap">
-          <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer" class="btn" style="white-space:nowrap;font-size:13px;padding:12px 22px;background:var(--yellow);color:var(--navy);">Book
+          <a href="https://calendly.com/alex-ixaria/ixaria-strategy-session" target="_blank" rel="noopener noreferrer" class="btn btn-white" style="white-space:nowrap;font-size:13px;padding:12px 22px;">Book
             a discovery call</a>
         </div>
       </div>

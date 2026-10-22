@@ -1,0 +1,19 @@
+.pilot-offer { margin: 28px 0 24px; }
+.pilot-price strong { font-family: var(--font-display); font-weight: 900; font-size: 36px; line-height: 1.2; letter-spacing: -.025em; }
+.pilot-terms { margin-top: 6px; color: var(--gray-text); font-size: 14px; }
+.pilot-implementation-list { display: grid; gap: 24px; list-style: none; margin-top: 28px; }
+.pilot-implementation-list h3 { font-size: 20px; margin-bottom: 8px; }
+.pilot-implementation-list p { font-size: 15px; line-height: 1.7; }
+.pilot-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pilot-step-number { display: block; color: var(--elec); font-family: var(--font-display); font-size: 32px; line-height: 1; margin-bottom: 24px; }
+.pilot-metrics { display: grid; gap: 12px; list-style: none; margin-top: 28px; }
+.pilot-metrics li { padding: 14px 18px; background: var(--white); border: 1px solid var(--gray-mid); border-radius: var(--radius); font-size: 14px; font-weight: 600; }
+.pilot-measurement .audit-placeholder { aspect-ratio: 4 / 3; min-height: 0; margin-top: 0; }
+.pilot-measurement__media { display: block; width: 100%; height: auto; border-radius: 16px; }
+.pilot-final-price { font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+.full-implementation-page .implementation-revenue-share { display: block; margin-top: 6px; color: var(--gray-text); font-size: 14px; font-weight: 400; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .pilot-steps { grid-template-columns: 1fr; }
+  .pilot-final-price { font-size: 20px; }
+}

@@ -1,0 +1,110 @@
+---
+import { pilot } from '../../data/pilot';
+import Button from '../ui/Button.astro';
+import { responsiveImage, serviceImageSizes } from '../../utils/images';
+import '../../styles/audit.css';
+import '../../styles/pilot.css';
+---
+
+<div class="audit-page pilot-page">
+  <section class="audit-section audit-hero" data-pilot-section="hero" aria-labelledby="pilot-title">
+    <div class="container audit-grid">
+      <div>
+        <h1 id="pilot-title">{pilot.hero.heading} <span>{pilot.hero.highlight}</span></h1>
+        <p class="audit-lead">{pilot.hero.description}</p>
+        <div class="pilot-offer">
+          <p class="pilot-price"><strong>{pilot.monthlyPrice}</strong></p>
+          <p class="pilot-terms">{pilot.terms}</p>
+        </div>
+        <Button href={pilot.bookingUrl} external>{pilot.bookingLabel}</Button>
+      </div>
+      <img
+        class="audit-hero__media"
+        src="/pilot-hero.webp"
+        {...responsiveImage('/pilot-hero.webp', serviceImageSizes)}
+        width="1254"
+        height="1254"
+        alt="A shopper explores sofa fabrics and sees the sofa's dimensions in a living room."
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <section class="audit-section audit-receive" data-pilot-section="implement" aria-labelledby="pilot-implement-title">
+    <div class="container audit-grid audit-grid--image-left">
+      <img
+        class="audit-receive__media"
+        src="/pilot-months.webp"
+        {...responsiveImage('/pilot-months.webp', serviceImageSizes)}
+        width="1448"
+        height="1086"
+        alt="Three selected sofas above connected calendar illustrations representing three months of testing."
+        loading="lazy"
+        decoding="async"
+      />
+      <div>
+        <h2 class="section-title" id="pilot-implement-title">{pilot.implement.heading}</h2>
+        <p class="audit-lead">{pilot.implement.description}</p>
+        <ul class="pilot-implementation-list">
+          {pilot.implement.points.map(point => (
+            <li>
+              <h3>{point.heading}</h3>
+              <p>{point.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="audit-section" data-pilot-section="why" aria-labelledby="pilot-why-title">
+    <div class="container">
+      <div class="audit-section-heading">
+        <h2 class="section-title" id="pilot-why-title">{pilot.why.heading}</h2>
+        <p class="audit-lead">{pilot.why.description}</p>
+      </div>
+      <ol class="audit-cards pilot-steps" role="list">
+        {pilot.why.steps.map((step, index) => (
+          <li class="audit-card">
+            <span class="pilot-step-number" aria-hidden="true">{index + 1}</span>
+            <p>{step}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="audit-section audit-approach pilot-measurement" data-pilot-section="measurement" aria-labelledby="pilot-measurement-title">
+    <div class="container audit-grid">
+      <div>
+        <h2 class="section-title" id="pilot-measurement-title">{pilot.measurement.heading}</h2>
+        <p class="audit-lead">{pilot.measurement.description}</p>
+        <ul class="pilot-metrics" role="list">
+          {pilot.measurement.labels.map(label => <li>{label}</li>)}
+        </ul>
+        <p class="audit-note">{pilot.measurement.note}</p>
+      </div>
+      <img
+        class="pilot-measurement__media"
+        src="/pilt-agree.webp"
+        {...responsiveImage('/pilt-agree.webp', serviceImageSizes)}
+        width="1448"
+        height="1086"
+        alt="Illustration comparing an agreed goal with performance before and after Ixaria."
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <section class="audit-section audit-final" data-pilot-section="final" aria-labelledby="pilot-final-title">
+    <div class="container">
+      <h2 class="section-title" id="pilot-final-title">{pilot.final.heading}</h2>
+      <p class="audit-lead">{pilot.final.description}</p>
+      <p class="pilot-final-price">{pilot.final.price}</p>
+      <Button href={pilot.bookingUrl} external>{pilot.bookingLabel}</Button>
+      <a class="audit-pilot-link" href={pilot.final.nextUrl}>{pilot.final.nextLabel}</a>
+    </div>
+  </section>
+</div>

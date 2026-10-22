@@ -8,9 +8,7 @@ import postcss from 'postcss';
 
 const dist = path.resolve('dist');
 const baseline = JSON.parse(fs.readFileSync('tests/fixtures/migration-baseline.json', 'utf8'));
-const originalHow = JSON.parse(
-  fs.readFileSync('tests/fixtures/how-it-works-baseline.json', 'utf8'),
-);
+const approvedContent = JSON.parse(fs.readFileSync('tests/fixtures/page-content-baseline.json', 'utf8'));
 const schemaBaseline = JSON.parse(
   fs.readFileSync('tests/fixtures/home-schema-baseline.json', 'utf8'),
 );
@@ -49,13 +47,11 @@ for (const [name, expected] of Object.entries(baseline)) {
   test(`${name}: preserves visible content and heading hierarchy in static HTML`, () => {
     const main = $('main').clone();
     main.find('script,style,noscript,#email-msg-success,#email-msg-error').remove();
-    // The three-stage redesign and added client strip are intentional.
-    if (name === 'index') main.find('#how-it-works, .client-logos').remove();
     const expectedContent =
-      name === 'index' ? expected.content.replace(originalHow.content, '') : expected.content;
+      name === 'index' ? approvedContent['/'].mainText : expected.content;
     const expectedHeadings =
       name === 'index'
-        ? expected.headings.filter((heading) => !originalHow.headings.includes(heading))
+        ? approvedContent['/'].headings.map(heading => heading.text)
         : expected.headings;
     assert.equal(
       contentHash(main.text()),
@@ -133,7 +129,7 @@ test('structured data preserves the original entities, relationships and IDs', (
     assert.ok(migrated, original['@type']);
     if (!['FAQPage', 'HowTo'].includes(original['@type'])) {
       const expected =
-        original['@type'] === 'WebPage' ? { ...original, name: $('title').text(), description: $('meta[name="description"]').attr('content'), dateModified: '2026-10-06' } : original;
+        original['@type'] === 'WebPage' ? { ...original, name: $('title').text(), description: $('meta[name="description"]').attr('content'), dateModified: '2026-10-22' } : original;
       assert.deepEqual(migrated, expected);
     }
   }
@@ -150,12 +146,14 @@ test('structured data preserves the original entities, relationships and IDs', (
       compact($(items[index]).find('.faq__answer').text()),
     );
   }
-  // Answers can now follow visible copy, but none of the original questions may disappear.
-  for (const question of schemaBaseline['@graph'].find((entity) => entity['@type'] === 'FAQPage')
-    .mainEntity) {
-    assert.ok(
-      faqSchema.mainEntity.some((actual) => actual.name === question.name),
-      question.name,
+  // Questions and answers follow the revised copy; removed topics stay excluded.
+  assert.equal(items.length, 13);
+  const removedQuestions = new Set(['Can we try a pilot?', 'Can the solution generate images in a live environment?']);
+  for (const question of removedQuestions) {
+    assert.equal(
+      faqSchema.mainEntity.some((actual) => actual.name === question),
+      false,
+      question,
     );
   }
 });
@@ -181,11 +179,11 @@ test('sitemap contains precisely the indexable canonical pages and valid image U
   const images = $('image\\:loc')
     .toArray()
     .map((node) => $(node).text());
-  assert.equal(images.length, 4);
+  assert.equal(images.length, 26);
   for (const image of images)
     assert.ok(fs.existsSync(path.join(dist, new URL(image).pathname)), image);
   const homeURL = $('url').filter((_, node) => $(node).find('loc').text() === 'https://ixaria.eu/');
-  assert.equal(homeURL.find('lastmod').text(), '2026-10-06');
+  assert.equal(homeURL.find('lastmod').text(), '2026-10-22');
   assert.match(
     fs.readFileSync(path.join(dist, 'robots.txt'), 'utf8'),
     /Sitemap: https:\/\/ixaria.eu\/sitemap.xml/,
@@ -221,10 +219,10 @@ test('How it works shows the three requested stages with matching schema and det
     assert.equal(detail('nav[aria-label="Implementation stages"]').length, 0);
     assert.equal(detail('nav[aria-label="On this audit page"]').length, 0);
     if (title === 'Audit') {
-      assert.equal(detail('h1').text(), 'Find out why interested visitors aren’t becoming customers.');
-      assert.equal(detail('title').text(), 'Furniture Ecommerce Audit | IXARIA');
+      assert.equal(detail('h1').text(), "Find out what why your visitors don't buy?");
+      assert.equal(detail('title').text(), 'Furniture Conversion Audit | IXARIA');
     } else {
-      assert.equal(detail('h1').text(), title);
+      assert.equal(detail('h1').text(), title === 'Pilot' ? 'Use a smarter shopping experience on your bestsellers.' : 'Bring the proven approach to every product.');
       assert.equal(detail('title').text(), title === 'Pilot' ? 'Furniture Product Page Optimisation Pilot | IXARIA' : 'Furniture Ecommerce Product Page Implementation | IXARIA');
     }
     assert.equal(detail('link[rel="canonical"]').attr('href'), schema.step[index].url);
@@ -244,43 +242,107 @@ test('How it works shows the three requested stages with matching schema and det
   }
 });
 
-test('audit follows the brief with genuine assets and consistent schema', () => {
-  const $ = load(fs.readFileSync(path.join(dist, 'audit.html'), 'utf8'));
-  assert.deepEqual($('[data-audit-section]').map((_, el) => $(el).attr('data-audit-section')).get(),
-    ['hero','problem','analysis','deliverables','companies','process','team','faq','final']);
-  assert.equal($('h1').length, 1);
+test('full implementation presents the rollout and pricing with shared chrome', () => {
+  const $ = load(fs.readFileSync(path.join(dist, 'full-implementation.html'), 'utf8'));
+  assert.deepEqual($('[data-implementation-section]').map((_, el) => $(el).attr('data-implementation-section')).get(),
+    ['hero', 'implement', 'rollout', 'measurement', 'final']);
+  assert.equal($('main section').length, 5);
+  assert.equal($('h1').text(), 'Bring the proven approach to every product.');
+  assert.equal($('h1 span').text(), 'every product.');
   assert.equal($('header').html(), documents.index('header').html());
   assert.equal($('footer').html(), documents.index('footer').html());
-  assert.equal($('.audit-process > li').length, 3);
-  assert.equal($('.audit-team img').length, 3);
-  assert.equal($('.audit-monogram').length, 0);
-  assert.deepEqual($('.audit-companies img').map((_, el) => $(el).attr('alt')).get(), ['Massif', 'Expo Mob', 'Agache', 'Divanissimi', 'ABC Mobila', 'Larix Mobila', 'Sofa Mix', 'Eurosun', 'Artisanova', 'Lockart Doors', 'Sofaest Mob', 'Timflex']);
-  assert.equal($('a[download]').length, 0);
-  assert.equal($('[data-preview]').length, 0);
-  assert.equal($('dialog').length, 0);
-  assert.equal($('.audit-faq details').length, 6);
-  const confidentiality = $('.audit-faq details').filter((_, el) =>
-    $(el).find('summary').text().includes('Will our business information stay confidential?'));
-  assert.equal(confidentiality.length, 1);
-  assert.equal(confidentiality.find('p').length, 2);
-  assert.match(confidentiality.find('p').last().text(), /confidentiality agreement signed before you share any information/);
-  assert.doesNotMatch($('main').text(), /4,500|14-day|guaranteed uplift/);
-  assert.equal($('.audit-final .audit-price strong').text(), '€1,500');
-  assert.equal($('.audit-final__price-label').text(), 'Audit fee');
-  assert.equal($('.audit-final .audit-price span').text(), 'One-time payment');
-  assert.equal($('.audit-final .audit-price-guarantee').text(), $('.audit-guarantee h3').text());
-  assert.match($('.audit-guarantee').text(), /7-day money-back guarantee/);
-  const booking = $('main a').filter((_, el) => $(el).text().trim() === 'Book a free discovery call');
+  assert.equal($('.audit-placeholder').length, 0);
+  assert.equal($('.audit-receive__media').attr('src'), '/full-three.webp');
+  assert.equal($('.pilot-measurement__media').attr('src'), '/full-measure.webp');
+  assert.equal($('.audit-hero__media').attr('src'), '/full-hero.webp');
+  assert.equal($('.pilot-price strong').text(), '€1,500 / month');
+  assert.equal($('.implementation-monthly-price').text(), '€1,500 / month');
+  assert.deepEqual($('.implementation-revenue-share').map((_, el) => $(el).text()).get(),
+    ['+ 2% of every sales attributed to Ixaria', '+ 2% of every sales attributed to Ixaria']);
+  assert.deepEqual($('.pilot-steps h3').map((_, el) => $(el).text()).get(), ['Prioritize', 'Adapt', 'Launch']);
+  const booking = $('main a');
+  assert.equal(booking.length, 2);
+  booking.each((_, el) => {
+    assert.equal($(el).text(), 'Book a Discovery call');
+    assert.equal($(el).attr('href'), 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
+  });
+  assert.equal($('main img').length, 3);
+  assert.equal($('main video, .implementation-hero, .implementation-outcomes').length, 0);
+  assert.doesNotMatch($('main').text(), /Keep learning|What you take forward|Build on what works/);
+  const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
+  assert.equal(graph.find(entity => entity['@type'] === 'Service').description, $('.audit-hero .audit-lead').text());
+});
+
+test('pilot presents the five-section scope, pricing, and next step with shared chrome', () => {
+  const $ = load(fs.readFileSync(path.join(dist, 'pilot.html'), 'utf8'));
+  assert.deepEqual($('[data-pilot-section]').map((_, el) => $(el).attr('data-pilot-section')).get(),
+    ['hero', 'implement', 'why', 'measurement', 'final']);
+  assert.equal($('main section').length, 5);
+  assert.equal($('h1').text(), 'Use a smarter shopping experience on your bestsellers.');
+  assert.equal($('h1 span').text(), 'on your bestsellers.');
+  assert.equal($('header').html(), documents.index('header').html());
+  assert.equal($('footer').html(), documents.index('footer').html());
+  assert.equal($('.audit-placeholder').length, 0);
+  assert.equal($('.audit-receive__media').attr('src'), '/pilot-months.webp');
+  assert.equal($('.pilot-measurement__media').attr('src'), '/pilt-agree.webp');
+  assert.equal($('.audit-hero__media').attr('src'), '/pilot-hero.webp');
+  assert.equal($('.pilot-price').text(), '€1,500/month');
+  assert.equal($('.pilot-terms').text(), 'Three months · €4,500 total');
+  assert.equal($('.pilot-final-price').text(), '€1,500/month · €4,500 total');
+  assert.equal($('.pilot-steps > li').length, 3);
+  assert.deepEqual($('.pilot-metrics li').map((_, el) => $(el).text()).get(),
+    ['Agreed success metric', 'Sales before Ixaria', 'Sales after Ixaria']);
+  const booking = $('main a').filter((_, el) => $(el).text().trim() === 'Book a Discovery Call');
   assert.equal(booking.length, 2);
   booking.each((_, el) => assert.equal($(el).attr('href'), 'https://calendly.com/alex-ixaria/ixaria-strategy-session'));
-  assert.equal($('a[href="#example-audit"]').length, 0);
+  assert.equal($('.audit-pilot-link').attr('href'), '/full-implementation.html');
+  assert.equal($('main img').length, 3);
+  assert.equal($('main video, .implementation-hero, .implementation-outcomes').length, 0);
   const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
-  const faq = graph.find(el => el['@type'] === 'FAQPage');
-  assert.equal(faq.mainEntity.length, $('.audit-faq details').length);
-  $('.audit-faq details').each((i, el) => {
-    assert.equal(faq.mainEntity[i].name, $(el).find('summary').text().replace('+','').trim());
-    assert.equal(faq.mainEntity[i].acceptedAnswer.text, $(el).find('p').map((_, p) => $(p).text()).get().join('\n\n'));
-  });
+  assert.equal(graph.find(entity => entity['@type'] === 'Service').description, $('.audit-hero .audit-lead').text());
+});
+
+test('audit presents the conversion plan with shared integrations and current schema', () => {
+  const $ = load(fs.readFileSync(path.join(dist, 'audit.html'), 'utf8'));
+  assert.deepEqual($('[data-audit-section]').map((_, el) => $(el).attr('data-audit-section')).get(),
+    ['hero', 'receive', 'process', 'approach', 'team', 'newsletter', 'final']);
+  assert.equal($('h1').length, 1);
+  assert.equal($('h1').text(), "Find out what why your visitors don't buy?");
+  assert.equal($('h1 span').text(), "don't buy?");
+  assert.equal($('header').html(), documents.index('header').html());
+  assert.equal($('footer').html(), documents.index('footer').html());
+  assert.equal($('.audit-process > li').length, 4);
+  assert.equal($('.audit-flow > li').length, 3);
+  assert.equal($('.audit-placeholder').length, 0);
+  assert.equal($('.audit-approach__media').attr('src'), '/audit-right-info2.webp');
+  assert.equal($('.audit-hero img').attr('src'), '/hero-audit.webp');
+  assert.equal($('.audit-receive__media').attr('src'), '/audit-results.webp');
+  assert.equal($('.audit-team img').length, 3);
+  assert.deepEqual($('.audit-team img').map((_, el) => $(el).attr('src')).get(),
+    ['/people/Alex.jpg', '/people/Ovi.jpg', '/people/Eduard.jpg']);
+  assert.equal($('.audit-team__linkedin').length, 3);
+  assert.match($('.audit-team').text(), /10\+ years building product configurators/);
+  assert.match($('.audit-team').text(), /Marketing audits, data analysis, conversion rate optimization/);
+  assert.match($('.audit-team').text(), /UX designer for Mercedes and Bayer/);
+  assert.deepEqual($('.audit-team h3').map((_, el) => $(el).text()).get(),
+    ['Alex Mesesan', 'Ovidiu Stegari', 'Eduard Badea']);
+  assert.equal($('.audit-faq, .audit-guarantee, .audit-companies, dialog').length, 0);
+  assert.doesNotMatch($('main').text(), /30,000|money-back|4,500|14-day|guaranteed uplift/);
+  assert.equal($('.audit-price strong').text(), '€1,500');
+  assert.equal($('.audit-price span').text(), 'One-time fee');
+  assert.equal($('.audit-final__details, .audit-final__steps').length, 0);
+  const booking = $('main a').filter((_, el) => $(el).text().replace(/\s+/g, ' ').trim() === 'Book a discovery call');
+  assert.equal(booking.length, 2);
+  assert.equal($('.cta-strip').length, 0);
+  booking.each((_, el) => assert.equal($(el).attr('href'), 'https://calendly.com/alex-ixaria/ixaria-strategy-session'));
+  assert.equal($('.audit-pilot-link').attr('href'), '/pilot.html');
+  assert.equal($('#sib-form').attr('action'), documents.index('#sib-form').attr('action'));
+  assert.equal($('#sib-form').attr('method'), 'POST');
+  assert.deepEqual($('#sib-form input').map((_, el) => $(el).attr('name')).get(), ['EMAIL', 'email_address_check', 'locale']);
+  assert.equal($('#sib-form button').text(), 'Join the newsletter');
+  const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
+  assert.equal(graph.some(el => el['@type'] === 'FAQPage'), false);
+  assert.equal(graph.find(el => el['@type'] === 'Service').description, $('.audit-hero .audit-lead').text());
   for (const el of $('[src],[href]').toArray()) {
     const href = $(el).attr('src') ?? $(el).attr('href');
     if (!href || href.startsWith('mailto:')) continue;
@@ -296,6 +358,9 @@ test('shared chrome and integration configuration are consistent across all page
   const footer = documents.index('footer').html();
   for (const [name, $] of Object.entries(documents)) {
     assert.equal($('header').html(), header, name);
+    assert.equal($('.navbar__process summary').text().trim(), 'Process', name);
+    assert.deepEqual($('.navbar__process-links a').map((_, el) => [[$(el).text(), $(el).attr('href')]]).get(),
+      [['Audit', '/audit.html'], ['Pilot', '/pilot.html'], ['Full Implementation', '/full-implementation.html']], name);
     assert.equal($('footer').html(), footer, name);
     assert.equal($('script[src*="secureprivacy.ai"]').length, 1, name);
     assert.equal($('script[src*="googletagmanager.com"]').length, 0, 'analytics loads only after consent');
@@ -344,7 +409,7 @@ test('indexable pages have consistent metadata, social cards and structured desc
     const page = graph.find(entity => entity['@type'] === 'WebPage');
     assert.equal(page.name, title);
     assert.equal(page.description, description);
-    assert.equal(page.dateModified, '2026-10-06');
+    assert.equal(page.dateModified, filename === 'cofounder.html' ? '2026-10-06' : '2026-10-22');
     assert.equal($('link[href*="fonts.googleapis.com"]').length, 0);
     assert.ok($('link[rel="preload"][href="/fonts/inter-1.woff2"]').length);
   }

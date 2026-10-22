@@ -20,7 +20,7 @@ export const GET: APIRoute = () => {
   <url>
     <loc>${escapeXML(new URL(page.path, site.url).href)}</loc>
     ${page.lastModified ? `<lastmod>${page.lastModified}</lastmod>` : ''}
-    ${page.path === '/' ? sitemapImages.map((image) => `<image:image><image:loc>${escapeXML(image.url)}</image:loc><image:title>${escapeXML(image.title)}</image:title><image:caption>${escapeXML(image.caption)}</image:caption></image:image>`).join('\n    ') : ''}
+    ${(sitemapImages[page.path] ?? []).map((image) => `<image:image><image:loc>${escapeXML(new URL(image, site.url).href)}</image:loc></image:image>`).join('\n    ')}
   </url>`,
     )
     .join('');

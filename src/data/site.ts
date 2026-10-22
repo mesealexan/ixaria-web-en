@@ -96,7 +96,15 @@ export const site = {
   navigation: [
     {
       label: 'How it works',
-      href: '/#how-it-works',
+      href: '/#solution',
+    },
+    {
+      label: 'Process',
+      children: [
+        { label: 'Audit', href: '/audit.html' },
+        { label: 'Pilot', href: '/pilot.html' },
+        { label: 'Full Implementation', href: '/full-implementation.html' },
+      ],
     },
     {
       label: 'Features',
@@ -110,7 +118,7 @@ export const site = {
   websiteLinks: [
     {
       label: 'Why Ixaria',
-      href: '/#before-after',
+      href: '/#visitor-conversion',
     },
     {
       label: 'How it works',
@@ -131,10 +139,6 @@ export const site = {
     {
       label: 'Full Implementation',
       href: '/full-implementation.html',
-    },
-    {
-      label: 'Careers',
-      href: '/cofounder.html',
     },
     {
       label: 'Book a call',

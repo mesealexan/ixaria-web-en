@@ -16,6 +16,7 @@ export interface Founder {
   role: string;
   linkedin: string;
   image: ImageData;
+  imagePosition?: string;
 }
 
 export interface FAQ {

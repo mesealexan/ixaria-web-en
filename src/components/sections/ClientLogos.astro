@@ -1,14 +1,27 @@
 ---
 import { audit } from '../../data/audit';
 import { auditAssets } from '../../data/audit-assets';
-interface Props { auditPage?: boolean }
-const { auditPage = false } = Astro.props;
+import { responsiveImage } from '../../utils/images';
+interface Props { auditPage?: boolean; marquee?: boolean }
+const { auditPage = false, marquee = false } = Astro.props;
 ---
-<section class="client-logos audit-companies" data-audit-section={auditPage ? 'companies' : undefined} aria-labelledby="companies-title">
+<section class:list={['client-logos', 'audit-companies', { 'client-logos--marquee': marquee }]} data-audit-section={auditPage ? 'companies' : undefined} aria-labelledby={marquee ? undefined : 'companies-title'} aria-label={marquee ? audit.companies.heading : undefined}>
   <div class="container">
-    <h2 class="section-title" id="companies-title">{audit.companies.heading}</h2>
-    <p class="section-sub">{audit.companies.text}</p>
-    <ul>{auditAssets.clientLogos.map(logo => <li><img {...logo.image} loading="lazy" decoding="async" /></li>)}</ul>
+    {!marquee && <h2 class="section-title" id="companies-title">{audit.companies.heading}</h2>}
+    {!marquee && <p class="section-sub">{audit.companies.text}</p>}
+    {marquee ? (
+      <div class="client-logos__viewport">
+        <div class="client-logos__track">
+          {[0, 1].map(copy => (
+            <ul class="client-logos__group" aria-hidden={copy === 1 ? 'true' : undefined}>
+              {auditAssets.clientLogos.map(logo => <li><img {...logo.image} {...responsiveImage(logo.image.src, '(max-width: 768px) 132px, 154px')} alt={copy === 1 ? '' : logo.image.alt} loading="eager" decoding="async" /></li>)}
+            </ul>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <ul>{auditAssets.clientLogos.map(logo => <li><img {...logo.image} {...responsiveImage(logo.image.src, '(max-width: 768px) 120px, 140px')} loading="lazy" decoding="async" /></li>)}</ul>
+    )}
   </div>
 </section>
 <style>
@@ -16,9 +29,28 @@ const { auditPage = false } = Astro.props;
   .client-logos ul {display:flex;flex-wrap:wrap;gap:28px 40px;list-style:none;margin-top:28px;align-items:center}
   .client-logos img {width:140px;height:42px;object-fit:contain}
   @media(max-width:768px) {
-    .client-logos .container {padding:0 20px}
+    .client-logos .container {padding:0 var(--home-container-gutter,20px)}
     .client-logos ul {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 16px;justify-items:center}
     .client-logos li {width:100%;min-width:0;display:flex;justify-content:center}
     .client-logos img {width:100%;max-width:120px;height:auto;aspect-ratio:3 / 1}
+  }
+
+  .client-logos--marquee {padding:20px 0 24px;background:var(--white)}
+  .client-logos__viewport {overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+  .client-logos__track {display:flex;width:max-content;animation:client-logos-scroll 48s linear infinite}
+  .client-logos--marquee .client-logos__group {display:flex;flex:none;flex-wrap:nowrap;gap:40px;align-items:center;width:max-content;margin:0;padding:0 40px 0 0;list-style:none}
+  .client-logos--marquee li {display:flex;flex:0 0 154px;align-items:center;justify-content:center;width:154px}
+  .client-logos--marquee img {width:154px;max-width:none;height:52px;aspect-ratio:3 / 1;object-fit:contain}
+  @keyframes client-logos-scroll {to {transform:translateX(-50%)}}
+  @media(max-width:768px) {
+    .client-logos--marquee {padding:16px 0 20px}
+    .client-logos--marquee .client-logos__group {gap:24px;padding-right:24px}
+    .client-logos--marquee li {flex-basis:132px;width:132px}
+    .client-logos--marquee img {width:132px;height:44px}
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .client-logos__viewport {overflow-x:auto;mask-image:none}
+    .client-logos__track {animation:none}
+    .client-logos--marquee .client-logos__group[aria-hidden='true'] {display:none}
   }
 </style>

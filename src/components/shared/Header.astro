@@ -7,7 +7,17 @@ import Button from '../ui/Button.astro';
     <div class="navbar__inner">
       <a href="/" class="navbar__logo"><img src="/logo-light.svg" alt="Ixaria" width="120" height="40" /></a>
       <div class="navbar__nav" id="primary-navigation">
-        {site.navigation.map(link => <a href={link.href}>{link.label}</a>)}
+        {site.navigation.map(link => 'children' in link ? (
+          <details class="navbar__process">
+            <summary>
+              {link.label}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 4.5 3 3 3-3" /></svg>
+            </summary>
+            <div class="navbar__process-links">
+              {link.children.map(child => <a href={child.href}>{child.label}</a>)}
+            </div>
+          </details>
+        ) : <a href={link.href}>{link.label}</a>)}
       </div>
       <div class="navbar__right"><Button href={site.bookingUrl} external class="navbar__booking">Book a call</Button></div>
       <button class="navbar__mobile-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="primary-navigation">

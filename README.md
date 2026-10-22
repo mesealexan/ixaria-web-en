@@ -75,6 +75,16 @@ Long-form collections retain HTML where the original page needs custom styling. 
 
 `src/pages/sitemap.xml.ts` generates the sitemap from the SEO registry and excludes pages containing `noindex`. Every new indexable page must have an entry in that registry. Use the same data for visible copy and related structured data to avoid drift.
 
+## Image performance and SEO checks
+
+Original image files remain available at their existing URLs. Responsive WebP derivatives live in `public/optimized/`; `src/utils/images.ts` supplies `srcset` and layout-specific `sizes` without changing the displayed content or crop. Sharp is supplied by Astro's default image tooling; install optional dependencies when running image commands.
+
+After replacing an image source, run `npm run images:optimize` and commit the generated assets and `src/data/responsive-images.json`. The generator prefers the original PNG where available. Update `src/seo/sitemap-images.ts` when adding page images.
+
+Run `npm run audit:site` after a production build to inventory every image, check alts, dimensions, local references, page metadata, and social images. The JSON result is written to `.tmp/audit-after.json`. `tests/performance-seo.test.mjs` protects the approved page text and validates responsive files. Update the text baseline only for approved editorial changes.
+
+`tests/browser/performance.spec.ts` records desktop/mobile resource transfers and local rendering diagnostics, with external services blocked. These local measurements do not replace production Core Web Vitals or Search Console checks. The completed audit and image inventories are in `docs/performance-audit-2026-10-22.html`.
+
 Existing URLs and public image/font/video paths are preserved. Changing an established URL later requires a permanent redirect from the hosting provider; Astro's static output alone cannot send an HTTP 301 response.
 
 ## Integrations

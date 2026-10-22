@@ -1,9 +1,9 @@
 // Update only when a page's content or metadata changes meaningfully.
 export const pageDates = {
-  home: '2026-10-06',
-  audit: '2026-10-06',
-  pilot: '2026-10-06',
-  'full-implementation': '2026-10-06',
+  home: '2026-10-22',
+  audit: '2026-10-22',
+  pilot: '2026-10-22',
+  'full-implementation': '2026-10-22',
   cofounder: '2026-10-06',
 } as const;
 
@@ -20,10 +20,10 @@ export const careerMetadata = {
 export const implementationMetadata = {
   pilot: {
     title: 'Furniture Product Page Optimisation Pilot | IXARIA',
-    description: 'Test improved furniture product pages on selected products in your existing webshop. Review customer behaviour and results before planning a wider rollout.',
+    description: 'Test a smarter shopping experience on three to five furniture bestsellers over three months. €1,500/month; €4,500 total, measured against your agreed success metric.',
   },
   'full-implementation': {
     title: 'Furniture Ecommerce Product Page Implementation | IXARIA',
-    description: 'Roll out the approach validated in your IXARIA Pilot across the agreed furniture catalogue, connect product workflows and guide improvements with customer behaviour.',
+    description: 'Expand the signals, correlation, and responses validated during your pilot across your full furniture product catalog. €1,500 / month + 2% of every sales attributed to Ixaria.',
   },
 };

@@ -3,6 +3,8 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { pageSEO } from '../seo/pages';
 import { homeStructuredData } from '../seo/structured-data';
 import Hero from '../components/sections/Hero.astro';
+import VisitorConversion from '../components/sections/VisitorConversion.astro';
+import Solution from '../components/sections/Solution.astro';
 import BeforeAfter from '../components/sections/BeforeAfter.astro';
 import ClientLogos from '../components/sections/ClientLogos.astro';
 import HowItWorks from '../components/sections/HowItWorks.astro';
@@ -15,10 +17,14 @@ import '../styles/home.css';
 import ChatDialog from '../features/chat/ChatDialog.astro';
 ---
 <MarketingLayout seo={pageSEO.home} structuredData={homeStructuredData()}>
-  <Hero />
+  <div class="hero-intro">
+    <Hero />
+    <ClientLogos marquee />
+  </div>
+  <VisitorConversion />
+  <Solution />
   <BeforeAfter />
   <HowItWorks />
-  <ClientLogos />
   <CallToAction />
   <Features />
   <Newsletter />

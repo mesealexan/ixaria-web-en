@@ -1,0 +1,41 @@
+﻿---
+import { shopperQuestions } from '../../data/shopperQuestions';
+---
+<section class="visitor-conversion" id="visitor-conversion" aria-labelledby="visitor-conversion-title">
+  <div class="container visitor-conversion__inner">
+    <div class="visitor-conversion__copy">
+      <h2 class="visitor-conversion__title" id="visitor-conversion-title">
+        9/10 qualified visitors leave your webshop without buying.
+      </h2>
+      <p class="visitor-conversion__body">
+        Because every shopper has different questions.<br />
+        Your product page shows everyone the same information, leaving doubts that stop them from buying.
+      </p>
+    </div>
+
+    <figure class="product-questions" aria-label="A sofa product page with unanswered questions from different shoppers">
+      <div class="product-questions__page">
+        <div class="product-questions__photo">
+          <!-- Crop the existing product-page asset to its beige sofa photograph. -->
+          <img src="/before.webp" srcset="/before-836.webp 836w, /before.webp 1672w" sizes="(max-width: 480px) 80vw, 470px" width="1672" height="941" alt="Beige sofa with two cushions" loading="lazy" decoding="async" />
+        </div>
+        <div class="product-questions__details" aria-hidden="true">
+          <span class="product-questions__name">Sofa</span>
+          <div class="product-questions__lines"><span></span><span></span><span></span></div>
+          <div class="product-questions__swatches"><span></span><span></span><span></span></div>
+          <span class="product-questions__cart">Add to cart</span>
+        </div>
+      </div>
+      <ul class="product-questions__bubbles" aria-hidden="true">
+        {shopperQuestions.map((question) => (
+          <li class="product-questions__bubble" data-question={question.id} hidden>
+            <span class="product-questions__bubble-icon">?</span>
+            <span class="product-questions__bubble-text">{question.text}</span>
+          </li>
+        ))}
+      </ul>
+    </figure>
+  </div>
+</section>
+
+<script>import '../../features/comparison/shopperQuestions';</script>

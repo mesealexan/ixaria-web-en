@@ -5,109 +5,98 @@ export const faqs: FAQ[] = [
     id: 'faq-1',
     question: 'How the solution works / what it does?',
     answer: [
-      'Ixaria improves the product pages on your existing online store. It brings images, videos, product options, dimensions, delivery details and other useful information into one clear page. It then learns from visitor behaviour and shows each customer the information most helpful to their buying decision.',
+      'Ixaria helps more interested visitors become buyers through three connected steps: Signals, Correlations and Responses.',
+      'Signals: learn what matters to each shopper. Small interactive elements, such as buttons or images, help visitors explore what interests them. Their choices across your webshop and return visits reveal more about their needs.',
+      'Correlations: connect the clues. Ixaria uses AI to connect these interactions with the visitor’s context, including where they came from and the campaign that brought them there. Together, these clues help identify what they may need before deciding.',
+      'Responses: show information that helps. Ixaria adapts the page with relevant content and visuals. For example, someone exploring practical fabrics might see cleaning guidance, while someone concerned about size might see an image showing the sofa’s scale.',
+      'We build and refine these interactions using research and real customer behaviour, then measure what helps visitors move towards a purchase.',
     ],
   },
   {
     id: 'faq-2',
-    question: 'How is it implemented in our webshop?',
+    question: 'How is Ixaria implemented in our webshop?',
     answer: [
-      'Ixaria connects to your existing webshop, so there is no need to rebuild it. You can use one of our product-page templates or keep your own. We add your product data to the chosen template, while your checkout, payments and orders continue to work as before.',
+      'We add a simple script to your webshop to analyse incoming traffic and follow visitor behaviour. We then add small interactive elements, called signals, where relevant across your homepage, product listings and product pages.',
+      'Based on what we learn, Ixaria displays predefined responses on product pages—for example, shipping reassurance near the buy button. Your team can design these elements or customise our templates to match your brand.',
     ],
   },
   {
     id: 'faq-3',
-    question: 'How do you know what stage of the customer journey the customer is in?',
+    question: 'How do you know which stage of the buying journey a customer is in?',
     answer: [
-      'We estimate the customer’s buying stage from several signals. We look at where they came from, whether they visited before, how long they stay and which parts of the website they focus on. We also learn from the questions they ask through the built-in chat. Together, these signals show whether the customer is exploring, comparing options or getting ready to buy.',
-    ],
-  },
-  {
-    id: 'faq-4',
-    question: 'Can we try a pilot?',
-    answer: [
-      'Yes. We recommend starting with a small number of products so you can see how Ixaria works and measure the results. If the pilot performs well, you can then expand it to your full product catalogue.',
+      'We connect where visitors come from with what they do on your website. If they arrive through an ad, we consider its message to understand their expectations. Their interactions and number of visits then help us estimate their buying stage and what they may need next.',
     ],
   },
   {
     id: 'faq-5',
-    question: 'Will your tool update the design of my website? How do we handle brand control?',
+    question: 'Will Ixaria change our website’s design? How do we keep control of our brand?',
     answer: [
-      'Ixaria does not redesign your whole website. You can use one of our fully customizable product-page templates or keep your existing template. Your colours, fonts, layout and visual style remain under your control, so every page stays consistent with your brand.',
+      'Ixaria adds small elements, such as buttons, short quizzes and information blocks, within your existing website. Your team can customise our templates to match your brand guidelines, including your colours, fonts and visual style.',
     ],
   },
   {
     id: 'faq-6',
     question:
-      'Would it also affect landing pages, category pages, product listing pages, or search?',
+      'Does Ixaria also change landing pages, category pages, product listings or search?',
     answer: [
-      'Ixaria only changes your product pages. A small plugin is added across the website to understand how visitors move between landing pages, categories, search and products, but it does not change those pages. If you choose, the question bar can also be added to product listing pages.',
+      'Yes, small interactive signals can be added across your webshop, depending on the use case. These help us understand what visitors need. Product pages remain our main focus: they adapt based on what we learn throughout the buying journey.',
     ],
   },
   {
     id: 'faq-7',
     question:
-      'Is replacing the PIM and other intelligence layers an absolute hard requirement? Can you connect to existing PIM/DAM?',
+      'Do we need to replace our existing product information or asset management systems?',
     answer: [
-      'No. During the pilot, Ixaria can retrieve product data and assets from your existing PIM, DAM or other tools. If the pilot is successful, we recommend moving the relevant product data and workflows fully to Ixaria, so you do not have to maintain and pay for two systems doing the same job.',
-    ],
-  },
-  {
-    id: 'faq-8',
-    question: 'Can the solution generate images in a live environment?',
-    answer: [
-      'Yes. Ixaria includes tools that automatically generate and edit product images. It can create floating product images, place products in different rooms and lighting conditions, and generate images that clearly show dimensions. These visuals can then be used directly on live product pages.',
+      'No. During the audit, we review your existing tools and how your information is organised. We then plan how to connect that information to Ixaria. You can keep your current systems.',
     ],
   },
   {
     id: 'faq-9',
-    question: 'Can pages adapt by country or market area?',
+    question: 'Can pages adapt to different countries or markets?',
     answer: [
-      'Yes. This is one of Ixaria’s core features. Customers in different markets often care about different things, so Ixaria can adapt the message, product information and visuals for each country or region. We use our knowledge of each market to recommend what should be shown and emphasized.',
+      'Yes. Ixaria considers the visitor’s country or region alongside their behaviour. We connect this context with our research on shopper psychology and cultural differences to adapt information to local expectations and individual needs.',
     ],
   },
   {
     id: 'faq-10',
-    question: 'How long does it take to have the Ixaria solution live?',
+    question: 'How long does it take to launch Ixaria?',
     answer: [
-      'Ixaria usually takes between one and three months to go live. The exact time depends on the number of products, how much product data is missing, and whether you already have good images and 3D models available.',
+      'We work in three stages. The audit takes seven days. This is followed by a three-month pilot, during which we integrate Ixaria and test it with real visitors. After the pilot, we move to full implementation.',
     ],
   },
   {
     id: 'faq-11',
-    question: 'How soon can I see the first results?',
+    question: 'How soon can we see results?',
     answer: [
-      'It depends mainly on how many visitors your website receives. More visitors allow Ixaria to learn and measure results faster. With around 30,000 visitors per month, you can usually see meaningful results within about two months. Websites with less traffic may need more time.',
+      'The first results come during the pilot. By the end of the three-month pilot, we review the findings and assess how Ixaria has affected customer behaviour and conversion.',
     ],
   },
   {
     id: 'faq-12',
-    question: 'Does it work for both movable and fixed furniture?',
+    question: 'Does Ixaria work for both freestanding and fitted furniture?',
     answer: [
-      'Ixaria is built for movable furniture, such as sofas, chairs, tables and some freestanding cabinets. It can support products with customizable options, but it is not designed for fixed furniture or fully bespoke, made-to-order projects.',
+      'Ixaria is built for movable furniture sold in series, including products with configurable options. It is not designed for fitted furniture or fully bespoke, made-to-order projects.',
     ],
   },
   {
     id: 'faq-13',
-    question: 'What kind of work do you provide?',
+    question: 'What work does the Ixaria team handle?',
     answer: [
-      'Ixaria can cover the full product page experience for furniture manufacturers. Depending on what you already have and what is missing, we can provide 3D modeling, product image generation, dimensioned images, centralized product reviews, 3D configuration, and product page layout design.',
-      'The 3D configuration can range from a simple setup with a few options to a highly complex configurator with many variations, dimensions, materials, and product rules.',
+      'We handle the process from understanding your business to implementing the solution. During the audit, we review your webshop, customers and existing systems. During the pilot, we manage the full integration and setup.',
     ],
   },
   {
     id: 'faq-14',
     question: 'Can Ixaria help if we already have a 3D configurator?',
     answer: [
-      'Ixaria does not usually work with existing 3D configurators. Most configurators come with their own limitations, rules, and technical restrictions, which makes it difficult for our system to adapt and improve them based on real customer behavior.',
-      'Instead, we prefer to build the 3D configuration experience inside the Ixaria system, so it can be connected with the product data, page layout, analytics, and ongoing optimization process.',
+      'Yes. Ixaria can work alongside any existing 3D product configurator. You can keep your configurator while Ixaria adapts the surrounding product-page experience.',
     ],
   },
   {
     id: 'faq-15',
-    question: 'Do I need to replace my current ecommerce platform?',
+    question: 'Do we need to replace our ecommerce platform?',
     answer: [
-      'No. Ixaria does not replace your existing ecommerce platform. It improves the product page layer and helps centralize the elements that are usually scattered across different plugins and tools.',
+      'No. Ixaria works on top of your existing ecommerce platform, so you can keep your current webshop.',
     ],
   },
 ];
