@@ -1598,7 +1598,7 @@
   .hero__mockup {
     order: 4;
     align-self: center;
-    width: min(100%, max(140px, calc(100svh - 680px)));
+    width: 100%;
   }
 
   .hero__ctas {
