@@ -7,6 +7,8 @@ export const pageDates = {
   cofounder: '2026-10-06',
 } as const;
 
+export const socialPreviewTitle = 'Smarter Furniture Product Page | Ixaria';
+
 export const homeMetadata = {
   title: 'Furniture Ecommerce Product Page Optimisation | IXARIA',
   description: 'IXARIA helps furniture brands and retailers improve their product pages with adaptive content, 3D configuration and insights from customer behaviour.',

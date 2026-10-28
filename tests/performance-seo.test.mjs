@@ -35,6 +35,7 @@ for (const [route, expected] of Object.entries(baseline)) {
     for (const property of ['og:image', 'twitter:image']) {
       const url = new URL($(`meta[property="${property}"],meta[name="${property}"]`).attr('content'));
       assert.equal(url.origin, 'https://ixaria.eu');
+      assert.equal(url.pathname, '/webpreview.webp');
       assert.ok(fs.existsSync(path.join('dist', url.pathname)));
     }
     const hero = $('.audit-hero__media');

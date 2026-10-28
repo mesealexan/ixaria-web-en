@@ -17,7 +17,7 @@ export function implementationSEO(stage: ImplementationStage): PageSEO {
       type: 'website',
       title,
       description,
-      image: `${site.url}/preview.webp`,
+      image: `${site.url}/webpreview.webp`,
       imageAlt: 'Ixaria product page experience',
       locale: site.locale,
     },

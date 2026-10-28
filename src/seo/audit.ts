@@ -12,7 +12,7 @@ export const auditSEO: PageSEO = {
     type: 'website',
     title: audit.seo.title,
     description: audit.seo.description,
-    image: `${site.url}/preview.webp`,
+    image: `${site.url}/webpreview.webp`,
     imageAlt: 'Ixaria',
     locale: site.locale,
   },

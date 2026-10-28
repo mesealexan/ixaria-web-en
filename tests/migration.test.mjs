@@ -20,6 +20,7 @@ const documents = Object.fromEntries(
 );
 const compact = (text) => text.replace(/\s+/g, '');
 const contentHash = (text) => createHash('sha256').update(compact(text)).digest('hex');
+const socialPreviewTitle = 'Smarter Furniture Product Page | Ixaria';
 
 for (const [name, expected] of Object.entries(baseline)) {
   const $ = documents[name];
@@ -38,8 +39,15 @@ for (const [name, expected] of Object.entries(baseline)) {
         (_, node) => $(node).attr('name') === meta.key || $(node).attr('property') === meta.key,
       );
       assert.equal(nodes.length, 1, `one ${meta.key} tag`);
-      assert.equal(nodes.attr('content'), meta.content, meta.key);
+      const expectedContent = ['og:title', 'twitter:title'].includes(meta.key)
+        ? socialPreviewTitle
+        : ['og:image', 'twitter:image'].includes(meta.key)
+          ? 'https://ixaria.eu/webpreview.webp'
+          : meta.content;
+      assert.equal(nodes.attr('content'), expectedContent, meta.key);
     }
+    assert.equal($('meta[property="og:title"]').attr('content'), socialPreviewTitle);
+    assert.equal($('meta[name="twitter:title"]').attr('content'), socialPreviewTitle);
     for (const alternate of expected.alternates)
       assert.equal($(`link[hreflang="${alternate.language}"]`).attr('href'), alternate.href);
   });
@@ -402,9 +410,9 @@ test('indexable pages have consistent metadata, social cards and structured desc
     assert.ok(title && description);
     assert.ok(!titles.has(title) && !descriptions.has(description), filename);
     titles.add(title); descriptions.add(description);
-    assert.equal($('meta[property="og:title"]').attr('content'), title);
+    assert.equal($('meta[property="og:title"]').attr('content'), socialPreviewTitle);
     assert.equal($('meta[name="twitter:card"]').attr('content'), 'summary_large_image');
-    assert.equal($('meta[name="twitter:title"]').attr('content'), title);
+    assert.equal($('meta[name="twitter:title"]').attr('content'), socialPreviewTitle);
     const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
     const page = graph.find(entity => entity['@type'] === 'WebPage');
     assert.equal(page.name, title);
