@@ -8,16 +8,20 @@ import sharp from 'sharp';
 const html = fs.readFileSync('dist/customer-stories/agache.html', 'utf8');
 const $ = load(html);
 
-test('Agache publishes percentage results without confidential revenue or invented KPIs', () => {
+test('Agache publishes approved monthly EUR totals alongside percentage growth', () => {
   const source = fs.readFileSync('src/data/customer-stories/agache.ts', 'utf8');
   for (const value of [html, source]) {
-    assert.doesNotMatch(value, /\bRON\b|\b(?:192[,.]?908|687[,.]?178|494[,.]?270|754[,.]?799|326[,.]?974)\b/);
     assert.doesNotMatch(value, /0\.50%|0\.80%|96[xX]|60%|−30%/);
+    assert.doesNotMatch(value, /This is an observed before-and-after comparison|Percentages are rounded; the period total/);
   }
   assert.match($('h1').text(), /256%/);
-  assert.match($('#results').text(), /April–October 2026 compared with April–October 2025/);
-  assert.match($('#results').text(), /Finalized website and phone purchases are counted together/);
+  assert.match($('#results').text(), /2026 compared with the same month in 2025/);
+  assert.equal($('.story-methodology').length, 0);
+  assert.doesNotMatch($('#results').text(), /How the results are measured|phone purchases/);
   assert.equal($('.story-chart__bars li').length, 7);
+  const amounts = $('.story-chart__revenue tbody tr').map((_, row) => $(row).find('td').map((_, cell) => $(cell).text()).get().join(' / ')).get();
+  assert.deepEqual(amounts, ['€8,451 / €24,991', '€5,321 / €19,126', '€2,032 / €14,286', '€9,460 / €19,094', '€2,664 / €12,865', '€4,896 / €17,651', '€5,758 / €29,423']);
+  assert.match($('.story-chart__currency-note').text(), /Indicative conversion: €1 = RON 5.00/);
   assert.match($('meta[name="robots"]').attr('content'), /noindex/);
   assert.match($('.story-adaptation__note').text(), /Illustrative journey/);
   assert.equal($('blockquote').length, 0, 'an unapproved testimonial is not presented as a quotation');

@@ -5,8 +5,8 @@ export interface StoryImage {
 }
 const asset = (file: string) => `/customer-stories/agache/${file}.webp`;
 
-// Percentages only: never include private revenue amounts or source exports in
-// this repository, generated HTML, metadata, chart payloads or source maps.
+// Monthly EUR totals are approved for this story. Keep source exports and
+// customer-level records outside the repository.
 export const agacheStory = {
   seo: {
     path: '/customer-stories/agache.html',
@@ -77,16 +77,15 @@ export const agacheStory = {
     heading: 'Higher sales in every comparable month.',
     introduction: 'Across the seven full months following the March launch, recorded sales revenue was 256% higher than in the same period of 2025. Every corresponding month showed growth.',
     months: [
-      { month: 'April', short: 'Apr', growth: 196 },
-      { month: 'May', short: 'May', growth: 259 },
-      { month: 'June', short: 'Jun', growth: 603 },
-      { month: 'July', short: 'Jul', growth: 102 },
-      { month: 'August', short: 'Aug', growth: 383 },
-      { month: 'September', short: 'Sep', growth: 261 },
-      { month: 'October', short: 'Oct', growth: 411 },
+      { month: 'April', short: 'Apr', growth: 196, revenue2025Eur: 8450.8, revenue2026Eur: 24990.8 },
+      { month: 'May', short: 'May', growth: 259, revenue2025Eur: 5321, revenue2026Eur: 19126 },
+      { month: 'June', short: 'Jun', growth: 603, revenue2025Eur: 2032, revenue2026Eur: 14286 },
+      { month: 'July', short: 'Jul', growth: 102, revenue2025Eur: 9460, revenue2026Eur: 19094 },
+      { month: 'August', short: 'Aug', growth: 383, revenue2025Eur: 2664, revenue2026Eur: 12864.8 },
+      { month: 'September', short: 'Sep', growth: 261, revenue2025Eur: 4895.8, revenue2026Eur: 17651 },
+      { month: 'October', short: 'Oct', growth: 411, revenue2025Eur: 5758, revenue2026Eur: 29423 },
     ],
-    methodology: 'April–October 2026 compared with April–October 2025. Finalized website and phone purchases are counted together. March is excluded as the launch month. Percentages are rounded; the period total is calculated separately, not by averaging monthly growth.',
-    caveat: 'This is an observed before-and-after comparison. It does not isolate Ixaria’s contribution from changes in traffic, advertising, promotions or availability.',
+    currencyNote: 'Approximate EUR amounts, rounded to the nearest euro. Indicative conversion: €1 = RON 5.00.',
   },
   testimonial: {
     heading: 'Agache’s perspective',

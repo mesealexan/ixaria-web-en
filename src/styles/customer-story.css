@@ -99,11 +99,16 @@
 .story-chart__bars li { height: 308px; display: flex; flex-direction: column; justify-content: end; align-items: center; min-width: 0; position: relative; }
 .story-chart__column { height: calc((100% - 28px) * var(--growth-value) / 700); background: var(--elec); width: 100%; max-width: 70px; border-radius: 5px 5px 0 0; position: relative; }
 .story-chart__bars li:nth-child(3) .story-chart__column { background: var(--navy); }
-.story-chart__column strong { position: absolute; width: 100%; bottom: calc(100% + 8px); text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.story-chart__column strong { position: absolute; min-width: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; bottom: calc(100% + 8px); text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
 .story-chart__bars li > span:not(.story-sr-only) { font-size: 12px; padding-top: 10px; height: 28px; }
-.story-methodology { margin-top: 24px; border-bottom: 1px solid var(--gray-mid); padding-bottom: 18px; font-size: 12px; color: var(--gray-text); }
-.story-methodology summary { cursor: pointer; font-weight: 650; color: var(--navy); padding: 8px 0; }
-.story-methodology p { max-width: 820px; margin-top: 12px; line-height: 1.8; }
+.story-chart__revenue { width: 100%; border-collapse: collapse; margin-top: 32px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.story-chart__revenue caption { text-align: left; font-weight: 650; padding-bottom: 16px; }
+.story-chart__revenue :is(th,td) { padding: 12px 8px; border-bottom: 1px solid var(--gray-mid); text-align: right; white-space: nowrap; }
+.story-chart__revenue thead th { color: var(--gray-text); font-size: 11px; }
+.story-chart__revenue th:first-child { text-align: left; padding-left: 0; }
+.story-chart__revenue tbody th { font-weight: 500; }
+.story-chart__revenue tbody td:last-child { color: var(--elec); font-weight: 650; }
+.story-chart__currency-note { margin-top: 16px; color: var(--gray-text); font-size: 10px; line-height: 1.7; }
 .story-voice { background: var(--gray-light); }
 .story-voice__grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 72px; align-items: center; }
 .story-voice__grid > div > img { width: 110px; height: auto; margin-top: 24px; }
