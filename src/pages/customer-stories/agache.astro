@@ -6,143 +6,62 @@ import { agacheStory as story } from '../../data/customer-stories/agache';
 import '../../styles/customer-story.css';
 ---
 <BaseLayout seo={story.seo} bodyClass="customer-story">
+  <noscript><style is:inline>@media(max-width:768px){.customer-story .navbar{position:static!important}.customer-story main{padding-top:0!important}.customer-story .navbar__inner{height:auto;min-height:72px;flex-wrap:wrap}.customer-story .navbar__nav{position:static!important;display:flex!important;order:3;flex-basis:100%;flex-wrap:wrap;justify-content:center;gap:12px 20px;padding:12px 0}.customer-story .navbar__mobile-toggle{display:none!important}}</style></noscript>
   <article aria-labelledby="story-title">
-    <div class="story-draft"><div class="container"><span class="story-draft__dot" aria-hidden="true"></span><p>{story.draftNotice}</p></div></div>
-
-    <header class="story-hero story-section">
+    <div class="story-review"><div class="container">{story.reviewNotice}</div></div>
+    <header class="story-hero">
       <div class="container story-hero__grid">
-        <div>
+        <div class="story-hero__copy">
           <p class="section-label">{story.hero.eyebrow}</p>
-          <h1 id="story-title">{story.hero.heading}</h1>
+          <h1 id="story-title">{story.hero.heading} <span>{story.hero.result}</span> {story.hero.ending}</h1>
           <p class="story-lead">{story.hero.introduction}</p>
+          <a class="story-text-link" href="#the-change">Explore the before & after <span aria-hidden="true">↓</span></a>
         </div>
-        <StoryImage image={story.images.hero} priority />
+        <div class="story-hero__visual">
+          <div class="story-partnership"><img src="/optimized/logos-artboard-3-480.webp" alt="Agache" width="120" height="40" /><span aria-hidden="true">×</span><img src="/logo-light.svg" alt="Ixaria" width="120" height="40" /></div>
+          <div class="story-browser"><div class="story-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>agache.ro / Leni</span></div><a href="/customer-stories/agache/leni-after.webp" data-story-enlarge aria-label="Enlarge the current Leni product page"><img src="/customer-stories/agache/leni-after.webp" alt="Agache’s current Leni product page with material guidance and colour selection" width="1348" height="926" fetchpriority="high" decoding="async" /></a></div>
+          <p class="story-hero__caption">Custom furniture. A more considered buying experience.</p>
+        </div>
       </div>
     </header>
+    <section class="story-results-strip" aria-label="Results at a glance"><div class="container story-metrics">{story.metrics.map(metric => <div><strong>{metric.value}</strong><p>{metric.label}<small>{metric.detail}</small></p></div>)}</div></section>
 
-    <section class="story-results" aria-labelledby="illustrative-results-title">
-      <div class="container">
-        <h2 class="section-label" id="illustrative-results-title">{story.resultsLabel}</h2>
-        <dl class="story-metrics">
-          {story.metrics.map(metric => (
-            <div>
-              <dt>{metric.label}</dt>
-              <dd class="story-metrics__value">{metric.change}</dd>
-              <dd class="story-metrics__comparison">{metric.before} <span aria-label="to">→</span> {metric.after}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
+    <section class="story-section story-context" aria-labelledby="challenge-title"><div class="container">
+      <dl class="story-facts">{story.facts.map(fact => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
+      <div class="story-context__grid"><div><p class="section-label">The challenge</p><h2 class="section-title" id="challenge-title">{story.challenge.heading}</h2></div><div class="story-copy">{story.challenge.paragraphs.map(paragraph => <p>{paragraph}</p>)}</div></div>
+    </div></section>
 
-    <section class="story-section" aria-labelledby="context-title">
-      <div class="container">
-        <aside class="story-facts" aria-label={story.context.eyebrow}>
-          <p class="section-label">{story.context.eyebrow}</p>
-          <dl>{story.context.facts.map(fact => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
-        </aside>
-        <div class="story-prose">
-          <h2 class="section-title" id="context-title">{story.context.heading}</h2>
-          {story.context.paragraphs.map(paragraph => <p>{paragraph}</p>)}
-        </div>
-      </div>
-    </section>
+    <section class="story-section story-changes" id="the-change" aria-labelledby="changes-title"><div class="container">
+      <div class="story-section-heading"><p class="section-label">The experience, before & after</p><h2 class="section-title" id="changes-title">Make the next choice easier.</h2><p>Three changes to how customers explore, compare and configure.</p></div>
+      {story.comparisons.map(comparison => <section class:list={['story-change', `story-change--${comparison.id}`]} aria-labelledby={`${comparison.id}-title`}>
+        <div class="story-change__intro"><span class="story-number">{comparison.number}</span><h3 id={`${comparison.id}-title`}>{comparison.heading}</h3><p>{comparison.description}</p></div>
+        <div class="story-comparison"><StoryImage image={comparison.before} /><StoryImage image={comparison.after} /></div>
+      </section>)}
+      <div class="story-evidence-note"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3 3 13" stroke="currentColor" stroke-width="1.5" /></svg><p>Select any screenshot to enlarge it. Archive: November 2025. Current captures: November 2026. Images document the visual change, not the exact March launch state.</p></div>
+      <aside class="story-reassurance" aria-labelledby="reassurance-title"><div><p class="section-label">Close to the buying decision</p><h3 id="reassurance-title">{story.reassurance.heading}</h3><p>{story.reassurance.description}</p></div><a href="/customer-stories/agache/buybox-after.webp" data-story-enlarge aria-label="Enlarge delivery and payment information beside the purchase controls"><img src="/customer-stories/agache/buybox-after.webp" alt="Current Leni purchase controls with sleeping dimensions, delivery estimate, payment and returns links" width="380" height="540" loading="lazy" decoding="async" /></a></aside>
+    </div></section>
 
-    <section class="story-section story-section--soft" aria-labelledby="hesitation-title">
-      <div class="container">
-        <div class="story-prose">
-          <p class="section-label">{story.hesitation.eyebrow}</p>
-          <h2 class="section-title" id="hesitation-title">{story.hesitation.heading}</h2>
-          <ol class="story-questions">{story.hesitation.questions.map(question => <li>{question}</li>)}</ol>
-          <p>{story.hesitation.description}</p>
-          <p>{story.hesitation.detail}</p>
-          <p class="story-note">{story.hesitation.researchNote}</p>
-        </div>
-        <div class="story-media"><StoryImage image={story.images.beforeAfter} /></div>
-      </div>
-    </section>
+    <section class="story-section story-adaptation" aria-labelledby="adaptation-title"><div class="container">
+      <div class="story-section-heading"><p class="section-label">Beyond the redesign</p><h2 class="section-title" id="adaptation-title">{story.adaptation.heading}</h2><p>{story.adaptation.description}</p></div>
+      <ol class="story-flow">{story.adaptation.steps.map((step,index) => <li>
+        <div class="story-flow__top"><span>0{index + 1}</span><p>{step.name}</p><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d={index < 2 ? "M3 10h14m-5-5 5 5-5 5" : "m4 10 4 4 8-8"} stroke="currentColor" stroke-width="1.5" /></svg></div>
+        <div class:list={['story-flow__visual', `story-flow__visual--${index}`]} aria-hidden="true">{index === 0 ? <><span>What matters at home?</span><div><i>Comfort</i><i class="is-selected">Fabric care</i><i>Size</i></div></> : index === 1 ? <><div class="story-clues"><i>Interaction</i><i>Context</i></div><span class="story-insight">Everyday upkeep may matter</span></> : <><span class="story-response-label">Relevant reassurance</span><strong>Choosing an easy-care fabric?</strong><span>See verified care & durability guidance</span></>}</div>
+        <h3>{step.heading}</h3><p>{step.description}</p>
+      </li>)}</ol>
+      <p class="story-adaptation__note">{story.adaptation.note}</p>
+    </div></section>
 
-    <section class="story-section" aria-labelledby="approach-title">
-      <div class="container">
-        <div class="story-prose">
-          <p class="section-label">{story.approach.eyebrow}</p>
-          <h2 class="section-title" id="approach-title">{story.approach.heading}</h2>
-          <p>{story.approach.description}</p>
-        </div>
-        <div class="story-adaptations">
-          <p class="story-note" id="adaptation-note">{story.approach.note}</p>
-          <table class="story-adaptation-table" aria-describedby="adaptation-note">
-            <caption class="story-sr-only">Proposed shopper interactions and page responses</caption>
-            <thead><tr>{story.approach.columns.map(column => <th scope="col">{column}</th>)}</tr></thead>
-            <tbody>{story.approach.examples.map(example => (
-              <tr>
-                <th scope="row"><span class="story-mobile-label" aria-hidden="true">{story.approach.columns[0]}</span>{example.interaction}</th>
-                <td><span class="story-mobile-label" aria-hidden="true">{story.approach.columns[1]}</span>{example.interpretation}</td>
-                <td><span class="story-mobile-label" aria-hidden="true">{story.approach.columns[2]}</span>{example.response}</td>
-              </tr>
-            ))}</tbody>
-          </table>
-        </div>
-        <p class="story-method">{story.approach.explanation}</p>
-        <div class="story-prose story-approach-detail"><p>{story.approach.detail}</p></div>
-        <StoryImage image={story.images.adaptations} />
-      </div>
-    </section>
+    <section class="story-section" id="results" aria-labelledby="results-title"><div class="container">
+      <div class="story-results-heading"><div><p class="section-label">The commercial result</p><h2 class="section-title" id="results-title">{story.results.heading}</h2><p>{story.results.introduction}</p></div><div class="story-total"><strong>+256<span>%</span></strong><span>revenue growth across the full period</span></div></div>
+      <figure class="story-chart" aria-labelledby="chart-caption"><figcaption id="chart-caption"><strong>Monthly revenue growth</strong><span>2026 compared with the same month in 2025</span></figcaption>
+        <div class="story-chart__plot"><div class="story-chart__grid" aria-hidden="true"><span>600%</span><span>400%</span><span>200%</span><span>0%</span></div><ol class="story-chart__bars">{story.results.months.map(month => <li style={`--growth-value: ${month.growth}`}><div class="story-chart__column"><strong aria-hidden="true">+{month.growth}%</strong></div><span aria-hidden="true">{month.short}</span><span class="story-sr-only">{month.month}: revenue increased {month.growth}% year over year.</span></li>)}</ol></div>
+      </figure>
+      <details class="story-methodology"><summary>How the results are measured</summary><p>{story.results.methodology}</p><p>{story.results.caveat}</p></details>
+    </div></section>
 
-    <section class="story-section story-section--navy" aria-labelledby="implementation-title">
-      <div class="container">
-        <div class="story-prose">
-          <p class="section-label">{story.implementation.eyebrow}</p>
-          <h2 class="section-title" id="implementation-title">{story.implementation.heading}</h2>
-        </div>
-        <ol class="story-stages">{story.implementation.stages.map((stage, index) => (
-          <li><span class="story-stages__number" aria-hidden="true">0{index + 1}</span><h3>{stage.heading}</h3><p>{stage.description}</p></li>
-        ))}</ol>
-        <aside class="story-details" aria-label={story.implementation.detailsLabel}>
-          <p>{story.implementation.detailsLabel}</p>
-          <dl>{story.implementation.details.map(detail => <div><dt>{detail.label}</dt><dd>{detail.value}</dd></div>)}</dl>
-        </aside>
-      </div>
-    </section>
-
-    <section class="story-section" aria-labelledby="measurement-title">
-      <div class="container">
-        <div class="story-prose">
-          <p class="section-label">{story.measurement.eyebrow}</p>
-          <h2 class="section-title" id="measurement-title">{story.measurement.heading}</h2>
-        </div>
-        <table class="story-results-table" aria-describedby="measurement-note">
-          <caption>{story.resultsLabel}</caption>
-          <thead><tr>{story.measurement.columns.map(column => <th scope="col">{column}</th>)}</tr></thead>
-          <tbody>{story.metrics.map(metric => (
-            <tr>
-              <th scope="row">{metric.label}</th>
-              <td><span class="story-mobile-label" aria-hidden="true">{story.measurement.columns[1]}</span>{metric.before}</td>
-              <td><span class="story-mobile-label" aria-hidden="true">{story.measurement.columns[2]}</span>{metric.after}</td>
-              <td><span class="story-mobile-label" aria-hidden="true">{story.measurement.columns[3]}</span>{metric.change}</td>
-            </tr>
-          ))}</tbody>
-        </table>
-        <div class="story-prose story-measurement-notes">
-          <p class="story-note" id="measurement-note">{story.measurement.comparison}</p>
-          <p>{story.measurement.caveat}</p>
-          <aside class="story-client-voice" aria-label={story.measurement.voiceLabel}>
-            <p class="section-label">{story.measurement.voiceLabel}</p>
-            <p>{story.measurement.voicePlaceholder}</p>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="story-section story-closing" aria-labelledby="closing-title">
-      <div class="container story-prose">
-        <h2 class="section-title" id="closing-title">{story.closing.heading}</h2>
-        <p>{story.closing.description}</p>
-        <div class="story-closing__links">
-          <Button href={story.closing.primary.href} external>{story.closing.primary.label}</Button>
-          <a class="story-audit-link" href={story.closing.secondary.href}>{story.closing.secondary.label}<span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
+    <section class="story-section story-voice" aria-labelledby="voice-title"><div class="container story-voice__grid"><div><p class="section-label">The client’s view</p><h2 class="section-title" id="voice-title">{story.testimonial.heading}</h2><img src="/optimized/logos-artboard-3-480.webp" alt="Agache" width="120" height="40" loading="lazy" /></div><aside class="story-quote-placeholder" aria-label="Testimonial placeholder"><span>Client quote · Awaiting approval</span><p>{story.testimonial.placeholder}</p><small>{story.testimonial.attribution}</small></aside></div></section>
+    <section class="story-section story-closing" aria-labelledby="closing-title"><div class="container"><p class="section-label">Your customers. Their questions.</p><h2 class="section-title" id="closing-title">{story.closing.heading}</h2><p>{story.closing.description}</p><Button href={story.closing.href}>{story.closing.label}<svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3 3 13" stroke="currentColor" stroke-width="1.5" /></svg></Button></div></section>
   </article>
+  <dialog class="story-lightbox" aria-labelledby="story-lightbox-title"><div class="story-lightbox__toolbar"><h2 id="story-lightbox-title">Screenshot detail</h2><form method="dialog"><button type="submit" aria-label="Close screenshot">Close <span aria-hidden="true">×</span></button></form></div><div class="story-lightbox__body"><img alt="" /></div></dialog>
+  <script>import '../../features/customer-stories/images';</script>
 </BaseLayout>

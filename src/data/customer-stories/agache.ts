@@ -1,143 +1,101 @@
-import { site } from '../site';
 import type { PageSEO } from '../../seo/types';
 
 export interface StoryImage {
-  number: string;
-  ratio: string;
-  description: string;
-  // Set these together when approved photography or screenshots are available.
-  src?: string;
-  alt?: string;
-  width: number;
-  height: number;
-  comparisons?: { label: string; description: string }[];
+  src: string; alt: string; width: number; height: number; label: string; caption: string;
 }
+const asset = (file: string) => `/customer-stories/agache/${file}.webp`;
 
-const comparisonPeriods = {
-  before: 'First eight-week period',
-  after: 'Second eight-week period',
-  weeksEach: 8,
-  sessionsEach: 20000,
-  purchasesBefore: 100,
-  purchasesAfter: 160,
-  averageOrderValueRON: 4000,
-};
-const formatNumber = (value: number) => value.toLocaleString('en-GB');
-
-// Working content only. Keep example results and proposed activities labelled
-// until Agache has approved the evidence, implementation details and imagery.
+// Percentages only: never include private revenue amounts or source exports in
+// this repository, generated HTML, metadata, chart payloads or source maps.
 export const agacheStory = {
   seo: {
     path: '/customer-stories/agache.html',
-    title: 'Agache Customer Story (Working Draft) | Ixaria',
-    description: 'A working draft exploring how clearer, more relevant product information could help Agache shoppers feel ready to buy online.',
+    title: 'Agache: 256% Revenue Growth | Ixaria Customer Story',
+    description: 'How Agache made custom furniture easier to choose online, with clearer product pages, material guidance and behavioural adaptation. Revenue grew 256% following the March 2026 launch.',
     robots: 'noindex, nofollow, noarchive',
+    openGraph: { type: 'article', title: 'Agache: 256% Revenue Growth | Ixaria', description: 'A clearer path from sofa browsing to buying. Explore the before-and-after experience.', image: 'https://ixaria.eu/customer-stories/agache/leni-after.webp', imageAlt: 'Agache’s current Leni sofa product page' },
   } satisfies PageSEO,
-  draftNotice: 'Working draft. Example figures and implementation details await verification.',
+  reviewNotice: 'Editorial preview · Client quote and adaptation example awaiting approval.',
   hero: {
-    eyebrow: 'Customer story / Agache',
-    heading: 'Helping Agache’s customers feel ready to buy online',
-    introduction: 'Choosing a sofa means deciding more than its shape and colour. Agache and Ixaria worked on making the information behind that decision clearer, easier to find and more relevant to each shopper.',
+    eyebrow: 'Customer story / Furniture ecommerce',
+    heading: 'Agache’s sales revenue grew', result: '256%', ending: 'following Ixaria’s launch.',
+    introduction: 'Agache partnered with Ixaria to make custom furniture easier to choose online, bringing product choices, practical guidance and relevant reassurance into the buying experience.',
   },
-  images: {
-    hero: {
-      number: '01', ratio: '16 / 10', width: 1600, height: 1000,
-      description: 'An Agache sofa in a real home, paired with a legible view of its product page on mobile. The product should be the main focus.',
-    } satisfies StoryImage,
-    beforeAfter: {
-      number: '02', ratio: '16 / 9 per image', width: 1600, height: 900,
-      description: 'The same Agache product on the same device size. Use matching crops.',
-      comparisons: [
-        { label: 'Before', description: 'Important buying information is difficult to locate.' },
-        { label: 'After', description: 'Dimensions, fabric guidance and delivery information are easier to find.' },
-      ],
-    } satisfies StoryImage,
-    adaptations: {
-      number: '03', ratio: '16 / 9 per image', width: 1600, height: 900,
-      description: 'Two versions of the same Agache product page. Highlight only the information that changes.',
-      comparisons: [
-        { label: 'Fabric-care reassurance', description: 'The page brings practical fabric-care information into focus.' },
-        { label: 'Size guidance', description: 'The same page brings dimensions and access information into focus.' },
-      ],
-    } satisfies StoryImage,
-  },
-  resultsLabel: 'Illustrative results',
   metrics: [
-    { label: 'Purchase conversion', change: '+60%', before: '0.50%', after: '0.80%' },
-    { label: 'Online revenue', change: '+60%', before: 'RON 400,000', after: 'RON 640,000' },
-    { label: 'Pre-purchase enquiries per 100 orders', change: '−30%', before: '40', after: '28' },
+    { value: '+256%', label: 'sales revenue growth', detail: 'April–October 2026 vs 2025' },
+    { value: '7 / 7', label: 'months with higher sales', detail: 'Each compared with the same month in 2025' },
   ],
-  context: {
-    eyebrow: 'Agache at a glance',
-    facts: [
-      { label: 'Company', value: 'Romanian upholstered furniture manufacturer' },
-      { label: 'Products', value: 'Sofas, corner sofas and upholstered beds' },
-      { label: 'Focus', value: 'Direct online purchases' },
-      { label: 'Scope', value: 'Selected product pages' },
-    ],
-    heading: 'A product customers liked. A decision they still needed help making.',
+  facts: [
+    { label: 'Customer', value: 'Agache, Romania' },
+    { label: 'Products', value: 'Custom upholstered furniture' },
+    { label: 'Work', value: 'Buying experience & adaptation' },
+    { label: 'Launch', value: 'March 2026' },
+  ],
+  challenge: {
+    heading: 'Plenty of options. Too much work to understand them.',
     paragraphs: [
-      'Agache wanted more customers to complete their purchase online and fewer to depend on a call for information they should be able to find on the website.',
-      'The work focused on understanding where shoppers hesitated, improving the product information and making the next step easier.',
-      'For a furniture purchase, the product page has to help someone picture everyday life with the product. A shopper may like the design but still need to check access, compare fabrics or understand what happens after ordering. Those practical questions shape the decision alongside appearance and price.',
+      'Agache is a Romanian family business making upholstered furniture since 1994. Its customers can choose from sofas, corner sofas and beds, with a wide range of fabrics and configurations.',
+      'The previous website already had reviews, specifications and a configurator. But material categories appeared as separate product listings, key details sat inside accordions, and shoppers had to move between sections to understand their choices.',
+      'The task was to make that information easier to use, then adapt the page to what each visitor needed before deciding.',
     ],
   },
-  hesitation: {
-    eyebrow: 'Understanding the hesitation',
-    heading: 'What did shoppers need to know before buying?',
-    questions: [
-      'Will it fit my room and get through the door?',
-      'Which fabric makes sense for my home?',
-      'What happens with delivery, assembly and returns?',
-    ],
-    description: 'These questions guided the research and the information we prioritised. The aim was to understand which concerns mattered, where they appeared and what would help customers decide.',
-    detail: 'Each question points to a different information gap. Clear measurements can support a size decision. Fabric guidance can help someone compare options for daily use. Delivery information can make the steps after purchase easier to understand. The research needs to establish which of these concerns actually matters to Agache’s shoppers.',
-    researchNote: 'Evidence to add: research methods, participant count, dates and confirmed findings.',
+  comparisons: [
+    {
+      id: 'product', number: '01', heading: 'One product, clearer choices.',
+      description: 'Instead of sending shoppers between separate material variants, the new Leni page brings material categories and colours into one selection experience. A short product explanation sits alongside the choices.',
+      before: { src: asset('leni-before'), alt: 'Previous Leni Material Practic page with colour swatches and product information inside accordions', width: 1600, height: 1107, label: 'Before · November 2025', caption: 'A material-specific product page, with important details inside accordions.' },
+      after: { src: asset('leni-after'), alt: 'Current Leni page with integrated material categories, colour swatches and a short product description', width: 1348, height: 926, label: 'After · November 2026', caption: 'Material categories, colour choices and practical guidance together.' },
+    },
+    {
+      id: 'materials', number: '02', heading: 'Explain materials while shoppers choose.',
+      description: 'The old page explained fabric categories further down the page and linked to other variants. Today, shoppers can open material guidance directly from the selection controls, keeping the explanation connected to the choice.',
+      before: { src: asset('materials-before'), alt: 'Previous material category comparison below the Leni buying area, linking to separate variants', width: 1490, height: 1400, label: 'Before · Material variants', caption: 'Material descriptions and separate product links further down the page.' },
+      after: { src: asset('materials-after'), alt: 'Current in-page material information panel with fabric imagery and characteristics', width: 785, height: 490, label: 'After · In-page guidance', caption: 'Material characteristics open within the current product experience.' },
+    },
+    {
+      id: 'configuration', number: '03', heading: 'Give customization a clearer sequence.',
+      description: 'The earlier configurator led with a long swatch panel. The current controls separate material, colour and summary, show fabric collections and price differences, and keep the purchase action visible.',
+      before: { src: asset('configurator-before'), alt: 'Previous Leni configurator sidebar dominated by a long grid of fabric swatches', width: 525, height: 1275, label: 'Before · Selection controls', caption: 'A long swatch grid led the configuration experience.' },
+      after: { src: asset('configurator-after'), alt: 'Current Leni configurator selection controls with stages, fabric categories, collections and a purchase action', width: 450, height: 920, label: 'After · Selection controls', caption: 'Stages, fabric collections and price differences organise the choices.' },
+    },
+  ],
+  reassurance: {
+    heading: 'Useful answers near the decision.',
+    description: 'Sleeping dimensions, delivery information, payment options and transport and returns details are presented close to the purchase controls. Shoppers can check practical questions while considering the product.',
   },
-  approach: {
-    eyebrow: 'From customer concern to useful information',
-    heading: 'The same sofa. Different questions to answer.',
-    description: 'Ixaria’s approach connects what a visitor explores with information that may help them decide. A fabric question calls for different reassurance from a question about size.',
-    note: 'Proposed adaptation examples. Confirm against the live implementation.',
-    columns: ['Shopper interaction', 'Possible interpretation', 'Relevant page response'],
-    examples: [
-      { interaction: 'Fabric-care interaction', interpretation: 'Practical upkeep may matter', response: 'Cleaning guidance and verified fabric properties near the selection controls' },
-      { interaction: 'Dimensions interaction', interpretation: 'Size or access may be uncertain', response: 'Room dimensions, packaged measurements and access guidance' },
-      { interaction: 'Delivery interaction', interpretation: 'Fulfilment may be holding up the decision', response: 'Delivery, assembly and returns information near the buying controls' },
-    ],
-    explanation: 'Signals reveal interests. Correlations connect those clues with the visitor’s context. Responses bring relevant information into the page.',
-    detail: 'These are proposed ways to make existing information more useful. Any response should rely on confirmed product details and agreed service information. An interaction is a clue about a possible concern; it still needs to be interpreted carefully and checked against what helps shoppers decide.',
-  },
-  implementation: {
-    eyebrow: 'Implementation and learning',
-    heading: 'Research, implementation, then refinement.',
-    stages: [
-      { heading: 'Understand', description: 'Review customer questions, product information and the purchase journey.' },
-      { heading: 'Implement', description: 'Improve copy, images and information order; introduce the selected interactions and responses.' },
-      { heading: 'Refine', description: 'Observe customer behaviour, test changes and review purchase outcomes.' },
-    ],
-    detailsLabel: 'Implementation details to confirm',
-    details: [
-      { label: 'Products covered', value: 'To confirm' },
-      { label: 'Launch dates', value: 'To confirm' },
-      { label: 'Test rounds', value: 'To confirm' },
-      { label: 'Agache’s team involvement', value: 'To confirm' },
+  adaptation: {
+    heading: 'Different shoppers need different reassurance.',
+    description: 'Alongside the buying experience, Agache introduced Ixaria’s Signals, Correlations and Responses in March 2026. Interactions provide clues; context helps interpret them; relevant information becomes the response.',
+    note: 'Illustrative journey. Replace with a confirmed Agache trigger and response before publishing.',
+    steps: [
+      { name: 'Signals', heading: 'Notice the interaction', description: 'A visitor explores practical fabric properties.' },
+      { name: 'Correlations', heading: 'Connect the clues', description: 'Combined with browsing context, this may suggest that everyday upkeep matters.' },
+      { name: 'Responses', heading: 'Show useful information', description: 'Bring relevant, verified cleaning and durability guidance into the page.' },
     ],
   },
-  measurement: {
-    eyebrow: 'Results in context',
-    heading: 'Measure what changed in the buying journey.',
-    columns: ['Metric', 'Before', 'After', 'Change'],
-    periods: comparisonPeriods,
-    comparison: `Illustrative comparison: two ${comparisonPeriods.weeksEach === 8 ? 'eight' : comparisonPeriods.weeksEach}-week periods, each with ${formatNumber(comparisonPeriods.sessionsEach)} sessions. Purchase conversion: ${comparisonPeriods.purchasesBefore}/${formatNumber(comparisonPeriods.sessionsEach)} versus ${comparisonPeriods.purchasesAfter}/${formatNumber(comparisonPeriods.sessionsEach)}. Revenue assumes RON ${formatNumber(comparisonPeriods.averageOrderValueRON)} average order value. Replace with verified data.`,
-    caveat: 'Before/after comparisons show observed changes. Traffic mix, advertising, promotions and availability should be considered when interpreting results.',
-    voiceLabel: 'Client voice / awaiting approval',
-    voicePlaceholder: '[Add an approved Agache quote describing a specific observed change. Include the speaker’s name and role.]',
+  results: {
+    heading: 'Higher sales in every comparable month.',
+    introduction: 'Across the seven full months following the March launch, recorded sales revenue was 256% higher than in the same period of 2025. Every corresponding month showed growth.',
+    months: [
+      { month: 'April', short: 'Apr', growth: 196 },
+      { month: 'May', short: 'May', growth: 259 },
+      { month: 'June', short: 'Jun', growth: 603 },
+      { month: 'July', short: 'Jul', growth: 102 },
+      { month: 'August', short: 'Aug', growth: 383 },
+      { month: 'September', short: 'Sep', growth: 261 },
+      { month: 'October', short: 'Oct', growth: 411 },
+    ],
+    methodology: 'April–October 2026 compared with April–October 2025. Finalized website and phone purchases are counted together. March is excluded as the launch month. Percentages are rounded; the period total is calculated separately, not by averaging monthly growth.',
+    caveat: 'This is an observed before-and-after comparison. It does not isolate Ixaria’s contribution from changes in traffic, advertising, promotions or availability.',
+  },
+  testimonial: {
+    heading: 'Agache’s perspective',
+    placeholder: 'Add an approved quote about what became easier for customers, the commercial change Agache observed and the experience of working with Ixaria.',
+    attribution: 'Name and role to be confirmed',
   },
   closing: {
     heading: 'What do your customers need before they feel ready to buy?',
-    description: 'Start by identifying the unanswered questions in your buying journey and where more relevant information could help.',
-    primary: { label: 'Book a discovery call', href: site.bookingUrl },
-    secondary: { label: 'Explore the Audit', href: site.websiteLinks.find(link => link.label === 'Audit')!.href },
+    description: 'Start with the unanswered questions in your buying journey. Find where clearer, more relevant information could help.',
+    label: 'Explore the Audit', href: '/audit.html',
   },
 };
