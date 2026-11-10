@@ -1,0 +1,32 @@
+---
+import type { StoryImage } from '../../data/customer-stories/agache';
+interface Props { image: StoryImage; priority?: boolean }
+const { image, priority = false } = Astro.props;
+---
+<figure class="story-image" aria-label={`Image ${image.number}`}>
+  {image.src ? (
+    <img src={image.src} alt={image.alt ?? image.description} width={image.width} height={image.height} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />
+  ) : (
+    <div class:list={['story-image__panel', { 'story-image__panel--comparison': image.comparisons }]}>
+      <div class="story-image__meta"><span>Image {image.number}</span><span>{image.ratio}</span></div>
+      {image.comparisons ? (
+        <div class="story-image__comparison">
+          {image.comparisons.map(comparison => (
+            <div class="story-image__frame">
+              <span class="story-image__frame-label">{comparison.label}</span>
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5" y="6" width="30" height="28" rx="3" /><path d="M5 13h30M11 10h1m3 0h1M11 27l7-7 6 5 5-4" /></svg>
+              <p>{comparison.description}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="story-image__editorial" style={`--image-ratio: ${image.ratio}`}>
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="6" y="10" width="44" height="36" rx="3" /><circle cx="20" cy="22" r="4" /><path d="m7 39 13-10 9 7 10-13 11 13" /></svg>
+          <span>Agache <span aria-hidden="true">×</span> Ixaria</span>
+          <p>Editorial image placeholder</p>
+        </div>
+      )}
+    </div>
+  )}
+  <figcaption><span>Image {image.number} · {image.ratio}</span>{image.description}</figcaption>
+</figure>

@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import StoryImage from '../../components/customer-stories/StoryImage.astro';
+import { agacheStory as story } from '../../data/customer-stories/agache';
+import '../../styles/customer-story.css';
+---
+<BaseLayout seo={story.seo} bodyClass="customer-story">
+  <article aria-labelledby="story-title">
+    <div class="story-draft"><div class="container"><span class="story-draft__dot" aria-hidden="true"></span><p>{story.draftNotice}</p></div></div>
+
+    <header class="story-hero story-section">
+      <div class="container story-hero__grid">
+        <div>
+          <p class="section-label">{story.hero.eyebrow}</p>
+          <h1 id="story-title">{story.hero.heading}</h1>
+          <p class="story-lead">{story.hero.introduction}</p>
+        </div>
+        <StoryImage image={story.images.hero} priority />
+      </div>
+    </header>
+
+    <section class="story-results" aria-labelledby="illustrative-results-title">
+      <div class="container">
+        <h2 class="section-label" id="illustrative-results-title">{story.resultsLabel}</h2>
+        <dl class="story-metrics">
+          {story.metrics.map(metric => (
+            <div>
+              <dt>{metric.label}</dt>
+              <dd class="story-metrics__value">{metric.change}</dd>
+              <dd class="story-metrics__comparison">{metric.before} <span aria-label="to">→</span> {metric.after}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="story-section" aria-labelledby="context-title">
+      <div class="container">
+        <aside class="story-facts" aria-label={story.context.eyebrow}>
+          <p class="section-label">{story.context.eyebrow}</p>
+          <dl>{story.context.facts.map(fact => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
+        </aside>
+        <div class="story-prose">
+          <h2 class="section-title" id="context-title">{story.context.heading}</h2>
+          {story.context.paragraphs.map(paragraph => <p>{paragraph}</p>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section story-section--soft" aria-labelledby="hesitation-title">
+      <div class="container">
+        <div class="story-prose">
+          <p class="section-label">{story.hesitation.eyebrow}</p>
+          <h2 class="section-title" id="hesitation-title">{story.hesitation.heading}</h2>
+          <ol class="story-questions">{story.hesitation.questions.map(question => <li>{question}</li>)}</ol>
+          <p>{story.hesitation.description}</p>
+          <p>{story.hesitation.detail}</p>
+          <p class="story-note">{story.hesitation.researchNote}</p>
+        </div>
+        <div class="story-media"><StoryImage image={story.images.beforeAfter} /></div>
+      </div>
+    </section>
+
+    <section class="story-section" aria-labelledby="approach-title">
+      <div class="container">
+        <div class="story-prose">
+          <p class="section-label">{story.approach.eyebrow}</p>
+          <h2 class="section-title" id="approach-title">{story.approach.heading}</h2>
+          <p>{story.approach.description}</p>
+        </div>
+        <div class="story-adaptations">
+          <p class="story-note" id="adaptation-note">{story.approach.note}</p>
+          <table class="story-adaptation-table" aria-describedby="adaptation-note">
+            <caption class="story-sr-only">Proposed shopper interactions and page responses</caption>
+            <thead><tr>{story.approach.columns.map(column => <th scope="col">{column}</th>)}</tr></thead>
+            <tbody>{story.approach.examples.map(example => (
+              <tr>
+                <th scope="row"><span class="story-mobile-label" aria-hidden="true">{story.approach.columns[0]}</span>{example.interaction}</th>
+                <td><span class="story-mobile-label" aria-hidden="true">{story.approach.columns[1]}</span>{example.interpretation}</td>
+                <td><span class="story-mobile-label" aria-hidden="true">{story.approach.columns[2]}</span>{example.response}</td>
+              </tr>
+            ))}</tbody>
+          </table>
+        </div>
+        <p class="story-method">{story.approach.explanation}</p>
+        <div class="story-prose story-approach-detail"><p>{story.approach.detail}</p></div>
+        <StoryImage image={story.images.adaptations} />
+      </div>
+    </section>
+
+    <section class="story-section story-section--navy" aria-labelledby="implementation-title">
+      <div class="container">
+        <div class="story-prose">
+          <p class="section-label">{story.implementation.eyebrow}</p>
+          <h2 class="section-title" id="implementation-title">{story.implementation.heading}</h2>
+        </div>
+        <ol class="story-stages">{story.implementation.stages.map((stage, index) => (
+          <li><span class="story-stages__number" aria-hidden="true">0{index + 1}</span><h3>{stage.heading}</h3><p>{stage.description}</p></li>
+        ))}</ol>
+        <aside class="story-details" aria-label={story.implementation.detailsLabel}>
+          <p>{story.implementation.detailsLabel}</p>
+          <dl>{story.implementation.details.map(detail => <div><dt>{detail.label}</dt><dd>{detail.value}</dd></div>)}</dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="story-section" aria-labelledby="measurement-title">
+      <div class="container">
+        <div class="story-prose">
+          <p class="section-label">{story.measurement.eyebrow}</p>
+          <h2 class="section-title" id="measurement-title">{story.measurement.heading}</h2>
+        </div>
+        <table class="story-results-table" aria-describedby="measurement-note">
+          <caption>{story.resultsLabel}</caption>
+          <thead><tr>{story.measurement.columns.map(column => <th scope="col">{column}</th>)}</tr></thead>
+          <tbody>{story.metrics.map(metric => (
+            <tr>
+              <th scope="row">{metric.label}</th>
+              <td><span class="story-mobile-label" aria-hidden="true">{story.measurement.columns[1]}</span>{metric.before}</td>
+              <td><span class="story-mobile-label" aria-hidden="true">{story.measurement.columns[2]}</span>{metric.after}</td>
+              <td><span class="story-mobile-label" aria-hidden="true">{story.measurement.columns[3]}</span>{metric.change}</td>
+            </tr>
+          ))}</tbody>
+        </table>
+        <div class="story-prose story-measurement-notes">
+          <p class="story-note" id="measurement-note">{story.measurement.comparison}</p>
+          <p>{story.measurement.caveat}</p>
+          <aside class="story-client-voice" aria-label={story.measurement.voiceLabel}>
+            <p class="section-label">{story.measurement.voiceLabel}</p>
+            <p>{story.measurement.voicePlaceholder}</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-section story-closing" aria-labelledby="closing-title">
+      <div class="container story-prose">
+        <h2 class="section-title" id="closing-title">{story.closing.heading}</h2>
+        <p>{story.closing.description}</p>
+        <div class="story-closing__links">
+          <Button href={story.closing.primary.href} external>{story.closing.primary.label}</Button>
+          <a class="story-audit-link" href={story.closing.secondary.href}>{story.closing.secondary.label}<span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
