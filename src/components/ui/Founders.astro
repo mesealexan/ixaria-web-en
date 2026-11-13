@@ -8,6 +8,7 @@ const { items } = Astro.props;
   {items.map(founder => <article class="founder">
     <div class="founder__avatar"><img {...founder.image} {...responsiveImage(founder.image.src, teamImageSizes)} loading="lazy" decoding="async" style={founder.imagePosition ? `object-position: ${founder.imagePosition};` : undefined} /></div>
     <h3 class="founder__name">{founder.name}</h3><p class="founder__role">{founder.role}</p>
+    <p class="founder__description">{founder.description}</p>
     <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="founder__linkedin" aria-label={`${founder.name} on LinkedIn (opens in a new tab)`}>
       LinkedIn <span aria-hidden="true">↗</span>
     </a>

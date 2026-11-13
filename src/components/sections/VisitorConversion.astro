@@ -5,7 +5,7 @@ import { shopperQuestions } from '../../data/shopperQuestions';
   <div class="container visitor-conversion__inner">
     <div class="visitor-conversion__copy">
       <h2 class="visitor-conversion__title" id="visitor-conversion-title">
-        8/10 qualified visitors leave your webshop without buying.
+        <span class="visitor-conversion__stat">8/10</span> qualified visitors leave your webshop without buying.
       </h2>
       <p class="visitor-conversion__body">
         Because every shopper has different questions.<br />
@@ -26,9 +26,9 @@ import { shopperQuestions } from '../../data/shopperQuestions';
           <span class="product-questions__cart">Add to cart</span>
         </div>
       </div>
-      <ul class="product-questions__bubbles" aria-hidden="true">
-        {shopperQuestions.map((question) => (
-          <li class="product-questions__bubble" data-question={question.id} hidden>
+      <ul class="product-questions__bubbles" id="shopper-questions" aria-live="off">
+        {shopperQuestions.map((question, index) => (
+          <li class="product-questions__bubble" data-question={question.id} hidden={index >= 2}>
             <span class="product-questions__bubble-icon">?</span>
             <span class="product-questions__bubble-text">{question.text}</span>
           </li>

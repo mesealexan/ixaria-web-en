@@ -1,0 +1,272 @@
+{
+  "source": "https://docs.google.com/presentation/d/1vyffTKuJfYkc8qyNp10LtnRrD83QrLCOntquRlyaYVw/edit",
+  "retrieved": "2026-11-13",
+  "type": "Existing sales-deck artwork; original image layers or native slide-render crops converted to responsive WebP derivatives. No generated imagery.",
+  "slides": {
+    "hero-scene": "p1",
+    "blue-sofa": "p2",
+    "blue-texture": "p4",
+    "method-signals": "h423f43303dfedb2c_0_119",
+    "method-correlations": "h423f43303dfedb2c_0_119",
+    "method-responses": "h423f43303dfedb2c_0_119",
+    "solution-standard": "p7",
+    "solution-pets": "p7",
+    "solution-kids": "p7",
+    "agache-mobile-sofa-listing": "p9",
+    "agache-mobile-sofa-comparison": "p9"
+  },
+  "assets": [
+    {
+      "file": "hero-scene-800.webp",
+      "width": 800,
+      "height": 450,
+      "bytes": 16306
+    },
+    {
+      "file": "hero-scene-1200.webp",
+      "width": 1200,
+      "height": 675,
+      "bytes": 36990
+    },
+    {
+      "file": "hero-scene-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "bytes": 65224
+    },
+    {
+      "file": "blue-sofa-640.webp",
+      "width": 640,
+      "height": 427,
+      "bytes": 15354
+    },
+    {
+      "file": "blue-sofa-1200.webp",
+      "width": 1200,
+      "height": 800,
+      "bytes": 89128
+    },
+    {
+      "file": "blue-texture-800.webp",
+      "width": 800,
+      "height": 450,
+      "bytes": 90046
+    },
+    {
+      "file": "blue-texture-1600.webp",
+      "width": 1600,
+      "height": 900,
+      "bytes": 257738
+    },
+    {
+      "file": "method-signals-480.webp",
+      "width": 480,
+      "height": 480,
+      "bytes": 17188
+    },
+    {
+      "file": "method-signals-800.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 49006
+    },
+    {
+      "file": "method-correlations-480.webp",
+      "width": 480,
+      "height": 480,
+      "bytes": 15952
+    },
+    {
+      "file": "method-correlations-800.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 49450
+    },
+    {
+      "file": "method-responses-480.webp",
+      "width": 480,
+      "height": 480,
+      "bytes": 20208
+    },
+    {
+      "file": "method-responses-800.webp",
+      "width": 800,
+      "height": 800,
+      "bytes": 56156
+    },
+    {
+      "file": "solution-standard-400.webp",
+      "width": 400,
+      "height": 712,
+      "bytes": 30608,
+      "sourceSlide": "p7",
+      "sourceGroup": "h423f43303dfedb2c_0_25",
+      "sourceRender": {
+        "width": 4000,
+        "height": 2250,
+        "dpi": 300
+      },
+      "crop": {
+        "left": 1358,
+        "top": 216,
+        "width": 800,
+        "height": 1705
+      }
+    },
+    {
+      "file": "solution-standard-800.webp",
+      "width": 800,
+      "height": 1425,
+      "bytes": 62620,
+      "sourceSlide": "p7",
+      "sourceGroup": "h423f43303dfedb2c_0_25",
+      "sourceRender": {
+        "width": 4000,
+        "height": 2250,
+        "dpi": 300
+      },
+      "crop": {
+        "left": 1358,
+        "top": 216,
+        "width": 800,
+        "height": 1705
+      }
+    },
+    {
+      "file": "solution-pets-400.webp",
+      "width": 400,
+      "height": 712,
+      "bytes": 38928,
+      "sourceSlide": "p7",
+      "sourceGroup": "h423f43303dfedb2c_0_24",
+      "sourceRender": {
+        "width": 4000,
+        "height": 2250,
+        "dpi": 300
+      },
+      "crop": {
+        "left": 2198,
+        "top": 216,
+        "width": 800,
+        "height": 1705
+      }
+    },
+    {
+      "file": "solution-pets-800.webp",
+      "width": 800,
+      "height": 1425,
+      "bytes": 82264,
+      "sourceSlide": "p7",
+      "sourceGroup": "h423f43303dfedb2c_0_24",
+      "sourceRender": {
+        "width": 4000,
+        "height": 2250,
+        "dpi": 300
+      },
+      "crop": {
+        "left": 2198,
+        "top": 216,
+        "width": 800,
+        "height": 1705
+      }
+    },
+    {
+      "file": "solution-kids-400.webp",
+      "width": 400,
+      "height": 712,
+      "bytes": 40462,
+      "sourceSlide": "p7",
+      "sourceGroup": "h423f43303dfedb2c_0_23",
+      "sourceRender": {
+        "width": 4000,
+        "height": 2250,
+        "dpi": 300
+      },
+      "crop": {
+        "left": 3028,
+        "top": 216,
+        "width": 800,
+        "height": 1705
+      }
+    },
+    {
+      "file": "solution-kids-800.webp",
+      "width": 800,
+      "height": 1425,
+      "bytes": 90122,
+      "sourceSlide": "p7",
+      "sourceGroup": "h423f43303dfedb2c_0_23",
+      "sourceRender": {
+        "width": 4000,
+        "height": 2250,
+        "dpi": 300
+      },
+      "crop": {
+        "left": 3028,
+        "top": 216,
+        "width": 800,
+        "height": 1705
+      }
+    },
+    {
+      "file": "agache-mobile-sofa-listing-240.webp",
+      "path": "public/customer-stories/agache/agache-mobile-sofa-listing-240.webp",
+      "width": 240,
+      "height": 500,
+      "bytes": 19594,
+      "sourcePage": 10,
+      "sourceSlide": "p9",
+      "sourceObject": "h423f43303dfedb2c_0_151"
+    },
+    {
+      "file": "agache-mobile-sofa-listing-384.webp",
+      "path": "public/customer-stories/agache/agache-mobile-sofa-listing-384.webp",
+      "width": 384,
+      "height": 800,
+      "bytes": 35210,
+      "sourcePage": 10,
+      "sourceSlide": "p9",
+      "sourceObject": "h423f43303dfedb2c_0_151"
+    },
+    {
+      "file": "agache-mobile-sofa-listing-504.webp",
+      "path": "public/customer-stories/agache/agache-mobile-sofa-listing-504.webp",
+      "width": 504,
+      "height": 1050,
+      "bytes": 46424,
+      "sourcePage": 10,
+      "sourceSlide": "p9",
+      "sourceObject": "h423f43303dfedb2c_0_151"
+    },
+    {
+      "file": "agache-mobile-sofa-comparison-240.webp",
+      "path": "public/customer-stories/agache/agache-mobile-sofa-comparison-240.webp",
+      "width": 240,
+      "height": 500,
+      "bytes": 18024,
+      "sourcePage": 10,
+      "sourceSlide": "p9",
+      "sourceObject": "h423f43303dfedb2c_0_152"
+    },
+    {
+      "file": "agache-mobile-sofa-comparison-384.webp",
+      "path": "public/customer-stories/agache/agache-mobile-sofa-comparison-384.webp",
+      "width": 384,
+      "height": 800,
+      "bytes": 32934,
+      "sourcePage": 10,
+      "sourceSlide": "p9",
+      "sourceObject": "h423f43303dfedb2c_0_152"
+    },
+    {
+      "file": "agache-mobile-sofa-comparison-504.webp",
+      "path": "public/customer-stories/agache/agache-mobile-sofa-comparison-504.webp",
+      "width": 504,
+      "height": 1050,
+      "bytes": 43230,
+      "sourcePage": 10,
+      "sourceSlide": "p9",
+      "sourceObject": "h423f43303dfedb2c_0_152"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+@layer legacy {
 .audit-page {
   color: var(--navy);
   background: var(--white);
@@ -147,4 +148,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
+}
+
 }

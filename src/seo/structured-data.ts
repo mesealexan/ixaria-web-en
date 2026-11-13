@@ -3,6 +3,7 @@ import { site } from '../data/site';
 import { homeMetadata, pageDates } from './metadata';
 import { implementationStages, implementationPath } from '../data/implementation';
 import { faqs } from '../data/faqs';
+import mobileImages from '../data/customer-stories/agache-mobile-images.json';
 import type { StructuredData } from './types';
 
 export function homeStructuredData(): StructuredData {
@@ -12,7 +13,8 @@ export function homeStructuredData(): StructuredData {
       site.company,
       ...entities['@graph'].map((entity) =>
         entity['@type'] === 'WebPage'
-          ? { ...entity, name: homeMetadata.title, description: homeMetadata.description, dateModified: pageDates.home }
+          ? { ...entity, name: homeMetadata.title, description: homeMetadata.description, dateModified: pageDates.home,
+              image: mobileImages.map(image => ({ '@id': `${site.url}/#${image.id}` })) }
           : entity['@type'] === 'HowTo'
           ? {
               ...entity,
@@ -26,6 +28,15 @@ export function homeStructuredData(): StructuredData {
             }
           : entity,
       ),
+      ...mobileImages.map(image => ({
+        '@type': 'ImageObject', '@id': `${site.url}/#${image.id}`,
+        url: new URL(image.src, site.url).href,
+        contentUrl: new URL(image.src, site.url).href,
+        name: image.name, description: image.alt,
+        width: image.width, height: image.height,
+        encodingFormat: 'image/webp',
+        isPartOf: { '@id': `${site.url}/#webpage` },
+      })),
       {
         '@type': 'FAQPage',
         mainEntity: faqs.map((faq) => ({

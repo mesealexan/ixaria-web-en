@@ -1,3 +1,4 @@
+@layer legacy {
 .solution {
   padding: 104px 0;
   background: var(--white);
@@ -201,4 +202,6 @@
   .solution-demo__slide.is-active .solution-demo__question { animation: none; }
   .solution-demo__selector { transition: none; }
   .solution__steps.is-interactive .solution-step__inner { transition: none; }
+}
+
 }

@@ -1,3 +1,4 @@
+@layer legacy {
 .legal-page {
   max-width: 760px;
   margin: 0 auto;
@@ -110,4 +111,6 @@
     padding: 10px 8px;
     overflow-wrap: anywhere;
   }
+}
+
 }

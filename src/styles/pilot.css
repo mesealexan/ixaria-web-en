@@ -1,3 +1,4 @@
+@layer legacy {
 .pilot-offer { margin: 28px 0 24px; }
 .pilot-price strong { font-family: var(--font-display); font-weight: 900; font-size: 36px; line-height: 1.2; letter-spacing: -.025em; }
 .pilot-terms { margin-top: 6px; color: var(--gray-text); font-size: 14px; }
@@ -16,4 +17,6 @@
 @media (max-width: 768px) {
   .pilot-steps { grid-template-columns: 1fr; }
   .pilot-final-price { font-size: 20px; }
+}
+
 }

@@ -4,6 +4,7 @@ import Button from '../ui/Button.astro';
 import { responsiveImage, serviceImageSizes } from '../../utils/images';
 import '../../styles/audit.css';
 import '../../styles/pilot.css';
+import '../../styles/design-services.css';
 ---
 
 <div class="audit-page full-implementation-page">
@@ -100,6 +101,7 @@ import '../../styles/pilot.css';
       <p class="audit-lead">{fullImplementation.final.description}</p>
       <p class="pilot-final-price"><span class="implementation-monthly-price">{fullImplementation.price}</span><span class="implementation-revenue-share">{fullImplementation.revenueShare}</span></p>
       <Button href={fullImplementation.bookingUrl} external>{fullImplementation.bookingLabel}</Button>
+      <img class="service-closing__sofa" role="presentation" src="/design/blue-sofa-1200.webp" srcset="/design/blue-sofa-640.webp 640w, /design/blue-sofa-1200.webp 1200w" sizes="(max-width: 768px) 90vw, 540px" width="1200" height="800" alt="" loading="lazy" decoding="async" />
     </div>
   </section>
 </div>

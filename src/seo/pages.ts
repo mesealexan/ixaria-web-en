@@ -3,8 +3,10 @@ import { implementationStages } from '../data/implementation';
 import { implementationSEO } from './implementation';
 import { auditSEO } from './audit';
 import { homeMetadata, careerMetadata, pageDates } from './metadata';
+import { agacheStory } from '../data/customer-stories/agache';
 
 export const pageSEO = {
+  agache: agacheStory.seo,
   audit: auditSEO,
   pilot: implementationSEO(implementationStages[1]!),
   'full-implementation': implementationSEO(implementationStages[2]!),

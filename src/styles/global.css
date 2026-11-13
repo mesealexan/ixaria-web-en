@@ -1,3 +1,5 @@
+@layer legacy, design;
+@layer legacy {
 @font-face {
   font-family: 'Gilroy';
   src:
@@ -587,4 +589,6 @@ main {
     animation: none !important;
     transition: none !important;
   }
+}
+
 }

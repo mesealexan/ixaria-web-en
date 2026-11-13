@@ -31,9 +31,21 @@ if (navbar && toggle && navigation) {
     if (event.relatedTarget instanceof Node && !process.contains(event.relatedTarget)) process.open = false;
   });
   matchMedia('(max-width: 768px)').addEventListener('change', () => setOpen(false));
-  const updateShadow = () => navbar.classList.toggle('is-scrolled', window.scrollY > 10);
-  window.addEventListener('scroll', updateShadow, { passive: true });
-  updateShadow();
+  let shadowFrame = 0;
+  const scheduleShadow = () => {
+    if (shadowFrame) return;
+    shadowFrame = requestAnimationFrame(() => {
+      shadowFrame = 0;
+      const scrolled = window.scrollY > 10;
+      if (navbar.classList.contains('is-scrolled') !== scrolled) {
+        navbar.classList.toggle('is-scrolled', scrolled);
+      }
+    });
+  };
+  window.addEventListener('scroll', scheduleShadow, { passive: true });
+  // Wait for initial layout instead of forcing it while startup modules execute.
+  window.addEventListener('pageshow', scheduleShadow);
+  if (document.readyState === 'complete') scheduleShadow();
 }
 
 export {};

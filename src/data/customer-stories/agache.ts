@@ -1,4 +1,5 @@
 import type { PageSEO } from '../../seo/types';
+import { pageDates } from '../../seo/metadata';
 
 export interface StoryImage {
   src: string; alt: string; width: number; height: number; label: string; caption: string;
@@ -12,7 +13,8 @@ export const agacheStory = {
     path: '/customer-stories/agache.html',
     title: 'Agache: 256% Revenue Growth | Ixaria Customer Story',
     description: 'How Agache made custom furniture easier to choose online, with clearer product pages, material guidance and behavioural adaptation. Revenue grew 256% following the March 2026 launch.',
-    robots: 'noindex, nofollow, noarchive',
+    robots: 'index, follow, max-image-preview:large',
+    lastModified: pageDates.agache,
     openGraph: { type: 'article', title: 'Agache: 256% Revenue Growth | Ixaria', description: 'A clearer path from sofa browsing to buying. Explore the before-and-after experience.', image: 'https://ixaria.eu/customer-stories/agache/leni-after.webp', imageAlt: 'Agache’s current Leni sofa product page' },
   } satisfies PageSEO,
   hero: {

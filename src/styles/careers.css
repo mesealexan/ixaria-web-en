@@ -1,3 +1,4 @@
+@layer legacy {
 .job-hero {
   background: linear-gradient(135deg, var(--navy) 0%, #0d0d7a 100%);
   color: var(--white);
@@ -603,4 +604,6 @@
   .job-final {
     padding: 40px 24px;
   }
+}
+
 }

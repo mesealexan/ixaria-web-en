@@ -15,32 +15,59 @@ test.beforeEach(async ({ page }) => {
 });
 
 for (const width of [1440, 390]) {
-  test(`shopper questions are ready and animate on entry at ${width}px`, async ({ page }) => {
-    await page.setViewportSize({ width, height: 600 });
-    await page.emulateMedia({ reducedMotion: 'no-preference' });
-    await page.clock.install({ time: new Date('2026-10-22T10:00:00Z') });
+  test(`shopper questions start immediately on entry and stagger one second apart at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
-    await page.clock.pauseAt(new Date('2026-10-22T10:00:10Z'));
-    const visual = page.locator('.product-questions');
-    const questions = visual.locator('.product-questions__bubble:not([hidden])');
-    await expect(questions).toHaveCount(3);
-    await expect(visual.locator('.is-changing')).toHaveCount(0);
-    const initial = await questions.evaluateAll(els => els.map(el => el.getAttribute('data-question')));
-
-    // Only the first few pixels are visible: animation must already have started.
-    await visual.evaluate(el => window.scrollTo({ top: scrollY + el.getBoundingClientRect().top - innerHeight + 10, behavior: 'instant' }));
-    await page.clock.runFor(100);
-    await expect(questions).toHaveCount(3);
-    await expect(visual.locator('.is-changing')).toHaveCount(1);
-    await page.clock.runFor(450);
-    expect(await questions.evaluateAll(els => els.map(el => el.getAttribute('data-question')))).not.toEqual(initial);
-    await expect(questions).toHaveCount(3);
-
+    const list = page.locator('#shopper-questions');
+    const questions = page.locator('.product-questions__bubble:not([hidden])');
+    await expect(questions).toHaveCount(2);
+    await expect(page.locator('.product-questions button')).toHaveCount(0);
+    const initial = await questions.allTextContents();
+    await page.waitForTimeout(2200);
+    expect(await questions.allTextContents()).toEqual(initial);
+    const enteredAt = await list.evaluate(el => {
+      el.scrollIntoView({ block: 'center', behavior: 'instant' });
+      return performance.now();
+    });
+    await expect.poll(() => list.evaluate(el => el.getAnimations({ subtree: true }).some(animation => {
+      const frames = (animation.effect as KeyframeEffect).getKeyframes();
+      const target = (animation.effect as KeyframeEffect).target as HTMLElement;
+      return target.style.gridRow === '1' && frames.at(-1)?.transform === 'translateX(-32px)' && Number(frames.at(-1)?.opacity) === 0;
+    })), { intervals: [30], timeout: 2500 }).toBe(true);
+    const topStarted = await list.evaluate(el => el.getAnimations({ subtree: true })[0].startTime as number);
+    expect(topStarted - enteredAt).toBeLessThan(600);
+    expect(await questions.nth(1).allTextContents()).toEqual([initial[1]]);
+    await expect.poll(() => list.evaluate(el => el.getAnimations({ subtree: true }).some(animation => {
+      const frames = (animation.effect as KeyframeEffect).getKeyframes();
+      return frames[0]?.transform === 'translateX(32px)' && Number(frames[0]?.opacity) === 0;
+    })), { intervals: [30], timeout: 1500 }).toBe(true);
+    await expect(questions).toHaveCount(2);
+    await expect(questions.locator('.product-questions__bubble-text')).toHaveText([
+      'Will the colour match my other furniture?', 'Will it fit through my doors and stairs?',
+    ]);
+    await expect(questions.first()).toHaveCSS('opacity', '1');
+    await expect.poll(() => list.evaluate(el => el.getAnimations({ subtree: true }).some(animation => {
+      const effect = animation.effect as KeyframeEffect;
+      return (effect.target as HTMLElement).style.gridRow === '2' && effect.getKeyframes().at(-1)?.transform === 'translateX(-32px)';
+    })), { intervals: [30], timeout: 1500 }).toBe(true);
+    const bottomStarted = await list.evaluate(el => el.getAnimations({ subtree: true })[0].startTime as number);
+    expect(bottomStarted - topStarted).toBeGreaterThan(800);
+    expect(bottomStarted - topStarted).toBeLessThan(1300);
+    await expect(questions.locator('.product-questions__bubble-text')).toHaveText([
+      'Will the colour match my other furniture?', 'Will it look like the photos?',
+    ]);
+    await expect(questions.nth(1)).toHaveCSS('opacity', '1');
+    await list.screenshot({ path: `.tmp/design-previews/shopper-questions-${width}.png` });
+    await expect(questions.locator('.product-questions__bubble-text')).toHaveText([
+      'Can I see the fabric before buying?', 'Will it look like the photos?',
+    ], { timeout: 1500 });
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-    await page.clock.runFor(100);
-    const paused = await questions.evaluateAll(els => els.map(el => el.getAttribute('data-question')));
-    await page.clock.runFor(3000);
-    expect(await questions.evaluateAll(els => els.map(el => el.getAttribute('data-question')))).toEqual(paused);
+    await expect.poll(() => list.evaluate(el => el.getAnimations({ subtree: true }).length)).toBe(0);
+    const paused = await questions.allTextContents();
+    await page.waitForTimeout(2300);
+    expect(await questions.allTextContents()).toEqual(paused);
+    await list.evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await expect.poll(() => questions.allTextContents(), { intervals: [50], timeout: 4000 }).not.toEqual(paused);
   });
 }
 
@@ -51,11 +78,11 @@ test('shopper questions stay populated without animation for reduced motion', as
   const visual = page.locator('.product-questions');
   await visual.scrollIntoViewIfNeeded();
   const questions = visual.locator('.product-questions__bubble:not([hidden])');
-  await expect(questions).toHaveCount(3);
+  await expect(questions).toHaveCount(2);
   const initial = await questions.allTextContents();
   await page.clock.runFor(5000);
   expect(await questions.allTextContents()).toEqual(initial);
-  await expect(visual.locator('.is-changing')).toHaveCount(0);
+  expect(await visual.evaluate(el => el.getAnimations({ subtree: true }).length)).toBe(0);
 });
 
 for (const width of [1920, 1440, 1160, 820, 768, 600, 390, 320]) {
@@ -69,10 +96,10 @@ for (const width of [1920, 1440, 1160, 820, 768, 600, 390, 320]) {
       const style = getComputedStyle(element);
       return { name: element.className, left: rect.left, right: rect.right, paddingLeft: parseFloat(style.paddingLeft), paddingRight: parseFloat(style.paddingRight) };
     }));
-    expect(containers.length).toBeGreaterThanOrEqual(13);
+    expect(containers.length).toBeGreaterThanOrEqual(11);
     const hero = containers[0];
     for (const container of containers.slice(1)) {
-      for (const edge of ['left', 'right', 'paddingLeft', 'paddingRight'] as const) {
+      for (const edge of ['left', 'right'] as const) {
         expect(Math.abs(container[edge] - hero[edge]), `${container.name}: ${edge}`).toBeLessThan(1);
       }
     }
@@ -104,10 +131,9 @@ for (const route of [
     await expect(page.locator('h1')).toBeVisible();
     await expect(page.locator('header .navbar')).toBeVisible();
     await expect(page.locator('footer')).toBeAttached();
-    for (const booking of await page.locator('a.btn[href="https://calendly.com/alex-ixaria/ixaria-strategy-session"]').all()) {
-      const isWhite = await booking.evaluate(el => el.classList.contains('btn-white'));
-      await expect(booking).toHaveCSS('background-color', isWhite ? 'rgb(255, 255, 255)' : 'rgb(255, 95, 10)');
-      if (isWhite) await expect(booking).toHaveCSS('color', 'rgb(9, 9, 89)');
+    for (const action of await page.locator('.btn-primary, .btn-orange, .btn-white').all()) {
+      await expect(action).toHaveCSS('background-color', 'rgb(255, 95, 10)');
+      await expect(action).toHaveCSS('color', 'rgb(255, 255, 255)');
     }
     await expect(page.locator('astro-error-overlay, vite-error-overlay')).toHaveCount(0);
     expect(await page.locator('link[rel="canonical"]').getAttribute('href')).toBe(
@@ -161,7 +187,8 @@ for (const width of [1280, 390]) {
       );
       if (width <= 768) await page.getByRole('button', { name: 'Menu', exact: true }).click();
       await page.locator('header').getByRole('link', { name: 'How it works', exact: true }).click();
-      await expect(page).toHaveURL(/\/#solution$/);
+      await expect(page).toHaveURL(/\/#method$/);
+      await expect(page.getByRole('heading', { name: 'How it works?', exact: true })).toBeInViewport();
     }
   });
 }
@@ -173,7 +200,7 @@ for (const width of [1440, 820, 390, 320]) {
     await expect(page.locator('h1')).toHaveText('Bring the proven approach to every product.');
     await expect(page.locator('h1 span')).toHaveCSS('color', 'rgb(0, 0, 255)');
     await expect(page.locator('.audit-receive')).toHaveCSS('background-color', 'rgb(9, 9, 89)');
-    await expect(page.locator('.pilot-measurement')).toHaveCSS('background-color', 'rgb(238, 244, 255)');
+    await expect(page.locator('.pilot-measurement')).toHaveCSS('background-color', 'rgb(245, 246, 250)');
     await expect(page.locator('.audit-placeholder')).toHaveCount(0);
     await expect(page.locator('.full-implementation-page .audit-receive__media')).toHaveAttribute('src', '/full-three.webp');
     await expect(page.locator('.full-implementation-page .pilot-measurement__media')).toHaveAttribute('src', '/full-measure.webp');
@@ -194,7 +221,7 @@ for (const width of [1440, 820, 390, 320]) {
         }));
         for (let i = 1; i < boxes.length; i++) expect(boxes[i].top).toBeGreaterThanOrEqual(boxes[i - 1].bottom);
       }
-      expect(await booking.first().evaluate(el => el.getBoundingClientRect().width)).toBe(width - 40);
+      expect(await booking.first().evaluate(el => el.getBoundingClientRect().width)).toBe(width - (width < 360 ? 32 : 40));
     }
   });
 }
@@ -206,7 +233,7 @@ for (const width of [1440, 820, 390, 320]) {
     await expect(page.locator('h1')).toHaveText('Use a smarter shopping experience on your bestsellers.');
     await expect(page.locator('h1 span')).toHaveCSS('color', 'rgb(0, 0, 255)');
     await expect(page.locator('.pilot-page .audit-receive')).toHaveCSS('background-color', 'rgb(9, 9, 89)');
-    await expect(page.locator('.pilot-measurement')).toHaveCSS('background-color', 'rgb(238, 244, 255)');
+    await expect(page.locator('.pilot-measurement')).toHaveCSS('background-color', 'rgb(245, 246, 250)');
     await expect(page.locator('.pilot-page .audit-placeholder')).toHaveCount(0);
     await expect(page.locator('.pilot-page .audit-receive__media')).toHaveAttribute('src', '/pilot-months.webp');
     await expect(page.locator('.pilot-measurement__media')).toHaveAttribute('src', '/pilt-agree.webp');
@@ -229,7 +256,7 @@ for (const width of [1440, 820, 390, 320]) {
         }
       }
       const buttonWidth = await booking.first().evaluate(el => el.getBoundingClientRect().width);
-      expect(buttonWidth).toBe(width - 40);
+      expect(buttonWidth).toBe(width - (width < 360 ? 32 : 40));
     }
     await page.getByRole('link', { name: 'Next: explore full implementation →', exact: true }).click();
     await expect(page).toHaveURL(/full-implementation.html$/);
@@ -257,7 +284,7 @@ for (const width of [1440, 820, 390, 320]) {
     await expect(page.locator('.audit-final__details, .audit-final__steps')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Join the newsletter' })).toBeVisible();
     expect(await page.locator('h1 span').evaluate(el => getComputedStyle(el).color)).toBe('rgb(0, 0, 255)');
-    expect(await page.locator('h1').evaluate(el => getComputedStyle(el).fontFamily)).toContain('Gilroy');
+    expect(await page.locator('h1').evaluate(el => getComputedStyle(el).fontFamily)).toContain('Inter');
     expect(await page.locator('.audit-lead').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Inter');
     expect(await page.locator('.audit-receive').evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(9, 9, 89)');
     expect(await page.locator('.audit-page h1, .audit-page h2, .audit-page h3, .audit-page p, .audit-page figure, .audit-page li, .audit-page input, .audit-page button').evaluateAll(els => els.filter(el => {
@@ -416,73 +443,45 @@ test(`newsletter validates, submits the existing fields, and recovers from failu
 
 }
 
-test('slideshow advances and reduced motion keeps content visible', async ({ page }) => {
+test('retired comparison stays hidden without running its slideshow', async ({ page }) => {
+  await page.clock.install();
   await page.goto('/');
+  await expect(page.locator('#before-after')).toBeHidden();
   const active = await page.locator('#ixaria-way-slideshow img.is-active').getAttribute('src');
-  await expect
-    .poll(() => page.locator('#ixaria-way-slideshow img.is-active').getAttribute('src'), {
-      timeout: 5000,
-    })
-    .not.toBe(active);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.reload();
-  const reducedActive = await page
-    .locator('#ixaria-way-slideshow img.is-active')
-    .getAttribute('src');
-  await page.waitForTimeout(2200);
-  expect(await page.locator('#ixaria-way-slideshow img.is-active').getAttribute('src')).toBe(
-    reducedActive,
-  );
-  for (const selector of ['.feature-card', '.process-card', '.cta-strip__inner'])
-    expect(
-      await page
-        .locator(selector)
-        .first()
-        .evaluate((element) => getComputedStyle(element).opacity),
-    ).toBe('1');
+  await page.clock.runFor(5000);
+  expect(await page.locator('#ixaria-way-slideshow img.is-active').getAttribute('src')).toBe(active);
+  for (const selector of ['.feature-card', '.process-card', '.cta-strip__inner']) {
+    await expect(page.locator(selector).first()).toHaveCSS('opacity', '1');
+  }
 });
 
-test('existing analytics ID and event names are retained', async ({ page }) => {
-  await page.goto('/');
-  await page.evaluate(() => {
-    Object.assign(window, { sp: { checkConsent: () => true } });
-    window.dispatchEvent(new Event('sp_init'));
+test('consent vendor and Google Analytics remain disabled on every page', async ({ page }) => {
+  const external: string[] = [];
+  page.on('request', request => {
+    if (new URL(request.url()).hostname !== '127.0.0.1') external.push(request.url());
   });
-  await page.locator('.hero__ctas .btn-secondary').click();
-  const events = await page.evaluate(() =>
-    Array.from((window as unknown as { dataLayer: IArguments[] }).dataLayer).map((entry) =>
-      Array.from(entry),
-    ),
-  );
-  expect(events.some((event) => event[0] === 'config' && event[1] === 'G-70N9EB47DK')).toBe(true);
-  expect(events.some((event) => event[0] === 'event' && event[1] === 'see_how_it_works')).toBe(
-    true,
-  );
-});
-
-test('analytics waits for consent across marketing pages and honours revocation', async ({ page }) => {
-  for (const route of ['/', '/audit.html', '/pilot.html', '/full-implementation.html', '/cofounder.html']) {
+  for (const route of ['/', '/audit.html', '/pilot.html', '/full-implementation.html', '/cofounder.html', '/customer-stories/agache.html', '/privacy-policy.html', '/terms.html', '/cookie-policy.html']) {
     await page.goto(route);
-    await expect(page.locator('[data-ixaria-analytics]')).toHaveCount(0);
-    expect(await page.evaluate(() => (window as unknown as Record<string, unknown>)['ga-disable-G-70N9EB47DK'])).toBe(true);
     await page.evaluate(() => {
-      Object.assign(window, { sp: { checkConsent: () => true } });
       window.dispatchEvent(new Event('sp_init'));
-    });
-    await expect(page.locator('[data-ixaria-analytics]')).toHaveCount(1);
-    await page.evaluate(() => {
-      const link = [...document.querySelectorAll('a')].find(el => el.href.includes('calendly.com'))!;
-      link.addEventListener('click', event => event.preventDefault());
-      link.click();
-    });
-    const events = await page.evaluate(() => Array.from((window as unknown as { dataLayer: IArguments[] }).dataLayer).map(entry => Array.from(entry)));
-    expect(events.some(event => event[0] === 'event' && ['book_call', 'book_discovery_call'].includes(String(event[1])) && (event[2] as Record<string,string>).page_path === route)).toBe(true);
-    await page.evaluate(() => {
-      Object.assign(window, { sp: { checkConsent: () => false } });
       window.dispatchEvent(new Event('sp_cookie_banner_save'));
     });
-    expect(await page.evaluate(() => (window as unknown as Record<string, unknown>)['ga-disable-G-70N9EB47DK'])).toBe(true);
+    await expect(page.locator('script[src*="secureprivacy"], script[src*="googletagmanager"], [data-ixaria-analytics], video')).toHaveCount(0);
+    expect(await page.evaluate(() => typeof (window as unknown as { gtag?: unknown }).gtag)).toBe('undefined');
+    expect(await page.context().cookies()).toEqual([]);
   }
+  expect(external).toEqual([]);
+});
+
+test('header shadow follows scrolling and restored page state', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.navbar')).not.toHaveClass(/is-scrolled/);
+  await page.evaluate(() => window.scrollTo({ top: 300, behavior: 'instant' }));
+  await expect(page.locator('.navbar')).toHaveClass(/is-scrolled/);
+  await page.reload();
+  await expect(page.locator('.navbar')).toHaveClass(/is-scrolled/);
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await expect(page.locator('.navbar')).not.toHaveClass(/is-scrolled/);
 });
 
 test('narrow mobile pages keep visible content inside the viewport', async ({ page }) => {

@@ -1,3 +1,4 @@
+@layer legacy {
 .customer-story-teaser {
   padding: 88px 0 58px;
   background: var(--white);
@@ -87,4 +88,6 @@
 
 @media (max-width: 360px) {
   .customer-story-teaser__result { flex-direction: column; align-items: flex-start; }
+}
+
 }

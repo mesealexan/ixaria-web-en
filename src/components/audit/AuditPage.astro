@@ -1,4 +1,5 @@
 ---
+import '../../styles/design-services.css';
 import { audit } from '../../data/audit';
 import { auditAssets } from '../../data/audit-assets';
 import Button from '../ui/Button.astro';
@@ -143,6 +144,7 @@ import '../../styles/audit.css';
       <p class="audit-lead">{audit.final.description}</p>
       <Button href={audit.bookingUrl} external>{audit.bookingLabel}</Button>
       <a class="audit-pilot-link" href={audit.final.pilotUrl}>{audit.final.pilotLabel}</a>
+      <img class="service-closing__sofa" role="presentation" src="/design/blue-sofa-1200.webp" srcset="/design/blue-sofa-640.webp 640w, /design/blue-sofa-1200.webp 1200w" sizes="(max-width: 768px) 90vw, 540px" width="1200" height="800" alt="" loading="lazy" decoding="async" />
     </div>
   </section>
 </div>

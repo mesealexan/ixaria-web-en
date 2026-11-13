@@ -1,3 +1,4 @@
+@layer legacy {
 .implementation-hero {
   background: var(--gray-light);
   padding: 40px 0 80px;
@@ -151,4 +152,6 @@
     white-space: normal;
     text-align: center;
   }
+}
+
 }

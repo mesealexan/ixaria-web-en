@@ -14,15 +14,15 @@ for (const file of files) {
 }
 const assetMap = new Map(assets.map(asset => [asset.url, asset]));
 const pages = [];
-for (const file of fs.readdirSync('dist').filter(file => file.endsWith('.html'))) {
+for (const file of fs.readdirSync('dist', { recursive: true }).filter(file => file.endsWith('.html'))) {
   const html = fs.readFileSync(path.join('dist', file), 'utf8');
   const $ = load(html);
-  const route = file === 'index.html' ? '/' : '/' + file;
+  const route = file === 'index.html' ? '/' : '/' + file.replaceAll('\\', '/');
   const content = $('body').clone();
   content.find('script,style,noscript').remove();
   const textHash = createHash('sha256').update(content.text().replace(/\s+/g, ' ').trim()).digest('hex');
   const issues = [];
-  const images = $('img').toArray().map(el => {
+  const images = $('img[src],img[srcset]').toArray().map(el => {
     const image = $(el);
     const src = decodeURIComponent(image.attr('src') ?? '');
     const asset = assetMap.get(src);

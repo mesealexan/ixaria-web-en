@@ -22,7 +22,10 @@ test('Agache publishes approved monthly EUR totals alongside percentage growth',
   const amounts = $('.story-chart__revenue tbody tr').map((_, row) => $(row).find('td').map((_, cell) => $(cell).text()).get().join(' / ')).get();
   assert.deepEqual(amounts, ['€8,451 / €24,991', '€5,321 / €19,126', '€2,032 / €14,286', '€9,460 / €19,094', '€2,664 / €12,865', '€4,896 / €17,651', '€5,758 / €29,423']);
   assert.match($('.story-chart__currency-note').text(), /Indicative conversion: €1 = RON 5.00/);
-  assert.match($('meta[name="robots"]').attr('content'), /noindex/);
+  assert.equal($('meta[name="robots"]').attr('content'), 'index, follow, max-image-preview:large');
+  assert.match(fs.readFileSync('dist/sitemap.xml', 'utf8'), /<loc>https:\/\/ixaria.eu\/customer-stories\/agache.html<\/loc>/);
+  const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
+  assert.equal(graph.find(entity => entity['@type'] === 'WebPage').url, 'https://ixaria.eu/customer-stories/agache.html');
   assert.equal($('blockquote').length, 0, 'an unapproved testimonial is not presented as a quotation');
 });
 

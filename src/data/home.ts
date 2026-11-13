@@ -1,5 +1,6 @@
 import type { ContentCard, Founder } from './types';
 import { auditAssets } from './audit-assets';
+import { audit } from './audit';
 
 export const features: ContentCard[] = [
   {
@@ -48,6 +49,7 @@ export const founders: Founder[] = [
   {
     name: 'Alex',
     role: 'Vision, Sales',
+    description: audit.team.people.find(person => person.assetKey === 'Alex')!.text,
     linkedin: 'https://www.linkedin.com/in/alexandru-mesesan/',
     image: {
       src: auditAssets.portraits.Alex,
@@ -59,6 +61,9 @@ export const founders: Founder[] = [
   {
     name: 'Victor',
     role: 'Technical Lead',
+    // Summary of the public LinkedIn About and Ixaria experience sections,
+    // reviewed 13 November 2026: https://www.linkedin.com/in/victoriancu/
+    description: '9+ years in frontend engineering | Angular architecture, TypeScript and RxJS | Reusable UI libraries, SDKs and maintainable software | Co-founder of Ixaria’s 3D product configuration platform',
     linkedin: 'https://www.linkedin.com/in/victoriancu/',
     imagePosition: 'center top',
     image: {
@@ -71,6 +76,7 @@ export const founders: Founder[] = [
   {
     name: 'Eduard',
     role: 'Product',
+    description: audit.team.people.find(person => person.assetKey === 'Eduard')!.text,
     linkedin: 'https://www.linkedin.com/in/eduard-badea/',
     image: {
       src: auditAssets.portraits.Eduard,

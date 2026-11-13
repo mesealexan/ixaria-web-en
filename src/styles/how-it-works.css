@@ -1,3 +1,4 @@
+@layer legacy {
 .how {
   padding: 96px 0;
   background: var(--gray-light);
@@ -152,4 +153,6 @@
   .process-card p {
     margin-bottom: 24px;
   }
+}
+
 }

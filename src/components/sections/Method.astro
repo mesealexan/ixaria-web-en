@@ -1,0 +1,35 @@
+---
+const steps = [
+  { title: 'Signals', text: 'Signals are small elements inserted into your home page, listing pages and product pages that help us understand your returning visitors’ needs, fears and cultural traits.', color: 'blue' },
+  { title: 'Correlations', text: 'Correlation is an AI-driven analytics tool that gathers all visitor data, correlates it with the signals and prepares a response.', color: 'orange' },
+  { title: 'Responses', text: 'Responses are the dynamic parts of your webshop that change based on what the Correlation engine suggests.', color: 'arctic' },
+];
+---
+<section class="method" id="method" aria-labelledby="method-title">
+  <div class="container solution__statement-container">
+    <h2 class="section-title" id="method-title">How it works?</h2>
+    <p class="solution__subtitle solution__statement">Our unique method to understand your visitors and show them <br> the right information at the right time:</p>
+  </div>
+
+  <div class="container">
+    <div class="solution__steps" data-solution-steps>
+      {steps.map((step, index) => (
+        <article class={`solution-step solution-step--${step.color}`} data-solution-step data-step-name={step.title} aria-labelledby={`solution-step-${index}-title`}>
+          <div class="solution-step__inner">
+            <img class="solution-step__art" src={`/design/method-${['signals', 'correlations', 'responses'][index]}-800.webp`} width="800" height="800" alt="" role="presentation" loading="lazy" decoding="async" />
+            <div class="solution-step__face solution-step__face--front" data-step-front>
+              <h3 id={`solution-step-${index}-title`}>{step.title}</h3>
+            </div>
+            <div class="solution-step__face solution-step__face--back" id={`solution-step-${index}-details`} data-step-back>
+              <span class="solution-step__label" aria-hidden="true">{step.title}</span>
+              <p>{step.text}</p>
+              <button class="solution-step__toggle solution-step__toggle--close" type="button" data-step-close aria-label={`Close ${step.title} details`} hidden>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

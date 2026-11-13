@@ -1,0 +1,33 @@
+/* Page-specific design rules: careers. Values and cascade layers retained. */
+
+@layer design {
+  .job-hero { background:linear-gradient(90deg,var(--navy) 35%,#090959b8),url('/design/blue-texture-1600.webp') right center/cover; padding:80px 0; }
+  .job-hero__inner { width:min(var(--content),calc(100% - var(--gutter)*2)); max-width:none; padding:0; text-align:left; }
+  .job-hero__title { font:700 clamp(36px,4.1vw,56px)/1.12 var(--font-head); max-width:900px; }
+  .job-hero__sub { max-width:65ch; margin:24px 0 0; font-size:20px; color:#dadaed; }
+  .job-body { padding-block:80px; }
+  .job-layout { width:min(var(--content),calc(100% - var(--gutter)*2)); max-width:none; padding:0; gap:64px; grid-template-columns:240px minmax(0,760px); }
+  .job-content { max-width:70ch; }
+  .job-section { margin-bottom:64px; }
+  .job-section__title { font:700 clamp(28px,3vw,36px)/1.2 var(--font-head); }
+  .job-section :is(p,li) { font-size:18px; line-height:1.75; }
+  .job-toc { top:calc(var(--header-height) + 24px); }
+  .job-toc__list a { min-height:44px; font-size:14px; }
+  .job-callout,.job-split__chip { border-radius:16px; }
+  @media (max-width:899px) {
+    .job-layout { grid-template-columns:190px minmax(0,1fr); gap:32px; }
+  }
+  @media (max-width:768px) {
+    .job-hero { padding-block:48px; }
+    .job-hero__title { font-size:36px; }
+    .job-hero__sub { font-size:18px; }
+    .job-layout { grid-template-columns:1fr; gap:40px; }
+    .job-toc { display:block; position:static; border-bottom:1px solid var(--gray-mid); padding-bottom:32px; }
+    .job-toc__list { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+    .job-toc__list a { padding:8px; }
+    .job-section :is(p,li) { font-size:16px; }
+  }
+  @media (max-width:359px) {
+    .job-toc__list { grid-template-columns:1fr; }
+  }
+}

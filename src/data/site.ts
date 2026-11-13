@@ -96,7 +96,7 @@ export const site = {
   navigation: [
     {
       label: 'How it works',
-      href: '/#solution',
+      href: '/#method',
     },
     {
       label: 'Process',

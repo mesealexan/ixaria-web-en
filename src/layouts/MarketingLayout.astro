@@ -5,6 +5,7 @@ interface Props { seo: PageSEO; structuredData?: StructuredData; integrations?: 
 const { seo, structuredData, integrations } = Astro.props;
 ---
 <BaseLayout seo={seo} structuredData={structuredData} integrations={integrations}>
+  <slot name="head" slot="head" />
   <slot />
   <slot name="after-footer" slot="after-footer" />
 </BaseLayout>

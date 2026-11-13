@@ -18,9 +18,11 @@ const documents = Object.fromEntries(
     load(fs.readFileSync(path.join(dist, `${name}.html`), 'utf8')),
   ]),
 );
+const sharedHeader = ($) => { const header = $('header').first().clone(); header.find('[aria-current]').removeAttr('aria-current'); return header.html(); };
 const compact = (text) => text.replace(/\s+/g, '');
 const contentHash = (text) => createHash('sha256').update(compact(text)).digest('hex');
-const socialPreviewTitle = 'Smarter Furniture Product Page | Ixaria';
+const fonts = JSON.parse(fs.readFileSync('src/data/font-subsets.json', 'utf8'));
+const mobileImages = JSON.parse(fs.readFileSync('src/data/customer-stories/agache-mobile-images.json', 'utf8'));
 
 for (const [name, expected] of Object.entries(baseline)) {
   const $ = documents[name];
@@ -40,14 +42,14 @@ for (const [name, expected] of Object.entries(baseline)) {
       );
       assert.equal(nodes.length, 1, `one ${meta.key} tag`);
       const expectedContent = ['og:title', 'twitter:title'].includes(meta.key)
-        ? socialPreviewTitle
+        ? $('title').text()
         : ['og:image', 'twitter:image'].includes(meta.key)
           ? 'https://ixaria.eu/webpreview.webp'
           : meta.content;
       assert.equal(nodes.attr('content'), expectedContent, meta.key);
     }
-    assert.equal($('meta[property="og:title"]').attr('content'), socialPreviewTitle);
-    assert.equal($('meta[name="twitter:title"]').attr('content'), socialPreviewTitle);
+    assert.equal($('meta[property="og:title"]').attr('content'), $('title').text());
+    assert.equal($('meta[name="twitter:title"]').attr('content'), $('title').text());
     for (const alternate of expected.alternates)
       assert.equal($(`link[hreflang="${alternate.language}"]`).attr('href'), alternate.href);
   });
@@ -125,22 +127,27 @@ for (const [name, expected] of Object.entries(baseline)) {
   });
 }
 
-test('structured data preserves the original entities, relationships and IDs', () => {
+test('structured data retains entity IDs and describes the current visible homepage', () => {
   const $ = documents.index;
   assert.equal($('script[type="application/ld+json"]').length, 1);
   const actual = JSON.parse($('script[type="application/ld+json"]').text());
   assert.equal(actual['@context'], schemaBaseline['@context']);
   for (const original of schemaBaseline['@graph']) {
+    if (['VideoObject', 'ImageObject'].includes(original['@type'])) continue;
     const migrated = actual['@graph'].find((entity) =>
       original['@id'] ? entity['@id'] === original['@id'] : entity['@type'] === original['@type'],
     );
     assert.ok(migrated, original['@type']);
     if (!['FAQPage', 'HowTo'].includes(original['@type'])) {
       const expected =
-        original['@type'] === 'WebPage' ? { ...original, name: $('title').text(), description: $('meta[name="description"]').attr('content'), dateModified: '2026-10-22' } : original;
+        original['@type'] === 'WebPage' ? { ...original, name: $('title').text(), description: $('meta[name="description"]').attr('content'), dateModified: '2026-11-13', primaryImageOfPage: { '@type': 'ImageObject', url: 'https://ixaria.eu/design/hero-scene-1600.webp' } } : original;
+      if (original['@type'] === 'WebPage') expected.image = mobileImages.map(image => ({ '@id': `https://ixaria.eu/#${image.id}` }));
       assert.deepEqual(migrated, expected);
     }
   }
+  assert.equal(actual['@graph'].some(entity => entity['@type'] === 'VideoObject'), false);
+  assert.equal($('video, source[type="video/mp4"]').length, 0);
+  assert.doesNotMatch($('script').text(), /animation\.mp4|#hero-video/);
   const faqSchema = actual['@graph'].find((entity) => entity['@type'] === 'FAQPage');
   const items = $('.faq__item').toArray();
   assert.equal(faqSchema.mainEntity.length, items.length);
@@ -170,7 +177,7 @@ test('sitemap contains precisely the indexable canonical pages and valid image U
   const xml = fs.readFileSync(path.join(dist, 'sitemap.xml'), 'utf8');
   const $ = load(xml, { xml: true });
   const allPages = fs
-    .readdirSync(dist)
+    .readdirSync(dist, { recursive: true })
     .filter((file) => file.endsWith('.html'))
     .map((file) => load(fs.readFileSync(path.join(dist, file), 'utf8')));
   const expected = allPages
@@ -183,15 +190,15 @@ test('sitemap contains precisely the indexable canonical pages and valid image U
       .sort(),
     expected.sort(),
   );
-  assert.equal($('url > loc').length, 5);
+  assert.equal($('url > loc').length, 6);
   const images = $('image\\:loc')
     .toArray()
     .map((node) => $(node).text());
-  assert.equal(images.length, 26);
+  assert.equal(images.length, 29);
   for (const image of images)
     assert.ok(fs.existsSync(path.join(dist, new URL(image).pathname)), image);
   const homeURL = $('url').filter((_, node) => $(node).find('loc').text() === 'https://ixaria.eu/');
-  assert.equal(homeURL.find('lastmod').text(), '2026-10-22');
+  assert.equal(homeURL.find('lastmod').text(), '2026-11-13');
   assert.match(
     fs.readFileSync(path.join(dist, 'robots.txt'), 'utf8'),
     /Sitemap: https:\/\/ixaria.eu\/sitemap.xml/,
@@ -235,7 +242,7 @@ test('How it works shows the three requested stages with matching schema and det
     }
     assert.equal(detail('link[rel="canonical"]').attr('href'), schema.step[index].url);
     assert.equal(detail('meta[name="robots"]').attr('content'), 'index, follow');
-    assert.equal(detail('header').html(), $('header').html());
+    assert.equal(sharedHeader(detail), sharedHeader($));
     assert.equal(detail('footer').html(), $('footer').html());
     const graph = JSON.parse(detail('script[type="application/ld+json"]').text())['@graph'];
     assert.equal(graph.find((entity) => entity['@type'] === 'WebPage').url, schema.step[index].url);
@@ -257,7 +264,7 @@ test('full implementation presents the rollout and pricing with shared chrome', 
   assert.equal($('main section').length, 5);
   assert.equal($('h1').text(), 'Bring the proven approach to every product.');
   assert.equal($('h1 span').text(), 'every product.');
-  assert.equal($('header').html(), documents.index('header').html());
+  assert.equal(sharedHeader($), sharedHeader(documents.index));
   assert.equal($('footer').html(), documents.index('footer').html());
   assert.equal($('.audit-placeholder').length, 0);
   assert.equal($('.audit-receive__media').attr('src'), '/full-three.webp');
@@ -274,7 +281,8 @@ test('full implementation presents the rollout and pricing with shared chrome', 
     assert.equal($(el).text(), 'Book a Discovery call');
     assert.equal($(el).attr('href'), 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
   });
-  assert.equal($('main img').length, 3);
+  assert.equal($('main img:not(.service-closing__sofa)').length, 3);
+  assert.equal($('.service-closing__sofa').attr('alt'), '');
   assert.equal($('main video, .implementation-hero, .implementation-outcomes').length, 0);
   assert.doesNotMatch($('main').text(), /Keep learning|What you take forward|Build on what works/);
   const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
@@ -288,7 +296,7 @@ test('pilot presents the five-section scope, pricing, and next step with shared 
   assert.equal($('main section').length, 5);
   assert.equal($('h1').text(), 'Use a smarter shopping experience on your bestsellers.');
   assert.equal($('h1 span').text(), 'on your bestsellers.');
-  assert.equal($('header').html(), documents.index('header').html());
+  assert.equal(sharedHeader($), sharedHeader(documents.index));
   assert.equal($('footer').html(), documents.index('footer').html());
   assert.equal($('.audit-placeholder').length, 0);
   assert.equal($('.audit-receive__media').attr('src'), '/pilot-months.webp');
@@ -304,7 +312,8 @@ test('pilot presents the five-section scope, pricing, and next step with shared 
   assert.equal(booking.length, 2);
   booking.each((_, el) => assert.equal($(el).attr('href'), 'https://calendly.com/alex-ixaria/ixaria-strategy-session'));
   assert.equal($('.audit-pilot-link').attr('href'), '/full-implementation.html');
-  assert.equal($('main img').length, 3);
+  assert.equal($('main img:not(.service-closing__sofa)').length, 3);
+  assert.equal($('.service-closing__sofa').attr('alt'), '');
   assert.equal($('main video, .implementation-hero, .implementation-outcomes').length, 0);
   const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
   assert.equal(graph.find(entity => entity['@type'] === 'Service').description, $('.audit-hero .audit-lead').text());
@@ -317,7 +326,7 @@ test('audit presents the conversion plan with shared integrations and current sc
   assert.equal($('h1').length, 1);
   assert.equal($('h1').text(), "Find out what why your visitors don't buy?");
   assert.equal($('h1 span').text(), "don't buy?");
-  assert.equal($('header').html(), documents.index('header').html());
+  assert.equal(sharedHeader($), sharedHeader(documents.index));
   assert.equal($('footer').html(), documents.index('footer').html());
   assert.equal($('.audit-process > li').length, 4);
   assert.equal($('.audit-flow > li').length, 3);
@@ -362,18 +371,16 @@ test('audit presents the conversion plan with shared integrations and current sc
 });
 
 test('shared chrome and integration configuration are consistent across all pages', () => {
-  const header = documents.index('header').html();
+  const header = sharedHeader(documents.index);
   const footer = documents.index('footer').html();
   for (const [name, $] of Object.entries(documents)) {
-    assert.equal($('header').html(), header, name);
+    assert.equal(sharedHeader($), header, name);
     assert.equal($('.navbar__process summary').text().trim(), 'Process', name);
     assert.deepEqual($('.navbar__process-links a').map((_, el) => [[$(el).text(), $(el).attr('href')]]).get(),
       [['Audit', '/audit.html'], ['Pilot', '/pilot.html'], ['Full Implementation', '/full-implementation.html']], name);
     assert.equal($('footer').html(), footer, name);
-    assert.equal($('script[src*="secureprivacy.ai"]').length, 1, name);
-    assert.equal($('script[src*="googletagmanager.com"]').length, 0, 'analytics loads only after consent');
-    const hasAnalytics = $('script').text().includes("analytics_storage: 'denied'");
-    assert.equal(hasAnalytics, !['privacy-policy', 'terms', 'cookie-policy'].includes(name), name);
+    assert.equal($('script[src*="secureprivacy.ai"], script[src*="googletagmanager.com"]').length, 0, name);
+    assert.doesNotMatch($('script').text(), /analytics_storage|sp_init|sp_cookie_banner_save|gtag\(/);
     assert.equal($('[onclick],[onkeydown]').length, 0, 'no fragile inline event handlers');
     assert.equal(
       $('[src*="sibforms.com/forms/end-form"]').length,
@@ -403,22 +410,23 @@ test('all generated CSS font and image references resolve', () => {
 test('indexable pages have consistent metadata, social cards and structured descriptions', () => {
   const titles = new Set();
   const descriptions = new Set();
-  for (const filename of ['index.html', 'audit.html', 'pilot.html', 'full-implementation.html', 'cofounder.html']) {
+  for (const filename of ['index.html', 'audit.html', 'pilot.html', 'full-implementation.html', 'cofounder.html', 'customer-stories/agache.html']) {
     const $ = load(fs.readFileSync(path.join(dist, filename), 'utf8'));
     const title = $('title').text();
     const description = $('meta[name="description"]').attr('content');
     assert.ok(title && description);
     assert.ok(!titles.has(title) && !descriptions.has(description), filename);
     titles.add(title); descriptions.add(description);
-    assert.equal($('meta[property="og:title"]').attr('content'), socialPreviewTitle);
+    const socialTitle = filename.includes('agache') ? 'Agache: 256% Revenue Growth | Ixaria' : title;
+    assert.equal($('meta[property="og:title"]').attr('content'), socialTitle);
     assert.equal($('meta[name="twitter:card"]').attr('content'), 'summary_large_image');
-    assert.equal($('meta[name="twitter:title"]').attr('content'), socialPreviewTitle);
+    assert.equal($('meta[name="twitter:title"]').attr('content'), socialTitle);
     const graph = JSON.parse($('script[type="application/ld+json"]').text())['@graph'];
     const page = graph.find(entity => entity['@type'] === 'WebPage');
     assert.equal(page.name, title);
     assert.equal(page.description, description);
-    assert.equal(page.dateModified, filename === 'cofounder.html' ? '2026-10-06' : '2026-10-22');
+    assert.equal(page.dateModified, '2026-11-13');
     assert.equal($('link[href*="fonts.googleapis.com"]').length, 0);
-    assert.ok($('link[rel="preload"][href="/fonts/inter-1.woff2"]').length);
+    assert.ok($(`link[rel="preload"][href="${fonts[1].url}"]`).length);
   }
 });

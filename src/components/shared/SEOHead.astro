@@ -1,6 +1,6 @@
 ---
+import fontSubsets from '../../data/font-subsets.json';
 import { site } from '../../data/site';
-import { socialPreviewTitle } from '../../seo/metadata';
 import { serializeStructuredData } from '../../seo/structured-data';
 import type { PageSEO, StructuredData } from '../../seo/types';
 interface Props { seo: PageSEO; structuredData?: StructuredData }
@@ -28,7 +28,7 @@ const twitter = seo.twitter ?? {
 {seo.alternates?.map(alternate => <link rel="alternate" hreflang={alternate.language} href={alternate.href} />)}
 <meta property="og:type" content={og?.type ?? 'website'} />
 <meta property="og:url" content={canonical} />
-<meta property="og:title" content={socialPreviewTitle} />
+<meta property="og:title" content={og?.title ?? seo.title} />
 <meta property="og:description" content={og?.description ?? seo.description} />
 <meta property="og:site_name" content={site.name} />
 {og?.locale && <meta property="og:locale" content={og.locale} />}
@@ -38,11 +38,10 @@ const twitter = seo.twitter ?? {
 {(og?.imageHeight || socialImage.endsWith('/webpreview.webp')) && <meta property="og:image:height" content={og?.imageHeight ?? '630'} />}
 {twitter && <>
   <meta name="twitter:card" content={twitter.card} />
-  <meta name="twitter:title" content={socialPreviewTitle} />
+  <meta name="twitter:title" content={twitter.title} />
   <meta name="twitter:description" content={twitter.description} />
   <meta name="twitter:image" content={twitter.image} />
   {twitter.imageAlt && <meta name="twitter:image:alt" content={twitter.imageAlt} />}
 </>}
-<link rel="preload" as="font" href="/fonts/inter-1.woff2" type="font/woff2" crossorigin />
-<link rel="preload" as="font" href="/Gilroy-Black.woff2" type="font/woff2" crossorigin />
+<link rel="preload" as="font" href={fontSubsets[1]!.url} type="font/woff2" crossorigin />
 {structuredData && <script type="application/ld+json" set:html={serializeStructuredData(structuredData)} />}

@@ -1,0 +1,38 @@
+{
+  "/": {
+    "textBlockHash": "f9dc2e50dfd441f52b9b6b0d73e6783d2f6e7852f8d09124a351461028c2373e",
+    "textBlocks": 239
+  },
+  "/audit.html": {
+    "textBlockHash": "da5488eccb796ea97259a5331cb8218efaa8c406f7a767cc1ca9a682e02e9f73",
+    "textBlocks": 92
+  },
+  "/pilot.html": {
+    "textBlockHash": "18d6d4569ac9d4189365a68966ded65d92b9a9458404620e53f7b591c87280ed",
+    "textBlocks": 62
+  },
+  "/full-implementation.html": {
+    "textBlockHash": "5696a9197a25b2dcdb5b82192752133bbffdf89064294cb0229e0125ddf26b36",
+    "textBlocks": 61
+  },
+  "/customer-stories/agache.html": {
+    "textBlockHash": "b9b6839365d81c52fe219929c4de2521ee5617f353c8584224cc0a1a18ab3b2c",
+    "textBlocks": 142
+  },
+  "/cofounder.html": {
+    "textBlockHash": "afe80b2daede9f8a003bca28dd5816b5ef283c5d7d2c8b64760e7ad631c688c1",
+    "textBlocks": 182
+  },
+  "/privacy-policy.html": {
+    "textBlockHash": "5916ae56bff34d3915b7cec1e6afff1248bbb985a789e5ba1997e363660956eb",
+    "textBlocks": 73
+  },
+  "/terms.html": {
+    "textBlockHash": "b6bee69b0d5ad14e0cbb4999705d518aa6b0aa7037f31c6b2c302fdf7f5e1483",
+    "textBlocks": 61
+  },
+  "/cookie-policy.html": {
+    "textBlockHash": "04477e6946cec2e24de47b117a694b71015ac11b0a1eaac70b09e91a0a0254c8",
+    "textBlocks": 79
+  }
+}

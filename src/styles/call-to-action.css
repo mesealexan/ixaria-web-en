@@ -1,3 +1,4 @@
+@layer legacy {
 .cta-strip {
   padding: 30px 0;
   background: var(--white);
@@ -49,4 +50,6 @@
   .cta-strip__image { display: none; }
   .cta-strip__text { padding: 24px 24px 16px; }
   .cta-strip__btn-wrap { padding: 0 24px 24px; }
+}
+
 }

@@ -18,7 +18,7 @@ document.addEventListener('click', (event) => {
       link_url: element.href,
     });
   } else if (
-    (href === '#how-it-works' || href === '/#how-it-works') &&
+    ['#how-it-works', '/#how-it-works', '#solution', '/#solution', '#method', '/#method'].includes(href) &&
     element.classList.contains('btn-secondary')
   ) {
     track('see_how_it_works');

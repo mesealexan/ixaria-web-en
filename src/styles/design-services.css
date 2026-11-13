@@ -1,0 +1,86 @@
+/* Page-specific design rules: services. Values and cascade layers retained. */
+
+@layer design {
+  .audit-section { padding-block:var(--section-space); }
+  .audit-grid { grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .audit-grid > * { min-width:0; }
+  .audit-page :is(h1,h2,h3) { font-weight:700; line-height:1.17; }
+  .audit-hero { padding-block:64px 80px; }
+  .audit-hero h1 { font-size:clamp(36px,4.1vw,56px); letter-spacing:-.035em; margin-bottom:24px; }
+  .audit-hero__media { box-shadow:none; border:none; border-radius:20px; width:100%; }
+  .audit-lead { font-size:18px; line-height:1.7; max-width:65ch; }
+  .audit-offer { margin-block:32px; gap:24px; flex-wrap:wrap; }
+  .audit-price strong,.pilot-price strong { font-size:44px; font-weight:700; letter-spacing:-.04em; }
+  .audit-price span,.audit-delivery,.pilot-terms,.implementation-revenue-share { font-size:16px; }
+  .pilot-price { flex-wrap:wrap; }
+  .audit-page .btn { min-height:52px; }
+  .audit-page .audit-hero .audit-booking { width:auto; }
+  .audit-receive { background:var(--navy); color:white; }
+  .audit-receive :is(.section-title,.audit-lead) { color:white; }
+  .audit-receive__media { border-radius:16px; }
+  .audit-deliverables li { font-size:18px; }
+  .audit-section-heading { margin-bottom:48px; }
+  .audit-process { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .audit-card { padding:32px 24px; border-radius:20px; }
+  .audit-page h3 { font-size:24px; }
+  .audit-card p,.audit-team p { font-size:16px; line-height:1.7; }
+  .audit-call-label { font-size:16px; }
+  .audit-approach { background:var(--gray-light); }
+  .audit-flow { gap:32px; }
+  .audit-flow > li:not(:last-child)::after { display:none; }
+  .audit-approach__media { border-radius:16px; margin-top:48px; }
+  .audit-note { font-size:14px; }
+  .audit-team img { height:auto; aspect-ratio:4/3; border-radius:16px; }
+  .audit-team .audit-role { font-size:16px; }
+  .pilot-steps { gap:24px; }
+  .pilot-step-number { color:var(--elec); font-size:32px; font-weight:500; }
+  .audit-final { padding:96px 0; background:var(--gray-light); }
+  .audit-final .section-title { max-width:800px; }
+  .audit-final .audit-lead { max-width:65ch; }
+  .audit-final > .container { position:relative; min-height:320px; text-align:left; }
+  .audit-final > .container > :not(.service-closing__sofa) { max-width:52%; margin-left:0; text-align:left; }
+  .service-closing__sofa { position:absolute; width:45%; height:auto; right:0; top:50%; transform:translateY(-50%); mix-blend-mode:multiply; }
+  .audit-pilot-link { margin-top:32px; font-size:16px; }
+  .audit-page .email-capture__inner { width:min(var(--content),calc(100% - var(--gutter)*2)); max-width:none; padding:0; }
+  .audit-page .email-capture { color:var(--navy); }
+  .audit-page .email-capture .section-title { color:var(--navy); }
+  .audit-page .email-capture .section-sub { color:var(--gray-text); }
+  .audit-page .email-msg { color:var(--navy); }
+  .audit-page .email-form input { font-size:16px; }
+  .audit-receive :focus-visible { outline-color:var(--arctic); }
+  .audit-page .email-capture :focus-visible { outline-color:var(--elec); }
+  @media (max-width:1199px) {
+    .audit-grid { gap:40px; }
+    .audit-process { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  }
+  @media (max-width:899px) {
+    .audit-grid,.audit-grid--image-left { grid-template-columns:1fr; gap:40px; }
+    .audit-hero__media { max-width:620px; justify-self:center; }
+    .audit-receive__media { max-width:620px; }
+  }
+  @media (max-width:768px) {
+    .audit-lead { font-size:16px; }
+    .audit-grid { gap:32px; }
+    .audit-hero { padding:40px 0 64px; }
+    .audit-hero h1 { font-size:36px; }
+    .audit-page .audit-hero .btn { width:100%; }
+    .audit-offer { gap:20px; }
+    .audit-price strong,.pilot-price strong { font-size:40px; }
+    .audit-deliverables li { font-size:16px; }
+    .audit-process,.audit-flow,.audit-team,.pilot-steps { grid-template-columns:1fr; }
+    .audit-card { padding:28px; }
+    .audit-team { gap:40px; }
+    .audit-team img { max-width:440px; }
+    .audit-approach__media { margin-top:32px; }
+    .audit-final { padding-block:64px; }
+    .audit-final > .container { text-align:center; }
+    .audit-final > .container > :not(.service-closing__sofa) { max-width:100%; text-align:center; margin-inline:auto; }
+    .service-closing__sofa { position:static; transform:none; width:100%; max-width:540px; margin:24px auto 0; }
+    .audit-page .email-capture__form-area { display:block; }
+    .audit-page .email-form { margin-top:24px !important; }
+    .audit-page .email-form input { flex:1 1 auto; }
+  }
+  @media (max-width:359px) {
+    .audit-hero h1 { font-size:32px; }
+  }
+}

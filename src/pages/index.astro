@@ -3,6 +3,7 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { pageSEO } from '../seo/pages';
 import { homeStructuredData } from '../seo/structured-data';
 import Hero from '../components/sections/Hero.astro';
+import Method from '../components/sections/Method.astro';
 import VisitorConversion from '../components/sections/VisitorConversion.astro';
 import Solution from '../components/sections/Solution.astro';
 import BeforeAfter from '../components/sections/BeforeAfter.astro';
@@ -15,6 +16,7 @@ import Newsletter from '../components/sections/Newsletter.astro';
 import About from '../components/sections/About.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import '../styles/home.css';
+import '../styles/design-home.css';
 import ChatDialog from '../features/chat/ChatDialog.astro';
 ---
 <MarketingLayout seo={pageSEO.home} structuredData={homeStructuredData()}>
@@ -25,12 +27,13 @@ import ChatDialog from '../features/chat/ChatDialog.astro';
   <VisitorConversion />
   <Solution />
   <BeforeAfter />
+  <Method />
   <CustomerStoryTeaser />
   <HowItWorks />
   <CallToAction />
   <Features />
-  <Newsletter />
   <About />
+  <Newsletter />
   <FAQ />
   <Fragment slot="after-footer">
     <ChatDialog />

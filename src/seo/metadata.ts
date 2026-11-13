@@ -1,13 +1,12 @@
 // Update only when a page's content or metadata changes meaningfully.
 export const pageDates = {
-  home: '2026-10-22',
-  audit: '2026-10-22',
-  pilot: '2026-10-22',
-  'full-implementation': '2026-10-22',
-  cofounder: '2026-10-06',
+  home: '2026-11-13',
+  audit: '2026-11-13',
+  pilot: '2026-11-13',
+  'full-implementation': '2026-11-13',
+  cofounder: '2026-11-13',
+  agache: '2026-11-13',
 } as const;
-
-export const socialPreviewTitle = 'Smarter Furniture Product Page | Ixaria';
 
 export const homeMetadata = {
   title: 'Furniture Ecommerce Product Page Optimisation | IXARIA',

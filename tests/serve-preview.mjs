@@ -1,6 +1,7 @@
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
+import { gzipSync } from 'node:zlib';
 
 // Serve the generated files independently of Astro's single preview process.
 // Browser tests must never reuse the development server or stop a user's preview.
@@ -18,7 +19,16 @@ http.createServer((request, response) => {
     if (!file.startsWith(root + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) {
       response.writeHead(404); response.end('Not found'); return;
     }
-    response.writeHead(200, { 'Content-Type': mime[path.extname(file)] ?? 'application/octet-stream' });
+    const extension = path.extname(file);
+    const headers = { 'Content-Type': mime[extension] ?? 'application/octet-stream', 'Cache-Control': 'max-age=600' };
+    const compress = /\.(html|css|js|svg|xml)$/.test(file) && /\bgzip\b/.test(request.headers['accept-encoding'] ?? '');
+    if (compress) {
+      const body = gzipSync(fs.readFileSync(file));
+      response.writeHead(200, { ...headers, 'Content-Encoding': 'gzip', 'Vary': 'Accept-Encoding', 'Content-Length': body.length });
+      response.end(request.method === 'HEAD' ? undefined : body);
+      return;
+    }
+    response.writeHead(200, headers);
     if (request.method === 'HEAD') response.end();
     else fs.createReadStream(file).pipe(response);
   } catch {

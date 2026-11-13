@@ -4,10 +4,12 @@ import MarketingLayout from '../layouts/MarketingLayout.astro';
 import { pageSEO } from '../seo/pages';
 import { careerStructuredData } from '../seo/careers';
 import '../styles/careers.css';
+import '../styles/design-careers.css';
 const entry = await getEntry('careers', 'cofounder');
 if (!entry) throw new Error('Missing cofounder content');
 const { Content } = await render(entry);
 ---
 <MarketingLayout seo={pageSEO.cofounder} structuredData={careerStructuredData()}>
+  <link slot="head" rel="preload" as="image" href="/design/blue-texture-1600.webp" fetchpriority="high" />
   <Content />
 </MarketingLayout>

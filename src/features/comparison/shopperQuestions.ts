@@ -1,85 +1,75 @@
-const visual = document.querySelector<HTMLElement>('.product-questions');
-
-if (visual) {
-  const questions = [...visual.querySelectorAll<HTMLElement>('.product-questions__bubble')];
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  const slots: (HTMLElement | undefined)[] = [undefined, undefined, undefined];
-  let nextQuestion = 0;
+const list = document.querySelector<HTMLElement>('#shopper-questions');
+if (list) {
+  const questions = [...list.querySelectorAll<HTMLElement>('.product-questions__bubble')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const cadence = 2000;
+  const visible = questions.slice(0, 2);
+  let nextQuestion = visible.length;
   let nextSlot = 0;
-  let visible = false;
+  let inView = false;
+  let generation = 0;
   let timer: ReturnType<typeof setTimeout> | undefined;
-  let fade: ReturnType<typeof setTimeout> | undefined;
-
-  const position = (question: HTMLElement, slot: number) => {
-    const inset = visual.clientWidth <= 360 ? 8 : 14;
-    const tail = matchMedia('(max-width: 480px)').matches ? 10 : 13;
-    const maxX = visual.clientWidth - question.offsetWidth - inset;
-    const x = slot === 0 ? inset : slot === 1 ? maxX : (visual.clientWidth - question.offsetWidth) / 2;
-    const y = slot === 2 ? visual.clientHeight - question.offsetHeight - tail - inset : inset + (slot === 1 ? 6 : 0);
-    question.style.left = `${Math.max(inset, x)}px`;
-    question.style.top = `${Math.max(inset, y)}px`;
+  let animations: Animation[] = [];
+  const canRotate = () => inView && !document.hidden && !reducedMotion.matches && questions.length > 2;
+  const show = () => {
+    questions.forEach(question => {
+      const slot = visible.indexOf(question);
+      question.hidden = slot === -1;
+      question.style.gridRow = slot === -1 ? '' : String(slot + 1);
+    });
+    // Keep reading order aligned with the two visual rows as they change.
+    list.append(...visible);
   };
-
-  const reveal = (slot: number, animate = true) => {
-    const question = questions[nextQuestion];
-    if (!question) return;
-    nextQuestion = (nextQuestion + 1) % questions.length;
-    question.dataset.slot = String(slot);
-    question.hidden = false;
-    question.classList.remove('is-active', 'is-changing');
-    slots[slot] = question;
-    position(question, slot);
-    // Commit the transparent starting state before fading the next question in.
-    if (animate) void question.offsetWidth;
-    question.classList.add('is-active');
-  };
-
-  const tick = () => {
-    const slot = nextSlot;
-    nextSlot = (nextSlot + 1) % slots.length;
-    const outgoing = slots[slot];
-    if (outgoing) {
-      outgoing.classList.add('is-changing');
-      fade = setTimeout(() => {
-        outgoing.hidden = true;
-        outgoing.classList.remove('is-active', 'is-changing');
-        reveal(slot);
-        fade = undefined;
-      }, 400);
-    } else {
-      reveal(slot);
-    }
-    timer = setTimeout(tick, 1500);
-  };
-
-  const update = () => {
+  const stop = () => {
+    generation++;
     clearTimeout(timer);
     timer = undefined;
-    clearTimeout(fade);
-    fade = undefined;
-    slots.forEach((question) => question?.classList.remove('is-changing'));
-    // Have all three questions ready before the shopper scrolls to the visual.
-    slots.forEach((question, slot) => {
-      if (!question) reveal(slot, false);
-    });
-    if (!motion.matches && visible && !document.hidden) {
-      tick();
-    }
+    animations.forEach(animation => animation.cancel());
+    animations = [];
   };
-
-  new ResizeObserver(() => slots.forEach((question, slot) => {
-    if (question) position(question, slot);
-  })).observe(visual);
-
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => {
-      visible = entry?.isIntersecting ?? false;
-      update();
-    }, { threshold: 0 }).observe(visual);
-  } else {
-    visible = true;
+  const schedule = (delay = cadence) => {
+    if (canRotate()) timer = setTimeout(rotate, delay);
+  };
+  const animateQuestion = async (question: HTMLElement, frames: Keyframe[], duration: number, current: number) => {
+    animations = [question.animate(frames, { duration, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards' })];
+    await Promise.all(animations.map(animation => animation.finished.catch(() => {})));
+    if (generation !== current) return false;
+    animations.forEach(animation => animation.cancel());
+    animations = [];
+    return true;
+  };
+  async function rotate() {
+    timer = undefined;
+    if (!canRotate()) return;
+    const current = generation;
+    const started = performance.now();
+    const slot = nextSlot;
+    if (!await animateQuestion(visible[slot], [
+      { transform: 'translateX(0)', opacity: 1 },
+      { transform: 'translateX(-32px)', opacity: 0 },
+    ], 240, current)) return;
+    visible[slot] = questions[nextQuestion];
+    nextQuestion = (nextQuestion + 1) % questions.length;
+    nextSlot = (slot + 1) % visible.length;
+    show();
+    if (!await animateQuestion(visible[slot], [
+      { transform: 'translateX(32px)', opacity: 0 },
+      { transform: 'translateX(0)', opacity: 1 },
+    ], 360, current)) return;
+    schedule(Math.max(0, cadence / 2 - (performance.now() - started)));
   }
-  motion.addEventListener('change', update);
-  document.addEventListener('visibilitychange', update);
-  update();
+  // Give newly visible questions an immediate first change, then keep the
+  // existing one-second stagger between the two rows.
+  const sync = () => { stop(); schedule(150); };
+  show();
+  const observer = new IntersectionObserver(entries => {
+    const entry = entries[entries.length - 1];
+    const visible = entry.isIntersecting && entry.intersectionRatio >= 0.1;
+    if (visible !== inView) { inView = visible; sync(); }
+  }, { threshold: [0, 0.1] });
+  observer.observe(list);
+  document.addEventListener('visibilitychange', sync);
+  reducedMotion.addEventListener('change', sync);
+  window.addEventListener('pagehide', stop);
 }
+export {};

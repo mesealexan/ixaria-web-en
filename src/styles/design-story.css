@@ -1,0 +1,80 @@
+/* Page-specific design rules: story. Values and cascade layers retained. */
+
+@layer design {
+  .story-section { padding-block:var(--section-space); }
+  .story-hero { padding:64px 0 80px; }
+  .story-hero__grid { gap:64px; }
+  .story-hero h1 { font:700 clamp(36px,4.1vw,56px)/1.12 var(--font-head); }
+  .story-lead,.story-copy p,.story-section-heading > p:last-child,.story-results-heading p:not(.section-label) { font-size:18px; line-height:1.75; }
+  .story-hero__caption,.story-facts dt,.story-facts dd,.story-metrics small,.story-chart__currency-note { font-size:14px; }
+  .story-browser { border-radius:16px; box-shadow:var(--shadow); }
+  .story-browser__bar span { font-size:12px; }
+  .story-results-strip { padding-block:48px; }
+  .story-metrics strong { color:var(--arctic); font:700 clamp(48px,6vw,88px)/1 var(--font-head); letter-spacing:-.04em; }
+  .story-metrics p { font-size:16px; }
+  .story-metrics > div { flex-wrap:wrap; }
+  .story-facts { padding-bottom:40px; margin-bottom:64px; }
+  .story-context__grid { gap:64px; }
+  .story-flow { gap:32px; }
+  .story-flow__visual { border-radius:16px; }
+  .story-flow h3 { font-size:22px; }
+  .story-flow li > p { font-size:16px; line-height:1.7; }
+  .story-adaptation .section-title { color:white; }
+  .story-adaptation .story-section-heading > p:last-child { color:#dadaed; }
+  .story-total > strong { font-weight:700; }
+  .story-total > span { font-size:14px; max-width:30ch; }
+  .story-chart { padding:40px; border-radius:20px; }
+  .story-chart figcaption strong { font-size:18px; }
+  .story-chart figcaption > span,.story-chart__revenue,.story-chart__revenue thead th { font-size:14px; }
+  .story-chart__revenue td,.story-chart__revenue th { padding-block:14px; }
+  .story-chart__bars li > span:not(.story-sr-only),.story-chart__column strong { font-size:13px; }
+  .story-quote-placeholder { border-radius:16px; }
+  .story-quote-placeholder > span,.story-quote-placeholder small { font-size:14px; }
+  .story-quote-placeholder p { font-size:18px; }
+  .story-closing > .container > p:not(.section-label) { font-size:18px; }
+  .customer-story :is(a,button,summary):focus-visible { outline-color:var(--elec); }
+  .story-adaptation :focus-visible,.story-results-strip :focus-visible { outline-color:var(--arctic); }
+  .story-lightbox { border-radius:16px; }
+  .story-lightbox__toolbar button { min-height:44px; font-size:14px; border-color:#8585ad; }
+  @media (max-width:1199px) {
+    .story-hero__grid { gap:40px; }
+  }
+  @media (max-width:899px) {
+    .story-hero__grid { grid-template-columns:1fr; gap:40px; }
+    .story-context__grid,.story-results-heading,.story-voice__grid { grid-template-columns:1fr; gap:32px; }
+    .story-total { border-left:3px solid var(--elec); padding-left:24px; }
+    .story-flow { grid-template-columns:1fr; gap:48px; }
+    .story-flow__visual { max-width:600px; }
+    .story-hero__visual { max-width:700px; }
+  }
+  @media (max-width:768px) {
+    .story-section { padding-block:64px; }
+    .story-hero { padding:40px 0 64px; }
+    .story-hero h1 { font-size:36px; }
+    .customer-story .container { padding:0; }
+    .story-lead,.story-copy p,.story-section-heading > p:last-child,.story-results-heading p:not(.section-label) { font-size:16px; }
+    .story-results-strip { padding-block:32px; }
+    .story-metrics { gap:24px; }
+    .story-metrics > div { display:block; }
+    .story-metrics > div + div { padding-left:24px; }
+    .story-metrics strong { font-size:48px; }
+    .story-metrics small { font-size:14px; }
+    .story-metrics p { font-size:14px; }
+    .story-facts { grid-template-columns:1fr 1fr; gap:24px; margin-bottom:40px; }
+    .story-chart { padding:24px 16px; }
+    .story-chart__bars { gap:10px; }
+    .story-chart__bars li { height:240px; }
+    .story-chart__column strong { font-size:10px; }
+    .story-chart__bars li > span:not(.story-sr-only) { font-size:12px; }
+    .story-chart__revenue :is(th,td) { padding:12px 4px; }
+    .story-chart__currency-note { font-size:14px; }
+  }
+  @media (max-width:479px) {
+    .story-metrics { grid-template-columns:1fr; }
+    .story-metrics > div + div { padding-left:0; border-left:0; border-top:1px solid #ffffff40; padding-top:24px; }
+    .story-chart__revenue { font-size:13px; }
+  }
+  @media (max-width:359px) {
+    .story-hero h1 { font-size:32px; }
+  }
+}

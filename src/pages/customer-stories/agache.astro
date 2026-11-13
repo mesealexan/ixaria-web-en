@@ -3,11 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Button from '../../components/ui/Button.astro';
 import StoryImage from '../../components/customer-stories/StoryImage.astro';
 import { agacheStory as story } from '../../data/customer-stories/agache';
+import { storyStructuredData } from '../../seo/customer-story';
 import '../../styles/customer-story.css';
+import '../../styles/design-story.css';
 const showBeforeAfter = false;
 const euro = new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 ---
-<BaseLayout seo={story.seo} bodyClass="customer-story">
+<BaseLayout seo={story.seo} structuredData={storyStructuredData()} bodyClass="customer-story">
   <noscript><style is:inline>@media(max-width:768px){.customer-story .navbar{position:static!important}.customer-story main{padding-top:0!important}.customer-story .navbar__inner{height:auto;min-height:72px;flex-wrap:wrap}.customer-story .navbar__nav{position:static!important;display:flex!important;order:3;flex-basis:100%;flex-wrap:wrap;justify-content:center;gap:12px 20px;padding:12px 0}.customer-story .navbar__mobile-toggle{display:none!important}}</style></noscript>
   <article aria-labelledby="story-title">
     <header class="story-hero">
@@ -68,7 +70,7 @@ const euro = new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR'
       </figure>
     </div></section>
 
-    <section class="story-section story-voice" aria-labelledby="voice-title"><div class="container story-voice__grid"><div><p class="section-label">The client’s view</p><h2 class="section-title" id="voice-title">{story.testimonial.heading}</h2><img src="/optimized/logos-artboard-3-480.webp" alt="Agache" width="120" height="40" loading="lazy" /></div><aside class="story-quote-placeholder" aria-label="Testimonial placeholder"><span>Client quote · Awaiting approval</span><p>{story.testimonial.placeholder}</p><small>{story.testimonial.attribution}</small></aside></div></section>
+    <section class="story-section story-voice" aria-labelledby="voice-title" hidden><div class="container story-voice__grid"><div><p class="section-label">The client’s view</p><h2 class="section-title" id="voice-title">{story.testimonial.heading}</h2><img src="/optimized/logos-artboard-3-480.webp" alt="Agache" width="120" height="40" loading="lazy" /></div><aside class="story-quote-placeholder" aria-label="Testimonial placeholder"><span>Client quote · Awaiting approval</span><p>{story.testimonial.placeholder}</p><small>{story.testimonial.attribution}</small></aside></div></section>
     <section class="story-section story-closing" aria-labelledby="closing-title"><div class="container"><p class="section-label">Your customers. Their questions.</p><h2 class="section-title" id="closing-title">{story.closing.heading}</h2><p>{story.closing.description}</p><Button href={story.closing.href}>{story.closing.label}<svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M5 3h8v8M13 3 3 13" stroke="currentColor" stroke-width="1.5" /></svg></Button></div></section>
   </article>
   <dialog class="story-lightbox" aria-labelledby="story-lightbox-title"><div class="story-lightbox__toolbar"><h2 id="story-lightbox-title">Screenshot detail</h2><form method="dialog"><button type="submit" aria-label="Close screenshot">Close <span aria-hidden="true">×</span></button></form></div><div class="story-lightbox__body"><img alt="" /></div></dialog>

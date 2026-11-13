@@ -1,5 +1,5 @@
 const slideshow = document.getElementById('ixaria-way-slideshow');
-if (slideshow) {
+if (slideshow && !slideshow.closest('[hidden]')) {
   const slides = slideshow.querySelectorAll<HTMLImageElement>('img');
   const captions = slideshow.querySelectorAll<HTMLElement>('.ba-card__caption');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');

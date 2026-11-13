@@ -1,3 +1,4 @@
+@layer legacy {
 .customer-story { color: var(--navy); }
 .customer-story article { overflow-wrap: break-word; }
 .story-section { padding: 88px 0; }
@@ -185,4 +186,6 @@
  .story-chart__bars { gap: 7px; }
  .story-change--configuration .story-comparison { grid-template-columns: 1fr; }
  .story-change--configuration .story-image__link { height: 380px; }
+}
+
 }

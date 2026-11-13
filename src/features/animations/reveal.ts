@@ -1,36 +1,10 @@
-const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const groups = [
-  { selector: '.value-item', className: 'value-item--visible', delay: 200 },
-  { selector: '.feature-card', className: 'feature-card--visible', delay: 100 },
-  { selector: '.process-card', className: 'process-card--visible', delay: 150 },
-  { selector: '.cta-strip', className: 'cta-strip--visible', delay: 0 },
+  ['.value-item', 'value-item--visible'],
+  ['.feature-card', 'feature-card--visible'],
+  ['.process-card', 'process-card--visible'],
+  ['.cta-strip', 'cta-strip--visible'],
 ];
-
-groups.forEach((group) => {
-  const elements = [...document.querySelectorAll<HTMLElement>(group.selector)];
-  if (motion.matches || !('IntersectionObserver' in window)) {
-    elements.forEach((element) => element.classList.add(group.className));
-    return;
-  }
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const index = elements.indexOf(entry.target as HTMLElement);
-        window.setTimeout(
-          () => entry.target.classList.add(group.className),
-          (index % 3) * group.delay,
-        );
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.15 },
-  );
-  elements.forEach((element) => observer.observe(element));
-  motion.addEventListener('change', (event) => {
-    if (event.matches) {
-      observer.disconnect();
-      elements.forEach((element) => element.classList.add(group.className));
-    }
-  });
-});
+for (const [selector, className] of groups) {
+  document.querySelectorAll(selector).forEach(element => element.classList.add(className));
+}
+export {};

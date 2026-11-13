@@ -1,3 +1,4 @@
+@layer legacy {
 :root {
   --home-container-width: 1160px;
   --home-container-gutter: 32px;
@@ -1716,4 +1717,6 @@
   .email-form {
     flex-direction: column;
   }
+}
+
 }

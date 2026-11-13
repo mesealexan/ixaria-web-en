@@ -8,7 +8,7 @@ if (demo) {
   const thumbnails = [...demo.querySelectorAll<HTMLButtonElement>('[data-solution-thumbnail]')];
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let current = 0;
-  let paused = false;
+  let paused = true;
   let visible = !('IntersectionObserver' in window);
   let timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -16,7 +16,7 @@ if (demo) {
     clearTimeout(timer);
     timer = undefined;
     if (visible && !paused && !motion.matches && !document.hidden) {
-      timer = setTimeout(() => { show((current + 1) % slides.length); schedule(); }, 2800);
+      timer = setTimeout(() => { show((current + 1) % slides.length); schedule(); }, 8000);
     }
   };
 

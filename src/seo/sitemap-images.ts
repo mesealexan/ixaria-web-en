@@ -1,7 +1,10 @@
 // List the current page images, rather than the retired comparison gallery only.
 // Google supports image:loc; the old title/caption extensions are deprecated.
+import mobileImages from '../data/customer-stories/agache-mobile-images.json';
 export const sitemapImages: Record<string, string[]> = {
+  '/customer-stories/agache.html': ['/customer-stories/agache/leni-after.webp'],
   '/': [
+    ...mobileImages.map(image => image.src),
     '/before.webp', '/newsletter.webp', '/Picture1.webp',
     '/feature-003.webp', '/feature-004.webp', '/feature-005.webp', '/feature-002.webp',
     '/people/Alex.jpg', '/SPO7558_Original.webp', '/people/Eduard.jpg',

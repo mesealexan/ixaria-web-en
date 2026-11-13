@@ -33,6 +33,10 @@ npm run test:browser
 
 ## Where to edit
 
+The shared visual direction is documented in [the site design foundation](docs/site-design-foundation.md). `src/styles/design-system.css` contains shared tokens and rules; `design-home.css`, `design-services.css`, `design-story.css`, `design-careers.css` and `design-legal.css` load with their corresponding pages. These retain the `design` cascade layer above the older `legacy` layer. Reused sales-deck artwork and its responsive derivatives are recorded in [the asset manifest](docs/design-assets.json).
+
+`tests/design-content.test.mjs` checks every original text block across all nine pages, including repeated labels, while allowing layout reordering. Keep that baseline unchanged unless an editorial change has been approved.
+
 | Location | Purpose |
 | --- | --- |
 | `src/pages/` | Routes; compose layouts and sections |
@@ -83,13 +87,15 @@ After replacing an image source, run `npm run images:optimize` and commit the ge
 
 Run `npm run audit:site` after a production build to inventory every image, check alts, dimensions, local references, page metadata, and social images. The JSON result is written to `.tmp/audit-after.json`. `tests/performance-seo.test.mjs` protects the approved page text and validates responsive files. Update the text baseline only for approved editorial changes.
 
-`tests/browser/performance.spec.ts` records desktop/mobile resource transfers and local rendering diagnostics, with external services blocked. These local measurements do not replace production Core Web Vitals or Search Console checks. The completed audit and image inventories are in `docs/performance-audit-2026-10-22.html`.
+`tests/browser/performance.spec.ts` checks all nine routes with cold caches and normal motion. Mobile uses DPR 3, 1.6 Mbps, 150 ms latency and 4x CPU slowdown. The preview server compresses text responses like production. Tests enforce route-specific transfer budgets, LCP <= 2.5 seconds, CLS <= 0.1, post-paint blocking <= 200 ms and forced layout <= 100 ms. Raw startup long tasks are also retained; pre-paint layout is reflected in FCP/LCP instead of being counted as post-paint blocking. Playwright tracing is disabled for these measurements. Unexpected external requests fail instead of being mocked as successful. Measurements are saved in `.tmp/performance/seo-fixed/`. These lab checks do not establish field INP or replace production Core Web Vitals and Search Console.
+
+Inter subsets retain the original glyph outlines, hinting, variable weights and license. Original font URLs remain available. After introducing new Unicode characters, install the optional generator dependencies (`python -m pip install fonttools brotli`), run `python scripts/subset-fonts.py`, update the font URLs in `src/styles/inter.css` to the generated manifest, and rebuild. The font preload reads `src/data/font-subsets.json` automatically. Builds use the committed subsets and do not require Python.
 
 Existing URLs and public image/font/video paths are preserved. Changing an established URL later requires a permanent redirect from the hosting provider; Astro's static output alone cannot send an HTTP 301 response.
 
 ## Integrations
 
-The original GA4 ID and click/form event names are retained, with GA4 enabled on indexable marketing and careers pages only after analytics consent. The existing Secure Privacy script remains on every page. Consent configuration is managed by that vendor account. The analyticsConsentService in src/data/integrations.ts must match its Google Analytics service name. The site uses documented initialization, saved-choice and service-unblock events; booking events include the originating page. Inter is hosted locally with its license in public/fonts.
+Secure Privacy and its banner have been removed, and Google Analytics is disabled on every page. No consent is automatically granted and no analytics scripts or event handlers are shipped. The original GA4 ID and event module remain in source for a deliberate future integration. Inter is hosted locally with its license in `public/fonts`.
 
 The newsletter keeps the existing Brevo form action and fields. Its cross-origin opaque response confirms that the request was sent, so the UI asks visitors to check their inbox instead of claiming a verified subscription. Live vendor delivery must be checked separately with an authorized real subscription.
 
@@ -108,6 +114,10 @@ A GitHub Pages workflow is provided in `.github/workflows/deploy-pages.yml`. It 
 3. Run **Deploy Astro to GitHub Pages** from the Actions tab on the intended branch.
 
 The workflow runs the build and static migration tests before uploading the generated site. Keep the workflow on the default branch so GitHub exposes the manual run button. This follows the [official Astro GitHub Pages deployment guide](https://docs.astro.build/en/guides/deploy/github/).
+
+Production currently serves assets with a ten-minute cache lifetime. Long-lived immutable caching for hashed `/_astro/` assets and versioned font subsets, plus HTTP redirects from `/index.html` and extensionless page aliases, require control of hosting/CDN response rules. They cannot be implemented by Astro's static HTML alone. Canonical tags continue to identify the preferred URLs; no client-side redirect is substituted for an HTTP redirect.
+
+The homepage no longer renders a video or describes one in structured data. The retired hidden comparison does not run its slideshow. The approved Agache story is indexable at `/customer-stories/agache.html`, has page and breadcrumb structured data, and is included in the sitemap. Publishing these source changes still requires deploying `dist/` through the existing hosting workflow.
 
 ## Migration checks
 

@@ -1,0 +1,19 @@
+/* Page-specific design rules: legal. Values and cascade layers retained. */
+
+@layer design {
+  .legal-page { width:min(760px,calc(100% - var(--gutter)*2)); max-width:none; padding:64px 0 96px; }
+  .legal-page h1 { font-size:clamp(32px,4vw,44px); font-weight:700; letter-spacing:-.035em; }
+  .legal-page h2 { font-size:24px; font-weight:700; margin-top:48px; }
+  .legal-page :is(p,li) { font-size:18px; line-height:1.75; color:var(--black); overflow-wrap:anywhere; }
+  .legal-page a { text-decoration:underline; text-underline-offset:3px; }
+  .legal-page__tag { font-size:13px; }
+  .legal-page .legal-page__meta { font-size:14px; color:var(--gray-text); }
+  .cookie-table { font-size:14px; table-layout:fixed; }
+  .cookie-table :is(td,th) { overflow-wrap:anywhere; }
+  .talk-btn { bottom:24px; right:24px; padding:12px 20px; min-height:48px; }
+  @media (max-width:768px) {
+    .legal-page { padding-top:48px; }
+    .legal-page :is(p,li) { font-size:16px; }
+    .legal-page h2 { font-size:22px; }
+  }
+}
