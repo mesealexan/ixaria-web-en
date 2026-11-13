@@ -15,7 +15,6 @@ export const agacheStory = {
     robots: 'noindex, nofollow, noarchive',
     openGraph: { type: 'article', title: 'Agache: 256% Revenue Growth | Ixaria', description: 'A clearer path from sofa browsing to buying. Explore the before-and-after experience.', image: 'https://ixaria.eu/customer-stories/agache/leni-after.webp', imageAlt: 'Agache’s current Leni sofa product page' },
   } satisfies PageSEO,
-  reviewNotice: 'Editorial preview · Client quote and adaptation example awaiting approval.',
   hero: {
     eyebrow: 'Customer story / Furniture ecommerce',
     heading: 'Agache’s sales revenue grew', result: '256%', ending: 'following Ixaria’s launch.',
@@ -35,7 +34,7 @@ export const agacheStory = {
     heading: 'Plenty of options. Too much work to understand them.',
     paragraphs: [
       'Agache is a Romanian family business making upholstered furniture since 1994. Its customers can choose from sofas, corner sofas and beds, with a wide range of fabrics and configurations.',
-      'The previous website already had reviews, specifications and a configurator. But material categories appeared as separate product listings, key details sat inside accordions, and shoppers had to move between sections to understand their choices.',
+      'The website already had reviews, specifications and a configurator. But material categories appeared as separate product listings, key details sat inside accordions, and shoppers had to move between sections to understand their choices.',
       'The task was to make that information easier to use, then adapt the page to what each visitor needed before deciding.',
     ],
   },
@@ -65,12 +64,21 @@ export const agacheStory = {
   },
   adaptation: {
     heading: 'Different shoppers need different reassurance.',
-    description: 'Alongside the buying experience, Agache introduced Ixaria’s Signals, Correlations and Responses in March 2026. Interactions provide clues; context helps interpret them; relevant information becomes the response.',
+    description: 'Agache introduced Ixaria’s Signals, Correlations and Responses in March 2026. Interactions provide clues; context helps interpret them; relevant information becomes the response.',
     note: 'Illustrative journey. Replace with a confirmed Agache trigger and response before publishing.',
     steps: [
-      { name: 'Signals', heading: 'Notice the interaction', description: 'A visitor explores practical fabric properties.' },
-      { name: 'Correlations', heading: 'Connect the clues', description: 'Combined with browsing context, this may suggest that everyday upkeep matters.' },
-      { name: 'Responses', heading: 'Show useful information', description: 'Bring relevant, verified cleaning and durability guidance into the page.' },
+      {
+        name: 'Signals', heading: 'Notice the interaction', description: 'A high intent visitor interacts with the Signals that helps us understand their needs',
+        image: { src: asset('signals'), srcset: `${asset('signals-480')} 480w, ${asset('signals-800')} 800w, ${asset('signals')} 1052w`, width: 1052, height: 786, alt: 'Agache mobile sofa listings with shopper prompts about showroom priorities and long-term comfort, with Comfort and Support selected' },
+      },
+      {
+        name: 'Correlations', heading: 'Connect the clues', description: 'Combined with browsing context, this may suggest that everyday upkeep matters.',
+        image: { src: asset('correlations'), srcset: `${asset('correlations-480')} 480w, ${asset('correlations-800')} 800w, ${asset('correlations')} 1435w`, width: 1435, height: 1096, alt: 'Ixaria connects a returning visit, reading delivery terms and a question about damage to a possible need for delivery reassurance' },
+      },
+      {
+        name: 'Responses', heading: 'Show useful information', description: 'Bring relevant, verified cleaning and durability guidance into the page.',
+        image: { src: asset('responses'), srcset: `${asset('responses-480')} 480w, ${asset('responses-800')} 800w, ${asset('responses')} 1052w`, width: 1052, height: 786, alt: 'Mobile sofa shopping examples with recommended search suggestions, a best-match product and optional apartment delivery and assembly services' },
+      },
     ],
   },
   results: {
@@ -95,6 +103,6 @@ export const agacheStory = {
   closing: {
     heading: 'What do your customers need before they feel ready to buy?',
     description: 'Start with the unanswered questions in your buying journey. Find where clearer, more relevant information could help.',
-    label: 'Explore the Audit', href: '/audit.html',
+    label: 'Take your first step', href: '/audit.html',
   },
 };

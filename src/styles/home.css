@@ -36,6 +36,21 @@
   }
 }
 
+@media (min-width: 1025px) {
+  .hero-intro {
+    /* Reduce the hero by 15%, keeping the 97px client logo strip at its current height. */
+    min-height: calc((90svh - 122.4px - 97px) * 0.85 + 97px);
+  }
+
+  .hero {
+    padding: clamp(12px, 2svh, 32px) 0 12px;
+  }
+
+  .hero__mockup {
+    width: min(90%, max(288px, calc((90svh - 309.6px) * 0.85)));
+  }
+}
+
 .hero__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -264,7 +279,7 @@
   gap: 8px;
   width: min(224px, 44%);
   padding: 10px 12px;
-  border: 2px solid var(--problem-orange);
+  border: 2px solid #808080;
   border-radius: 20px;
   background: var(--white);
   font-family: var(--font-head);
@@ -288,8 +303,8 @@
   left: 28px;
   width: 16px;
   height: 16px;
-  border-right: 2px solid var(--problem-orange);
-  border-bottom: 2px solid var(--problem-orange);
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
   background: var(--white);
   transform: rotate(45deg);
 }

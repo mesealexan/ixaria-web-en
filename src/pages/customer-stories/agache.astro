@@ -4,19 +4,19 @@ import Button from '../../components/ui/Button.astro';
 import StoryImage from '../../components/customer-stories/StoryImage.astro';
 import { agacheStory as story } from '../../data/customer-stories/agache';
 import '../../styles/customer-story.css';
+const showBeforeAfter = false;
 const euro = new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 ---
 <BaseLayout seo={story.seo} bodyClass="customer-story">
   <noscript><style is:inline>@media(max-width:768px){.customer-story .navbar{position:static!important}.customer-story main{padding-top:0!important}.customer-story .navbar__inner{height:auto;min-height:72px;flex-wrap:wrap}.customer-story .navbar__nav{position:static!important;display:flex!important;order:3;flex-basis:100%;flex-wrap:wrap;justify-content:center;gap:12px 20px;padding:12px 0}.customer-story .navbar__mobile-toggle{display:none!important}}</style></noscript>
   <article aria-labelledby="story-title">
-    <div class="story-review"><div class="container">{story.reviewNotice}</div></div>
     <header class="story-hero">
       <div class="container story-hero__grid">
         <div class="story-hero__copy">
           <p class="section-label">{story.hero.eyebrow}</p>
           <h1 id="story-title">{story.hero.heading} <span>{story.hero.result}</span> {story.hero.ending}</h1>
           <p class="story-lead">{story.hero.introduction}</p>
-          <a class="story-text-link" href="#the-change">Explore the before & after <span aria-hidden="true">↓</span></a>
+          {showBeforeAfter && <a class="story-text-link" href="#the-change">Explore the before & after <span aria-hidden="true">↓</span></a>}
         </div>
         <div class="story-hero__visual">
           <div class="story-partnership"><img src="/optimized/logos-artboard-3-480.webp" alt="Agache" width="120" height="40" /><span aria-hidden="true">×</span><img src="/logo-light.svg" alt="Ixaria" width="120" height="40" /></div>
@@ -32,7 +32,7 @@ const euro = new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR'
       <div class="story-context__grid"><div><p class="section-label">The challenge</p><h2 class="section-title" id="challenge-title">{story.challenge.heading}</h2></div><div class="story-copy">{story.challenge.paragraphs.map(paragraph => <p>{paragraph}</p>)}</div></div>
     </div></section>
 
-    <section class="story-section story-changes" id="the-change" aria-labelledby="changes-title"><div class="container">
+    {showBeforeAfter && <section class="story-section story-changes" id="the-change" aria-labelledby="changes-title"><div class="container">
       <div class="story-section-heading"><p class="section-label">The experience, before & after</p><h2 class="section-title" id="changes-title">Make the next choice easier.</h2><p>Three changes to how customers explore, compare and configure.</p></div>
       {story.comparisons.map(comparison => <section class:list={['story-change', `story-change--${comparison.id}`]} aria-labelledby={`${comparison.id}-title`}>
         <div class="story-change__intro"><span class="story-number">{comparison.number}</span><h3 id={`${comparison.id}-title`}>{comparison.heading}</h3><p>{comparison.description}</p></div>
@@ -42,14 +42,17 @@ const euro = new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR'
       <aside class="story-reassurance" aria-labelledby="reassurance-title"><div><p class="section-label">Close to the buying decision</p><h3 id="reassurance-title">{story.reassurance.heading}</h3><p>{story.reassurance.description}</p></div><a href="/customer-stories/agache/buybox-after.webp" data-story-enlarge aria-label="Enlarge delivery and payment information beside the purchase controls"><img src="/customer-stories/agache/buybox-after.webp" alt="Current Leni purchase controls with sleeping dimensions, delivery estimate, payment and returns links" width="380" height="540" loading="lazy" decoding="async" /></a></aside>
     </div></section>
 
+    }
+
     <section class="story-section story-adaptation" aria-labelledby="adaptation-title"><div class="container">
       <div class="story-section-heading"><p class="section-label">Beyond the redesign</p><h2 class="section-title" id="adaptation-title">{story.adaptation.heading}</h2><p>{story.adaptation.description}</p></div>
       <ol class="story-flow">{story.adaptation.steps.map((step,index) => <li>
         <div class="story-flow__top"><span>0{index + 1}</span><p>{step.name}</p><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d={index < 2 ? "M3 10h14m-5-5 5 5-5 5" : "m4 10 4 4 8-8"} stroke="currentColor" stroke-width="1.5" /></svg></div>
-        <div class:list={['story-flow__visual', `story-flow__visual--${index}`]} aria-hidden="true">{index === 0 ? <><span>What matters at home?</span><div><i>Comfort</i><i class="is-selected">Fabric care</i><i>Size</i></div></> : index === 1 ? <><div class="story-clues"><i>Interaction</i><i>Context</i></div><span class="story-insight">Everyday upkeep may matter</span></> : <><span class="story-response-label">Relevant reassurance</span><strong>Choosing an easy-care fabric?</strong><span>See verified care & durability guidance</span></>}</div>
+        <a class="story-flow__visual" href={step.image.src} data-story-enlarge aria-label={`Enlarge ${step.name} example: ${step.image.alt}`}>
+          <img src={step.image.src} srcset={step.image.srcset} sizes="(max-width: 540px) calc(100vw - 40px), (max-width: 768px) 500px, (max-width: 1000px) calc((100vw - 100px) / 3), (max-width: 1160px) calc((100vw - 120px) / 3), 347px" alt={step.image.alt} width={step.image.width} height={step.image.height} loading="lazy" decoding="async" />
+        </a>
         <h3>{step.heading}</h3><p>{step.description}</p>
       </li>)}</ol>
-      <p class="story-adaptation__note">{story.adaptation.note}</p>
     </div></section>
 
     <section class="story-section" id="results" aria-labelledby="results-title"><div class="container">

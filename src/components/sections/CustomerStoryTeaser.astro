@@ -1,0 +1,35 @@
+---
+import Button from '../ui/Button.astro';
+import { agacheStory as story } from '../../data/customer-stories/agache';
+import '../../styles/customer-story-teaser.css';
+---
+<section class="customer-story-teaser" aria-labelledby="customer-story-teaser-title">
+  <div class="container">
+    <div class="customer-story-teaser__card">
+      <div class="customer-story-teaser__copy">
+        <p class="section-label">Customer story / Agache</p>
+        <h2 class="section-title" id="customer-story-teaser-title">A clearer buying journey.<br />A stronger result.</h2>
+        <p class="customer-story-teaser__description">See how Agache brought product choices, practical guidance and relevant reassurance together to help furniture shoppers decide.</p>
+        <div class="customer-story-teaser__result">
+          <strong>{story.metrics[0].value}</strong>
+          <p>{story.metrics[0].label}<span>{story.metrics[0].detail}</span></p>
+        </div>
+        <Button href={story.seo.path} variant="orange" class="customer-story-teaser__link">
+          Read the Agache story
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+        </Button>
+      </div>
+      <div class="customer-story-teaser__visual">
+        <div class="customer-story-teaser__brand">
+          <img src="/optimized/logos-artboard-3-480.webp" alt="Agache" width="120" height="40" loading="lazy" decoding="async" />
+          <span>Furniture ecommerce<br />Romania</span>
+        </div>
+        <figure>
+          <div class="customer-story-teaser__browser" aria-hidden="true"><i></i><i></i><i></i><span>agache.ro / Leni</span></div>
+          <img class="customer-story-teaser__screenshot" src="/customer-stories/agache/leni-after.webp" alt="Agache's Leni sofa product page with material categories, colour choices and practical product guidance" width="1348" height="926" loading="lazy" decoding="async" />
+          <figcaption>Product choices. Practical guidance. More confidence.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

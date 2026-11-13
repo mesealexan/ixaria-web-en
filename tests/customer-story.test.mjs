@@ -23,7 +23,6 @@ test('Agache publishes approved monthly EUR totals alongside percentage growth',
   assert.deepEqual(amounts, ['€8,451 / €24,991', '€5,321 / €19,126', '€2,032 / €14,286', '€9,460 / €19,094', '€2,664 / €12,865', '€4,896 / €17,651', '€5,758 / €29,423']);
   assert.match($('.story-chart__currency-note').text(), /Indicative conversion: €1 = RON 5.00/);
   assert.match($('meta[name="robots"]').attr('content'), /noindex/);
-  assert.match($('.story-adaptation__note').text(), /Illustrative journey/);
   assert.equal($('blockquote').length, 0, 'an unapproved testimonial is not presented as a quotation');
 });
 
@@ -31,7 +30,7 @@ test('Agache screenshots, internal links and anchors resolve without JavaScript'
   const ids = $('[id]').map((_, el) => $(el).attr('id')).get();
   assert.equal(ids.length, new Set(ids).size);
   assert.equal($('h1').length, 1);
-  assert.equal($('.story-comparison').length, 3);
+  assert.equal($('#the-change, a[href="#the-change"], .story-comparison').length, 0);
   for (const element of $('img[src]').toArray()) {
     const img = $(element); const file = path.join('dist', decodeURIComponent(img.attr('src')));
     assert.ok(fs.existsSync(file), file);
@@ -48,7 +47,7 @@ test('Agache screenshots, internal links and anchors resolve without JavaScript'
     assert.ok(fs.existsSync(path.join('dist', decodeURIComponent(url.pathname))), url.pathname);
     if (url.pathname === '/customer-stories/agache.html' && url.hash) assert.ok($(url.hash).length, url.hash);
   }
-  assert.ok($('[data-story-enlarge]').length >= 7);
+  assert.ok($('[data-story-enlarge]').length >= 4);
   assert.equal($('.story-lightbox form').attr('method'), 'dialog');
   assert.equal($('.story-lightbox button').attr('aria-label'), 'Close screenshot');
 });
