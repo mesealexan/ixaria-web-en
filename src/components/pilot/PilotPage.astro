@@ -13,10 +13,6 @@ import '../../styles/pilot.css';
       <div>
         <h1 id="pilot-title">{pilot.hero.heading} <span>{pilot.hero.highlight}</span></h1>
         <p class="audit-lead">{pilot.hero.description}</p>
-        <div class="pilot-offer">
-          <p class="pilot-price"><strong>{pilot.monthlyPrice}</strong></p>
-          <p class="pilot-terms">{pilot.terms}</p>
-        </div>
         <Button href={pilot.bookingUrl} external>{pilot.bookingLabel}</Button>
       </div>
       <img
@@ -103,7 +99,6 @@ import '../../styles/pilot.css';
     <div class="container">
       <h2 class="section-title" id="pilot-final-title">{pilot.final.heading}</h2>
       <p class="audit-lead">{pilot.final.description}</p>
-      <p class="pilot-final-price">{pilot.final.price}</p>
       <Button href={pilot.bookingUrl} external>{pilot.bookingLabel}</Button>
       <a class="audit-pilot-link" href={pilot.final.nextUrl}>{pilot.final.nextLabel}</a>
       <img class="service-closing__sofa" role="presentation" src="/design/blue-sofa-1200.webp" srcset="/design/blue-sofa-640.webp 640w, /design/blue-sofa-1200.webp 1200w" sizes="(max-width: 768px) 90vw, 540px" width="1200" height="800" alt="" loading="lazy" decoding="async" />

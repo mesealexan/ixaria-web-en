@@ -3,8 +3,6 @@ import { site } from './site';
 export const fullImplementation = {
   bookingUrl: site.bookingUrl,
   bookingLabel: 'Book a Discovery call',
-  price: '€1,500 / month',
-  revenueShare: '+ 2% of every sales attributed to Ixaria',
   hero: {
     heading: 'Bring the proven approach to',
     highlight: 'every product.',

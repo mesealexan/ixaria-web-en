@@ -1,6 +1,6 @@
 import { chatDemo } from '../../data/chat';
 
-// This intentionally retains the original demo replies. A real assistant needs
+// This uses predefined demo replies. A real assistant needs
 // a server endpoint; provider credentials must never be sent to the browser.
 export function initializeChat(overlay: HTMLElement) {
   const messages = overlay.querySelector<HTMLElement>('#chat-messages');

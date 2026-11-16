@@ -234,7 +234,7 @@ test('How it works shows the three requested stages with matching schema and det
     assert.equal(detail('nav[aria-label="Implementation stages"]').length, 0);
     assert.equal(detail('nav[aria-label="On this audit page"]').length, 0);
     if (title === 'Audit') {
-      assert.equal(detail('h1').text(), "Find out what why your visitors don't buy?");
+      assert.equal(detail('h1').text(), "Find out why your visitors don't buy?");
       assert.equal(detail('title').text(), 'Furniture Conversion Audit | IXARIA');
     } else {
       assert.equal(detail('h1').text(), title === 'Pilot' ? 'Use a smarter shopping experience on your bestsellers.' : 'Bring the proven approach to every product.');
@@ -257,7 +257,7 @@ test('How it works shows the three requested stages with matching schema and det
   }
 });
 
-test('full implementation presents the rollout and pricing with shared chrome', () => {
+test('full implementation presents the rollout without pricing and with shared chrome', () => {
   const $ = load(fs.readFileSync(path.join(dist, 'full-implementation.html'), 'utf8'));
   assert.deepEqual($('[data-implementation-section]').map((_, el) => $(el).attr('data-implementation-section')).get(),
     ['hero', 'implement', 'rollout', 'measurement', 'final']);
@@ -270,10 +270,8 @@ test('full implementation presents the rollout and pricing with shared chrome', 
   assert.equal($('.audit-receive__media').attr('src'), '/full-three.webp');
   assert.equal($('.pilot-measurement__media').attr('src'), '/full-measure.webp');
   assert.equal($('.audit-hero__media').attr('src'), '/full-hero.webp');
-  assert.equal($('.pilot-price strong').text(), '€1,500 / month');
-  assert.equal($('.implementation-monthly-price').text(), '€1,500 / month');
-  assert.deepEqual($('.implementation-revenue-share').map((_, el) => $(el).text()).get(),
-    ['+ 2% of every sales attributed to Ixaria', '+ 2% of every sales attributed to Ixaria']);
+  assert.equal($('.pilot-price, .pilot-final-price, .implementation-monthly-price, .implementation-revenue-share').length, 0);
+  assert.doesNotMatch($.html(), /€1,500|2% of every sales/);
   assert.deepEqual($('.pilot-steps h3').map((_, el) => $(el).text()).get(), ['Prioritize', 'Adapt', 'Launch']);
   const booking = $('main a');
   assert.equal(booking.length, 2);
@@ -289,7 +287,7 @@ test('full implementation presents the rollout and pricing with shared chrome', 
   assert.equal(graph.find(entity => entity['@type'] === 'Service').description, $('.audit-hero .audit-lead').text());
 });
 
-test('pilot presents the five-section scope, pricing, and next step with shared chrome', () => {
+test('pilot presents the five-section scope, duration, and next step without pricing', () => {
   const $ = load(fs.readFileSync(path.join(dist, 'pilot.html'), 'utf8'));
   assert.deepEqual($('[data-pilot-section]').map((_, el) => $(el).attr('data-pilot-section')).get(),
     ['hero', 'implement', 'why', 'measurement', 'final']);
@@ -302,9 +300,9 @@ test('pilot presents the five-section scope, pricing, and next step with shared 
   assert.equal($('.audit-receive__media').attr('src'), '/pilot-months.webp');
   assert.equal($('.pilot-measurement__media').attr('src'), '/pilt-agree.webp');
   assert.equal($('.audit-hero__media').attr('src'), '/pilot-hero.webp');
-  assert.equal($('.pilot-price').text(), '€1,500/month');
-  assert.equal($('.pilot-terms').text(), 'Three months · €4,500 total');
-  assert.equal($('.pilot-final-price').text(), '€1,500/month · €4,500 total');
+  assert.equal($('.pilot-price, .pilot-final-price').length, 0);
+  assert.equal($('.pilot-terms, .pilot-offer').length, 0);
+  assert.doesNotMatch($.html(), /€1,500|€4,500/);
   assert.equal($('.pilot-steps > li').length, 3);
   assert.deepEqual($('.pilot-metrics li').map((_, el) => $(el).text()).get(),
     ['Agreed success metric', 'Sales before Ixaria', 'Sales after Ixaria']);
@@ -324,7 +322,7 @@ test('audit presents the conversion plan with shared integrations and current sc
   assert.deepEqual($('[data-audit-section]').map((_, el) => $(el).attr('data-audit-section')).get(),
     ['hero', 'receive', 'process', 'approach', 'team', 'newsletter', 'final']);
   assert.equal($('h1').length, 1);
-  assert.equal($('h1').text(), "Find out what why your visitors don't buy?");
+  assert.equal($('h1').text(), "Find out why your visitors don't buy?");
   assert.equal($('h1 span').text(), "don't buy?");
   assert.equal(sharedHeader($), sharedHeader(documents.index));
   assert.equal($('footer').html(), documents.index('footer').html());
@@ -345,8 +343,9 @@ test('audit presents the conversion plan with shared integrations and current sc
     ['Alex Mesesan', 'Ovidiu Stegari', 'Eduard Badea']);
   assert.equal($('.audit-faq, .audit-guarantee, .audit-companies, dialog').length, 0);
   assert.doesNotMatch($('main').text(), /30,000|money-back|4,500|14-day|guaranteed uplift/);
-  assert.equal($('.audit-price strong').text(), '€1,500');
-  assert.equal($('.audit-price span').text(), 'One-time fee');
+  assert.equal($('.audit-price').length, 0);
+  assert.equal($('.audit-delivery, .audit-offer').length, 0);
+  assert.doesNotMatch($.html(), /€1,500|One-time fee/);
   assert.equal($('.audit-final__details, .audit-final__steps').length, 0);
   const booking = $('main a').filter((_, el) => $(el).text().replace(/\s+/g, ' ').trim() === 'Book a discovery call');
   assert.equal(booking.length, 2);
@@ -425,7 +424,7 @@ test('indexable pages have consistent metadata, social cards and structured desc
     const page = graph.find(entity => entity['@type'] === 'WebPage');
     assert.equal(page.name, title);
     assert.equal(page.description, description);
-    assert.equal(page.dateModified, '2026-11-13');
+    assert.equal(page.dateModified, ['audit.html', 'pilot.html', 'full-implementation.html'].includes(filename) ? '2026-11-16' : '2026-11-13');
     assert.equal($('link[href*="fonts.googleapis.com"]').length, 0);
     assert.ok($(`link[rel="preload"][href="${fonts[1].url}"]`).length);
   }

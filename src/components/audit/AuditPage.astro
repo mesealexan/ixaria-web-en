@@ -14,16 +14,6 @@ import '../../styles/audit.css';
       <div>
         <h1 id="audit-title">{audit.hero.heading} <span>{audit.hero.highlight}</span></h1>
         <p class="audit-lead">{audit.hero.description}</p>
-        <div class="audit-offer">
-          <p class="audit-price"><strong>{audit.price}</strong><span>{audit.hero.paymentLabel}</span></p>
-          <p class="audit-delivery">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="14" cy="14" r="12" />
-              <path d="M14 7v7l4 3" />
-            </svg>
-            <span>{audit.delivery}</span>
-          </p>
-        </div>
         <Button href={audit.bookingUrl} external class="audit-booking">{audit.bookingLabel}</Button>
       </div>
       <img

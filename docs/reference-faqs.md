@@ -2,14 +2,6 @@
 
 It depends on the number of products, how many variations they have, and how complex the setup is. But in most cases, we can have the Ixaria solution live in about one month.
 
-### **How much does Ixaria implementation cost?**
-
-The implementation cost is not a fixed price. It depends mainly on the number of products, the complexity of those products, and how much work is needed to prepare the full product page experience.
-
-Our pricing has two parts: an initial setup fee and an ongoing performance-based monthly fee. The setup fee covers the work needed to prepare and launch the solution, while the monthly fee is connected to the value generated after launch.
-
-This means our model is aligned with your success. We are not simply charging for software access \- we are paid to help your product pages perform better and generate better results.
-
 ### **Do you have any minimum requirements before you start?**
 
 Yes. Because Ixaria improves product pages based on real customer behavior, we need a minimum number of monthly visits for the system to collect enough useful data.

@@ -14,6 +14,7 @@
   .audit-price span,.audit-delivery,.pilot-terms,.implementation-revenue-share { font-size:16px; }
   .pilot-price { flex-wrap:wrap; }
   .audit-page .btn { min-height:52px; }
+  .audit-page .audit-hero .btn { margin-block:32px 16px; }
   .audit-page .audit-hero .audit-booking { width:auto; }
   .audit-receive { background:var(--navy); color:white; }
   .audit-receive :is(.section-title,.audit-lead) { color:white; }
@@ -63,7 +64,7 @@
     .audit-grid { gap:32px; }
     .audit-hero { padding:40px 0 64px; }
     .audit-hero h1 { font-size:36px; }
-    .audit-page .audit-hero .btn { width:100%; }
+    .audit-page .audit-hero .btn { width:100%; margin-block:24px 8px; }
     .audit-offer { gap:20px; }
     .audit-price strong,.pilot-price strong { font-size:40px; }
     .audit-deliverables li { font-size:16px; }

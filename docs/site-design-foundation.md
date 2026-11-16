@@ -14,7 +14,7 @@ This document is the design authority for the site. The approved direction has b
 
 ### Non-negotiable constraints
 
-1. Preserve all existing website text verbatim, including headings, paragraphs, button labels, prices, terms, qualifiers, FAQs, newsletter messages, captions, careers content, and legal content.
+1. Preserve approved website text, including headings, paragraphs, button labels, FAQs, newsletter messages, captions, careers content, and legal content. The approved 16 November 2026 editorial update removes service prices and fee descriptions from pages, metadata, structured data, and demo chat. Do not restore them from older references.
 2. Preserve the brand colors, existing logo artwork, company details, customer identities, and genuine evidence.
 3. Prefer existing images and original image layers from the supplied sales deck. Generate an image only when a specific visual need cannot be met well with those resources.
 4. Preserve existing routes, anchor IDs, integrations, consent behavior, booking destinations, and functional capabilities. Visual redesign does not authorize changing commercial terms or product behavior.
@@ -46,7 +46,7 @@ The sales deck is the primary source of art direction. Current website source is
 | 8 | Signals, Correlations, Responses shown as a sequence with furniture and interface detail | Shared method component with immediately visible explanations |
 | 12 | Blue sofa inside a realistic glass enclosure | Reference for physical metaphors and lighting; use only in a semantically appropriate context |
 | 13 | Navy evidence panel, large cyan result, a simple comparison chart | Customer-story results and evidence presentation |
-| 16–17 | Spacious service comparison and an oversized numerical emphasis | Offer presentation with all existing price and timing qualifications intact |
+| 16–17 | Spacious service comparison and an oversized numerical emphasis | Clear service scope and consistently spaced discovery-call actions |
 
 The recurring blue furniture and upholstery texture are particularly useful brand devices. Repeat this family intentionally across pages instead of introducing a new visual style for every section.
 
@@ -173,7 +173,7 @@ At very narrow widths, long existing headings may need a local reduction toward 
 - Preserve existing bold and italic meaning; do not introduce decorative italics as a second voice.
 - Keep paragraphs 16–24px apart. Do not put hard line breaks in body copy solely to match a desktop screenshot.
 - Use tabular figures in comparison tables and aligned financial figures; preserve existing formatting and values.
-- Prices, monthly terms, revenue shares, periods, and disclaimers remain readable at the same time. Never isolate an attractive number from its qualification.
+- Service pricing and revenue-share fees are omitted. Keep result periods and disclaimers attached to the figures they qualify.
 
 ## 6. Layout, spacing, and responsive composition
 
@@ -496,7 +496,7 @@ Keep current nonvisual endpoints and SEO assets operational. This specification 
 
 ### Audit
 
-Use the shared service hero: current heading and paragraph on the left, exact offer and timing grouped nearby, and the existing audit illustration or a suitable reused furniture composition on the right. The long current headline determines the required height; do not shorten it.
+Use the shared service hero: approved heading and paragraph on the left, a clearly spaced discovery-call action, and the existing audit illustration or a suitable reused furniture composition on the right. Omit the former delivery label and clock icon.
 
 Present the existing report preview at readable scale in the deliverables section. Keep all deliverable text adjacent to the visual. The four process steps use an ordered layout that becomes a two-by-two grid or vertical sequence when required. Team, method, newsletter, and closing content share the global components.
 
@@ -504,7 +504,7 @@ The existing report is illustrative and no approved example PDF is configured. D
 
 ### Pilot
 
-Use the same service hero typography, offer grouping, and action treatment as Audit. Keep the monthly price, term, and all existing conditions together.
+Use the same service hero typography and action treatment as Audit. Omit pricing and the standalone duration label; retain the pilot scope and duration in the explanatory content.
 
 Reuse `pilot-months.webp` for scope and duration, and `pilt-agree.webp` for the measurement explanation. Present them as supporting explanatory figures. Let the existing copy define the stages; do not add implied success guarantees or invented progress data.
 
@@ -512,7 +512,7 @@ Use readable numbered steps and an open measurement section. A shared deck sofa 
 
 ### Full Implementation
 
-Use the shared service hero, retaining the complete monthly price and revenue-share wording. The catalog-wide scope should be expressed through the existing multi-product image, with enough space to identify the products.
+Use the shared service hero without monthly prices or revenue-share fees. The catalog-wide scope should be expressed through the existing multi-product image, with enough space to identify the products.
 
 Reuse `full-three.webp` for method detail and `full-measure.webp` for the existing measurement narrative. Keep Prioritize / Adapt / Launch as the current ordered rollout. Do not make an illustrative upward line look like measured customer results.
 

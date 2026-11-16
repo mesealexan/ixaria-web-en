@@ -3,18 +3,15 @@ import { site } from './site';
 export const audit = {
   seo: {
     title: 'Furniture Conversion Audit | IXARIA',
-    description: 'Connect your business goals, marketing, technology, and customer knowledge in a practical plan for improving furniture website conversion. One-time audit: €1,500.',
+    description: 'Connect your business goals, marketing, technology, and customer knowledge in a practical plan for improving furniture website conversion.',
   },
   bookingUrl: site.bookingUrl,
   bookingLabel: 'Book a discovery call',
-  price: '€1,500',
-  delivery: 'Delivered seven days after the final call',
   hero: {
     label: 'FURNITURE CONVERSION AUDIT',
-    heading: 'Find out what why your visitors',
+    heading: 'Find out why your visitors',
     highlight: "don't buy?",
     description: 'We connect your business goals, marketing, technology, and customer knowledge to create a practical plan for improving your website conversion.',
-    paymentLabel: 'One-time fee',
   },
   receive: {
     heading: 'What you get from the Audit',

@@ -178,7 +178,7 @@ for (const width of [1280, 390]) {
       await page.locator('#how-it-works').getByRole('link', { name: title === 'Full Implementation' ? 'Explore Full Implementation' : `Explore the ${title}`, exact: true }).click();
       await expect(page).toHaveURL(new RegExp(`${path.replace('.', '\\.')}$`));
       await expect(page.locator('h1')).toHaveText(
-        title === 'Audit' ? "Find out what why your visitors don't buy?" : title === 'Pilot' ? 'Use a smarter shopping experience on your bestsellers.' : 'Bring the proven approach to every product.',
+        title === 'Audit' ? "Find out why your visitors don't buy?" : title === 'Pilot' ? 'Use a smarter shopping experience on your bestsellers.' : 'Bring the proven approach to every product.',
       );
       await expect(page.getByRole('navigation', { name: 'Implementation stages' })).toHaveCount(0);
       await expect(page.getByRole('navigation', { name: 'On this audit page' })).toHaveCount(0);
@@ -205,8 +205,7 @@ for (const width of [1440, 820, 390, 320]) {
     await expect(page.locator('.full-implementation-page .audit-receive__media')).toHaveAttribute('src', '/full-three.webp');
     await expect(page.locator('.full-implementation-page .pilot-measurement__media')).toHaveAttribute('src', '/full-measure.webp');
     await expect(page.locator('.full-implementation-page .audit-hero__media')).toHaveAttribute('src', '/full-hero.webp');
-    await expect(page.locator('.pilot-price strong, .implementation-monthly-price')).toHaveText(['€1,500 / month', '€1,500 / month']);
-    await expect(page.locator('.implementation-revenue-share')).toHaveText(['+ 2% of every sales attributed to Ixaria', '+ 2% of every sales attributed to Ixaria']);
+    await expect(page.locator('.pilot-price, .pilot-final-price, .implementation-monthly-price, .implementation-revenue-share')).toHaveCount(0);
     await expect(page.locator('.pilot-steps h3')).toHaveText(['Prioritize', 'Adapt', 'Launch']);
     const booking = page.locator('main').getByRole('link', { name: 'Book a Discovery call', exact: true });
     await expect(booking).toHaveCount(2);
@@ -238,8 +237,8 @@ for (const width of [1440, 820, 390, 320]) {
     await expect(page.locator('.pilot-page .audit-receive__media')).toHaveAttribute('src', '/pilot-months.webp');
     await expect(page.locator('.pilot-measurement__media')).toHaveAttribute('src', '/pilt-agree.webp');
     await expect(page.locator('.pilot-page .audit-hero__media')).toHaveAttribute('src', '/pilot-hero.webp');
-    await expect(page.locator('.pilot-price')).toHaveText('€1,500/month');
-    await expect(page.locator('.pilot-terms')).toHaveText('Three months · €4,500 total');
+    await expect(page.locator('.pilot-price, .pilot-final-price')).toHaveCount(0);
+    await expect(page.locator('.pilot-terms, .pilot-offer')).toHaveCount(0);
     const booking = page.locator('main').getByRole('link', { name: 'Book a Discovery Call', exact: true });
     await expect(booking).toHaveCount(2);
     for (const link of await booking.all()) await expect(link).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
@@ -267,7 +266,7 @@ for (const width of [1440, 820, 390, 320]) {
   test(`audit layout and interactions at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/audit.html');
-    await expect(page.locator('h1')).toHaveText("Find out what why your visitors don't buy?");
+    await expect(page.locator('h1')).toHaveText("Find out why your visitors don't buy?");
     const booking = page.locator('.audit-page').getByRole('link', { name: 'Book a discovery call', exact: true });
     await expect(booking).toHaveCount(2);
     await expect(page.locator('.audit-page .cta-strip')).toHaveCount(0);
@@ -280,7 +279,8 @@ for (const width of [1440, 820, 390, 320]) {
     await expect(page.locator('.audit-team h3')).toHaveText(['Alex Mesesan', 'Ovidiu Stegari', 'Eduard Badea']);
     await expect(page.locator('.audit-process > li')).toHaveCount(4);
     await expect(page.locator('.audit-faq, .audit-guarantee, .audit-companies, .audit-modal')).toHaveCount(0);
-    await expect(page.locator('.audit-price strong')).toHaveText('€1,500');
+    await expect(page.locator('.audit-price')).toHaveCount(0);
+    await expect(page.locator('.audit-delivery, .audit-offer')).toHaveCount(0);
     await expect(page.locator('.audit-final__details, .audit-final__steps')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Join the newsletter' })).toBeVisible();
     expect(await page.locator('h1 span').evaluate(el => getComputedStyle(el).color)).toBe('rgb(0, 0, 255)');
@@ -555,7 +555,7 @@ test('static content, navigation, and FAQs are available with JavaScript disable
   await page.getByRole('link', { name: 'Explore the Pilot', exact: true }).click();
   await expect(page.locator('h1')).toHaveText('Use a smarter shopping experience on your bestsellers.');
   await page.goto('http://127.0.0.1:4330/audit.html');
-  await expect(page.locator('h1')).toHaveText("Find out what why your visitors don't buy?");
+  await expect(page.locator('h1')).toHaveText("Find out why your visitors don't buy?");
   await expect(
     page.locator('main').getByRole('link', { name: 'Book a discovery call', exact: true }),
   ).toHaveCount(2);

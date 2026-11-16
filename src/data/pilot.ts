@@ -3,8 +3,6 @@ import { site } from './site';
 export const pilot = {
   bookingUrl: site.bookingUrl,
   bookingLabel: 'Book a Discovery Call',
-  monthlyPrice: '€1,500/month',
-  terms: 'Three months · €4,500 total',
   hero: {
     heading: 'Use a smarter shopping experience',
     highlight: 'on your bestsellers.',
@@ -40,7 +38,6 @@ export const pilot = {
   final: {
     heading: 'Start your three-month pilot.',
     description: 'With your audit completed, we can select the products and plan the pilot.',
-    price: '€1,500/month · €4,500 total',
     next: 'If the results demonstrate meaningful progress against the agreed success metric, we move toward full implementation.',
     nextLabel: 'Next: explore full implementation →',
     nextUrl: '/full-implementation.html',
