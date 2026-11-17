@@ -17,6 +17,14 @@ const isDev = import.meta.env.DEV;
 
     window.posthog.init(apiKey, {
       api_host: apiHost,
+      defaults: '2026-08-30',
+      cookieless_mode: 'always',
+      person_profiles: 'never',
+      capture_pageview: true,
+      capture_pageleave: true,
+      autocapture: true,
+      disable_session_recording: true,
+      disable_surveys: true,
       tracing_headers: [window.location.hostname],
       logs: {
         serviceName: 'ixaria-web-en',

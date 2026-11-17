@@ -23,7 +23,13 @@ for (const mobile of [false, true]) {
         const external: string[] = [];
         // Fail on unexpected vendors instead of replacing them with successful mocks.
         await page.route('**/*', request => {
-          if (new URL(request.request().url()).hostname === '127.0.0.1') return request.continue();
+          const url = new URL(request.request().url());
+          if (url.hostname === '127.0.0.1') return request.continue();
+          // Measure the site independently of analytics CDN timing. The real SDK
+          // is exercised separately in posthog.spec.ts; its transfer cost is excluded here.
+          if (['eu.i.posthog.com', 'eu-assets.i.posthog.com'].includes(url.hostname) && url.pathname === '/static/array.js') {
+            return request.fulfill({ body: '', contentType: 'application/javascript' });
+          }
           external.push(request.request().url());
           return request.abort();
         });

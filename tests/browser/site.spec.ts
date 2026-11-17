@@ -470,7 +470,7 @@ test('consent vendor and Google Analytics remain disabled on every page', async 
     expect(await page.evaluate(() => typeof (window as unknown as { gtag?: unknown }).gtag)).toBe('undefined');
     expect(await page.context().cookies()).toEqual([]);
   }
-  expect(external).toEqual([]);
+  expect(external.every(url => ['eu.i.posthog.com', 'eu-assets.i.posthog.com'].includes(new URL(url).hostname))).toBe(true);
 });
 
 test('header shadow follows scrolling and restored page state', async ({ page }) => {

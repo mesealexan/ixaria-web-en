@@ -19,8 +19,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Check PostHog project token
+        env:
+          PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ vars.PUBLIC_POSTHOG_PROJECT_TOKEN }}
+        run: test -n "$PUBLIC_POSTHOG_PROJECT_TOKEN" || { echo "Set the PUBLIC_POSTHOG_PROJECT_TOKEN repository Actions variable before deploying."; exit 1; }
       - name: Build, verify SEO and upload static site
         uses: withastro/action@v6
+        env:
+          PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ vars.PUBLIC_POSTHOG_PROJECT_TOKEN }}
+          PUBLIC_POSTHOG_HOST: https://eu.i.posthog.com
         with:
           node-version: 22
           build-cmd: npm test

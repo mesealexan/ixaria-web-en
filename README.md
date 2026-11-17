@@ -89,13 +89,19 @@ Run `npm run audit:site` after a production build to inventory every image, chec
 
 `tests/browser/performance.spec.ts` checks all nine routes with cold caches and normal motion. Mobile uses DPR 3, 1.6 Mbps, 150 ms latency and 4x CPU slowdown. The preview server compresses text responses like production. Tests enforce route-specific transfer budgets, LCP <= 2.5 seconds, CLS <= 0.1, post-paint blocking <= 200 ms and forced layout <= 100 ms. Raw startup long tasks are also retained; pre-paint layout is reflected in FCP/LCP instead of being counted as post-paint blocking. Playwright tracing is disabled for these measurements. Unexpected external requests fail instead of being mocked as successful. Measurements are saved in `.tmp/performance/seo-fixed/`. These lab checks do not establish field INP or replace production Core Web Vitals and Search Console.
 
+The performance suite stubs the approved PostHog loader, so its transfer and execution costs are excluded from those site budgets. `tests/browser/posthog.spec.ts` separately exercises the installed SDK against mocked ingestion, checking immediate page views and clicks without browser storage. It does not establish live ingestion or retention in PostHog.
+
 Inter subsets retain the original glyph outlines, hinting, variable weights and license. Original font URLs remain available. After introducing new Unicode characters, install the optional generator dependencies (`python -m pip install fonttools brotli`), run `python scripts/subset-fonts.py`, update the font URLs in `src/styles/inter.css` to the generated manifest, and rebuild. The font preload reads `src/data/font-subsets.json` automatically. Builds use the committed subsets and do not require Python.
 
 Existing URLs and public image/font/video paths are preserved. Changing an established URL later requires a permanent redirect from the hosting provider; Astro's static output alone cannot send an HTTP 301 response.
 
 ## Integrations
 
-Secure Privacy and its banner have been removed, and Google Analytics is disabled on every page. No consent is automatically granted and no analytics scripts or event handlers are shipped. The original GA4 ID and event module remain in source for a deliberate future integration. Inter is hosted locally with its license in `public/fonts`.
+Secure Privacy and its banner have been removed, and Google Analytics is disabled on every page. PostHog uses EU Cloud with `cookieless_mode: 'always'` and `person_profiles: 'never'`; session replay and surveys are disabled. It tracks page views and interactions without PostHog cookies or local/session storage. Inter is hosted locally with its license in `public/fonts`.
+
+For local analytics, copy `.env.example` to `.env.local`, set `PUBLIC_POSTHOG_PROJECT_TOKEN` to the public project token, and restart or rebuild Astro. Keep `PUBLIC_POSTHOG_HOST=https://eu.i.posthog.com` for this EU project. These public values are embedded at build time; personal or secret API keys must never be used here. Without both values, production skips initialization and development reports a configuration error.
+
+In PostHog, open **Settings → Project → Web analytics**, enable **Enable cookieless tracking**, and save. PostHog discards cookieless events if this setting is off. In GitHub, add the repository Actions variable `PUBLIC_POSTHOG_PROJECT_TOKEN` under **Settings → Secrets and variables → Actions → Variables**. The Pages workflow supplies this variable and the EU host to the build. Redeploy after changing either value. Verify a `$pageview` and a booking or social click in PostHog's activity feed after deployment; a successful build alone does not prove delivery.
 
 The newsletter keeps the existing Brevo form action and fields. Its cross-origin opaque response confirms that the request was sent, so the UI asks visitors to check their inbox instead of claiming a verified subscription. Live vendor delivery must be checked separately with an authorized real subscription.
 
