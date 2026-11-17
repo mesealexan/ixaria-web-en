@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 import { load } from 'cheerio';
 
-const output = process.argv[2] ?? '.tmp/audit-after.json';
+const output = process.argv[2] ?? '.tmp/review-after.json';
 const files = fs.readdirSync('public', { recursive: true }).filter(file => /\.(png|jpe?g|jfif|webp|avif|svg|gif)$/i.test(file));
 const assets = [];
 for (const file of files) {

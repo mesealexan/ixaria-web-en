@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const routes = ['/', '/audit.html', '/pilot.html', '/full-implementation.html', '/customer-stories/agache.html', '/cofounder.html', '/privacy-policy.html', '/terms.html', '/cookie-policy.html'];
+const routes = ['/', '/review.html', '/pilot.html', '/live.html', '/customer-stories/agache.html', '/cofounder.html', '/privacy-policy.html', '/terms.html', '/cookie-policy.html'];
 
 for (const width of [320, 390, 768, 899, 1024, 1440]) {
   test(`Agache slide 10 phones stay aligned and uncropped at ${width}px`, async ({ page }) => {
@@ -72,8 +72,8 @@ for (const width of [320, 390, 768, 1024, 1280, 1366, 1440, 1920]) {
       }).map(el => el.textContent?.trim().slice(0,100) || el.getAttribute('src')));
       expect(overflow, route).toEqual([]);
       expect(errors, route).toEqual([]);
-      if (await page.locator('.audit-final').count()) {
-        const overlap = await page.locator('.audit-final').evaluate(section => {
+      if (await page.locator('.review-final').count()) {
+        const overlap = await page.locator('.review-final').evaluate(section => {
           const button = section.querySelector('.btn')!.getBoundingClientRect();
           const image = section.querySelector('.service-closing__sofa')!.getBoundingClientRect();
           return button.left < image.right && button.right > image.left && button.top < image.bottom && button.bottom > image.top;
@@ -86,10 +86,10 @@ for (const width of [320, 390, 768, 1024, 1280, 1366, 1440, 1920]) {
       if ([390, 1440].includes(width)) {
         const name = route === '/' ? 'home' : route.replaceAll('/', '-').replace('.html','');
         await page.screenshot({ path: `.tmp/design-previews/${name}-${width}.png` });
-        if (await page.locator('.audit-final').count()) {
-          await page.locator('.audit-final').scrollIntoViewIfNeeded();
-          await page.locator('.audit-final img').evaluateAll(images => Promise.all(images.map(img => { img.loading='eager'; return img.decode(); })));
-          await page.locator('.audit-final').screenshot({ path: `.tmp/design-previews/${name}-closing-${width}.png` });
+        if (await page.locator('.review-final').count()) {
+          await page.locator('.review-final').scrollIntoViewIfNeeded();
+          await page.locator('.review-final img').evaluateAll(images => Promise.all(images.map(img => { img.loading='eager'; return img.decode(); })));
+          await page.locator('.review-final').screenshot({ path: `.tmp/design-previews/${name}-closing-${width}.png` });
         }
         if (route === '/') {
           for (const selector of ['#visitor-conversion', '#solution', '.customer-story-teaser', '#method', '#how-it-works', '#features', '#about']) {
@@ -106,9 +106,9 @@ for (const width of [320, 390, 768, 1024, 1280, 1366, 1440, 1920]) {
 }
 
 for (const width of [390, 1440]) {
-  test(`audit newsletter text contrasts with its light background at ${width}px`, async ({ page }) => {
+  test(`review newsletter text contrasts with its light background at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/audit.html');
+    await page.goto('/review.html');
     const newsletter = page.locator('#newsletter');
     await expect(newsletter).toHaveCSS('background-color', 'rgb(245, 246, 250)');
     await expect(newsletter.locator('h2')).toHaveCSS('color', 'rgb(9, 9, 89)');
@@ -119,7 +119,7 @@ for (const width of [390, 1440]) {
     }
     await newsletter.locator('input[type="email"]').focus();
     await expect(newsletter.locator('input[type="email"]')).toHaveCSS('outline-color', 'rgb(0, 0, 255)');
-    await newsletter.screenshot({ path: `.tmp/design-previews/audit-newsletter-${width}.png` });
+    await newsletter.screenshot({ path: `.tmp/design-previews/review-newsletter-${width}.png` });
   });
 }
 

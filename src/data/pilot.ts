@@ -6,12 +6,12 @@ export const pilot = {
   hero: {
     heading: 'Use a smarter shopping experience',
     highlight: 'on your bestsellers.',
-    description: 'We use your audit findings to implement signals, correlation, and responses on three to five selected products over three months.',
+    description: 'We use your review findings to implement signals, correlation, and responses on three to five selected products over three months.',
     image: 'A furniture product page showing a shopper interaction and the relevant information it surfaces.',
   },
   implement: {
     heading: 'Three to five products. Three months of testing.',
-    description: 'Together, we select bestsellers, preferably higher-value products, and put the audit recommendations into practice.',
+    description: 'Together, we select bestsellers, preferably higher-value products, and put the review recommendations into practice.',
     points: [
       { heading: 'Signals', text: 'Identify what shoppers need through their interactions.' },
       { heading: 'Correlation', text: 'Connect those interactions with visitor context.' },
@@ -21,7 +21,7 @@ export const pilot = {
   },
   why: {
     heading: 'Establish what works before expanding.',
-    description: 'A focused pilot lets us evaluate the approach on selected products before deciding on full implementation.',
+    description: 'A focused pilot lets us evaluate the approach on selected products before deciding on Live.',
     steps: [
       'Select three to five products.',
       'Run the experience for three months.',
@@ -37,9 +37,9 @@ export const pilot = {
   },
   final: {
     heading: 'Start your three-month pilot.',
-    description: 'With your audit completed, we can select the products and plan the pilot.',
-    next: 'If the results demonstrate meaningful progress against the agreed success metric, we move toward full implementation.',
-    nextLabel: 'Next: explore full implementation →',
-    nextUrl: '/full-implementation.html',
+    description: 'With your review completed, we can select the products and plan the pilot.',
+    next: 'If the results demonstrate meaningful progress against the agreed success metric, we move toward Live.',
+    nextLabel: 'Next: explore Live →',
+    nextUrl: '/live.html',
   },
 };

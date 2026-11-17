@@ -114,9 +114,9 @@ for (const route of [
   '/privacy-policy.html',
   '/terms.html',
   '/cookie-policy.html',
-  '/audit.html',
+  '/review.html',
   '/pilot.html',
-  '/full-implementation.html',
+  '/live.html',
 ]) {
   test(`${route} renders with working assets and no application errors`, async ({ page }) => {
     const errors: string[] = [];
@@ -165,23 +165,23 @@ for (const width of [1280, 390]) {
   test(`three implementation stages open their detail pages at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     for (const [title, path] of [
-      ['Audit', '/audit.html'],
+      ['Review', '/review.html'],
       ['Pilot', '/pilot.html'],
-      ['Full Implementation', '/full-implementation.html'],
+      ['Live', '/live.html'],
     ]) {
       await page.goto('/#how-it-works');
       await expect(page.locator('#how-it-works h3')).toHaveText([
-        'Audit',
+        'Review',
         'Pilot',
-        'Full Implementation',
+        'Live',
       ]);
-      await page.locator('#how-it-works').getByRole('link', { name: title === 'Full Implementation' ? 'Explore Full Implementation' : `Explore the ${title}`, exact: true }).click();
+      await page.locator('#how-it-works').getByRole('link', { name: title === 'Live' ? 'Explore Live' : `Explore the ${title}`, exact: true }).click();
       await expect(page).toHaveURL(new RegExp(`${path.replace('.', '\\.')}$`));
       await expect(page.locator('h1')).toHaveText(
-        title === 'Audit' ? "Find out why your visitors don't buy?" : title === 'Pilot' ? 'Use a smarter shopping experience on your bestsellers.' : 'Bring the proven approach to every product.',
+        title === 'Review' ? "Find out why your visitors don't buy?" : title === 'Pilot' ? 'Use a smarter shopping experience on your bestsellers.' : 'Bring the proven approach to every product.',
       );
       await expect(page.getByRole('navigation', { name: 'Implementation stages' })).toHaveCount(0);
-      await expect(page.getByRole('navigation', { name: 'On this audit page' })).toHaveCount(0);
+      await expect(page.getByRole('navigation', { name: 'On this review page' })).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
         true,
       );
@@ -194,27 +194,27 @@ for (const width of [1280, 390]) {
 }
 
 for (const width of [1440, 820, 390, 320]) {
-  test(`full implementation layout and booking links at ${width}px`, async ({ page }) => {
+  test(`Live layout and booking links at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/full-implementation.html');
+    await page.goto('/live.html');
     await expect(page.locator('h1')).toHaveText('Bring the proven approach to every product.');
     await expect(page.locator('h1 span')).toHaveCSS('color', 'rgb(0, 0, 255)');
-    await expect(page.locator('.audit-receive')).toHaveCSS('background-color', 'rgb(9, 9, 89)');
+    await expect(page.locator('.review-receive')).toHaveCSS('background-color', 'rgb(9, 9, 89)');
     await expect(page.locator('.pilot-measurement')).toHaveCSS('background-color', 'rgb(245, 246, 250)');
-    await expect(page.locator('.audit-placeholder')).toHaveCount(0);
-    await expect(page.locator('.full-implementation-page .audit-receive__media')).toHaveAttribute('src', '/full-three.webp');
-    await expect(page.locator('.full-implementation-page .pilot-measurement__media')).toHaveAttribute('src', '/full-measure.webp');
-    await expect(page.locator('.full-implementation-page .audit-hero__media')).toHaveAttribute('src', '/full-hero.webp');
+    await expect(page.locator('.review-placeholder')).toHaveCount(0);
+    await expect(page.locator('.live-page .review-receive__media')).toHaveAttribute('src', '/live-three.webp');
+    await expect(page.locator('.live-page .pilot-measurement__media')).toHaveAttribute('src', '/live-measure.webp');
+    await expect(page.locator('.live-page .review-hero__media')).toHaveAttribute('src', '/live-hero.webp');
     await expect(page.locator('.pilot-price, .pilot-final-price, .implementation-monthly-price, .implementation-revenue-share')).toHaveCount(0);
     await expect(page.locator('.pilot-steps h3')).toHaveText(['Prioritize', 'Adapt', 'Launch']);
     const booking = page.locator('main').getByRole('link', { name: 'Book a Discovery call', exact: true });
     await expect(booking).toHaveCount(2);
     for (const link of await booking.all()) await expect(link).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
-    expect(await page.locator('.full-implementation-page h1, .full-implementation-page h2, .full-implementation-page h3, .full-implementation-page p, .full-implementation-page figure, .full-implementation-page li, .full-implementation-page a').evaluateAll(els => els.filter(el => {
+    expect(await page.locator('.live-page h1, .live-page h2, .live-page h3, .live-page p, .live-page figure, .live-page li, .live-page a').evaluateAll(els => els.filter(el => {
       const r = el.getBoundingClientRect(); return r.width > 0 && (r.left < -1 || r.right > innerWidth + 1 || el.scrollWidth > el.clientWidth + 1);
     }).map(el => el.textContent))).toEqual([]);
     if (width <= 768) {
-      for (const container of await page.locator('.full-implementation-page .audit-grid, .full-implementation-page .pilot-steps').all()) {
+      for (const container of await page.locator('.live-page .review-grid, .live-page .pilot-steps').all()) {
         const boxes = await container.locator(':scope > *').evaluateAll(els => els.map(el => {
           const r = el.getBoundingClientRect(); return { top: r.top, bottom: r.bottom };
         }));
@@ -231,12 +231,12 @@ for (const width of [1440, 820, 390, 320]) {
     await page.goto('/pilot.html');
     await expect(page.locator('h1')).toHaveText('Use a smarter shopping experience on your bestsellers.');
     await expect(page.locator('h1 span')).toHaveCSS('color', 'rgb(0, 0, 255)');
-    await expect(page.locator('.pilot-page .audit-receive')).toHaveCSS('background-color', 'rgb(9, 9, 89)');
+    await expect(page.locator('.pilot-page .review-receive')).toHaveCSS('background-color', 'rgb(9, 9, 89)');
     await expect(page.locator('.pilot-measurement')).toHaveCSS('background-color', 'rgb(245, 246, 250)');
-    await expect(page.locator('.pilot-page .audit-placeholder')).toHaveCount(0);
-    await expect(page.locator('.pilot-page .audit-receive__media')).toHaveAttribute('src', '/pilot-months.webp');
+    await expect(page.locator('.pilot-page .review-placeholder')).toHaveCount(0);
+    await expect(page.locator('.pilot-page .review-receive__media')).toHaveAttribute('src', '/pilot-months.webp');
     await expect(page.locator('.pilot-measurement__media')).toHaveAttribute('src', '/pilt-agree.webp');
-    await expect(page.locator('.pilot-page .audit-hero__media')).toHaveAttribute('src', '/pilot-hero.webp');
+    await expect(page.locator('.pilot-page .review-hero__media')).toHaveAttribute('src', '/pilot-hero.webp');
     await expect(page.locator('.pilot-price, .pilot-final-price')).toHaveCount(0);
     await expect(page.locator('.pilot-terms, .pilot-offer')).toHaveCount(0);
     const booking = page.locator('main').getByRole('link', { name: 'Book a Discovery Call', exact: true });
@@ -246,7 +246,7 @@ for (const width of [1440, 820, 390, 320]) {
       const r = el.getBoundingClientRect(); return r.width > 0 && (r.left < -1 || r.right > innerWidth + 1 || el.scrollWidth > el.clientWidth + 1);
     }).map(el => el.textContent))).toEqual([]);
     if (width <= 768) {
-      for (const selector of ['.pilot-page .audit-grid', '.pilot-steps']) {
+      for (const selector of ['.pilot-page .review-grid', '.pilot-steps']) {
         for (const container of await page.locator(selector).all()) {
           const boxes = await container.locator(':scope > *').evaluateAll(els => els.map(el => {
             const rect = el.getBoundingClientRect(); return { top: rect.top, bottom: rect.bottom };
@@ -257,41 +257,41 @@ for (const width of [1440, 820, 390, 320]) {
       const buttonWidth = await booking.first().evaluate(el => el.getBoundingClientRect().width);
       expect(buttonWidth).toBe(width - (width < 360 ? 32 : 40));
     }
-    await page.getByRole('link', { name: 'Next: explore full implementation →', exact: true }).click();
-    await expect(page).toHaveURL(/full-implementation.html$/);
+    await page.getByRole('link', { name: 'Next: explore Live →', exact: true }).click();
+    await expect(page).toHaveURL(/live.html$/);
   });
 }
 
 for (const width of [1440, 820, 390, 320]) {
-  test(`audit layout and interactions at ${width}px`, async ({ page }) => {
+  test(`review layout and interactions at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/audit.html');
+    await page.goto('/review.html');
     await expect(page.locator('h1')).toHaveText("Find out why your visitors don't buy?");
-    const booking = page.locator('.audit-page').getByRole('link', { name: 'Book a discovery call', exact: true });
+    const booking = page.locator('.review-page').getByRole('link', { name: 'Book a discovery call', exact: true });
     await expect(booking).toHaveCount(2);
-    await expect(page.locator('.audit-page .cta-strip')).toHaveCount(0);
+    await expect(page.locator('.review-page .cta-strip')).toHaveCount(0);
     for (const link of await booking.all()) await expect(link).toHaveAttribute('href', 'https://calendly.com/alex-ixaria/ixaria-strategy-session');
-    await expect(page.locator('.audit-placeholder')).toHaveCount(0);
-    await expect(page.locator('.audit-approach__media')).toHaveAttribute('src', '/audit-right-info2.webp');
-    await expect(page.locator('.audit-receive__media')).toHaveAttribute('src', '/audit-results.webp');
-    await expect(page.locator('.audit-hero img')).toHaveAttribute('src', '/hero-audit.webp');
-    await expect(page.locator('.audit-team img')).toHaveCount(3);
-    await expect(page.locator('.audit-team h3')).toHaveText(['Alex Mesesan', 'Ovidiu Stegari', 'Eduard Badea']);
-    await expect(page.locator('.audit-process > li')).toHaveCount(4);
-    await expect(page.locator('.audit-faq, .audit-guarantee, .audit-companies, .audit-modal')).toHaveCount(0);
-    await expect(page.locator('.audit-price')).toHaveCount(0);
-    await expect(page.locator('.audit-delivery, .audit-offer')).toHaveCount(0);
-    await expect(page.locator('.audit-final__details, .audit-final__steps')).toHaveCount(0);
+    await expect(page.locator('.review-placeholder')).toHaveCount(0);
+    await expect(page.locator('.review-approach__media')).toHaveAttribute('src', '/review-right-info2.webp');
+    await expect(page.locator('.review-receive__media')).toHaveAttribute('src', '/review-results.webp');
+    await expect(page.locator('.review-hero img')).toHaveAttribute('src', '/hero-review.webp');
+    await expect(page.locator('.review-team img')).toHaveCount(3);
+    await expect(page.locator('.review-team h3')).toHaveText(['Alex Mesesan', 'Ovidiu Stegari', 'Eduard Badea']);
+    await expect(page.locator('.review-process > li')).toHaveCount(4);
+    await expect(page.locator('.review-faq, .review-guarantee, .review-companies, .review-modal')).toHaveCount(0);
+    await expect(page.locator('.review-price')).toHaveCount(0);
+    await expect(page.locator('.review-delivery, .review-offer')).toHaveCount(0);
+    await expect(page.locator('.review-final__details, .review-final__steps')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Join the newsletter' })).toBeVisible();
     expect(await page.locator('h1 span').evaluate(el => getComputedStyle(el).color)).toBe('rgb(0, 0, 255)');
     expect(await page.locator('h1').evaluate(el => getComputedStyle(el).fontFamily)).toContain('Inter');
-    expect(await page.locator('.audit-lead').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Inter');
-    expect(await page.locator('.audit-receive').evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(9, 9, 89)');
-    expect(await page.locator('.audit-page h1, .audit-page h2, .audit-page h3, .audit-page p, .audit-page figure, .audit-page li, .audit-page input, .audit-page button').evaluateAll(els => els.filter(el => {
+    expect(await page.locator('.review-lead').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Inter');
+    expect(await page.locator('.review-receive').evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(9, 9, 89)');
+    expect(await page.locator('.review-page h1, .review-page h2, .review-page h3, .review-page p, .review-page figure, .review-page li, .review-page input, .review-page button').evaluateAll(els => els.filter(el => {
       const r = el.getBoundingClientRect(); return r.width > 0 && (r.left < -1 || r.right > innerWidth + 1);
     }).map(el => el.textContent))).toEqual([]);
     if (width <= 768) {
-      for (const selector of ['.audit-grid', '.audit-process', '.audit-flow', '.audit-team']) {
+      for (const selector of ['.review-grid', '.review-process', '.review-flow', '.review-team']) {
         const boxes = await page.locator(selector).first().locator(':scope > *').evaluateAll(els => els.map(el => {
           const rect = el.getBoundingClientRect(); return { top: rect.top, bottom: rect.bottom };
         }));
@@ -327,14 +327,14 @@ for (const width of [1280, 769, 390, 320]) {
     const trigger = process.locator('summary');
     await trigger.click();
     await expect(process).toHaveAttribute('open', '');
-    await expect(process.locator('a')).toHaveText(['Audit', 'Pilot', 'Full Implementation']);
+    await expect(process.locator('a')).toHaveText(['Review', 'Pilot', 'Live']);
     await trigger.click();
     await expect(process).not.toHaveAttribute('open', '');
     await trigger.focus();
     await page.keyboard.press('Enter');
     await expect(process).toHaveAttribute('open', '');
     await page.keyboard.press('Tab');
-    await expect(process.getByRole('link', { name: 'Audit', exact: true })).toBeFocused();
+    await expect(process.getByRole('link', { name: 'Review', exact: true })).toBeFocused();
     await page.keyboard.press('Escape');
     await expect(process).not.toHaveAttribute('open', '');
     await expect(trigger).toBeFocused();
@@ -342,7 +342,7 @@ for (const width of [1280, 769, 390, 320]) {
     await trigger.click();
     await page.locator('main').click({ position: { x: 10, y: 600 } });
     await expect(process).not.toHaveAttribute('open', '');
-    for (const [label, path] of [['Audit', '/audit.html'], ['Pilot', '/pilot.html'], ['Full Implementation', '/full-implementation.html']]) {
+    for (const [label, path] of [['Review', '/review.html'], ['Pilot', '/pilot.html'], ['Live', '/live.html']]) {
       await page.goto('/terms.html');
       if (mobile) await menu.click();
       await trigger.click();
@@ -362,10 +362,10 @@ test('Process links work without JavaScript on mobile', async ({ browser }) => {
   await page.goto('http://127.0.0.1:4330/terms.html');
   const process = page.locator('.navbar__process');
   await process.locator('summary').click();
-  await expect(process.getByRole('link', { name: 'Audit', exact: true })).toBeVisible();
+  await expect(process.getByRole('link', { name: 'Review', exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await process.getByRole('link', { name: 'Audit', exact: true }).click();
-  await expect(page).toHaveURL(/audit.html$/);
+  await process.getByRole('link', { name: 'Review', exact: true }).click();
+  await expect(page).toHaveURL(/review.html$/);
   await context.close();
 });
 
@@ -391,13 +391,13 @@ test('mobile navigation works on home and nested pages without horizontal overfl
   await page.getByRole('button', { name: 'Menu', exact: true }).click();
   await page
     .locator('#primary-navigation')
-    .getByRole('link', { name: 'Features', exact: true })
+    .getByRole('link', { name: 'About us', exact: true })
     .click();
-  await expect(page).toHaveURL(/\/#features$/);
+  await expect(page).toHaveURL(/\/#about$/);
   await expect(page.locator('#primary-navigation')).toBeHidden();
 });
 
-for (const route of ['/', '/audit.html']) {
+for (const route of ['/', '/review.html']) {
 test(`newsletter validates, submits the existing fields, and recovers from failure on ${route}`, async ({
   page,
 }) => {
@@ -460,7 +460,7 @@ test('consent vendor and Google Analytics remain disabled on every page', async 
   page.on('request', request => {
     if (new URL(request.url()).hostname !== '127.0.0.1') external.push(request.url());
   });
-  for (const route of ['/', '/audit.html', '/pilot.html', '/full-implementation.html', '/cofounder.html', '/customer-stories/agache.html', '/privacy-policy.html', '/terms.html', '/cookie-policy.html']) {
+  for (const route of ['/', '/review.html', '/pilot.html', '/live.html', '/cofounder.html', '/customer-stories/agache.html', '/privacy-policy.html', '/terms.html', '/cookie-policy.html']) {
     await page.goto(route);
     await page.evaluate(() => {
       window.dispatchEvent(new Event('sp_init'));
@@ -471,6 +471,26 @@ test('consent vendor and Google Analytics remain disabled on every page', async 
     expect(await page.context().cookies()).toEqual([]);
   }
   expect(external.every(url => ['eu.i.posthog.com', 'eu-assets.i.posthog.com'].includes(new URL(url).hostname))).toBe(true);
+});
+
+test('former offer URL redirects to Review with JavaScript disabled', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto('http://127.0.0.1:4330/audit.html');
+  await expect(page).toHaveURL('http://127.0.0.1:4330/review.html');
+  await expect(page).toHaveTitle('Furniture Conversion Review | IXARIA');
+  await expect(page.locator('h1')).toHaveText("Find out why your visitors don't buy?");
+  await context.close();
+});
+
+test('former stage URL redirects to Live with JavaScript disabled', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto('http://127.0.0.1:4330/full-implementation.html');
+  await expect(page).toHaveURL('http://127.0.0.1:4330/live.html');
+  await expect(page).toHaveTitle('Live Furniture Ecommerce Product Pages | IXARIA');
+  await expect(page.locator('h1')).toHaveText('Bring the proven approach to every product.');
+  await context.close();
 });
 
 test('header shadow follows scrolling and restored page state', async ({ page }) => {
@@ -488,7 +508,7 @@ test('narrow mobile pages keep visible content inside the viewport', async ({ pa
   await page.emulateMedia({ reducedMotion: 'reduce' });
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const route of ['/', '/audit.html', '/pilot.html', '/full-implementation.html']) {
+    for (const route of ['/', '/review.html', '/pilot.html', '/live.html']) {
       await page.goto(route);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       expect(await page.locator('main h1, main h2, main h3, main p, main a, main img').evaluateAll(elements => elements.filter(el => {
@@ -554,7 +574,7 @@ test('static content, navigation, and FAQs are available with JavaScript disable
   await page.goto('http://127.0.0.1:4330/#how-it-works');
   await page.getByRole('link', { name: 'Explore the Pilot', exact: true }).click();
   await expect(page.locator('h1')).toHaveText('Use a smarter shopping experience on your bestsellers.');
-  await page.goto('http://127.0.0.1:4330/audit.html');
+  await page.goto('http://127.0.0.1:4330/review.html');
   await expect(page.locator('h1')).toHaveText("Find out why your visitors don't buy?");
   await expect(
     page.locator('main').getByRole('link', { name: 'Book a discovery call', exact: true }),

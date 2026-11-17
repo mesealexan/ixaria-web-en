@@ -1,0 +1,103 @@
+﻿---
+import { live } from '../../data/live';
+import Button from '../ui/Button.astro';
+import { responsiveImage, serviceImageSizes } from '../../utils/images';
+import '../../styles/review.css';
+import '../../styles/pilot.css';
+import '../../styles/design-services.css';
+---
+
+<div class="review-page live-page">
+  <section class="review-section review-hero" data-implementation-section="hero" aria-labelledby="implementation-title">
+    <div class="container review-grid">
+      <div>
+        <h1 id="implementation-title">{live.hero.heading} <span>{live.hero.highlight}</span></h1>
+        <p class="review-lead">{live.hero.description}</p>
+        <Button href={live.bookingUrl} external>{live.bookingLabel}</Button>
+      </div>
+      <img
+        class="review-hero__media"
+        src="/live-hero.webp"
+        {...responsiveImage('/live-hero.webp', serviceImageSizes)}
+        width="1254"
+        height="1254"
+        alt="Furniture product pages showing relevant fabric, dimension, and delivery information across a product catalog."
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <section class="review-section review-receive" data-implementation-section="implement" aria-labelledby="implementation-implement-title">
+    <div class="container review-grid review-grid--image-left">
+      <img
+        class="review-receive__media"
+        src="/live-three.webp"
+        {...responsiveImage('/live-three.webp', serviceImageSizes)}
+        width="1448"
+        height="1086"
+        alt="Shopper signals connect with visitor context to show relevant sofa comfort and dining-table dimension information."
+        loading="lazy"
+        decoding="async"
+      />
+      <div>
+        <h2 class="section-title" id="implementation-implement-title">{live.implement.heading}</h2>
+        <p class="review-lead">{live.implement.description}</p>
+        <ul class="pilot-implementation-list">
+          {live.implement.points.map(point => (
+            <li>
+              <h3>{point.heading}</h3>
+              <p>{point.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="review-section" data-implementation-section="rollout" aria-labelledby="implementation-rollout-title">
+    <div class="container">
+      <div class="review-section-heading">
+        <h2 class="section-title" id="implementation-rollout-title">{live.rollout.heading}</h2>
+        <p class="review-lead">{live.rollout.description}</p>
+      </div>
+      <ol class="review-cards pilot-steps" role="list">
+        {live.rollout.steps.map((step, index) => (
+          <li class="review-card">
+            <span class="pilot-step-number" aria-hidden="true">{index + 1}</span>
+            <h3>{step.heading}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="review-section review-approach pilot-measurement" data-implementation-section="measurement" aria-labelledby="implementation-measurement-title">
+    <div class="container review-grid">
+      <div>
+        <h2 class="section-title" id="implementation-measurement-title">{live.measurement.heading}</h2>
+        <p class="review-lead">{live.measurement.description}</p>
+      </div>
+      <img
+        class="pilot-measurement__media"
+        src="/live-measure.webp"
+        {...responsiveImage('/live-measure.webp', serviceImageSizes)}
+        width="1448"
+        height="1086"
+        alt="A blue sofa beneath an upward-trending line illustrating ongoing performance measurement."
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <section class="review-section review-final" data-implementation-section="final" aria-labelledby="implementation-final-title">
+    <div class="container">
+      <h2 class="section-title" id="implementation-final-title">{live.final.heading}</h2>
+      <p class="review-lead">{live.final.description}</p>
+      <Button href={live.bookingUrl} external>{live.bookingLabel}</Button>
+      <img class="service-closing__sofa" role="presentation" src="/design/blue-sofa-1200.webp" srcset="/design/blue-sofa-640.webp 640w, /design/blue-sofa-1200.webp 1200w" sizes="(max-width: 768px) 90vw, 540px" width="1200" height="800" alt="" loading="lazy" decoding="async" />
+    </div>
+  </section>
+</div>

@@ -101,14 +101,10 @@ export const site = {
     {
       label: 'Process',
       children: [
-        { label: 'Audit', href: '/audit.html' },
+        { label: 'Review', href: '/review.html' },
         { label: 'Pilot', href: '/pilot.html' },
-        { label: 'Full Implementation', href: '/full-implementation.html' },
+        { label: 'Live', href: '/live.html' },
       ],
-    },
-    {
-      label: 'Features',
-      href: '/#features',
     },
     {
       label: 'About us',
@@ -129,16 +125,16 @@ export const site = {
       href: '/#features',
     },
     {
-      label: 'Audit',
-      href: '/audit.html',
+      label: 'Review',
+      href: '/review.html',
     },
     {
       label: 'Pilot',
       href: '/pilot.html',
     },
     {
-      label: 'Full Implementation',
-      href: '/full-implementation.html',
+      label: 'Live',
+      href: '/live.html',
     },
     {
       label: 'Book a call',

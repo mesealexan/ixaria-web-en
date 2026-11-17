@@ -1,11 +1,11 @@
 import type { ImageData } from './types';
 
-export interface AuditClientLogo {
+export interface ReviewClientLogo {
   name: string;
   image: ImageData;
 }
 
-export const auditAssets = {
+export const reviewAssets = {
   // Previous clients supplied and approved by the user in public/logos.
   clientLogos: [
     { name: 'Massif', image: { src: '/logos/Artboard%201.jpg', alt: 'Massif', width: 900, height: 300 } },
@@ -20,7 +20,7 @@ export const auditAssets = {
     { name: 'Lockart Doors', image: { src: '/logos/Artboard%2010.jpg', alt: 'Lockart Doors', width: 900, height: 300 } },
     { name: 'Sofaest Mob', image: { src: '/logos/Artboard%2011.jpg', alt: 'Sofaest Mob', width: 900, height: 300 } },
     { name: 'Timflex', image: { src: '/logos/Artboard%2012.jpg', alt: 'Timflex', width: 900, height: 300 } },
-  ] satisfies AuditClientLogo[],
+  ] satisfies ReviewClientLogo[],
   portraits: {
     Alex: '/people/Alex.jpg',
     Eduard: '/people/Eduard.jpg',
@@ -28,9 +28,9 @@ export const auditAssets = {
     Ovidiu: '/people/Ovi.jpg',
   },
   example: {
-    // Only configure a genuine, approved audit PDF and a page/cover from that PDF.
+    // Only configure a genuine, approved review PDF and a page/cover from that PDF.
     pdfUrl: null as string | null,
-    downloadFilename: 'ixaria-example-audit.pdf',
+    downloadFilename: 'ixaria-example-review.pdf',
     preview: null as ImageData | null,
   },
 };

@@ -3,20 +3,20 @@ import '../../styles/design-services.css';
 import { pilot } from '../../data/pilot';
 import Button from '../ui/Button.astro';
 import { responsiveImage, serviceImageSizes } from '../../utils/images';
-import '../../styles/audit.css';
+import '../../styles/review.css';
 import '../../styles/pilot.css';
 ---
 
-<div class="audit-page pilot-page">
-  <section class="audit-section audit-hero" data-pilot-section="hero" aria-labelledby="pilot-title">
-    <div class="container audit-grid">
+<div class="review-page pilot-page">
+  <section class="review-section review-hero" data-pilot-section="hero" aria-labelledby="pilot-title">
+    <div class="container review-grid">
       <div>
         <h1 id="pilot-title">{pilot.hero.heading} <span>{pilot.hero.highlight}</span></h1>
-        <p class="audit-lead">{pilot.hero.description}</p>
+        <p class="review-lead">{pilot.hero.description}</p>
         <Button href={pilot.bookingUrl} external>{pilot.bookingLabel}</Button>
       </div>
       <img
-        class="audit-hero__media"
+        class="review-hero__media"
         src="/pilot-hero.webp"
         {...responsiveImage('/pilot-hero.webp', serviceImageSizes)}
         width="1254"
@@ -28,10 +28,10 @@ import '../../styles/pilot.css';
     </div>
   </section>
 
-  <section class="audit-section audit-receive" data-pilot-section="implement" aria-labelledby="pilot-implement-title">
-    <div class="container audit-grid audit-grid--image-left">
+  <section class="review-section review-receive" data-pilot-section="implement" aria-labelledby="pilot-implement-title">
+    <div class="container review-grid review-grid--image-left">
       <img
-        class="audit-receive__media"
+        class="review-receive__media"
         src="/pilot-months.webp"
         {...responsiveImage('/pilot-months.webp', serviceImageSizes)}
         width="1448"
@@ -42,7 +42,7 @@ import '../../styles/pilot.css';
       />
       <div>
         <h2 class="section-title" id="pilot-implement-title">{pilot.implement.heading}</h2>
-        <p class="audit-lead">{pilot.implement.description}</p>
+        <p class="review-lead">{pilot.implement.description}</p>
         <ul class="pilot-implementation-list">
           {pilot.implement.points.map(point => (
             <li>
@@ -55,15 +55,15 @@ import '../../styles/pilot.css';
     </div>
   </section>
 
-  <section class="audit-section" data-pilot-section="why" aria-labelledby="pilot-why-title">
+  <section class="review-section" data-pilot-section="why" aria-labelledby="pilot-why-title">
     <div class="container">
-      <div class="audit-section-heading">
+      <div class="review-section-heading">
         <h2 class="section-title" id="pilot-why-title">{pilot.why.heading}</h2>
-        <p class="audit-lead">{pilot.why.description}</p>
+        <p class="review-lead">{pilot.why.description}</p>
       </div>
-      <ol class="audit-cards pilot-steps" role="list">
+      <ol class="review-cards pilot-steps" role="list">
         {pilot.why.steps.map((step, index) => (
-          <li class="audit-card">
+          <li class="review-card">
             <span class="pilot-step-number" aria-hidden="true">{index + 1}</span>
             <p>{step}</p>
           </li>
@@ -72,15 +72,15 @@ import '../../styles/pilot.css';
     </div>
   </section>
 
-  <section class="audit-section audit-approach pilot-measurement" data-pilot-section="measurement" aria-labelledby="pilot-measurement-title">
-    <div class="container audit-grid">
+  <section class="review-section review-approach pilot-measurement" data-pilot-section="measurement" aria-labelledby="pilot-measurement-title">
+    <div class="container review-grid">
       <div>
         <h2 class="section-title" id="pilot-measurement-title">{pilot.measurement.heading}</h2>
-        <p class="audit-lead">{pilot.measurement.description}</p>
+        <p class="review-lead">{pilot.measurement.description}</p>
         <ul class="pilot-metrics" role="list">
           {pilot.measurement.labels.map(label => <li>{label}</li>)}
         </ul>
-        <p class="audit-note">{pilot.measurement.note}</p>
+        <p class="review-note">{pilot.measurement.note}</p>
       </div>
       <img
         class="pilot-measurement__media"
@@ -95,12 +95,12 @@ import '../../styles/pilot.css';
     </div>
   </section>
 
-  <section class="audit-section audit-final" data-pilot-section="final" aria-labelledby="pilot-final-title">
+  <section class="review-section review-final" data-pilot-section="final" aria-labelledby="pilot-final-title">
     <div class="container">
       <h2 class="section-title" id="pilot-final-title">{pilot.final.heading}</h2>
-      <p class="audit-lead">{pilot.final.description}</p>
+      <p class="review-lead">{pilot.final.description}</p>
       <Button href={pilot.bookingUrl} external>{pilot.bookingLabel}</Button>
-      <a class="audit-pilot-link" href={pilot.final.nextUrl}>{pilot.final.nextLabel}</a>
+      <a class="review-pilot-link" href={pilot.final.nextUrl}>{pilot.final.nextLabel}</a>
       <img class="service-closing__sofa" role="presentation" src="/design/blue-sofa-1200.webp" srcset="/design/blue-sofa-640.webp 640w, /design/blue-sofa-1200.webp 1200w" sizes="(max-width: 768px) 90vw, 540px" width="1200" height="800" alt="" loading="lazy" decoding="async" />
     </div>
   </section>

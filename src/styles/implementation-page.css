@@ -43,7 +43,7 @@
 .implementation--pilot .implementation-hero__number {
   color: var(--orange);
 }
-.implementation--full-implementation .implementation-hero__number {
+.implementation--live .implementation-hero__number {
   color: var(--navy);
 }
 .implementation-focus {

@@ -6,8 +6,8 @@ import path from 'node:path';
 test.use({ trace: 'off' });
 
 const budgets: Record<string, number> = {
-  '/': 400_000, '/audit.html': 400_000, '/pilot.html': 300_000,
-  '/full-implementation.html': 300_000, '/cofounder.html': 420_000,
+  '/': 400_000, '/review.html': 400_000, '/pilot.html': 300_000,
+  '/live.html': 300_000, '/cofounder.html': 420_000,
   '/customer-stories/agache.html': 300_000,
   '/privacy-policy.html': 100_000, '/terms.html': 100_000, '/cookie-policy.html': 100_000,
 };
@@ -35,7 +35,7 @@ for (const mobile of [false, true]) {
         });
         await page.addInitScript(() => {
           const metrics = { lcp: 0, cls: 0, layoutMs: 0, tasks: [] as { start: number; duration: number }[] };
-          Object.assign(window, { auditMetrics: metrics });
+          Object.assign(window, { reviewMetrics: metrics });
           let sessionStart = 0, lastShift = 0, sessionValue = 0;
           new PerformanceObserver(list => {
             for (const entry of list.getEntries()) metrics.lcp = entry.startTime;
@@ -84,8 +84,8 @@ for (const mobile of [false, true]) {
         await page.waitForTimeout(300);
         const metrics = await page.evaluate(() => {
           const raw = (window as unknown as {
-            auditMetrics: { lcp: number; cls: number; layoutMs: number; tasks: { start: number; duration: number }[] }
-          }).auditMetrics;
+            reviewMetrics: { lcp: number; cls: number; layoutMs: number; tasks: { start: number; duration: number }[] }
+          }).reviewMetrics;
           const fcp = performance.getEntriesByName('first-contentful-paint')[0]?.startTime;
           return {
             ...raw, fcp,

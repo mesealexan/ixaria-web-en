@@ -1,18 +1,18 @@
 {
-  "/hero-audit.webp": {
+  "/hero-review.webp": {
     "width": 1254,
     "height": 1254,
-    "srcset": "/optimized/hero-audit-360.webp 360w, /optimized/hero-audit-640.webp 640w, /optimized/hero-audit-960.webp 960w, /hero-audit.webp 1254w"
+    "srcset": "/optimized/hero-review-360.webp 360w, /optimized/hero-review-640.webp 640w, /optimized/hero-review-960.webp 960w, /hero-review.webp 1254w"
   },
-  "/audit-results.webp": {
+  "/review-results.webp": {
     "width": 1448,
     "height": 1086,
-    "srcset": "/optimized/audit-results-360.webp 360w, /optimized/audit-results-640.webp 640w, /optimized/audit-results-960.webp 960w, /optimized/audit-results-1280.webp 1280w, /audit-results.webp 1448w"
+    "srcset": "/optimized/review-results-360.webp 360w, /optimized/review-results-640.webp 640w, /optimized/review-results-960.webp 960w, /optimized/review-results-1280.webp 1280w, /review-results.webp 1448w"
   },
-  "/audit-right-info2.webp": {
+  "/review-right-info2.webp": {
     "width": 2172,
     "height": 724,
-    "srcset": "/optimized/audit-right-info2-360.webp 360w, /optimized/audit-right-info2-640.webp 640w, /optimized/audit-right-info2-960.webp 960w, /optimized/audit-right-info2-1280.webp 1280w, /optimized/audit-right-info2-1920.webp 1920w, /audit-right-info2.webp 2172w"
+    "srcset": "/optimized/review-right-info2-360.webp 360w, /optimized/review-right-info2-640.webp 640w, /optimized/review-right-info2-960.webp 960w, /optimized/review-right-info2-1280.webp 1280w, /optimized/review-right-info2-1920.webp 1920w, /review-right-info2.webp 2172w"
   },
   "/pilot-hero.webp": {
     "width": 1254,
@@ -29,20 +29,20 @@
     "height": 1086,
     "srcset": "/optimized/pilt-agree-360.webp 360w, /optimized/pilt-agree-640.webp 640w, /optimized/pilt-agree-960.webp 960w, /optimized/pilt-agree-1280.webp 1280w, /pilt-agree.webp 1448w"
   },
-  "/full-hero.webp": {
+  "/live-hero.webp": {
     "width": 1254,
     "height": 1254,
-    "srcset": "/optimized/full-hero-360.webp 360w, /optimized/full-hero-640.webp 640w, /optimized/full-hero-960.webp 960w, /full-hero.webp 1254w"
+    "srcset": "/optimized/live-hero-360.webp 360w, /optimized/live-hero-640.webp 640w, /optimized/live-hero-960.webp 960w, /live-hero.webp 1254w"
   },
-  "/full-three.webp": {
+  "/live-three.webp": {
     "width": 1448,
     "height": 1086,
-    "srcset": "/optimized/full-three-360.webp 360w, /optimized/full-three-640.webp 640w, /optimized/full-three-960.webp 960w, /optimized/full-three-1280.webp 1280w, /full-three.webp 1448w"
+    "srcset": "/optimized/live-three-360.webp 360w, /optimized/live-three-640.webp 640w, /optimized/live-three-960.webp 960w, /optimized/live-three-1280.webp 1280w, /live-three.webp 1448w"
   },
-  "/full-measure.webp": {
+  "/live-measure.webp": {
     "width": 1448,
     "height": 1086,
-    "srcset": "/optimized/full-measure-360.webp 360w, /optimized/full-measure-640.webp 640w, /optimized/full-measure-960.webp 960w, /optimized/full-measure-1280.webp 1280w, /full-measure.webp 1448w"
+    "srcset": "/optimized/live-measure-360.webp 360w, /optimized/live-measure-640.webp 640w, /optimized/live-measure-960.webp 960w, /optimized/live-measure-1280.webp 1280w, /live-measure.webp 1448w"
   },
   "/newsletter.webp": {
     "width": 1672,

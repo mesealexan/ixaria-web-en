@@ -1,6 +1,6 @@
 import { site } from './site';
 
-export const fullImplementation = {
+export const live = {
   bookingUrl: site.bookingUrl,
   bookingLabel: 'Book a Discovery call',
   hero: {
@@ -21,7 +21,7 @@ export const fullImplementation = {
   },
   rollout: {
     heading: 'A structured rollout across your catalog.',
-    description: 'We agree on product priorities, technical requirements, and a rollout schedule based on the audit and pilot findings.',
+    description: 'We agree on product priorities, technical requirements, and a rollout schedule based on the review and pilot findings.',
     steps: [
       { heading: 'Prioritize', text: 'Agree on product groups and rollout order.' },
       { heading: 'Adapt', text: 'Prepare signals and responses for each product.' },
@@ -34,7 +34,7 @@ export const fullImplementation = {
     image: 'Performance overview by product and category — no invented figures.',
   },
   final: {
-    heading: 'Plan your full implementation.',
+    heading: 'Plan your Live rollout.',
     description: 'Together, we define the scope and rollout timeline for extending the experience to all your products.',
   },
 };

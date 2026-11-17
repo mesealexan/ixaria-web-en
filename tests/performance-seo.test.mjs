@@ -38,7 +38,7 @@ for (const [route, expected] of Object.entries(baseline)) {
       assert.equal(url.pathname, '/webpreview.webp');
       assert.ok(fs.existsSync(path.join('dist', url.pathname)));
     }
-    const hero = $('.audit-hero__media');
+    const hero = $('.review-hero__media');
     if (hero.length) {
       assert.equal(hero.attr('fetchpriority'), 'high');
       assert.notEqual(hero.attr('loading'), 'lazy');

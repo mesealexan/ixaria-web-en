@@ -1,6 +1,6 @@
 import type { ContentCard, Founder } from './types';
-import { auditAssets } from './audit-assets';
-import { audit } from './audit';
+import { reviewAssets } from './review-assets';
+import { review } from './review';
 
 export const features: ContentCard[] = [
   {
@@ -49,10 +49,10 @@ export const founders: Founder[] = [
   {
     name: 'Alex',
     role: 'Vision, Sales',
-    description: audit.team.people.find(person => person.assetKey === 'Alex')!.text,
+    description: review.team.people.find(person => person.assetKey === 'Alex')!.text,
     linkedin: 'https://www.linkedin.com/in/alexandru-mesesan/',
     image: {
-      src: auditAssets.portraits.Alex,
+      src: reviewAssets.portraits.Alex,
       alt: 'Alexandru Mesesan — Co-founder of Ixaria',
       width: 800,
       height: 600,
@@ -67,7 +67,7 @@ export const founders: Founder[] = [
     linkedin: 'https://www.linkedin.com/in/victoriancu/',
     imagePosition: 'center top',
     image: {
-      src: auditAssets.portraits.Victor,
+      src: reviewAssets.portraits.Victor,
       alt: 'Victor Iancu — Co-founder of Ixaria',
       width: 600,
       height: 613,
@@ -76,10 +76,10 @@ export const founders: Founder[] = [
   {
     name: 'Eduard',
     role: 'Product',
-    description: audit.team.people.find(person => person.assetKey === 'Eduard')!.text,
+    description: review.team.people.find(person => person.assetKey === 'Eduard')!.text,
     linkedin: 'https://www.linkedin.com/in/eduard-badea/',
     image: {
-      src: auditAssets.portraits.Eduard,
+      src: reviewAssets.portraits.Eduard,
       alt: 'Eduard Badea — Co-founder of Ixaria',
       width: 800,
       height: 600,

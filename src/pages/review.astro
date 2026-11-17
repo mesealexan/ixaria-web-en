@@ -1,0 +1,9 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import ReviewPage from '../components/review/ReviewPage.astro';
+import { pageSEO } from '../seo/pages';
+import { reviewStructuredData } from '../seo/review';
+---
+<MarketingLayout seo={pageSEO.review} structuredData={reviewStructuredData()}>
+  <ReviewPage />
+</MarketingLayout>

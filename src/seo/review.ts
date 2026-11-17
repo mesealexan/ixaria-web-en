@@ -1,26 +1,26 @@
-import { audit } from '../data/audit';
+import { review } from '../data/review';
 import { site } from '../data/site';
 import type { PageSEO, StructuredData } from './types';
 import { pageDates } from './metadata';
 
-export const auditSEO: PageSEO = {
-  path: '/audit.html',
-  title: audit.seo.title,
-  description: audit.seo.description,
+export const reviewSEO: PageSEO = {
+  path: '/review.html',
+  title: review.seo.title,
+  description: review.seo.description,
   robots: 'index, follow',
   openGraph: {
     type: 'website',
-    title: audit.seo.title,
-    description: audit.seo.description,
+    title: review.seo.title,
+    description: review.seo.description,
     image: `${site.url}/webpreview.webp`,
     imageAlt: 'Ixaria',
     locale: site.locale,
   },
-  lastModified: pageDates.audit,
+  lastModified: pageDates.review,
 };
 
-export function auditStructuredData(): StructuredData {
-  const url = new URL(auditSEO.path, site.url).href;
+export function reviewStructuredData(): StructuredData {
+  const url = new URL(reviewSEO.path, site.url).href;
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -29,17 +29,17 @@ export function auditStructuredData(): StructuredData {
         '@type': 'WebPage',
         '@id': `${url}#webpage`,
         url,
-        name: auditSEO.title,
-        description: auditSEO.description,
+        name: reviewSEO.title,
+        description: reviewSEO.description,
         isPartOf: { '@id': `${site.url}/#website` },
         about: { '@id': `${url}#service` },
-        dateModified: auditSEO.lastModified,
+        dateModified: reviewSEO.lastModified,
       },
       {
         '@type': 'Service',
         '@id': `${url}#service`,
-        name: audit.hero.label,
-        description: audit.hero.description,
+        name: review.hero.label,
+        description: review.hero.description,
         url,
         provider: { '@id': site.company['@id'] },
       },
@@ -47,7 +47,7 @@ export function auditStructuredData(): StructuredData {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
-          { '@type': 'ListItem', position: 2, name: 'Audit', item: url },
+          { '@type': 'ListItem', position: 2, name: 'Review', item: url },
         ],
       },
     ],

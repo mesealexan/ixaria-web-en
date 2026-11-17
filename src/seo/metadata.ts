@@ -1,11 +1,11 @@
 // Update only when a page's content or metadata changes meaningfully.
 export const pageDates = {
-  home: '2026-11-13',
-  audit: '2026-11-16',
-  pilot: '2026-11-16',
-  'full-implementation': '2026-11-16',
-  cofounder: '2026-11-13',
-  agache: '2026-11-13',
+  home: '2026-11-17',
+  review: '2026-11-17',
+  pilot: '2026-11-17',
+  'live': '2026-11-17',
+  cofounder: '2026-11-17',
+  agache: '2026-11-17',
 } as const;
 
 export const homeMetadata = {
@@ -23,8 +23,8 @@ export const implementationMetadata = {
     title: 'Furniture Product Page Optimisation Pilot | IXARIA',
     description: 'Test a smarter shopping experience on three to five furniture bestsellers over three months, measured against your agreed success metric.',
   },
-  'full-implementation': {
-    title: 'Furniture Ecommerce Product Page Implementation | IXARIA',
+  'live': {
+    title: 'Live Furniture Ecommerce Product Pages | IXARIA',
     description: 'Expand the signals, correlation, and responses validated during your pilot across your full furniture product catalog.',
   },
 };

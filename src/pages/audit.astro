@@ -1,9 +1,19 @@
 ---
-import MarketingLayout from '../layouts/MarketingLayout.astro';
-import AuditPage from '../components/audit/AuditPage.astro';
-import { pageSEO } from '../seo/pages';
-import { auditStructuredData } from '../seo/audit';
+import { site } from '../data/site';
+const destination = '/review.html';
+const canonical = new URL(destination, site.url).href;
 ---
-<MarketingLayout seo={pageSEO.audit} structuredData={auditStructuredData()}>
-  <AuditPage />
-</MarketingLayout>
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Furniture Conversion Review | IXARIA</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonical} />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+  </head>
+  <body>
+    <p>This page has moved. <a href={destination}>Continue to the Review</a>.</p>
+  </body>
+</html>

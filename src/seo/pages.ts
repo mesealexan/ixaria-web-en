@@ -1,15 +1,15 @@
 import type { PageSEO } from './types';
 import { implementationStages } from '../data/implementation';
 import { implementationSEO } from './implementation';
-import { auditSEO } from './audit';
+import { reviewSEO } from './review';
 import { homeMetadata, careerMetadata, pageDates } from './metadata';
 import { agacheStory } from '../data/customer-stories/agache';
 
 export const pageSEO = {
   agache: agacheStory.seo,
-  audit: auditSEO,
+  review: reviewSEO,
   pilot: implementationSEO(implementationStages[1]!),
-  'full-implementation': implementationSEO(implementationStages[2]!),
+  'live': implementationSEO(implementationStages[2]!),
   home: {
     path: '/',
     title: homeMetadata.title,

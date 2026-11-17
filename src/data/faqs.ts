@@ -47,7 +47,7 @@ export const faqs: FAQ[] = [
     question:
       'Do we need to replace our existing product information or asset management systems?',
     answer: [
-      'No. During the audit, we review your existing tools and how your information is organised. We then plan how to connect that information to Ixaria. You can keep your current systems.',
+      'No. During the review, we review your existing tools and how your information is organised. We then plan how to connect that information to Ixaria. You can keep your current systems.',
     ],
   },
   {
@@ -61,7 +61,7 @@ export const faqs: FAQ[] = [
     id: 'faq-10',
     question: 'How long does it take to launch Ixaria?',
     answer: [
-      'We work in three stages. The audit takes seven days. This is followed by a three-month pilot, during which we integrate Ixaria and test it with real visitors. After the pilot, we move to full implementation.',
+      'We work in three stages. The review takes seven days. This is followed by a three-month pilot, during which we integrate Ixaria and test it with real visitors. After the pilot, we move to Live.',
     ],
   },
   {
@@ -82,7 +82,7 @@ export const faqs: FAQ[] = [
     id: 'faq-13',
     question: 'What work does the Ixaria team handle?',
     answer: [
-      'We handle the process from understanding your business to implementing the solution. During the audit, we review your webshop, customers and existing systems. During the pilot, we manage the full integration and setup.',
+      'We handle the process from understanding your business to implementing the solution. During the review, we review your webshop, customers and existing systems. During the pilot, we manage the full integration and setup.',
     ],
   },
   {

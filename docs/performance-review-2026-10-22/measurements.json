@@ -8,7 +8,7 @@
   "technicalIssues": [],
   "samples": [
     {
-      "route": "/audit.html",
+      "route": "/review.html",
       "width": 1440,
       "beforeBytes": 474011,
       "afterBytes": 305436,
@@ -17,7 +17,7 @@
       "afterSelectedImageBytes": 174092,
       "before": {
         "phase": "before",
-        "route": "/audit.html",
+        "route": "/review.html",
         "width": 1440,
         "devicePixelRatio": 1,
         "metrics": {
@@ -34,21 +34,21 @@
             "naturalWidth": 300
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/hero-audit.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/hero-review.webp",
             "renderedWidth": 491.4375,
             "naturalWidth": 1254
           },
           {
-            "src": "/audit-results.webp",
-            "currentSrc": "/audit-results.webp",
+            "src": "/review-results.webp",
+            "currentSrc": "/review-results.webp",
             "renderedWidth": 491.421875,
             "naturalWidth": 1448
           }
         ],
         "initialResources": [
           {
-            "url": "/audit.html",
+            "url": "/review.html",
             "type": "Document",
             "bytes": 24327
           },
@@ -58,7 +58,7 @@
             "bytes": 48426
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -73,7 +73,7 @@
             "bytes": 8714
           },
           {
-            "url": "/hero-audit.webp",
+            "url": "/hero-review.webp",
             "type": "Image",
             "bytes": 189832
           },
@@ -88,7 +88,7 @@
             "bytes": 2600
           },
           {
-            "url": "/audit-results.webp",
+            "url": "/review-results.webp",
             "type": "Image",
             "bytes": 75021
           },
@@ -115,8 +115,8 @@
             "loading": "eager"
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/hero-audit.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/hero-review.webp",
             "alt": "Sofa product page answering a shopper's question about whether it will fit in their living room.",
             "width": 489,
             "height": 489,
@@ -124,17 +124,17 @@
             "loading": "eager"
           },
           {
-            "src": "/audit-results.webp",
-            "currentSrc": "/audit-results.webp",
-            "alt": "Example conversion audit covering the success metric, customer questions, signals and responses, and implementation priorities.",
+            "src": "/review-results.webp",
+            "currentSrc": "/review-results.webp",
+            "alt": "Example conversion review covering the success metric, customer questions, signals and responses, and implementation priorities.",
             "width": 491,
             "height": 369,
             "naturalWidth": 1448,
             "loading": "eager"
           },
           {
-            "src": "/audit-right-info2.webp",
-            "currentSrc": "/audit-right-info2.webp",
+            "src": "/review-right-info2.webp",
+            "currentSrc": "/review-right-info2.webp",
             "alt": "A shopper explores sofa fabrics online and receives relevant information about cleaning and fabric care.",
             "width": 1096,
             "height": 365,
@@ -181,7 +181,7 @@
       },
       "after": {
         "phase": "after",
-        "route": "/audit.html",
+        "route": "/review.html",
         "width": 1440,
         "devicePixelRatio": 1,
         "metrics": {
@@ -198,21 +198,21 @@
             "naturalWidth": 300
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/optimized/hero-audit-640.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/optimized/hero-review-640.webp",
             "renderedWidth": 491.4375,
             "naturalWidth": 492
           },
           {
-            "src": "/audit-results.webp",
-            "currentSrc": "/optimized/audit-results-640.webp",
+            "src": "/review-results.webp",
+            "currentSrc": "/optimized/review-results-640.webp",
             "renderedWidth": 491.421875,
             "naturalWidth": 492
           }
         ],
         "initialResources": [
           {
-            "url": "/audit.html",
+            "url": "/review.html",
             "type": "Document",
             "bytes": 26089
           },
@@ -227,7 +227,7 @@
             "bytes": 8714
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -237,7 +237,7 @@
             "bytes": 27170
           },
           {
-            "url": "/optimized/hero-audit-640.webp",
+            "url": "/optimized/hero-review-640.webp",
             "type": "Image",
             "bytes": 66586
           },
@@ -257,7 +257,7 @@
             "bytes": 85247
           },
           {
-            "url": "/optimized/audit-results-640.webp",
+            "url": "/optimized/review-results-640.webp",
             "type": "Image",
             "bytes": 27930
           },
@@ -279,8 +279,8 @@
             "loading": "eager"
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/optimized/hero-audit-640.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/optimized/hero-review-640.webp",
             "alt": "Sofa product page answering a shopper's question about whether it will fit in their living room.",
             "width": 489,
             "height": 489,
@@ -288,17 +288,17 @@
             "loading": "eager"
           },
           {
-            "src": "/audit-results.webp",
-            "currentSrc": "/optimized/audit-results-640.webp",
-            "alt": "Example conversion audit covering the success metric, customer questions, signals and responses, and implementation priorities.",
+            "src": "/review-results.webp",
+            "currentSrc": "/optimized/review-results-640.webp",
+            "alt": "Example conversion review covering the success metric, customer questions, signals and responses, and implementation priorities.",
             "width": 491,
             "height": 369,
             "naturalWidth": 492,
             "loading": "eager"
           },
           {
-            "src": "/audit-right-info2.webp",
-            "currentSrc": "/optimized/audit-right-info2-1280.webp",
+            "src": "/review-right-info2.webp",
+            "currentSrc": "/optimized/review-right-info2-1280.webp",
             "alt": "A shopper explores sofa fabrics online and receives relevant information about cleaning and fabric care.",
             "width": 1096,
             "height": 366,
@@ -345,7 +345,7 @@
       }
     },
     {
-      "route": "/audit.html",
+      "route": "/review.html",
       "width": 390,
       "beforeBytes": 474011,
       "afterBytes": 248922,
@@ -354,7 +354,7 @@
       "afterSelectedImageBytes": 93364,
       "before": {
         "phase": "before",
-        "route": "/audit.html",
+        "route": "/review.html",
         "width": 390,
         "devicePixelRatio": 1,
         "metrics": {
@@ -371,15 +371,15 @@
             "naturalWidth": 300
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/hero-audit.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/hero-review.webp",
             "renderedWidth": 350,
             "naturalWidth": 1254
           }
         ],
         "initialResources": [
           {
-            "url": "/audit.html",
+            "url": "/review.html",
             "type": "Document",
             "bytes": 24327
           },
@@ -389,7 +389,7 @@
             "bytes": 48426
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -399,7 +399,7 @@
             "bytes": 8714
           },
           {
-            "url": "/hero-audit.webp",
+            "url": "/hero-review.webp",
             "type": "Image",
             "bytes": 189832
           },
@@ -419,7 +419,7 @@
             "bytes": 2600
           },
           {
-            "url": "/audit-results.webp",
+            "url": "/review-results.webp",
             "type": "Image",
             "bytes": 75021
           },
@@ -446,8 +446,8 @@
             "loading": "eager"
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/hero-audit.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/hero-review.webp",
             "alt": "Sofa product page answering a shopper's question about whether it will fit in their living room.",
             "width": 348,
             "height": 348,
@@ -455,17 +455,17 @@
             "loading": "eager"
           },
           {
-            "src": "/audit-results.webp",
-            "currentSrc": "/audit-results.webp",
-            "alt": "Example conversion audit covering the success metric, customer questions, signals and responses, and implementation priorities.",
+            "src": "/review-results.webp",
+            "currentSrc": "/review-results.webp",
+            "alt": "Example conversion review covering the success metric, customer questions, signals and responses, and implementation priorities.",
             "width": 350,
             "height": 263,
             "naturalWidth": 1448,
             "loading": "eager"
           },
           {
-            "src": "/audit-right-info2.webp",
-            "currentSrc": "/audit-right-info2.webp",
+            "src": "/review-right-info2.webp",
+            "currentSrc": "/review-right-info2.webp",
             "alt": "A shopper explores sofa fabrics online and receives relevant information about cleaning and fabric care.",
             "width": 350,
             "height": 117,
@@ -512,7 +512,7 @@
       },
       "after": {
         "phase": "after",
-        "route": "/audit.html",
+        "route": "/review.html",
         "width": 390,
         "devicePixelRatio": 1,
         "metrics": {
@@ -529,15 +529,15 @@
             "naturalWidth": 300
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/optimized/hero-audit-360.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/optimized/hero-review-360.webp",
             "renderedWidth": 350,
             "naturalWidth": 349
           }
         ],
         "initialResources": [
           {
-            "url": "/audit.html",
+            "url": "/review.html",
             "type": "Document",
             "bytes": 26089
           },
@@ -552,12 +552,12 @@
             "bytes": 8714
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
           {
-            "url": "/optimized/hero-audit-360.webp",
+            "url": "/optimized/hero-review-360.webp",
             "type": "Image",
             "bytes": 25434
           },
@@ -577,7 +577,7 @@
             "bytes": 27170
           },
           {
-            "url": "/optimized/audit-results-360.webp",
+            "url": "/optimized/review-results-360.webp",
             "type": "Image",
             "bytes": 12568
           },
@@ -604,8 +604,8 @@
             "loading": "eager"
           },
           {
-            "src": "/hero-audit.webp",
-            "currentSrc": "/optimized/hero-audit-360.webp",
+            "src": "/hero-review.webp",
+            "currentSrc": "/optimized/hero-review-360.webp",
             "alt": "Sofa product page answering a shopper's question about whether it will fit in their living room.",
             "width": 348,
             "height": 348,
@@ -613,17 +613,17 @@
             "loading": "eager"
           },
           {
-            "src": "/audit-results.webp",
-            "currentSrc": "/optimized/audit-results-360.webp",
-            "alt": "Example conversion audit covering the success metric, customer questions, signals and responses, and implementation priorities.",
+            "src": "/review-results.webp",
+            "currentSrc": "/optimized/review-results-360.webp",
+            "alt": "Example conversion review covering the success metric, customer questions, signals and responses, and implementation priorities.",
             "width": 350,
             "height": 263,
             "naturalWidth": 349,
             "loading": "eager"
           },
           {
-            "src": "/audit-right-info2.webp",
-            "currentSrc": "/optimized/audit-right-info2-360.webp",
+            "src": "/review-right-info2.webp",
+            "currentSrc": "/optimized/review-right-info2-360.webp",
             "alt": "A shopper explores sofa fabrics online and receives relevant information about cleaning and fabric care.",
             "width": 350,
             "height": 117,
@@ -1574,7 +1574,7 @@
       }
     },
     {
-      "route": "/full-implementation.html",
+      "route": "/live.html",
       "width": 1440,
       "beforeBytes": 409261,
       "afterBytes": 277227,
@@ -1583,7 +1583,7 @@
       "afterSelectedImageBytes": 75546,
       "before": {
         "phase": "before",
-        "route": "/full-implementation.html",
+        "route": "/live.html",
         "width": 1440,
         "devicePixelRatio": 1,
         "metrics": {
@@ -1600,26 +1600,26 @@
             "naturalWidth": 300
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/full-hero.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/live-hero.webp",
             "renderedWidth": 491.4375,
             "naturalWidth": 1254
           },
           {
-            "src": "/full-three.webp",
-            "currentSrc": "/full-three.webp",
+            "src": "/live-three.webp",
+            "currentSrc": "/live-three.webp",
             "renderedWidth": 491.421875,
             "naturalWidth": 1448
           }
         ],
         "initialResources": [
           {
-            "url": "/full-implementation.html",
+            "url": "/live.html",
             "type": "Document",
             "bytes": 18470
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -1634,7 +1634,7 @@
             "bytes": 8714
           },
           {
-            "url": "/full-hero.webp",
+            "url": "/live-hero.webp",
             "type": "Image",
             "bytes": 73123
           },
@@ -1659,12 +1659,12 @@
             "bytes": 27170
           },
           {
-            "url": "/full-three.webp",
+            "url": "/live-three.webp",
             "type": "Image",
             "bytes": 91739
           },
           {
-            "url": "/full-measure.webp",
+            "url": "/live-measure.webp",
             "type": "Image",
             "bytes": 39612
           },
@@ -1691,8 +1691,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/full-hero.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/live-hero.webp",
             "alt": "Furniture product pages showing relevant fabric, dimension, and delivery information across a product catalog.",
             "width": 489,
             "height": 489,
@@ -1700,8 +1700,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-three.webp",
-            "currentSrc": "/full-three.webp",
+            "src": "/live-three.webp",
+            "currentSrc": "/live-three.webp",
             "alt": "Shopper signals connect with visitor context to show relevant sofa comfort and dining-table dimension information.",
             "width": 491,
             "height": 369,
@@ -1709,8 +1709,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-measure.webp",
-            "currentSrc": "/full-measure.webp",
+            "src": "/live-measure.webp",
+            "currentSrc": "/live-measure.webp",
             "alt": "A blue sofa beneath an upward-trending line illustrating ongoing performance measurement.",
             "width": 491,
             "height": 369,
@@ -1730,7 +1730,7 @@
       },
       "after": {
         "phase": "after",
-        "route": "/full-implementation.html",
+        "route": "/live.html",
         "width": 1440,
         "devicePixelRatio": 1,
         "metrics": {
@@ -1747,26 +1747,26 @@
             "naturalWidth": 300
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/optimized/full-hero-640.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/optimized/live-hero-640.webp",
             "renderedWidth": 491.4375,
             "naturalWidth": 492
           },
           {
-            "src": "/full-three.webp",
-            "currentSrc": "/optimized/full-three-640.webp",
+            "src": "/live-three.webp",
+            "currentSrc": "/optimized/live-three-640.webp",
             "renderedWidth": 491.421875,
             "naturalWidth": 492
           }
         ],
         "initialResources": [
           {
-            "url": "/full-implementation.html",
+            "url": "/live.html",
             "type": "Document",
             "bytes": 19530
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -1781,7 +1781,7 @@
             "bytes": 1486
           },
           {
-            "url": "/optimized/full-hero-640.webp",
+            "url": "/optimized/live-hero-640.webp",
             "type": "Image",
             "bytes": 29568
           },
@@ -1811,12 +1811,12 @@
             "bytes": 85247
           },
           {
-            "url": "/optimized/full-three-640.webp",
+            "url": "/optimized/live-three-640.webp",
             "type": "Image",
             "bytes": 31456
           },
           {
-            "url": "/optimized/full-measure-640.webp",
+            "url": "/optimized/live-measure-640.webp",
             "type": "Image",
             "bytes": 10356
           },
@@ -1838,8 +1838,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/optimized/full-hero-640.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/optimized/live-hero-640.webp",
             "alt": "Furniture product pages showing relevant fabric, dimension, and delivery information across a product catalog.",
             "width": 489,
             "height": 489,
@@ -1847,8 +1847,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-three.webp",
-            "currentSrc": "/optimized/full-three-640.webp",
+            "src": "/live-three.webp",
+            "currentSrc": "/optimized/live-three-640.webp",
             "alt": "Shopper signals connect with visitor context to show relevant sofa comfort and dining-table dimension information.",
             "width": 491,
             "height": 369,
@@ -1856,8 +1856,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-measure.webp",
-            "currentSrc": "/optimized/full-measure-640.webp",
+            "src": "/live-measure.webp",
+            "currentSrc": "/optimized/live-measure-640.webp",
             "alt": "A blue sofa beneath an upward-trending line illustrating ongoing performance measurement.",
             "width": 491,
             "height": 369,
@@ -1877,7 +1877,7 @@
       }
     },
     {
-      "route": "/full-implementation.html",
+      "route": "/live.html",
       "width": 390,
       "beforeBytes": 369649,
       "afterBytes": 232629,
@@ -1886,7 +1886,7 @@
       "afterSelectedImageBytes": 35626,
       "before": {
         "phase": "before",
-        "route": "/full-implementation.html",
+        "route": "/live.html",
         "width": 390,
         "devicePixelRatio": 1,
         "metrics": {
@@ -1903,20 +1903,20 @@
             "naturalWidth": 300
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/full-hero.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/live-hero.webp",
             "renderedWidth": 350,
             "naturalWidth": 1254
           }
         ],
         "initialResources": [
           {
-            "url": "/full-implementation.html",
+            "url": "/live.html",
             "type": "Document",
             "bytes": 18470
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -1931,7 +1931,7 @@
             "bytes": 8714
           },
           {
-            "url": "/full-hero.webp",
+            "url": "/live-hero.webp",
             "type": "Image",
             "bytes": 73123
           },
@@ -1961,7 +1961,7 @@
             "bytes": 85247
           },
           {
-            "url": "/full-three.webp",
+            "url": "/live-three.webp",
             "type": "Image",
             "bytes": 91739
           },
@@ -1983,8 +1983,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/full-hero.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/live-hero.webp",
             "alt": "Furniture product pages showing relevant fabric, dimension, and delivery information across a product catalog.",
             "width": 348,
             "height": 348,
@@ -1992,8 +1992,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-three.webp",
-            "currentSrc": "/full-three.webp",
+            "src": "/live-three.webp",
+            "currentSrc": "/live-three.webp",
             "alt": "Shopper signals connect with visitor context to show relevant sofa comfort and dining-table dimension information.",
             "width": 350,
             "height": 263,
@@ -2001,8 +2001,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-measure.webp",
-            "currentSrc": "/full-measure.webp",
+            "src": "/live-measure.webp",
+            "currentSrc": "/live-measure.webp",
             "alt": "A blue sofa beneath an upward-trending line illustrating ongoing performance measurement.",
             "width": 350,
             "height": 263,
@@ -2022,7 +2022,7 @@
       },
       "after": {
         "phase": "after",
-        "route": "/full-implementation.html",
+        "route": "/live.html",
         "width": 390,
         "devicePixelRatio": 1,
         "metrics": {
@@ -2039,20 +2039,20 @@
             "naturalWidth": 300
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/optimized/full-hero-360.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/optimized/live-hero-360.webp",
             "renderedWidth": 350,
             "naturalWidth": 349
           }
         ],
         "initialResources": [
           {
-            "url": "/full-implementation.html",
+            "url": "/live.html",
             "type": "Document",
             "bytes": 19530
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -2062,7 +2062,7 @@
             "bytes": 8714
           },
           {
-            "url": "/optimized/full-hero-360.webp",
+            "url": "/optimized/live-hero-360.webp",
             "type": "Image",
             "bytes": 13196
           },
@@ -2092,7 +2092,7 @@
             "bytes": 27170
           },
           {
-            "url": "/optimized/full-three-360.webp",
+            "url": "/optimized/live-three-360.webp",
             "type": "Image",
             "bytes": 13586
           },
@@ -2119,8 +2119,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-hero.webp",
-            "currentSrc": "/optimized/full-hero-360.webp",
+            "src": "/live-hero.webp",
+            "currentSrc": "/optimized/live-hero-360.webp",
             "alt": "Furniture product pages showing relevant fabric, dimension, and delivery information across a product catalog.",
             "width": 348,
             "height": 348,
@@ -2128,8 +2128,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-three.webp",
-            "currentSrc": "/optimized/full-three-360.webp",
+            "src": "/live-three.webp",
+            "currentSrc": "/optimized/live-three-360.webp",
             "alt": "Shopper signals connect with visitor context to show relevant sofa comfort and dining-table dimension information.",
             "width": 350,
             "height": 263,
@@ -2137,8 +2137,8 @@
             "loading": "eager"
           },
           {
-            "src": "/full-measure.webp",
-            "currentSrc": "/optimized/full-measure-360.webp",
+            "src": "/live-measure.webp",
+            "currentSrc": "/optimized/live-measure-360.webp",
             "alt": "A blue sofa beneath an upward-trending line illustrating ongoing performance measurement.",
             "width": 350,
             "height": 263,
@@ -6189,7 +6189,7 @@
             "bytes": 27170
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -6326,7 +6326,7 @@
             "bytes": 19217
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -6476,7 +6476,7 @@
             "bytes": 18153
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },
@@ -6612,7 +6612,7 @@
             "bytes": 19217
           },
           {
-            "url": "/_astro/audit.nTfsmNIE.css",
+            "url": "/_astro/review.nTfsmNIE.css",
             "type": "Stylesheet",
             "bytes": 7742
           },

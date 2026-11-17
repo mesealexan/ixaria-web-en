@@ -21,7 +21,7 @@ This document is the design authority for the site. The approved direction has b
 5. Apply one shared system across the website. Page type changes the composition and density, not the underlying brand.
 6. The original specification task did not authorize implementation. The subsequent instruction to implement authorized local website changes; it did not authorize publication or changes to the sales deck. The implementation reuses existing artwork without generating new imagery.
 
-The request to preserve text supersedes the earlier audit's proposed headline rewrites, shorter method descriptions, and typo corrections. Those suggestions are not part of the authorized redesign. Solve fit through layout and hierarchy; flag copy concerns separately without silently correcting them.
+The request to preserve text supersedes the earlier review's proposed headline rewrites, shorter method descriptions, and typo corrections. Those suggestions are not part of the authorized redesign. Solve fit through layout and hierarchy; flag copy concerns separately without silently correcting them.
 
 ### Order of authority
 
@@ -73,9 +73,9 @@ Use Linear's compositional discipline, Attio's explanatory specificity, Stripe's
 | Homepage structure and section copy | `src/pages/index.astro`, `src/components/sections/` |
 | Navigation, footer, company details, destinations | `src/data/site.ts`, `src/components/shared/` |
 | Features and founders | `src/data/home.ts` |
-| Audit | `src/data/audit.ts`, `src/components/audit/AuditPage.astro` |
+| Review | `src/data/review.ts`, `src/components/review/ReviewPage.astro` |
 | Pilot | `src/data/pilot.ts`, `src/components/pilot/PilotPage.astro` |
-| Full Implementation | `src/data/full-implementation.ts`, `src/components/sections/ImplementationPage.astro` |
+| Live | `src/data/live.ts`, `src/components/sections/LivePage.astro` |
 | Shared implementation-stage summaries | `src/data/implementation.ts` |
 | Shopper questions and demonstration scenarios | `src/data/shopperQuestions.ts`, `src/data/solutionScenarios.ts`, relevant section components |
 | FAQs | `src/data/faqs.ts` |
@@ -97,7 +97,7 @@ The Agache testimonial currently includes an approval placeholder. Preserve its 
 
 ### Copy issues remain separate
 
-The current wording includes items previously flagged in the audit, such as “Find out what why your visitors don't buy?” Preserve them under the current instruction. The local problem statistic is currently `8/10`; a previously fetched public page used `9/10`. Use the local source in the redesign, without choosing or inventing a replacement figure. Any correction requires a separate editorial decision.
+The current wording includes items previously flagged in the review, such as “Find out what why your visitors don't buy?” Preserve them under the current instruction. The local problem statistic is currently `8/10`; a previously fetched public page used `9/10`. Use the local source in the redesign, without choosing or inventing a replacement figure. Any correction requires a separate editorial decision.
 
 ## 4. Brand color system
 
@@ -306,12 +306,12 @@ The local assets below were inspected directly or in a contact sheet during this
 | `public/logo-light.svg`, `logo-dark.svg`, `IXARIA-logo.svg` | Keep | Use the appropriate existing contrast variant; preserve artwork and aspect ratio |
 | `public/sofa.webp` | Keep | Existing furniture cutout on navy; useful supporting or closing visual; do not enlarge beyond its practical source resolution |
 | `public/newsletter.webp` | Keep selectively | Warm interior image for supporting content; use a restrained crop that does not make the heart-shaped shadow the site's central identity |
-| `public/Picture1.webp` | Keep selectively | A specific inspection/detail metaphor; reserve for audit-related support rather than every booking panel |
-| `public/hero-audit.webp` | Keep | Audit explanation graphic; show at a scale where its product-page question is understandable |
-| `public/audit-results.webp` | Keep | Illustrative report preview; preserve its illustrative labeling and do not imply it is an approved downloadable client report |
-| `public/audit-right-info.webp`, `audit-right-info2.webp` | Keep as alternatives | Supporting method illustrations; choose the relevant variant per composition, not both as redundant adjacent panels |
+| `public/Picture1.webp` | Keep selectively | A specific inspection/detail metaphor; reserve for review-related support rather than every booking panel |
+| `public/hero-review.webp` | Keep | Review explanation graphic; show at a scale where its product-page question is understandable |
+| `public/review-results.webp` | Keep | Illustrative report preview; preserve its illustrative labeling and do not imply it is an approved downloadable client report |
+| `public/review-right-info.webp`, `review-right-info2.webp` | Keep as alternatives | Supporting method illustrations; choose the relevant variant per composition, not both as redundant adjacent panels |
 | `public/pilot-hero.webp`, `pilot-months.webp`, `pilt-agree.webp` | Keep | Supporting pilot walkthrough, duration, and measurement; coordinate framing rather than regenerating the family |
-| `public/full-hero.webp`, `full-three.webp`, `full-measure.webp` | Keep | Catalog rollout and measurement explanations; the upward trend is illustrative, not numerical evidence |
+| `public/live-hero.webp`, `live-three.webp`, `live-measure.webp` | Keep | Catalog rollout and measurement explanations; the upward trend is illustrative, not numerical evidence |
 | `public/feature-002.webp` through `feature-005.webp` | Keep | Shared supporting illustration family; display large enough to read, approximately 160–220px wide where layout allows |
 | `public/work-001.webp` through `work-004.webp` | Available support assets | Reuse only where an existing explanation matches; their availability does not authorize new sections or copy |
 | `public/cover.webp` | Secondary | Composite with embedded text; suitable only if its role remains readable. Do not make it the default hero or duplicate its text as a new message |
@@ -394,7 +394,7 @@ Keep Signals / Correlations / Responses as a connected sequence. Show the existi
 
 Replace the presentation dependency on rotating cards with visible information. If additional interaction remains useful, it reveals supplementary detail; the essential explanation stays visible. Preserve every existing sentence.
 
-The Audit / Pilot / Full Implementation journey uses a different composition from the product mechanism: numbered steps, existing summaries, and destination links. Keep the three stages visually related with the same surface and button treatment. Identify sequence through numbering and connectors rather than three unrelated bright fills.
+The Review / Pilot / Live journey uses a different composition from the product mechanism: numbered steps, existing summaries, and destination links. Keep the three stages visually related with the same surface and button treatment. Identify sequence through numbering and connectors rather than three unrelated bright fills.
 
 ### Product demonstrations
 
@@ -466,10 +466,10 @@ Preserve all current visible copy and functional content. The following sequence
 | Solution demonstration | Spacious light section with current heading and supporting sentence above three static views | Exact standard, pet-focused, and kids-focused product-page visuals from deck slide 7, converted to responsive WebP |
 | Product mechanism | “How it works?” heading above the existing introduction, followed by Signals / Correlations / Responses | Header “How it works” links to `/#method`; existing descriptions remain fully visible with matching diagrams and product details |
 | Agache proof | Featured navy result composition or a navy/white split within the shared grid | Existing result, period, text, and CTA; a plain, non-clickable product-page image without added labels, browser chrome, or caption |
-| Implementation journey | Audit / Pilot / Full Implementation with consistent numbered stages | Existing copy and links; one visual family and common control treatment |
+| Implementation journey | Review / Pilot / Live with consistent numbered stages | Existing copy and links; one visual family and common control treatment |
 | Existing booking prompt | Open composition or restrained navy panel | Existing heading, description, and action; reusable furniture detail rather than a second oversized scene |
 | Features | Existing title and four complete feature entries | Supporting line-illustration family, larger readable graphics, less enclosing decoration |
-| Founders | Existing introduction and all three founders, with current titles and LinkedIn links | Consistent portraits and readable bios; Alex and Eduard reuse their Audit descriptions, Victor uses a LinkedIn-based summary |
+| Founders | Existing introduction and all three founders, with current titles and LinkedIn links | Consistent portraits and readable bios; Alex and Eduard reuse their Review descriptions, Victor uses a LinkedIn-based summary |
 | Newsletter | A quieter supporting destination directly before FAQs | Keep all existing copy and form; use the current warm scene only if it earns its space |
 | FAQs | Existing full set | Clear reading measure, comfortable rows, minimal decoration |
 | Footer | Shared navy footer | All current company, navigation, social, and legal information |
@@ -485,18 +485,18 @@ The hero's opening scene and the Agache panel are the principal visual peaks. Ot
 | Route | Pattern |
 | --- | --- |
 | `/` and existing `/index.html` alias | Narrative marketing homepage |
-| `/audit.html` | Service detail: assessment and deliverables |
+| `/review.html` | Service detail: assessment and deliverables |
 | `/pilot.html` | Service detail: bounded trial and measurement |
-| `/full-implementation.html` | Service detail: rollout and continuing measurement |
+| `/live.html` | Service detail: rollout and continuing measurement |
 | `/customer-stories/agache.html` | Evidence-led editorial customer story |
 | `/cofounder.html` | Long-form careers / role description |
 | `/privacy-policy.html`, `/terms.html`, `/cookie-policy.html` | Legal reading layout |
 
 Keep current nonvisual endpoints and SEO assets operational. This specification does not introduce new routes, customer pages, pricing pages, or an About page.
 
-### Audit
+### Review
 
-Use the shared service hero: approved heading and paragraph on the left, a clearly spaced discovery-call action, and the existing audit illustration or a suitable reused furniture composition on the right. Omit the former delivery label and clock icon.
+Use the shared service hero: approved heading and paragraph on the left, a clearly spaced discovery-call action, and the existing review illustration or a suitable reused furniture composition on the right. Omit the former delivery label and clock icon.
 
 Present the existing report preview at readable scale in the deliverables section. Keep all deliverable text adjacent to the visual. The four process steps use an ordered layout that becomes a two-by-two grid or vertical sequence when required. Team, method, newsletter, and closing content share the global components.
 
@@ -504,17 +504,17 @@ The existing report is illustrative and no approved example PDF is configured. D
 
 ### Pilot
 
-Use the same service hero typography and action treatment as Audit. Omit pricing and the standalone duration label; retain the pilot scope and duration in the explanatory content.
+Use the same service hero typography and action treatment as Review. Omit pricing and the standalone duration label; retain the pilot scope and duration in the explanatory content.
 
 Reuse `pilot-months.webp` for scope and duration, and `pilt-agree.webp` for the measurement explanation. Present them as supporting explanatory figures. Let the existing copy define the stages; do not add implied success guarantees or invented progress data.
 
 Use readable numbered steps and an open measurement section. A shared deck sofa image may provide an opening or closing visual, but the useful existing explanatory assets remain part of the page.
 
-### Full Implementation
+### Live
 
 Use the shared service hero without monthly prices or revenue-share fees. The catalog-wide scope should be expressed through the existing multi-product image, with enough space to identify the products.
 
-Reuse `full-three.webp` for method detail and `full-measure.webp` for the existing measurement narrative. Keep Prioritize / Adapt / Launch as the current ordered rollout. Do not make an illustrative upward line look like measured customer results.
+Reuse `live-three.webp` for method detail and `live-measure.webp` for the existing measurement narrative. Keep Prioritize / Adapt / Launch as the current ordered rollout. Do not make an illustrative upward line look like measured customer results.
 
 ### Agache customer story
 
@@ -577,7 +577,7 @@ This sequence is a handoff plan only. It does not authorize implementation now.
 2. Prepare an asset manifest distinguishing local production files, deck layers to extract, illustrative media, and genuine customer evidence. Attempt reuse before any generation.
 3. Establish shared color roles, Inter typography, spacing, containers, surfaces, focus treatment, buttons, header, and footer.
 4. Compose the homepage hero, demo, and Agache evidence as the visual exemplars. Verify all existing copy fits without edits before extending patterns.
-5. Apply the shared service pattern to Audit, Pilot, and Full Implementation while retaining their distinctive content and useful existing graphics.
+5. Apply the shared service pattern to Review, Pilot, and Live while retaining their distinctive content and useful existing graphics.
 6. Apply editorial patterns to the Agache story, careers, and legal routes. Preserve all current publication states and disclaimers.
 7. Complete manual scenario selection, controlled media, reduced-motion behavior, and no-JavaScript fallbacks.
 8. Review the whole site together, then correct inconsistencies through shared patterns rather than adding independent page overrides.

@@ -1,38 +1,38 @@
 {
   "/": {
-    "textBlockHash": "f9dc2e50dfd441f52b9b6b0d73e6783d2f6e7852f8d09124a351461028c2373e",
-    "textBlocks": 239
+    "textBlockHash": "e4d324c1bd410e91660f71efcd5c132e3c083c7446d26f97ed4be026ba4cebb7",
+    "textBlocks": 238
   },
-  "/audit.html": {
-    "textBlockHash": "25b178db27ea7a5045268ef7e2031cf8c780c8503e319e1848e7a3f07fa9d74c",
-    "textBlocks": 89
+  "/review.html": {
+    "textBlockHash": "de0b56603d000970af8269ca55aaa885065d1cd4c2f11f57c07fb1e077b8b8b4",
+    "textBlocks": 88
   },
   "/pilot.html": {
-    "textBlockHash": "6b7755c2b49d3967bdda0158b96a22c4be2816cc2b6d7eb550dca4b7e96dd99c",
-    "textBlocks": 59
+    "textBlockHash": "e9036488aa6c8c4ec4e4f4c0ac1cc371668416addf8e69586b628a4e7800b395",
+    "textBlocks": 58
   },
-  "/full-implementation.html": {
-    "textBlockHash": "beb42c7f6764ce40d649bfa8c42e0709ee8793cd20b5928dd5b26c59855819c1",
-    "textBlocks": 57
+  "/live.html": {
+    "textBlockHash": "70ae4c397966fbc114f96551f5d361a90683eed135f6935de26c2a8f393b27fe",
+    "textBlocks": 56
   },
   "/customer-stories/agache.html": {
-    "textBlockHash": "b9b6839365d81c52fe219929c4de2521ee5617f353c8584224cc0a1a18ab3b2c",
-    "textBlocks": 142
+    "textBlockHash": "5df162a985dacf883ea4a0d55ba8cd9a94ca58435a9b9da7945d716c426edca1",
+    "textBlocks": 141
   },
   "/cofounder.html": {
-    "textBlockHash": "afe80b2daede9f8a003bca28dd5816b5ef283c5d7d2c8b64760e7ad631c688c1",
-    "textBlocks": 182
+    "textBlockHash": "1c79cb2a79f0c781872fb519d22b25feb93f83dd67938bdbafed200a1723cbda",
+    "textBlocks": 181
   },
   "/privacy-policy.html": {
-    "textBlockHash": "5916ae56bff34d3915b7cec1e6afff1248bbb985a789e5ba1997e363660956eb",
-    "textBlocks": 73
+    "textBlockHash": "de0d817788385884674adb2c425e704c621de40086ca24153a392ad470e23371",
+    "textBlocks": 72
   },
   "/terms.html": {
-    "textBlockHash": "b6bee69b0d5ad14e0cbb4999705d518aa6b0aa7037f31c6b2c302fdf7f5e1483",
-    "textBlocks": 61
+    "textBlockHash": "1ad2cfd28ddebe5b2601c12cc1703e8542691cbcfca77ad6c2410b02cfa6d269",
+    "textBlocks": 60
   },
   "/cookie-policy.html": {
-    "textBlockHash": "04477e6946cec2e24de47b117a694b71015ac11b0a1eaac70b09e91a0a0254c8",
-    "textBlocks": 79
+    "textBlockHash": "e3fa88ce0e27f555e38cee4c3dc1a96600f5b2b74a252ef888aaa7d4e67d208b",
+    "textBlocks": 78
   }
 }

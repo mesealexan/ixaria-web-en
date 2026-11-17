@@ -5,7 +5,7 @@ import type { PageSEO, StructuredData } from './types';
 import { implementationMetadata, pageDates } from './metadata';
 
 export function implementationSEO(stage: ImplementationStage): PageSEO {
-  const metadata = stage.slug === 'audit' ? null : implementationMetadata[stage.slug];
+  const metadata = stage.slug === 'review' ? null : implementationMetadata[stage.slug];
   const title = metadata?.title ?? `${stage.title} — How Ixaria Works`;
   const description = metadata?.description ?? stage.summary;
   return {
@@ -45,7 +45,7 @@ export function implementationStructuredData(stage: ImplementationStage): Struct
       {
         '@type': 'Service',
         '@id': `${url}#service`,
-        name: stage.slug === 'pilot' ? 'Furniture product page optimisation pilot' : 'Furniture ecommerce product page implementation',
+        name: stage.slug === 'pilot' ? 'Furniture product page optimisation pilot' : 'Live furniture ecommerce product pages',
         description: stage.introduction,
         url,
         provider: { '@id': site.company['@id'] },

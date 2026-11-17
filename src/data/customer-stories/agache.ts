@@ -105,6 +105,6 @@ export const agacheStory = {
   closing: {
     heading: 'What do your customers need before they feel ready to buy?',
     description: 'Start with the unanswered questions in your buying journey. Find where clearer, more relevant information could help.',
-    label: 'Take your first step', href: '/audit.html',
+    label: 'Take your first step', href: '/review.html',
   },
 };

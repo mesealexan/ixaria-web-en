@@ -9,7 +9,7 @@ const {
   buttonLabel = 'Stay in the loop',
 } = Astro.props;
 ---
-<section class="email-capture" id="newsletter" data-audit-section={compact ? 'newsletter' : undefined} aria-labelledby="newsletter-title">
+<section class="email-capture" id="newsletter" data-review-section={compact ? 'newsletter' : undefined} aria-labelledby="newsletter-title">
       <div class="email-capture__inner">
         {!compact && <div class="email-capture__img">
           <img src="/newsletter.webp" {...responsiveImage('/newsletter.webp', '(max-width: 1160px) calc((100vw - 144px) / 2), 508px')} width="1672" height="941" alt="Cream sofa in a sunlit room with a heart-shaped shadow on the wall" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;">

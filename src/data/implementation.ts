@@ -1,8 +1,8 @@
 import { pilot } from './pilot';
-import { fullImplementation } from './full-implementation';
+import { live } from './live';
 
 export interface ImplementationStage {
-  slug: 'audit' | 'pilot' | 'full-implementation';
+  slug: 'review' | 'pilot' | 'live';
   title: string;
   label: string;
   summary: string;
@@ -16,8 +16,8 @@ export interface ImplementationStage {
 
 export const implementationStages: ImplementationStage[] = [
   {
-    slug: 'audit',
-    title: 'Audit',
+    slug: 'review',
+    title: 'Review',
     label: 'Understand',
     summary:
       'Understand your current product pages, customer journey and product data. Identify where to focus first.',
@@ -46,8 +46,8 @@ export const implementationStages: ImplementationStage[] = [
       'A clear picture of the product data and assets needed.',
       'A proposed scope for a focused pilot.',
     ],
-    next: 'Use the audit to select the products and improvements to test in a pilot.',
-    callToAction: 'Talk about your audit',
+    next: 'Use the review to select the products and improvements to test in a pilot.',
+    callToAction: 'Talk about your review',
   },
   {
     slug: 'pilot',
@@ -63,17 +63,17 @@ export const implementationStages: ImplementationStage[] = [
     callToAction: pilot.bookingLabel,
   },
   {
-    slug: 'full-implementation',
-    title: 'Full Implementation',
+    slug: 'live',
+    title: 'Live',
     label: 'Scale',
     summary:
       'Roll out the validated approach across your product catalogue, connect the workflows and keep improving.',
-    introduction: fullImplementation.hero.description,
-    focusTitle: fullImplementation.implement.heading,
-    focus: fullImplementation.implement.points.map(point => ({ title: point.heading, description: point.text })),
-    outcomes: fullImplementation.rollout.steps.map(step => step.text),
-    next: fullImplementation.final.description,
-    callToAction: fullImplementation.bookingLabel,
+    introduction: live.hero.description,
+    focusTitle: live.implement.heading,
+    focus: live.implement.points.map(point => ({ title: point.heading, description: point.text })),
+    outcomes: live.rollout.steps.map(step => step.text),
+    next: live.final.description,
+    callToAction: live.bookingLabel,
   },
 ];
 

@@ -3,7 +3,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 // Keep original assets as fallbacks. Generate smaller files without changing crops.
-const editorial = ['hero-audit', 'audit-results', 'audit-right-info2', 'pilot-hero', 'pilot-months', 'pilt-agree', 'full-hero', 'full-three', 'full-measure', 'newsletter'];
+const editorial = ['hero-review', 'review-results', 'review-right-info2', 'pilot-hero', 'pilot-months', 'pilt-agree', 'live-hero', 'live-three', 'live-measure', 'newsletter'];
 const inputs = [
   ...editorial.map(name => ({ src: `/${name}.webp`, source: `/${name}.png`, widths: [360, 640, 960, 1280, 1920], quality: 85 })),
   { src: '/Picture1.webp', widths: [320, 560], quality: 85 },

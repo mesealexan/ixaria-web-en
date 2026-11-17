@@ -1,26 +1,26 @@
 ---
-import { audit } from '../../data/audit';
-import { auditAssets } from '../../data/audit-assets';
+import { review } from '../../data/review';
+import { reviewAssets } from '../../data/review-assets';
 import { responsiveImage } from '../../utils/images';
-interface Props { auditPage?: boolean; marquee?: boolean }
-const { auditPage = false, marquee = false } = Astro.props;
+interface Props { reviewPage?: boolean; marquee?: boolean }
+const { reviewPage = false, marquee = false } = Astro.props;
 ---
-<section class:list={['client-logos', 'audit-companies', { 'client-logos--marquee': marquee }]} data-audit-section={auditPage ? 'companies' : undefined} aria-labelledby={marquee ? undefined : 'companies-title'} aria-label={marquee ? audit.companies.heading : undefined}>
+<section class:list={['client-logos', 'review-companies', { 'client-logos--marquee': marquee }]} data-review-section={reviewPage ? 'companies' : undefined} aria-labelledby={marquee ? undefined : 'companies-title'} aria-label={marquee ? review.companies.heading : undefined}>
   <div class="container">
-    {!marquee && <h2 class="section-title" id="companies-title">{audit.companies.heading}</h2>}
-    {!marquee && <p class="section-sub">{audit.companies.text}</p>}
+    {!marquee && <h2 class="section-title" id="companies-title">{review.companies.heading}</h2>}
+    {!marquee && <p class="section-sub">{review.companies.text}</p>}
     {marquee ? (
       <div class="client-logos__viewport">
         <div class="client-logos__track">
           {[0].map(copy => (
             <ul class="client-logos__group" aria-hidden={copy === 1 ? 'true' : undefined}>
-              {auditAssets.clientLogos.map(logo => <li><img {...logo.image} {...responsiveImage(logo.image.src, '(max-width: 768px) 132px, 154px')} alt={copy === 1 ? '' : logo.image.alt} loading="eager" decoding="async" /></li>)}
+              {reviewAssets.clientLogos.map(logo => <li><img {...logo.image} {...responsiveImage(logo.image.src, '(max-width: 768px) 132px, 154px')} alt={copy === 1 ? '' : logo.image.alt} loading="eager" decoding="async" /></li>)}
             </ul>
           ))}
         </div>
       </div>
     ) : (
-      <ul>{auditAssets.clientLogos.map(logo => <li><img {...logo.image} {...responsiveImage(logo.image.src, '(max-width: 768px) 120px, 140px')} loading="lazy" decoding="async" /></li>)}</ul>
+      <ul>{reviewAssets.clientLogos.map(logo => <li><img {...logo.image} {...responsiveImage(logo.image.src, '(max-width: 768px) 120px, 140px')} loading="lazy" decoding="async" /></li>)}</ul>
     )}
   </div>
 </section>

@@ -1,0 +1,140 @@
+---
+import '../../styles/design-services.css';
+import { review } from '../../data/review';
+import { reviewAssets } from '../../data/review-assets';
+import Button from '../ui/Button.astro';
+import Newsletter from '../sections/Newsletter.astro';
+import { responsiveImage, serviceImageSizes, wideImageSizes, teamImageSizes } from '../../utils/images';
+import '../../styles/review.css';
+---
+
+<div class="review-page">
+  <section class="review-section review-hero" data-review-section="hero" aria-labelledby="review-title">
+    <div class="container review-grid">
+      <div>
+        <h1 id="review-title">{review.hero.heading} <span>{review.hero.highlight}</span></h1>
+        <p class="review-lead">{review.hero.description}</p>
+        <Button href={review.bookingUrl} external class="review-booking">{review.bookingLabel}</Button>
+      </div>
+      <img
+        class="review-hero__media"
+        src="/hero-review.webp"
+        {...responsiveImage('/hero-review.webp', serviceImageSizes)}
+        width="1254"
+        height="1254"
+        alt="Sofa product page answering a shopper's question about whether it will fit in their living room."
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <section class="review-section review-receive" data-review-section="receive" aria-labelledby="receive-title">
+    <div class="container review-grid review-grid--image-left">
+      <img
+        class="review-receive__media"
+        src="/review-results.webp"
+        {...responsiveImage('/review-results.webp', serviceImageSizes)}
+        width="1448"
+        height="1086"
+        alt="Example conversion review covering the success metric, customer questions, signals and responses, and implementation priorities."
+        loading="lazy"
+        decoding="async"
+      />
+      <div>
+        <h2 class="section-title" id="receive-title">{review.receive.heading}</h2>
+        <p class="review-lead">{review.receive.description}</p>
+        <ul class="review-deliverables">
+          {review.receive.items.map(item => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="review-section" data-review-section="process" aria-labelledby="process-title">
+    <div class="container">
+      <div class="review-section-heading">
+        <h2 class="section-title" id="process-title">{review.process.heading}</h2>
+        <p class="review-lead">{review.process.description}</p>
+      </div>
+      <ol class="review-cards review-process">
+        {review.process.steps.map(step => (
+          <li class="review-card">
+            <span class="review-call-label">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="5" width="13" height="14" rx="2" />
+                <path d="m15 10 7-4v12l-7-4" />
+              </svg>
+              {step.callLabel}
+            </span>
+            <h3>{step.heading}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="review-process-cta">
+        <Button href={review.bookingUrl} external>Book your first call now</Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="review-section review-approach" data-review-section="approach" aria-labelledby="approach-title">
+    <div class="container">
+      <div class="review-section-heading">
+        <h2 class="section-title" id="approach-title">{review.approach.heading}</h2>
+        <p class="review-lead">{review.approach.description}</p>
+      </div>
+      <ol class="review-cards review-flow">
+        {review.approach.steps.map(step => (
+          <li class="review-card">
+            <h3>{step.heading}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))}
+      </ol>
+      <img
+        class="review-approach__media"
+        src="/review-right-info2.webp"
+        {...responsiveImage('/review-right-info2.webp', wideImageSizes)}
+        width="2172"
+        height="724"
+        alt="A shopper explores sofa fabrics online and receives relevant information about cleaning and fabric care."
+        loading="lazy"
+        decoding="async"
+      />
+      <p class="review-note">{review.approach.note}</p>
+    </div>
+  </section>
+
+  <section class="review-section" data-review-section="team" aria-labelledby="team-title">
+    <div class="container">
+      <div class="review-section-heading">
+        <h2 class="section-title" id="team-title">{review.team.heading}</h2>
+        <p class="review-lead">{review.team.description}</p>
+      </div>
+      <div class="review-cards review-team">
+        {review.team.people.map(person => (
+          <article>
+            <img src={reviewAssets.portraits[person.assetKey as keyof typeof reviewAssets.portraits]} {...responsiveImage(reviewAssets.portraits[person.assetKey as keyof typeof reviewAssets.portraits], teamImageSizes)} alt={person.name} width="800" height="600" loading="lazy" decoding="async" />
+            <h3>{person.name}</h3>
+            <p class="review-role">{person.role}</p>
+            <p>{person.text}</p>
+            <a class="review-team__linkedin" href={person.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`${person.name} on LinkedIn (opens in a new tab)`}>LinkedIn <span aria-hidden="true">↗</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Newsletter compact {...review.newsletter} />
+
+  <section class="review-section review-final" data-review-section="final" aria-labelledby="final-title">
+    <div class="container">
+      <h2 class="section-title" id="final-title">{review.final.heading}</h2>
+      <p class="review-lead">{review.final.description}</p>
+      <Button href={review.bookingUrl} external>{review.bookingLabel}</Button>
+      <a class="review-pilot-link" href={review.final.pilotUrl}>{review.final.pilotLabel}</a>
+      <img class="service-closing__sofa" role="presentation" src="/design/blue-sofa-1200.webp" srcset="/design/blue-sofa-640.webp 640w, /design/blue-sofa-1200.webp 1200w" sizes="(max-width: 768px) 90vw, 540px" width="1200" height="800" alt="" loading="lazy" decoding="async" />
+    </div>
+  </section>
+</div>

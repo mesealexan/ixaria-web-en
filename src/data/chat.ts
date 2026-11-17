@@ -4,7 +4,7 @@ export const chatDemo = {
   replies: [
     'Great question! Ixaria connects directly to your existing webshop — no rebuild needed. Our team handles the full setup, typically within a month.',
     'Ixaria is built specifically for furniture manufacturers. We handle 3D configuration, product images, reviews, and analytics all in one place.',
-    'We start with an audit, test the approach in a focused pilot, and use the results to plan full implementation.',
+    'We start with a review, test the approach in a focused pilot, and use the results to plan Live.',
     'Implementation usually takes about 4 weeks from when we have your product data. Most of the heavy lifting is done by our team.',
     "Yes, Ixaria works on top of your current webshop — whether that's WooCommerce, Shopify, a custom build, or something else.",
   ],
