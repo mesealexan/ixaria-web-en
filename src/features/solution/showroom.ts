@@ -1,3 +1,11 @@
+import { logPostHog } from '../analytics/logs';
+
+declare global {
+  interface Window {
+    posthog?: { capture: (event: string, properties?: Record<string, unknown>) => void };
+  }
+}
+
 const booking = document.querySelector<HTMLElement>('[data-showroom-booking]');
 
 if (booking) {
@@ -44,6 +52,9 @@ if (booking) {
       if (date.getTime() === today.getTime()) button.setAttribute('aria-current', 'date');
       button.addEventListener('click', () => {
         selected = date;
+        window.posthog?.capture('showroom_visit_date_selected', {
+          days_until_visit: Math.round((date.getTime() - today.getTime()) / 86_400_000),
+        });
         days.querySelectorAll('button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
         if (book) book.disabled = false;
         if (dateText) dateText.textContent = date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -68,7 +79,13 @@ if (booking) {
   previous?.addEventListener('click', () => { month = new Date(month.getFullYear(), month.getMonth() - 1, 1); render(); });
   next?.addEventListener('click', () => { month = new Date(month.getFullYear(), month.getMonth() + 1, 1); render(); });
   book?.addEventListener('click', () => {
-    if (selected && status) status.textContent = `Visit preview: ${dateLabel(selected)} at your nearest center.`;
+    if (selected && status) {
+      status.textContent = `Visit preview: ${dateLabel(selected)} at your nearest center.`;
+      window.posthog?.capture('showroom_visit_previewed');
+      logPostHog('showroom_visit_preview_displayed', { booking_mode: 'preview' });
+    }
   });
   render();
 }
+
+export {};

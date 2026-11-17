@@ -1,11 +1,15 @@
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    posthog?: { capture: (event: string, properties?: Record<string, unknown>) => void };
   }
 }
 
-const track = (name: string, parameters: Record<string, string> = {}) =>
-  window.gtag?.('event', name, { page_path: window.location.pathname, ...parameters });
+const track = (name: string, parameters: Record<string, string> = {}) => {
+  const properties = { page_path: window.location.pathname, ...parameters };
+  window.gtag?.('event', name, properties);
+  window.posthog?.capture(name, properties);
+};
 
 document.addEventListener('click', (event) => {
   const element = (event.target as Element).closest<HTMLAnchorElement>('a');
@@ -35,9 +39,6 @@ document.addEventListener('click', (event) => {
         link_text: label || element.getAttribute('aria-label') || network,
       });
   }
-});
-document.addEventListener('submit', (event) => {
-  if ((event.target as HTMLFormElement).id === 'sib-form') track('newsletter_submit');
 });
 
 export {};

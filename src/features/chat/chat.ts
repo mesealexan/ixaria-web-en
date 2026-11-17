@@ -1,4 +1,11 @@
 import { chatDemo } from '../../data/chat';
+import { logPostHog } from '../analytics/logs';
+
+declare global {
+  interface Window {
+    posthog?: { capture: (event: string, properties?: Record<string, unknown>) => void };
+  }
+}
 
 // This uses predefined demo replies. A real assistant needs
 // a server endpoint; provider credentials must never be sent to the browser.
@@ -9,6 +16,7 @@ export function initializeChat(overlay: HTMLElement) {
   const close = overlay.querySelector<HTMLButtonElement>('[data-chat-close]');
   if (!messages || !input || !send || !close) return;
   let replyIndex = 0;
+  let messagesSent = 0;
   let previousFocus: HTMLElement | null = null;
 
   const append = (text: string, role: 'user' | 'ai') => {
@@ -37,8 +45,14 @@ export function initializeChat(overlay: HTMLElement) {
     input.style.height = 'auto';
     send.disabled = true;
     append(text, 'user');
+    messagesSent += 1;
+    window.posthog?.capture('chat_message_sent', { message_number: messagesSent });
     await new Promise((resolve) => setTimeout(resolve, 1200));
     append(chatDemo.replies[replyIndex++ % chatDemo.replies.length]!, 'ai');
+    logPostHog('chat_demo_reply_displayed', {
+      message_number: messagesSent,
+      response_source: 'predefined_demo',
+    });
     send.disabled = false;
     input.focus();
   };
@@ -77,6 +91,7 @@ export function initializeChat(overlay: HTMLElement) {
     previousFocus = document.activeElement as HTMLElement;
     overlay.hidden = false;
     overlay.classList.add('chat-overlay--open');
+    window.posthog?.capture('chat_opened');
     document.body.style.overflow = 'hidden';
     input.focus();
   };

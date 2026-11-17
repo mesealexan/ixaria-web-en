@@ -3,6 +3,7 @@ import SEOHead from '../components/shared/SEOHead.astro';
 import Header from '../components/shared/Header.astro';
 import Footer from '../components/shared/Footer.astro';
 import Integrations from '../components/shared/Integrations.astro';
+import PostHog from '../components/posthog.astro';
 import { site } from '../data/site';
 import type { PageSEO, StructuredData } from '../seo/types';
 import '../styles/global.css';
@@ -15,6 +16,7 @@ const { seo, structuredData, bodyClass, integrations = true } = Astro.props;
 <html lang={site.language}>
   <head>
     <SEOHead seo={seo} structuredData={structuredData} />
+    <PostHog />
     <slot name="head" />
     <noscript><style is:inline>@media(max-width:768px){.navbar__mobile-toggle{display:none!important}.navbar__inner{height:auto;min-height:72px;flex-wrap:wrap}.navbar__nav{display:flex!important;flex-wrap:wrap;order:3;width:100%;justify-content:center;gap:20px;padding:12px 0}.navbar{position:sticky}main{padding-top:0}}</style></noscript>
   </head>
@@ -25,5 +27,6 @@ const { seo, structuredData, bodyClass, integrations = true } = Astro.props;
     <Footer />
     <slot name="after-footer" />
     {integrations && <Integrations analytics={!seo.robots.includes('noindex')} />}
+    <script>import '../features/analytics/events';</script>
   </body>
 </html>

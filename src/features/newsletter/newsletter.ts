@@ -1,3 +1,11 @@
+import { logPostHog } from '../analytics/logs';
+
+declare global {
+  interface Window {
+    posthog?: { capture: (event: string, properties?: Record<string, unknown>) => void };
+  }
+}
+
 const form = document.querySelector<HTMLFormElement>('#sib-form');
 const email = document.querySelector<HTMLInputElement>('#EMAIL');
 const error = document.getElementById('email-msg-error');
@@ -26,6 +34,8 @@ if (form && email && error && success) {
       // Brevo's existing hosted form does not expose a CORS-readable response.
       // An opaque response confirms transport only, not a successful subscription.
       await fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
+      window.posthog?.capture('newsletter_submit');
+      logPostHog('newsletter_request_sent', { form: 'newsletter' });
       success.textContent =
         'Your subscription request was sent. Please check your inbox for any confirmation.';
       success.style.display = 'block';
@@ -39,3 +49,5 @@ if (form && email && error && success) {
     }
   });
 }
+
+export {};
