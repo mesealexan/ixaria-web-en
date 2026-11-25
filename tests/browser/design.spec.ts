@@ -134,7 +134,7 @@ test('static product views, visible method, and two hero actions', async ({ page
     await expect(actions.getByRole('link', { name: 'See how it works' })).toBeVisible();
     await page.locator('#hero').screenshot({ path: `.tmp/design-previews/hero-two-actions-${width}.png` });
   }
-  await expect(page.locator('#solution .solution-view')).toHaveCount(3);
+  await expect(page.locator('#solution .solution-view')).toHaveCount(4);
   await expect(page.locator('#solution button')).toHaveCount(0);
   await expect(page.locator('#method .solution-step p')).toHaveCount(3);
   for (const paragraph of await page.locator('#method .solution-step p').all()) await expect(paragraph).toBeVisible();

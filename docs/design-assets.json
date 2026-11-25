@@ -1,7 +1,7 @@
 {
   "source": "https://docs.google.com/presentation/d/1vyffTKuJfYkc8qyNp10LtnRrD83QrLCOntquRlyaYVw/edit",
   "retrieved": "2026-11-13",
-  "type": "Existing sales-deck artwork; original image layers or native slide-render crops converted to responsive WebP derivatives. No generated imagery.",
+  "type": "Existing sales-deck artwork and user-supplied solution screenshots, converted to responsive WebP derivatives. No generated imagery.",
   "slides": {
     "hero-scene": "p1",
     "blue-sofa": "p2",
@@ -267,6 +267,70 @@
       "sourcePage": 10,
       "sourceSlide": "p9",
       "sourceObject": "h423f43303dfedb2c_0_152"
+    },
+    {
+      "file": "B001-320.webp",
+      "width": 320,
+      "height": 654,
+      "bytes": 19102,
+      "sourceFile": "B001.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
+    },
+    {
+      "file": "B001.webp",
+      "width": 575,
+      "height": 1176,
+      "bytes": 36580,
+      "sourceFile": "B001.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
+    },
+    {
+      "file": "B002-320.webp",
+      "width": 320,
+      "height": 654,
+      "bytes": 18480,
+      "sourceFile": "B002.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
+    },
+    {
+      "file": "B002.webp",
+      "width": 575,
+      "height": 1176,
+      "bytes": 35858,
+      "sourceFile": "B002.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
+    },
+    {
+      "file": "B003-320.webp",
+      "width": 320,
+      "height": 654,
+      "bytes": 22610,
+      "sourceFile": "B003.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
+    },
+    {
+      "file": "B003.webp",
+      "width": 575,
+      "height": 1176,
+      "bytes": 43778,
+      "sourceFile": "B003.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
+    },
+    {
+      "file": "B004-320.webp",
+      "width": 320,
+      "height": 654,
+      "bytes": 19092,
+      "sourceFile": "B004.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
+    },
+    {
+      "file": "B004.webp",
+      "width": 575,
+      "height": 1176,
+      "bytes": 38002,
+      "sourceFile": "B004.png",
+      "source": "User-supplied replacement for the homepage solution section (2026-11-25)"
     }
   ]
 }

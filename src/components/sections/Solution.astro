@@ -2,9 +2,10 @@
 import '../../styles/solution.css';
 
 const views = [
-  { name: 'standard', caption: 'Standard product view', alt: 'Standard Forma sofa product page with a beige sofa, product information, price and fabric swatches.' },
-  { name: 'pets', caption: 'Pet-focused view', alt: 'Pet-focused Forma sofa product page showing a cat on the sofa, scratch-free fabric and pet-friendly fabric choices.' },
-  { name: 'kids', caption: 'Kids-focused view', alt: 'Kids-focused Forma sofa product page showing a child spilling a drink, easy-clean fabric and fabric choices for everyday spills.' },
+  { name: 'B001', caption: 'Shopper needs', alt: 'Forma sofa listing asking what a sofa should handle, with options for kids, pets and liquid spills.' },
+  { name: 'B002', caption: 'Recommended products', alt: 'Personalised Forma and Cave sofa recommendations with fabric features, reviews, prices and configuration options.' },
+  { name: 'B003', caption: 'Sofa comparison', alt: 'Side-by-side Forma and Cove sofa comparison showing prices, fabric choices, cushion materials and seat firmness.' },
+  { name: 'B004', caption: 'Personalised product view', alt: 'Forma sofa product page showing a dog on scratch-free fabric and personalised delivery and assembly services.' },
 ];
 ---
 <section class="solution" id="solution" aria-labelledby="solution-title">
@@ -15,19 +16,29 @@ const views = [
   <div class="container solution__demo-container solution-views">
     {views.map(view => (
       <figure class="solution-view">
+        <a class="solution-view__expand" href={`/design/${view.name}.webp`} aria-label={`View ${view.caption.toLowerCase()} full size`} aria-haspopup="dialog">
         <img
           class="solution-view__image"
-          src={`/design/solution-${view.name}-800.webp`}
-          srcset={`/design/solution-${view.name}-400.webp 400w, /design/solution-${view.name}-800.webp 800w`}
-          sizes="(max-width: 479px) calc(100vw - 40px), (max-width: 767px) 420px, (max-width: 1295px) calc((100vw - 144px) / 3), 384px"
-          width="800"
-          height="1425"
+          src={`/design/${view.name}.webp`}
+          srcset={`/design/${view.name}-320.webp 320w, /design/${view.name}.webp 575w`}
+          sizes="(max-width: 359px) calc((100vw - 48px) / 2), (max-width: 767px) calc((100vw - 56px) / 2), (max-width: 768px) calc((100vw - 64px) / 2), (max-width: 1023px) calc((100vw - 88px) / 2), (max-width: 1199px) calc((100vw - 136px) / 4), (max-width: 1295px) calc((100vw - 168px) / 4), 282px"
+          width="575"
+          height="1176"
           alt={view.alt}
           loading="lazy"
           decoding="async"
         />
+        </a>
         <figcaption>{view.caption}</figcaption>
       </figure>
     ))}
   </div>
 </section>
+<dialog class="solution-lightbox" aria-label="Full-size solution image">
+  <button class="solution-lightbox__close" type="button" aria-label="Close full-size image">
+    <img src="/design/B001.webp" width="575" height="1176" alt="" loading="lazy" decoding="async" />
+  </button>
+</dialog>
+<script>
+  import '../../features/solution-images';
+</script>
